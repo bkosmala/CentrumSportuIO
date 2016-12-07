@@ -4,3 +4,6 @@ Bez tego chyba nie można robić commitów.
 
 
 Każdy dostanie ode mnie zaproszenie do zaakceptowania.
+W razie problemów ze znalezieniem zaproszenia, może pomóc link ponizej.
+
+https://github.com/bkosmala/CentrumSportuIO/invitations
