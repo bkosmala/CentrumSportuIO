@@ -74,6 +74,9 @@
     <Compile Include="Modul_instruktorow\Grupa.cs" />
     <Compile Include="Modul_instruktorow\Instruktor.cs" />
     <Compile Include="Modul_instruktorow\WpisHarmonogram.cs" />
+    <Compile Include="Modul_oferty\Cennik.cs" />
+    <Compile Include="Modul_oferty\ListaCennikow.cs" />
+    <Compile Include="Modul_oferty\Oferta.cs" />
     <Compile Include="Osoba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -101,9 +104,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modul_oferty\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
