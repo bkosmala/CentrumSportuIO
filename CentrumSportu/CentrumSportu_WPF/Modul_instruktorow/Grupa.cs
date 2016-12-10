@@ -1,4 +1,4 @@
-﻿using CentrumSportu_WPF.Modul_oferty;
+﻿using CentrumSportu_WPF.Modul_biletow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +11,30 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     {
         public string ID { get; set; }
 
-        public List<UczestnikZajec> Uczestnicy { get; set; }
+        public string Dyscyplina { get; set; }
+
+        public List<UczestnikZajec> Uczestincy { get; set; }
+
+        public uint  MinLiczebnosc { get; set; }
+
+        public uint MaxLiczebnosc { get; set; }
+
+        public Grupa(string dyscyplina,uint min,uint max)
+        {
+            Dyscyplina = dyscyplina;
+            MinLiczebnosc = min;
+            MaxLiczebnosc = max;
+            Uczestincy = new List<UczestnikZajec>();
+        }
+
+        public void DodajUczestnika(UczestnikZajec uczestnik)
+        {
+            Uczestincy.Add(uczestnik);
+        }
 
         public void UsunUczestnika(string idUczestnika)
         {
-            //TO DO 
+            
         }
     }
 }

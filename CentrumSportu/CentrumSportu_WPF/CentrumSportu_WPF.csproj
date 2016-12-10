@@ -69,6 +69,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modul_biletow\UczestnikaZajec.cs" />
+    <Compile Include="Modul_instruktorow\Grupa.cs" />
+    <Compile Include="Modul_instruktorow\Instruktor.cs" />
+    <Compile Include="Modul_instruktorow\WpisHarmonogram.cs" />
+    <Compile Include="Osoba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,8 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Baza_danych\" />
-    <Folder Include="Modul_biletow\" />
-    <Folder Include="Modul_instruktorow\" />
     <Folder Include="Modul_oferty\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

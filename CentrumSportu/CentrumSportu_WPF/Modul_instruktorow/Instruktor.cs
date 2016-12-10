@@ -1,5 +1,4 @@
-﻿using CentrumSportu_WPF.Baza_danych;
-using CentrumSportu_WPF.Modul_oferty;
+﻿using CentrumSportu_WPF.Modul_biletow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,17 +32,13 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public bool RozwiazGrupe(string id)
         {
-            bool flaga= BazaMetody.UsunGrupe(id) == true ? true : false;
-            if (flaga == true)
+            for (int i = 0; i < Grupy.Count; i++)
             {
-                for(int i=0;i<Grupy.Count;i++)
+                if (Grupy[i].ID == id)
                 {
-                    if(Grupy[i].ID==id)
-                    {
-                        Grupy.RemoveAt(i);
-                        return true;
-                    }
-                }            
+                    Grupy.RemoveAt(i);
+                    return true;
+                }
             }
             return false;
         }
@@ -80,9 +75,6 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public void UsunUczestnikaZGrupy(string idGrupy,string idUczestnika)
         {
-            bool flaga = BazaMetody.UsunUczestnikaZGrupy(idGrupy,idUczestnika) == true ? true : false;
-            if(flaga==true)
-            {
                 foreach (var item in Grupy)
                 {
                     if(item.ID==idGrupy)
@@ -90,8 +82,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
                         item.UsunUczestnika(idUczestnika);
                         return;
                     }
-                }
-            }
+                }          
         }
 
         public List<UczestnikZajec> PodgladUczestnikowGrupy(string idGrupy)
@@ -100,7 +91,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             {
                 if (item.ID == idGrupy)
                 {
-                    return item.Uczestnicy;               
+                    return item.Uczestincy;               
                 }
             }
             return null;
