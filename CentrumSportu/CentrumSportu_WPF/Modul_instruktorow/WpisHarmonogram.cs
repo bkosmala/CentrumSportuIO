@@ -39,5 +39,10 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         {
             ObiektSportowy = obiekt;
         }
+
+        public WpisHarmonogram()
+        {
+
+        }
     }
 }

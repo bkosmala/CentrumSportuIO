@@ -1,13 +1,17 @@
-﻿using System;
+﻿using CentrumSportu_WPF.Modul_oferty;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CentrumSportu_WPF
+namespace CentrumSportu_WPF.Modul_biletow
 {
-    class Profil
+    [Table("Profile")]
+    public class Profil
     {
+        public string ID { get; set; }
         private int _ocena;
         private List<ZajeciaOdbyte> _historia;
 
@@ -45,10 +49,10 @@ namespace CentrumSportu_WPF
         }
 
 
-        public void dodajZajecia(Zajecia zajecia)
-        {
-            _historia.Add(zajecia);
-        }
+        //public void dodajZajecia(Zajecia zajecia)
+        //{
+        //    _historia.Add(zajecia);
+        //}
 
 
 

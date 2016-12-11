@@ -1,14 +1,17 @@
 ﻿using CentrumSportu_WPF.Modul_biletow;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_instruktorow
 {
+    [Table("Grupy")]
     public class Grupa
     {
+
         public string ID { get; private set; }
 
         public string Dyscyplina { get; private set; }
@@ -48,6 +51,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         {
             MinLiczebnosc = min;
             MaxLiczebnosc = max;
+        }
+
+        public Grupa()
+        {
+
         }
     }
 }

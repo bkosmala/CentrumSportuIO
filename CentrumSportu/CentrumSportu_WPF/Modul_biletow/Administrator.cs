@@ -1,16 +1,16 @@
-﻿using CentrumSportu_WPF.Modul_instruktorow;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CentrumSportu_WPF
+namespace CentrumSportu_WPF.Modul_biletow
 {
-    class Instruktor : Osoba
+    public class Administrator : Osoba
     {
 
-        public Instruktor(string imie, string nazwisko) : base(imie, nazwisko)
+        public Administrator(string imie, string nazwisko) : base(imie, nazwisko)
         {
 
 
@@ -18,13 +18,13 @@ namespace CentrumSportu_WPF
 
          private void StworzAdministratora(string imie, string nazwisko)
         {
-            Instruktor a = new Instruktor(imie, nazwisko);
+            //Instruktor a = new Instruktor(imie, nazwisko);
             //dodanie do listy?
         }
 
         private void StworzInstruktora(string imie, string nazwisko)
         {
-            Instruktor a = new Instruktor(imie, nazwisko);
+            //Instruktor a = new Instruktor(imie, nazwisko);
             //dodanie do listy?
         }
 

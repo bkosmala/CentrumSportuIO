@@ -1,19 +1,20 @@
-﻿using System;
+﻿using CentrumSportu_WPF.Modul_oferty;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CentrumSportu_WPF
+namespace CentrumSportu_WPF.Modul_biletow
 {
-    class Bilet
+    public class Bilet
     {
         private int _id;
         private Zajecia _zajecia;  
         private bool _zaplacono;
   
 
-        public Bilet(int id, ZajeciaOdbyte zajecia)
+        public Bilet(int id, Zajecia zajecia)
         {
             _zaplacono = false;
             _id = id;

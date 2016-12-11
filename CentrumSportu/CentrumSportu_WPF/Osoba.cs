@@ -20,5 +20,10 @@ namespace CentrumSportu_WPF
             Nazwisko = nazwisko;
         }
 
+        public Osoba()
+        {
+
+        }
+
     }
 }

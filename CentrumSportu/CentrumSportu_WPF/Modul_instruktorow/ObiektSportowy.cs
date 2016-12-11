@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_instruktorow
 {
+    [Table("ObiektySportowe")]
     public class ObiektSportowy
     {
         public string ID { get; private set; }
@@ -40,6 +42,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         public void ZmienIloscUczestnikow(uint ilosc)
         {
             MaxUczestnikow = ilosc;
+        }
+
+        public ObiektSportowy()
+        {
+
         }
     }
 }

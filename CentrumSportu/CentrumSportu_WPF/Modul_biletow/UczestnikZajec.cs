@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CentrumSportu_WPF
+namespace CentrumSportu_WPF.Modul_biletow
 {
-    class UczestnikZajec : Osoba
+    [Table("UczestnicyZajec")]
+    public class UczestnikZajec : Osoba
     {
         private List<Bilet> _bilety;
 

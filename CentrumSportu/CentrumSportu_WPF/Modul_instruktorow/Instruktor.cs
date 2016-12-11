@@ -1,12 +1,14 @@
 ﻿using CentrumSportu_WPF.Modul_biletow;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_instruktorow
 {
+    [Table("Instruktorzy")]
     public class Instruktor :Osoba
     {      
         public List<string> Dyscypliny { get; private set; }
@@ -97,7 +99,10 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             return null;
         }
 
+        public Instruktor() 
+        {
 
+        }
 
 
     }

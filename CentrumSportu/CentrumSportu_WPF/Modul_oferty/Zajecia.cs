@@ -12,7 +12,7 @@ namespace CentrumSportu_WPF.Modul_oferty
 
         private List<Instruktor> instruktorzy;
 
-        public int Id { get; }
+        public int Id { get; set; }
         public string Typ { get; set; }
         public string Dyscyplina { get; set; }
         public string Nazwa { get; set; }

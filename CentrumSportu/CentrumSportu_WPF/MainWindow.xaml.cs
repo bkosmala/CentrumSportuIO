@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CentrumSportu_WPF.Baza_danych;
+using CentrumSportu_WPF.Modul_instruktorow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,18 @@ namespace CentrumSportu_WPF
         public MainWindow()
         {
             InitializeComponent();
+
+
+            using (var ctx = new CentrumContext())
+            {
+                ObiektSportowy obiekt = new ObiektSportowy("1","Hala", new List<string> {"piłka nożna" },12,5000);
+                ctx.ObiektySportowe.Add(obiekt);
+                ctx.SaveChanges();
+                foreach (var item in ctx.ObiektySportowe)
+                {
+                    Console.WriteLine(item.Nazwa);
+                }
+            }
         }
     }
 }
