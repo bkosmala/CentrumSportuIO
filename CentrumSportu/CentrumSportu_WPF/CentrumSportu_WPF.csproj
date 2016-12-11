@@ -72,11 +72,16 @@
   <ItemGroup>
     <Compile Include="Modul_biletow\UczestnikaZajec.cs" />
     <Compile Include="Modul_instruktorow\Grupa.cs" />
+    <Compile Include="Modul_instruktorow\Harmonogram.cs" />
     <Compile Include="Modul_instruktorow\Instruktor.cs" />
+    <Compile Include="Modul_instruktorow\ObiektSportowy.cs" />
     <Compile Include="Modul_instruktorow\WpisHarmonogram.cs" />
+    <Compile Include="Modul_instruktorow\WpisWydarzenie.cs" />
+    <Compile Include="Modul_instruktorow\WpisZajecia.cs" />
     <Compile Include="Modul_oferty\Cennik.cs" />
     <Compile Include="Modul_oferty\ListaCennikow.cs" />
     <Compile Include="Modul_oferty\Oferta.cs" />
+    <Compile Include="Modul_oferty\Wydarzenie.cs" />
     <Compile Include="Osoba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

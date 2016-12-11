@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CentrumSportu_WPF.Modul_biletow
+namespace CentrumSportu_WPF.Modul_oferty
 {
-    public class  UczestnikZajec
+    public class Wydarzenie
     {
-        public string ID { get; set; }
         //TO DO
     }
 }

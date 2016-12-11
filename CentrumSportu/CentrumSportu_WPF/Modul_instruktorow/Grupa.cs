@@ -9,15 +9,15 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 {
     public class Grupa
     {
-        public string ID { get; set; }
+        public string ID { get; private set; }
 
-        public string Dyscyplina { get; set; }
+        public string Dyscyplina { get; private set; }
 
-        public List<UczestnikZajec> Uczestincy { get; set; }
+        public List<UczestnikZajec> Uczestincy { get; private set; }
 
-        public uint  MinLiczebnosc { get; set; }
+        public uint  MinLiczebnosc { get; private set; }
 
-        public uint MaxLiczebnosc { get; set; }
+        public uint MaxLiczebnosc { get; private set; }
 
         public Grupa(string dyscyplina,uint min,uint max)
         {
@@ -34,7 +34,20 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public void UsunUczestnika(string idUczestnika)
         {
-            
+            foreach (var item in Uczestincy)
+            {
+                if(item.ID==idUczestnika)
+                {
+                    Uczestincy.Remove(item);
+                    return;
+                }
+            }
+        }
+
+        public void ZmienLiczbeUczestnikow(uint min,uint max)
+        {
+            MinLiczebnosc = min;
+            MaxLiczebnosc = max;
         }
     }
 }
