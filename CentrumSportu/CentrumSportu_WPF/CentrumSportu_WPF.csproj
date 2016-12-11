@@ -96,7 +96,10 @@
     <Compile Include="Modul_oferty\Cennik.cs" />
     <Compile Include="Modul_oferty\ListaCennikow.cs" />
     <Compile Include="Modul_oferty\Oferta.cs" />
+    <Compile Include="Modul_oferty\Przedmiot.cs" />
+    <Compile Include="Modul_oferty\Rezerwacja.cs" />
     <Compile Include="Modul_oferty\Wydarzenie.cs" />
+    <Compile Include="Modul_oferty\Wypozyczenie.cs" />
     <Compile Include="Modul_oferty\Zajecia.cs" />
     <Compile Include="Osoba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
