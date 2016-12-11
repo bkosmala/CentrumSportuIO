@@ -1,4 +1,6 @@
-﻿using CentrumSportu_WPF.Modul_instruktorow;
+﻿using CentrumSportu_WPF.Modul_biletow;
+using CentrumSportu_WPF.Modul_instruktorow;
+using CentrumSportu_WPF.Modul_oferty;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,5 +21,12 @@ namespace CentrumSportu_WPF.Baza_danych
         public DbSet<Grupa> Grupy { get; set; }
         public DbSet<ObiektSportowy> ObiektySportowe { get; set; }
         public DbSet<WpisZajecia> WpisyZajecia { get; set; }
+        //public DbSet<Administrator> Administratorzy { get; set; }
+        public DbSet<Student> Studenci { get; set; }
+        public DbSet<WpisWydarzenie> WpisyWydarzenia { get; set; }
+        public DbSet<Wydarzenie> Wydarzenia { get; set; }
+        public DbSet<Cennik> Cennik { get; set; }
+        
+
     }
 }
