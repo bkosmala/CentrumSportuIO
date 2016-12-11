@@ -1,12 +1,14 @@
 ﻿using CentrumSportu_WPF.Modul_instruktorow;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_oferty
 {
+    [Table("Zajecia")]
     public class Zajecia
     {
 

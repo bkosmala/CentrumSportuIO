@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_oferty
 {
+    [Table("Wydarzenia")]
     public class Wydarzenie
     {
-        public int IdWydarzenia { get; }
+        [Key]
+        public int IdWydarzenia { get; set; }
         public string Nazwa { get; set; }
         public string Opis { get; set; }
         public Cennik CennikWydarzenia { get; set; }
