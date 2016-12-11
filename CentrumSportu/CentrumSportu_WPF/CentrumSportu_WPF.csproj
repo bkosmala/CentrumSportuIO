@@ -82,6 +82,7 @@
     <Compile Include="Modul_oferty\ListaCennikow.cs" />
     <Compile Include="Modul_oferty\Oferta.cs" />
     <Compile Include="Modul_oferty\Wydarzenie.cs" />
+    <Compile Include="Modul_oferty\Zajecia.cs" />
     <Compile Include="Osoba.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
