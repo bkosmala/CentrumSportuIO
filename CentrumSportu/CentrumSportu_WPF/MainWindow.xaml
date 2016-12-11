@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
+        <Label x:Name="HeaderLbl" Content="Centrum Sportu Politechniki Łódzkiej" 
+               HorizontalContentAlignment="Center" FontSize="28"
+               Height="84" Margin="10,45,10,0" 
+               VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.076"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.499"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="LogowanieLbl" Content="Logowanie" HorizontalContentAlignment="Center" FontSize="25" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="772"/>
+        <Label x:Name="LoginLbl" Content="Login:" FontSize="16" HorizontalAlignment="Left" Margin="226,292,0,0" VerticalAlignment="Top" Height="39" Width="69"/>
+        <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="30" FontSize="16" Margin="300,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.492,0.533" />
+        <Label x:Name="PasswordLbl" Content="Hasło:" FontSize="16" HorizontalAlignment="Left" Margin="226,347,0,0" VerticalAlignment="Top" Height="30" Width="69"/>
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" FontSize="16" Margin="300,347,0,0" VerticalAlignment="Top" Width="200" Height="30"/>
+        <Button x:Name="ZalogujBtn" FontSize="18" Content="Zaloguj" HorizontalAlignment="Left" Margin="363,401,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.28,0.182"/>
+        <Button x:Name="GoscBtn" Content="Wejdź jako Gość" FontSize="18" HorizontalAlignment="Left" Margin="320,515,0,0" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.52,0.136"/>
         
+        
+
+
     </Grid>
 </Window>
