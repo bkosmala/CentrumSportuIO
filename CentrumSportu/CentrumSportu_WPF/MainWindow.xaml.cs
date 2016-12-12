@@ -26,6 +26,7 @@ namespace CentrumSportu_WPF
         public MainWindow()
         {
             InitializeComponent();
+            Switcher.pageSwitcher = this;
 
 
             using (var ctx = new CentrumContext())
@@ -63,5 +64,15 @@ namespace CentrumSportu_WPF
 
             }
         }
+
+        private void GoscBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new OfertaWidok());
+        }
+        public void Navigate(UserControl nextPage)
+        {
+            this.Content = nextPage;
+        }
+
     }
 }
