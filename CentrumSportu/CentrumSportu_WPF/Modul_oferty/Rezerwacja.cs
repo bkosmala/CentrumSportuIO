@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_oferty
 {
-    class Rezerwacja
+    [Table("Rezerwacje")]
+    public class Rezerwacja
     {
-        public int Id { get; }
+        [Key]
+        public int Id { get; set; }
         public DateTime OdDaty { get; private set; }
         public DateTime DoDaty { get; private set; }
         public Boolean CzyOplacone { get; private set; }

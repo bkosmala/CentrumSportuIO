@@ -29,9 +29,9 @@ namespace CentrumSportu_WPF
 
             using (var ctx = new CentrumContext())
             {
-                ObiektSportowy obiekt = new ObiektSportowy("1","Hala", new List<string> {"piłka nożna" },12,5000);
-                ctx.ObiektySportowe.Add(obiekt);
-                ctx.SaveChanges();
+                //ObiektSportowy obiekt = new ObiektSportowy("1","Hala", new List<string> {"piłka nożna" },12,5000);
+                //ctx.ObiektySportowe.Add(obiekt);
+                //ctx.SaveChanges();
                 foreach (var item in ctx.ObiektySportowe)
                 {
                     Console.WriteLine(item.Nazwa);

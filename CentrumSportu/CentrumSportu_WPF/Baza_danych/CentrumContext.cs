@@ -26,7 +26,10 @@ namespace CentrumSportu_WPF.Baza_danych
         public DbSet<WpisWydarzenie> WpisyWydarzenia { get; set; }
         public DbSet<Wydarzenie> Wydarzenia { get; set; }
         public DbSet<Cennik> Cennik { get; set; }
-        
+        public DbSet<Przedmiot> Przedmioty { get; set; }
+        public DbSet<Rezerwacja> Rezerwacje { get; set; }
+        public DbSet<Wypozyczenie> Wypozyczenia { get; set; }
+
 
     }
 }
