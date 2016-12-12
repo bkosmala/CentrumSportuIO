@@ -15,7 +15,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public List<Grupa> Grupy { get; private set; }
 
-        public Instruktor(string imie, string nazwisko,List<string> dyscypliny) : base(imie, nazwisko)
+        public Instruktor(string id ,string imie, string nazwisko,List<string> dyscypliny,KontoUzytkownika konto) : base(id,imie, nazwisko,konto)
         {
             Dyscypliny = dyscypliny;
             Grupy = new List<Grupa>();

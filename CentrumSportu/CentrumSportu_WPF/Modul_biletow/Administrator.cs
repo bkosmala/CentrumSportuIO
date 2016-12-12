@@ -12,7 +12,7 @@ namespace CentrumSportu_WPF.Modul_biletow
     public class Administrator : Osoba
     {
 
-        public Administrator(string imie, string nazwisko) : base(imie, nazwisko)
+        public Administrator(string id,string imie, string nazwisko, KontoUzytkownika konto) : base(id,imie, nazwisko,konto)
         {
 
 

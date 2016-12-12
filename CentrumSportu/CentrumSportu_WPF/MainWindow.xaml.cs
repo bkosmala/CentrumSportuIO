@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CentrumSportu_WPF.Widoki;
 
 namespace CentrumSportu_WPF
 {
@@ -29,13 +30,37 @@ namespace CentrumSportu_WPF
 
             using (var ctx = new CentrumContext())
             {
-                //ObiektSportowy obiekt = new ObiektSportowy("1","Hala", new List<string> {"piłka nożna" },12,5000);
-                //ctx.ObiektySportowe.Add(obiekt);
+                KontoUzytkownika konto = new KontoUzytkownika("kazik", "kazik", KontoUzytkownika.RodzajKonta.Instruktor);
+                //ctx.KontaUzytkownikow.Add(konto);
+               // ctx.SaveChanges();
+                Instruktor temp=new Instruktor("I1","Piotr","Kazmierczak",new List<string>() {"Pilka nozna"},konto);             
+                //ctx.Instruktorzy.Add(temp);
                 //ctx.SaveChanges();
-                foreach (var item in ctx.ObiektySportowe)
+            }
+        }
+
+        private void ZalogujBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string login = LoginTextBox.Text;
+            string haslo = PasswordBox.Password;
+            var Konto= BazaMetody.SprawdzLoginiHaslo(login, haslo);
+            if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Instruktor)
+            {
+                Instruktor instruktor = BazaMetody.ZwrocInstruktora(Konto);
+                if (instruktor != null)
                 {
-                    Console.WriteLine(item.Nazwa);
+                    okno_instruktor okno = new okno_instruktor(instruktor);
+                    okno.Show();
+                    this.Close();
                 }
+            }
+            else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Administrator)
+            {
+
+            }
+            else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Student)
+            {
+
             }
         }
     }

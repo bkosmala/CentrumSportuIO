@@ -14,7 +14,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         private Grupa _grupa;
         private Profil _profil;
 
-        public Student(string imie, string nazwisko):base(imie, nazwisko)
+        public Student(string id,string imie, string nazwisko,KontoUzytkownika konto):base(id,imie, nazwisko,konto)
         {
             _grupa = null;
             _profil = new Profil();

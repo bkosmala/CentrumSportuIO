@@ -29,6 +29,8 @@ namespace CentrumSportu_WPF.Baza_danych
         public DbSet<Przedmiot> Przedmioty { get; set; }
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
         public DbSet<Wypozyczenie> Wypozyczenia { get; set; }
+        public DbSet<KontoUzytkownika> KontaUzytkownikow { get; set; }
+        
 
 
     }

@@ -14,10 +14,14 @@ namespace CentrumSportu_WPF
 
         public string Nazwisko { get; private set; }
 
-        public Osoba(string imie,string nazwisko)
+        public string Login { get; set; }
+
+        public Osoba(string id ,string imie,string nazwisko, KontoUzytkownika konto)
         {
+            ID = id;
             Imie = imie;
             Nazwisko = nazwisko;
+            Login = konto.Login;
         }
 
         public Osoba()
