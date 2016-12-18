@@ -14,7 +14,7 @@ namespace CentrumSportu_WPF.Baza_danych
     {
         public CentrumContext() : base("name=CetrumSportuDBCConnectionString")
         {
-            Database.SetInitializer<CentrumContext>(new DropCreateDatabaseIfModelChanges<CentrumContext>());
+            Database.SetInitializer(new CentrumDBInitializer());
         }
 
         public DbSet<Instruktor> Instruktorzy { get; set; }
@@ -30,7 +30,7 @@ namespace CentrumSportu_WPF.Baza_danych
         public DbSet<Rezerwacja> Rezerwacje { get; set; }
         public DbSet<Wypozyczenie> Wypozyczenia { get; set; }
         public DbSet<KontoUzytkownika> KontaUzytkownikow { get; set; }
-        
+        public DbSet<Administrator> Administratorzy { get; set; }
 
 
     }

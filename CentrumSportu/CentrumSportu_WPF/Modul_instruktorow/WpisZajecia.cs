@@ -10,9 +10,9 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     [Table("WpisyZajecia")]
     public class WpisZajecia : WpisHarmonogram
     {
-        public Instruktor Instruktor { get; private set; }
+        public virtual Instruktor Instruktor { get; set; }
 
-        public Grupa Grupa { get; private set; }
+        public virtual Grupa Grupa { get; set; }
 
         public WpisZajecia(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Instruktor instruktor,Grupa grupa) : base(dataRozp, dataZak, obiektSportowy)
         {

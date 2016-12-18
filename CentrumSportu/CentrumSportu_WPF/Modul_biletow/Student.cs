@@ -11,43 +11,29 @@ namespace CentrumSportu_WPF.Modul_biletow
     [Table("Studenci")]
     public class Student : UczestnikZajec
     {
-        private Grupa _grupa;
-        private Profil _profil;
+        public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
-        public Student(string id,string imie, string nazwisko,KontoUzytkownika konto):base(id,imie, nazwisko,konto)
+        public Student(string id,string imie, string nazwisko,KontoUzytkownika konto):base(id,imie, nazwisko)
         {
-            _grupa = null;
-            _profil = new Profil();
+            Grupa = null;
+            Profil = null;
+            KontoUzytkownika = konto;
         }
 
-
-        public Grupa grupa
+        public Student()
         {
-            get
-            {
-                return _grupa;
-            }
-
+            
         }
 
-        public Profil profil
-        {
-            get
-            {
-                return _profil;
-            }
+        public Grupa Grupa { get;  set; }
 
-            set
-            {
-                _profil = value;
-            }
-        }
+        public Profil Profil { get; set; }
 
 
         public void odejdzZGrupy()
         {
-            _grupa = null;
-            _grupa.UsunUczestnika(this.ID);
+            Grupa = null;
+            Grupa.UsunUczestnika(this.ID);
           
         }
 
@@ -57,7 +43,7 @@ namespace CentrumSportu_WPF.Modul_biletow
             if (g.Uczestincy.Count < g.MaxLiczebnosc)
             {
                 g.DodajUczestnika(this);
-                _grupa = g;
+                Grupa = g;
             }
         }
 

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Widoki;
 
 namespace CentrumSportu_WPF
@@ -27,17 +28,6 @@ namespace CentrumSportu_WPF
         {
             InitializeComponent();
             Switcher.pageSwitcher = this;
-
-
-            using (var ctx = new CentrumContext())
-            {
-                KontoUzytkownika konto = new KontoUzytkownika("kazik", "kazik", KontoUzytkownika.RodzajKonta.Instruktor);
-                //ctx.KontaUzytkownikow.Add(konto);
-               // ctx.SaveChanges();
-                Instruktor temp=new Instruktor("I1","Piotr","Kazmierczak",new List<string>() {"Pilka nozna"},konto);             
-                //ctx.Instruktorzy.Add(temp);
-                //ctx.SaveChanges();
-            }
         }
 
         private void ZalogujBtn_Click(object sender, RoutedEventArgs e)
@@ -57,11 +47,23 @@ namespace CentrumSportu_WPF
             }
             else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Administrator)
             {
-
+                Administrator administrator = BazaMetody.ZwrocAdministratora(Konto);
+                if (administrator != null)
+                {
+                    okno_administrator okno = new okno_administrator(administrator);
+                    okno.Show();
+                    this.Close();
+                }
             }
             else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Student)
             {
-
+                Student student = BazaMetody.ZwrocStudenta(Konto);
+                if (student != null)
+                {
+                    okno_student okno = new okno_student(student);
+                    okno.Show();
+                    this.Close();
+                }
             }
         }
 

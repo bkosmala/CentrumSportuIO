@@ -13,12 +13,15 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     {      
         public List<string> Dyscypliny { get; private set; }
 
-        public List<Grupa> Grupy { get; private set; }
+        public virtual ICollection<Grupa> Grupy { get; set; }
 
-        public Instruktor(string id ,string imie, string nazwisko,List<string> dyscypliny,KontoUzytkownika konto) : base(id,imie, nazwisko,konto)
+        public virtual KontoUzytkownika KontoUzytkownika { get; set; }
+
+        public Instruktor(string id ,string imie, string nazwisko,List<string> dyscypliny,KontoUzytkownika konto) : base(id,imie, nazwisko)
         {
             Dyscypliny = dyscypliny;
             Grupy = new List<Grupa>();
+            KontoUzytkownika = konto;
         }
 
         public bool ZalozGrupe(Grupa grupa,WpisHarmonogram wpis)
@@ -29,16 +32,16 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public Grupa PodgladGrupy(string id)
         {
-            return Grupy.Where(i => i.ID == id).FirstOrDefault();
+            return Grupy.FirstOrDefault(i => i.ID == id);
         }
 
         public bool RozwiazGrupe(string id)
         {
             for (int i = 0; i < Grupy.Count; i++)
             {
-                if (Grupy[i].ID == id)
+                if (Grupy.ElementAt(i).ID == id)
                 {
-                    Grupy.RemoveAt(i);
+                    Grupy.ToList().RemoveAt(i);
                     return true;
                 }
             }
@@ -93,7 +96,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             {
                 if (item.ID == idGrupy)
                 {
-                    return item.Uczestincy;               
+                    return item.Uczestincy.ToList();               
                 }
             }
             return null;

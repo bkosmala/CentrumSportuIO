@@ -11,22 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CentrumSportu_WPF.Modul_instruktorow;
+using CentrumSportu_WPF.Modul_biletow;
 
 namespace CentrumSportu_WPF.Widoki
 {
     /// <summary>
-    /// Interaction logic for okno_instruktor.xaml
+    /// Interaction logic for okno_administrator.xaml
     /// </summary>
-    public partial class okno_instruktor : Window
+    public partial class okno_administrator : Window
     {
-        private Instruktor instruktor;
+        private Administrator administrator;
 
-        public okno_instruktor(Instruktor _instruktor)
+        public okno_administrator(Administrator _administrator)
         {
             InitializeComponent();
-            instruktor = _instruktor;
-            this.textBox.Text = instruktor.Imie + " " + instruktor.Nazwisko;
+            administrator = _administrator;
+            this.textBox.Text = administrator.Imie + " " + administrator.Nazwisko;
         }
     }
 }

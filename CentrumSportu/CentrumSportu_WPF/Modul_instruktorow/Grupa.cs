@@ -12,15 +12,17 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     public class Grupa
     {
 
-        public string ID { get; private set; }
+        public string ID { get;  set; }
 
         public string Dyscyplina { get; private set; }
-
-        public List<UczestnikZajec> Uczestincy { get; private set; }
 
         public uint  MinLiczebnosc { get; private set; }
 
         public uint MaxLiczebnosc { get; private set; }
+
+        public virtual Instruktor Instruktor { get; set; }
+
+        public virtual ICollection<UczestnikZajec> Uczestincy { get; set; }
 
         public Grupa(string dyscyplina,uint min,uint max)
         {
@@ -28,6 +30,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             MinLiczebnosc = min;
             MaxLiczebnosc = max;
             Uczestincy = new List<UczestnikZajec>();
+        }
+
+        public Grupa()
+        {
+
         }
 
         public void DodajUczestnika(UczestnikZajec uczestnik)
@@ -51,11 +58,6 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         {
             MinLiczebnosc = min;
             MaxLiczebnosc = max;
-        }
-
-        public Grupa()
-        {
-
         }
     }
 }

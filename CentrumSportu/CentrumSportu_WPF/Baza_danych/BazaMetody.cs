@@ -41,25 +41,25 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 foreach (var item in data.Instruktorzy)
                 {
-                    if (item.Login == konto.Login)
+                    if (item.KontoUzytkownika.Login == konto.Login)
                         return item;
                 }
             }
             return null;
         }
 
-        //public static Administrator ZwrocAdministratora(KontoUzytkownika konto)
-        //{
-        //    using (CentrumContext data = new CentrumContext())
-        //    {
-        //        foreach (var item in data.Administratorzy)
-        //        {
-        //            if (item.KontoUzytkownika.Login == konto.Login)
-        //                return item;
-        //        }
-        //    }
-        //    return null;
-        //}
+        public static Administrator ZwrocAdministratora(KontoUzytkownika konto)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (var item in data.Administratorzy)
+                {
+                    if (item.KontoUzytkownika.Login == konto.Login)
+                        return item;
+                }
+            }
+            return null;
+        }
 
         public static Student ZwrocStudenta(KontoUzytkownika konto)
         {
@@ -67,7 +67,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 foreach (var item in data.Studenci)
                 {
-                    if (item.Login == konto.Login)
+                    if (item.KontoUzytkownika.Login == konto.Login)
                         return item;
                 }
             }

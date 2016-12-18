@@ -12,11 +12,13 @@ namespace CentrumSportu_WPF
     public class KontoUzytkownika
     {
         [Key]
-        public string Login { get; private set; }
+        public string Login { get;  set; }
 
         public string Haslo { get; private set; }
 
         public RodzajKonta TypKonta { get; private set; }
+
+        public virtual Osoba Osoba { get; set; }
 
         public enum RodzajKonta
         {

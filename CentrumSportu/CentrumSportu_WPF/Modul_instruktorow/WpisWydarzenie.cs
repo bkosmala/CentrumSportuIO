@@ -11,7 +11,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     [Table("WpisyWydarzenia")]
     public class WpisWydarzenie : WpisHarmonogram
     {
-        public Wydarzenie Wydarzenie { get; private set; }
+        public virtual Wydarzenie Wydarzenie { get; set; }
 
         public WpisWydarzenie(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Wydarzenie wydarzenie) : base(dataRozp, dataZak, obiektSportowy)
         {

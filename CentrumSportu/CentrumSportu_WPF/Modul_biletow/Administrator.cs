@@ -11,14 +11,20 @@ namespace CentrumSportu_WPF.Modul_biletow
     [Table("Administratorzy")]
     public class Administrator : Osoba
     {
-
-        public Administrator(string id,string imie, string nazwisko, KontoUzytkownika konto) : base(id,imie, nazwisko,konto)
+        public Administrator(string id,string imie, string nazwisko, KontoUzytkownika konto) : base(id,imie, nazwisko)
         {
-
+            KontoUzytkownika = konto;
 
         }
 
-         private void StworzAdministratora(string imie, string nazwisko)
+        public Administrator()
+        {
+            
+        }
+
+        public virtual KontoUzytkownika KontoUzytkownika { get; set; }
+
+        private void StworzAdministratora(string imie, string nazwisko)
         {
             //Instruktor a = new Instruktor(imie, nazwisko);
             //dodanie do listy?
