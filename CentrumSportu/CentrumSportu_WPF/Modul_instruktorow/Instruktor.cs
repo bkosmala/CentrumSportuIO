@@ -10,15 +10,23 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 {
     [Table("Instruktorzy")]
     public class Instruktor :Osoba
-    {      
+    {
+        public string Telefon { get; set; }
+
+        public string Email { get; set; }
+
+        public string Zdjęcie { get; set; }
+
         public List<string> Dyscypliny { get; private set; }
 
         public virtual ICollection<Grupa> Grupy { get; set; }
 
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
-        public Instruktor(string id ,string imie, string nazwisko,List<string> dyscypliny,KontoUzytkownika konto) : base(id,imie, nazwisko)
+        public Instruktor(string id ,string imie, string nazwisko,string email,string telefon,List<string> dyscypliny,KontoUzytkownika konto) : base(id,imie, nazwisko)
         {
+            Email = email;
+            Telefon = telefon;
             Dyscypliny = dyscypliny;
             Grupy = new List<Grupa>();
             KontoUzytkownika = konto;

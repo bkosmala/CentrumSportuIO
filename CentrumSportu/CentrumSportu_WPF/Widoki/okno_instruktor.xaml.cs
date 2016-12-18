@@ -26,7 +26,11 @@ namespace CentrumSportu_WPF.Widoki
         {
             InitializeComponent();
             instruktor = _instruktor;
-            this.textBox.Text = instruktor.Imie + " " + instruktor.Nazwisko;
+            imie_textBlock.Text = instruktor.Imie;
+            nazwisko_textBlock.Text = instruktor.Nazwisko;
+            telefon_textBlock.Text = instruktor.Telefon;
+            email_textBlock.Text = instruktor.Email;
+            zdjecie_profilowe.Source=new BitmapImage(new Uri(instruktor.Zdjęcie));
         }
     }
 }
