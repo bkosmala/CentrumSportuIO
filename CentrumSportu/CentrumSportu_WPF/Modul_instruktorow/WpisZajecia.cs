@@ -14,20 +14,23 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public virtual Grupa Grupa { get; set; }
 
-        public WpisZajecia(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Instruktor instruktor,Grupa grupa) : base(dataRozp, dataZak, obiektSportowy)
+        public virtual ObiektSportowy ObiektSportowy { get; set; }
+
+        public WpisZajecia(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Instruktor instruktor,Grupa grupa) : base(dataRozp, dataZak)
         {
             Instruktor = instruktor;
             Grupa = grupa;
-        }
-
-        public void ZmienInstruktora(Instruktor instruktor)
-        {
-            Instruktor = instruktor;
+            ObiektSportowy = obiektSportowy;
         }
 
         public WpisZajecia()
         {
 
         }
+
+        public void ZmienInstruktora(Instruktor instruktor)
+        {
+            Instruktor = instruktor;
+        }      
     }
 }

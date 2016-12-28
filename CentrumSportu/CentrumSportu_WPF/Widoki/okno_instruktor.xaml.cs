@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CentrumSportu_WPF.Baza_danych;
 using CentrumSportu_WPF.Modul_instruktorow;
 
 namespace CentrumSportu_WPF.Widoki
@@ -21,16 +22,27 @@ namespace CentrumSportu_WPF.Widoki
     public partial class okno_instruktor : Window
     {
         private Instruktor instruktor;
+        private WpisZajecia najblizszeZajecia;
 
         public okno_instruktor(Instruktor _instruktor)
         {
             InitializeComponent();
             instruktor = _instruktor;
+            najblizszeZajecia = BazaMetody.ZwrocNajblizszeZajeciaDlaInstruktora(instruktor);          
+
             imie_textBlock.Text = instruktor.Imie;
             nazwisko_textBlock.Text = instruktor.Nazwisko;
             telefon_textBlock.Text = instruktor.Telefon;
             email_textBlock.Text = instruktor.Email;
             zdjecie_profilowe.Source=new BitmapImage(new Uri(instruktor.Zdjęcie));
+            if (najblizszeZajecia != null)
+            {
+                
+            }
+            else
+            {
+                brakZajec_label.Visibility = Visibility.Visible;
+            }
         }
     }
 }

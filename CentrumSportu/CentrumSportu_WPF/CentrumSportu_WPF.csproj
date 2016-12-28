@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Baza_danych\CentrumDBInitializer.cs" />
+    <Compile Include="Modul_instruktorow\Dyscyplina.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
@@ -160,9 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\instruktor_test.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\instruktor_test.jpg" />

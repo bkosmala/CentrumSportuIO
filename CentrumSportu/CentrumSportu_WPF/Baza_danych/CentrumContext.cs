@@ -21,7 +21,6 @@ namespace CentrumSportu_WPF.Baza_danych
         public DbSet<Grupa> Grupy { get; set; }
         public DbSet<ObiektSportowy> ObiektySportowe { get; set; }
         public DbSet<WpisZajecia> WpisyZajecia { get; set; }
-        //public DbSet<Administrator> Administratorzy { get; set; }
         public DbSet<Student> Studenci { get; set; }
         public DbSet<WpisWydarzenie> WpisyWydarzenia { get; set; }
         public DbSet<Wydarzenie> Wydarzenia { get; set; }
@@ -31,6 +30,7 @@ namespace CentrumSportu_WPF.Baza_danych
         public DbSet<Wypozyczenie> Wypozyczenia { get; set; }
         public DbSet<KontoUzytkownika> KontaUzytkownikow { get; set; }
         public DbSet<Administrator> Administratorzy { get; set; }
+        public DbSet<Dyscyplina> Dyscypliny { get; set; }
 
 
     }

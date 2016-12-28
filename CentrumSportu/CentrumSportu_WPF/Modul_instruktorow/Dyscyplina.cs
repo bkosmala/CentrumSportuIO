@@ -6,28 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CentrumSportu_WPF
+namespace CentrumSportu_WPF.Modul_instruktorow
 {
-    public abstract class Osoba
+    [Table("Dyscypliny")]
+    public class Dyscyplina
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get;  set; }
+        public int Id { get; set; }
 
-        public string Imie { get; private set; }
+        public string Nazwa { get; set; }
 
-        public string Nazwisko { get; private set; }
-
-        public Osoba(string imie,string nazwisko)
+        public Dyscyplina()
         {
-            Imie = imie;
-            Nazwisko = nazwisko;
+            
         }
 
-        public Osoba()
+        public Dyscyplina(string nazwa)
         {
-
+            Nazwa = nazwa;
         }
-
     }
 }

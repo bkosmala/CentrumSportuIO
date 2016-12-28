@@ -12,7 +12,7 @@ namespace CentrumSportu_WPF.Modul_biletow
     {
         private List<Bilet> _bilety;
 
-        public UczestnikZajec(string id ,string imie, string nazwisko ):base ( id,imie, nazwisko)
+        public UczestnikZajec(string imie, string nazwisko ):base (imie, nazwisko)
         {
             _bilety = new List<Bilet>();
         }

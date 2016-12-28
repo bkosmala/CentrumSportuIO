@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,43 +11,44 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     [Table("ObiektySportowe")]
     public class ObiektSportowy
     {
-        public string ID { get; private set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-        public string Nazwa { get; private set; }
+        public string Nazwa { get; set; }
 
-        public List<string> DostepneDyscypliny { get; private set; }
+        public virtual ICollection<Dyscyplina> DostepneDyscypliny { get; set; }
 
-        public uint MaxUczestnikow { get; private set; }
+        public int MaxUczestnikow { get; set; }
 
-        public uint IloscMiejscTrybuny { get; private set; }
+        public int IloscMiejscTrybuny { get; set; }
 
-        public ObiektSportowy(string id,string nazwa,List<string> dyscypliny,uint maxUczestnicy,uint trybuny)
+        public ObiektSportowy(string nazwa,List<Dyscyplina> dyscypliny,int maxUczestnicy,int trybuny)
         {
-            ID = id;
             Nazwa = nazwa;
             DostepneDyscypliny = dyscypliny;
             MaxUczestnikow = maxUczestnicy;
             IloscMiejscTrybuny = trybuny;
         }
 
-        public void DodajDyscypline(string dyscyplina)
-        {
-            DostepneDyscypliny.Add(dyscyplina);
-        }
-
-        public void UsunDyscypline(string dyscyplina)
-        {
-            DostepneDyscypliny.Remove(dyscyplina);
-        }
-
-        public void ZmienIloscUczestnikow(uint ilosc)
-        {
-            MaxUczestnikow = ilosc;
-        }
-
         public ObiektSportowy()
         {
 
         }
+
+        public void DodajDyscypline(Dyscyplina dyscyplina)
+        {
+            DostepneDyscypliny.Add(dyscyplina);
+        }
+
+        public void UsunDyscypline(Dyscyplina dyscyplina)
+        {
+            DostepneDyscypliny.Remove(dyscyplina);
+        }
+
+        public void ZmienIloscUczestnikow(int ilosc)
+        {
+            MaxUczestnikow = ilosc;
+        }      
     }
 }

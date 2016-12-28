@@ -1,6 +1,7 @@
 ﻿using CentrumSportu_WPF.Modul_biletow;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,20 +12,21 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     [Table("Grupy")]
     public class Grupa
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get;  set; }
 
-        public string ID { get;  set; }
+        public virtual Dyscyplina Dyscyplina { get; set; }
 
-        public string Dyscyplina { get; private set; }
+        public int  MinLiczebnosc { get; set; }
 
-        public uint  MinLiczebnosc { get; private set; }
-
-        public uint MaxLiczebnosc { get; private set; }
+        public int MaxLiczebnosc { get; set; }
 
         public virtual Instruktor Instruktor { get; set; }
 
         public virtual ICollection<UczestnikZajec> Uczestincy { get; set; }
 
-        public Grupa(string dyscyplina,uint min,uint max)
+        public Grupa(Dyscyplina dyscyplina,int min,int max)
         {
             Dyscyplina = dyscyplina;
             MinLiczebnosc = min;
@@ -42,11 +44,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             Uczestincy.Add(uczestnik);
         }
 
-        public void UsunUczestnika(string idUczestnika)
+        public void UsunUczestnika(int idUczestnika)
         {
             foreach (var item in Uczestincy)
             {
-                if(item.ID==idUczestnika)
+                if(item.Id==idUczestnika)
                 {
                     Uczestincy.Remove(item);
                     return;
@@ -54,7 +56,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             }
         }
 
-        public void ZmienLiczbeUczestnikow(uint min,uint max)
+        public void ZmienLiczbeUczestnikow(int min,int max)
         {
             MinLiczebnosc = min;
             MaxLiczebnosc = max;

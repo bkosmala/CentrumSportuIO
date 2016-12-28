@@ -13,7 +13,7 @@ namespace CentrumSportu_WPF.Modul_biletow
     {
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
-        public Student(string id,string imie, string nazwisko,KontoUzytkownika konto):base(id,imie, nazwisko)
+        public Student(string imie, string nazwisko,KontoUzytkownika konto):base(imie, nazwisko)
         {
             Grupa = null;
             Profil = null;
@@ -33,7 +33,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         public void odejdzZGrupy()
         {
             Grupa = null;
-            Grupa.UsunUczestnika(this.ID);
+            Grupa.UsunUczestnika(this.Id);
           
         }
 

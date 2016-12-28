@@ -13,9 +13,12 @@ namespace CentrumSportu_WPF.Modul_instruktorow
     {
         public virtual Wydarzenie Wydarzenie { get; set; }
 
-        public WpisWydarzenie(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Wydarzenie wydarzenie) : base(dataRozp, dataZak, obiektSportowy)
+        public virtual ObiektSportowy ObiektSportowy { get; set; }
+
+        public WpisWydarzenie(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Wydarzenie wydarzenie) : base(dataRozp, dataZak)
         {
             Wydarzenie = wydarzenie;
+            ObiektSportowy = obiektSportowy;
         }
     }
 }

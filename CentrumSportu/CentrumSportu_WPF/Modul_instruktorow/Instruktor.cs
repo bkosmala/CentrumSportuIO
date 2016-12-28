@@ -17,13 +17,13 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public string Zdjęcie { get; set; }
 
-        public List<string> Dyscypliny { get; private set; }
+        public virtual ICollection<Dyscyplina> Dyscypliny { get; set; }
 
         public virtual ICollection<Grupa> Grupy { get; set; }
 
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
-        public Instruktor(string id ,string imie, string nazwisko,string email,string telefon,List<string> dyscypliny,KontoUzytkownika konto) : base(id,imie, nazwisko)
+        public Instruktor(string imie, string nazwisko,string email,string telefon,List<Dyscyplina> dyscypliny,KontoUzytkownika konto) : base(imie, nazwisko)
         {
             Email = email;
             Telefon = telefon;
@@ -38,16 +38,16 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             return true;
         }
 
-        public Grupa PodgladGrupy(string id)
+        public Grupa PodgladGrupy(int id)
         {
-            return Grupy.FirstOrDefault(i => i.ID == id);
+            return Grupy.FirstOrDefault(i => i.Id == id);
         }
 
-        public bool RozwiazGrupe(string id)
+        public bool RozwiazGrupe(int id)
         {
             for (int i = 0; i < Grupy.Count; i++)
             {
-                if (Grupy.ElementAt(i).ID == id)
+                if (Grupy.ElementAt(i).Id == id)
                 {
                     Grupy.ToList().RemoveAt(i);
                     return true;
@@ -56,7 +56,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             return false;
         }
 
-        public bool ZmienTerminZajec(string idWpisu,DateTime dataRozpoczecia,DateTime dataZakonczenia)
+        public bool ZmienTerminZajec(int idWpisu,DateTime dataRozpoczecia,DateTime dataZakonczenia)
         {
             //TO DO
             return true;
@@ -65,32 +65,32 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         /// <summary>
         /// Metoda bedzie wysylac email do wszystkich uczestnikow danej grupy
         /// </summary>
-        public void WyslijWiadomoscDoUczestnikowDanejGrupy(string idGrupy,string wiadomosc)
+        public void WyslijWiadomoscDoUczestnikowDanejGrupy(int idGrupy,string wiadomosc)
         {
             //TO DO - zaimplementowac wysyalnie emaila
         }
 
-        public UczestnikZajec PodgladProfiluUczestnika(string idUczestnika)
+        public UczestnikZajec PodgladProfiluUczestnika(int idUczestnika)
         {
             //TO DO
             return null;
         }
 
-        public void DodajDyscypline(string nazwa)
+        public void DodajDyscypline(Dyscyplina dyscyplina)
         {
-            Dyscypliny.Add(nazwa);
+            Dyscypliny.Add(dyscyplina);
         }
 
-        public void UsunDyscypline(string nazwa)
+        public void UsunDyscypline(Dyscyplina dyscyplina)
         {
-            Dyscypliny.Remove(nazwa);
+            Dyscypliny.Remove(dyscyplina);
         }
 
-        public void UsunUczestnikaZGrupy(string idGrupy,string idUczestnika)
+        public void UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
                 foreach (var item in Grupy)
                 {
-                    if(item.ID==idGrupy)
+                    if(item.Id==idGrupy)
                     {
                         item.UsunUczestnika(idUczestnika);
                         return;
@@ -98,11 +98,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
                 }          
         }
 
-        public List<UczestnikZajec> PodgladUczestnikowGrupy(string idGrupy)
+        public List<UczestnikZajec> PodgladUczestnikowGrupy(int idGrupy)
         {
             foreach (var item in Grupy)
             {
-                if (item.ID == idGrupy)
+                if (item.Id == idGrupy)
                 {
                     return item.Uczestincy.ToList();               
                 }

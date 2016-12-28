@@ -73,5 +73,19 @@ namespace CentrumSportu_WPF.Baza_danych
             }
             return null;
         }
+
+        public static WpisZajecia ZwrocNajblizszeZajeciaDlaInstruktora(Instruktor instruktor)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var result =
+                    data.WpisyZajecia.Where(e=>e.Instruktor.Id==instruktor.Id && e.DataRozpoczecia > DateTime.Now)
+                        .OrderBy(e => e.DataRozpoczecia)
+                        .FirstOrDefault();
+
+                var x = result.Grupa.MaxLiczebnosc;
+                return result;
+            }
+        }
     }
 }

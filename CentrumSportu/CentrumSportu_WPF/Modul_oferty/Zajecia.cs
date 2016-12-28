@@ -31,7 +31,7 @@ namespace CentrumSportu_WPF.Modul_oferty
             // sprawdzenie czy instruktor nie został już dodany
             foreach(Instruktor ins in instruktorzy)
             {
-                if (ins.ID.Equals(kto.ID))
+                if (ins.Id.Equals(kto.Id))
                 {
                     nieIstnieje = false;
                 }

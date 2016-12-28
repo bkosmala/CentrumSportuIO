@@ -73,7 +73,7 @@ namespace CentrumSportu_WPF.Modul_oferty
             bool nieIstnieje = true;
             foreach (ObiektSportowy element in obiekty)
             {
-                if (element.ID == o.ID)
+                if (element.Id == o.Id)
                 {
                     nieIstnieje = false;
                 }
@@ -131,12 +131,12 @@ namespace CentrumSportu_WPF.Modul_oferty
             return null;
         }
 
-        public ObiektSportowy WyszukajObiekt(string id)
+        public ObiektSportowy WyszukajObiekt(int id)
         {
 
             foreach (ObiektSportowy element in obiekty)
             {
-                if (element.ID == id)
+                if (element.Id == id)
                 {
                     return element;
                 }

@@ -14,15 +14,51 @@ namespace CentrumSportu_WPF.Baza_danych
     public class CentrumDBInitializer :DropCreateDatabaseAlways<CentrumContext>
     {
         protected override void Seed(CentrumContext context)  
-        {           
-            Instruktor instruktor = new Instruktor("I1", "Piotr", "Kazmierczak","pkazmierczak@gmail.com","500600700", new List<string>() { "Pilka nozna" }, new KontoUzytkownika("kazik", "kazik", KontoUzytkownika.RodzajKonta.Instruktor));
-            Student student = new Student("U1", "Rafał", "Lebioda", new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student));
-            Administrator administrator = new Administrator("A1", "Super", "Admin", new KontoUzytkownika("admin", "admin", KontoUzytkownika.RodzajKonta.Administrator));
+        {      
+            //Konta uzytkownikow
+            KontoUzytkownika kontoInstruktor = new KontoUzytkownika("kazik", "kazik", KontoUzytkownika.RodzajKonta.Instruktor);
+            KontoUzytkownika kontoAdministrator = new KontoUzytkownika("admin", "admin", KontoUzytkownika.RodzajKonta.Administrator);
+            KontoUzytkownika kontoStudent= new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student);
+
+            //Dyscypliny
+            List<Dyscyplina> dyscypliny=new List<Dyscyplina>()
+            {
+                new Dyscyplina("Piłka nożna"),
+                new Dyscyplina("Piłka siatkowa"),
+                new Dyscyplina("Piłka koszykowa")
+            };
+
+            //Instruktorzy
+            Instruktor instruktor1= new Instruktor("Piotr", "Kazmierczak", "pkazmierczak@gmail.com", "500600700",dyscypliny,kontoInstruktor);
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            instruktor.Zdjęcie = path + "../../Resources/instruktor_test.jpg";
-            context.Instruktorzy.Add(instruktor);
-            context.Studenci.Add(student);
-            context.Administratorzy.Add(administrator);
+            instruktor1.Zdjęcie = path + "../../Resources/instruktor_test.jpg";
+
+            //Studenci
+            Student student1 = new Student("Rafał", "Lebioda", kontoStudent);
+
+            //Administratorzy
+            Administrator administrator1 = new Administrator("Super", "Admin",kontoAdministrator);
+
+            //Obiekty sportowe
+            ObiektSportowy obiekt1 = new ObiektSportowy("Sala główna", dyscypliny, 25, 100);
+
+            //Grupy
+            Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30);
+
+            //Zajecia
+            List<WpisZajecia> zajecia = new List<WpisZajecia>
+            {
+                new WpisZajecia(new DateTime(2017,1,1,16,0,0), new DateTime(2017,1,1,18,0,0),obiekt1,instruktor1,grupa1 ),
+                new WpisZajecia(new DateTime(2017,1,2,16,0,0), new DateTime(2017,1,2,18,0,0),obiekt1,instruktor1,grupa1 )
+            };      
+            
+            context.Instruktorzy.Add(instruktor1);
+            context.Studenci.Add(student1);
+            context.Administratorzy.Add(administrator1);
+            foreach (var item in zajecia)
+            {
+                context.WpisyZajecia.Add(item);
+            }
             base.Seed(context);
         }
     }
