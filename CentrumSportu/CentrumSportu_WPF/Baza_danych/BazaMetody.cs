@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +40,7 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data=new CentrumContext())
             {
-                foreach (var item in data.Instruktorzy)
+                foreach (var item in data.Instruktorzy.Include("Dyscypliny").Include("Grupy"))
                 {
                     if (item.KontoUzytkownika.Login == konto.Login)
                         return item;
@@ -80,7 +81,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e=>e.Instruktor.Id==instruktor.Id && e.DataRozpoczecia > DateTime.Now)
-                        .OrderBy(e => e.DataRozpoczecia)
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy")
                         .FirstOrDefault();
 
                 var x = result.Grupa.MaxLiczebnosc;

@@ -23,6 +23,8 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
+        public virtual ICollection<WpisZajecia> WpisZajecia { get; set; }
+
         public Instruktor(string imie, string nazwisko,string email,string telefon,List<Dyscyplina> dyscypliny,KontoUzytkownika konto) : base(imie, nazwisko)
         {
             Email = email;

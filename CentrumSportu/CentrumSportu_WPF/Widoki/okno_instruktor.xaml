@@ -7,18 +7,37 @@
         mc:Ignorable="d"
         Title="okno_instruktor" Height="469.522" Width="609.876">
     <Grid>
-        <Image x:Name="zdjecie_profilowe" HorizontalAlignment="Left" Height="170" Margin="30,30,0,0" VerticalAlignment="Top" Width="170"/>
-        <Label x:Name="label1" Content="Imię :" HorizontalAlignment="Left" Margin="23,228,0,0" VerticalAlignment="Top" Height="33" Width="60"/>
-        <Label x:Name="label1_Copy" Content="Nazwisko :" HorizontalAlignment="Left" Margin="23,273,0,0" VerticalAlignment="Top" Height="35" Width="101"/>
-        <Label x:Name="label2" Content="Email :" HorizontalAlignment="Left" Margin="23,320,0,0" VerticalAlignment="Top" Height="35" Width="69"/>
-        <Label x:Name="label2_Copy" Content="Telefon :" HorizontalAlignment="Left" Margin="23,358,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.455,1.728" Height="35" Width="84"/>
-        <TextBlock x:Name="imie_textBlock"  HorizontalAlignment="Left" Margin="124,235,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="21" Width="83" TextAlignment="Justify"/>
-        <TextBlock x:Name="nazwisko_textBlock" HorizontalAlignment="Left" Margin="124,280,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="22" Width="83" TextAlignment="Justify"/>
-        <TextBlock x:Name="email_textBlock" HorizontalAlignment="Left" Margin="124,327,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="19" Width="83" TextAlignment="Justify"/>
-        <TextBlock x:Name="telefon_textBlock" HorizontalAlignment="Left" Margin="124,367,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="20" Width="76" TextAlignment="Justify"/>
-        <GroupBox x:Name="najblizszeZajecia_groupBox" Header="Najbliższe zajęcia" HorizontalAlignment="Left" Margin="333,30,0,0" VerticalAlignment="Top" Height="200" Width="220">
-            <Label x:Name="brakZajec_label" Content="Brak nadchodzących zajęć" HorizontalAlignment="Center" Margin="29,76,29,72" VerticalAlignment="Center" Width="150" Height="30" Foreground="Red" Visibility="Hidden" />
-        </GroupBox>
+        <TabControl>
+            <TabItem Header="Profil instruktora">
+                <Grid>
+                    <Image x:Name="zdjecie_profilowe" HorizontalAlignment="Left" Height="170" Margin="30,30,0,0" VerticalAlignment="Top" Width="170"/>
+                    <Label x:Name="label1" Content="Imię :" HorizontalAlignment="Left" Margin="23,228,0,0" VerticalAlignment="Top" Height="33" Width="60"/>
+                    <Label x:Name="label1_Copy" Content="Nazwisko :" HorizontalAlignment="Left" Margin="23,273,0,0" VerticalAlignment="Top" Height="35" Width="101"/>
+                    <Label x:Name="label2" Content="Email :" HorizontalAlignment="Left" Margin="23,320,0,0" VerticalAlignment="Top" Height="35" Width="69"/>
+                    <Label x:Name="label2_Copy" Content="Telefon :" HorizontalAlignment="Left" Margin="23,358,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.455,1.728" Height="35" Width="84"/>
+                    <TextBlock x:Name="imie_textBlock"  HorizontalAlignment="Left" Margin="124,235,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="21" Width="83" TextAlignment="Justify"/>
+                    <TextBlock x:Name="nazwisko_textBlock" HorizontalAlignment="Left" Margin="124,280,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="22" Width="83" TextAlignment="Justify"/>
+                    <TextBlock x:Name="email_textBlock" HorizontalAlignment="Left" Margin="124,327,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="19" Width="83" TextAlignment="Justify"/>
+                    <TextBlock x:Name="telefon_textBlock" HorizontalAlignment="Left" Margin="124,367,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="20" Width="76" TextAlignment="Justify"/>
+                    <GroupBox x:Name="najblizszeZajecia_groupBox" Header="Najbliższe zajęcia" HorizontalAlignment="Left" Margin="333,30,0,0" VerticalAlignment="Top" Height="200" Width="220">
+                        <Label x:Name="brakZajec_label" Content="Brak nadchodzących zajęć" HorizontalAlignment="Center" Margin="29,76,29,72" VerticalAlignment="Center" Width="150" Height="30" Foreground="Red" Visibility="Hidden" />
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Podgląd grupy">
+                
+            </TabItem>
+            <TabItem Header="Harmonogram zajęć">
+                
+            </TabItem>
+            <TabItem Header="Zarządzanie grupami">
+                <Grid>
+                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" Margin="229,184,232,174" Click="DodajGrupeButton_Click"/>
+                </Grid>
+            </TabItem>
+            
+        </TabControl>
+        
 
     </Grid>
 </Window>

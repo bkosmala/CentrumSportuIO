@@ -14,6 +14,8 @@ namespace CentrumSportu_WPF.Baza_danych
     {
         public CentrumContext() : base("name=CetrumSportuDBCConnectionString")
         {
+            this.Configuration.ProxyCreationEnabled = true;
+            this.Configuration.LazyLoadingEnabled = true;
             Database.SetInitializer(new CentrumDBInitializer());
         }
 

@@ -44,5 +44,11 @@ namespace CentrumSportu_WPF.Widoki
                 brakZajec_label.Visibility = Visibility.Visible;
             }
         }
+
+        private void DodajGrupeButton_Click(object sender, RoutedEventArgs e)
+        {
+            TworzenieGrupyWindow okno=new TworzenieGrupyWindow(instruktor);
+            okno.Show();
+        }
     }
 }
