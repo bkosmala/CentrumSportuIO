@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CentrumSportu_WPF.Modul_instruktorow;
+using Xceed.Wpf.Toolkit;
 
 namespace CentrumSportu_WPF.Widoki
 {
@@ -29,7 +30,18 @@ namespace CentrumSportu_WPF.Widoki
             foreach (var item in instruktor.Dyscypliny)
             {
                 DyscyplinaComboBox.Items.Add(item.Nazwa);
-            }          
+            }
+            
+        }
+
+        private void UtworzGrupeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AnulujButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
