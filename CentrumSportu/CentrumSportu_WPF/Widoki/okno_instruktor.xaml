@@ -25,19 +25,33 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Podgląd grupy">
-                
+
             </TabItem>
             <TabItem Header="Harmonogram zajęć">
-                
+                <Grid>
+                    <Label x:Name="label" Content="Wybierz grupę :" Margin="10,38,420,326" FontSize="18" FontWeight="Bold"/>
+                    <ComboBox x:Name="GrupyComboBox" Margin="196,38,10,335" FontSize="18" SelectionChanged="GrupyComboBox_SelectionChanged"/>
+                    <ListView x:Name="HarmonogramListView" HorizontalAlignment="Left" Height="287" Margin="10,114,0,0" VerticalAlignment="Top" Width="576">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Nazwa grupy" Width="120px" DisplayMemberBinding="{Binding Grupa.Nazwa}" />
+                                <GridViewColumn Header="Data rozpoczęcia" Width="120px" DisplayMemberBinding="{Binding DataRozpoczecia}" />
+                                <GridViewColumn Header="Data zakończenia" Width="120" DisplayMemberBinding="{Binding DataZakonczenia}" />
+                                <GridViewColumn Header="Obiekt sportowy" Width="150" DisplayMemberBinding="{Binding ObiektSportowy.Nazwa}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Zarządzanie grupami">
                 <Grid>
                     <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" Margin="229,184,232,174" Click="DodajGrupeButton_Click"/>
                 </Grid>
             </TabItem>
-            
         </TabControl>
-        
+
 
     </Grid>
 </Window>

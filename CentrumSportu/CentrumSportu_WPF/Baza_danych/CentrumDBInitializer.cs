@@ -43,13 +43,22 @@ namespace CentrumSportu_WPF.Baza_danych
             ObiektSportowy obiekt1 = new ObiektSportowy("Sala główna", dyscypliny, 25, 100);
 
             //Grupy
-            Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30);
+            Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30,"Piłka nożna - grupa męska");
+            Grupa grupa2 = new Grupa(dyscypliny[0], 5, 30, "Piłka nożna - grupa żeńska");
+            Grupa grupa3 = new Grupa(dyscypliny[1], 5, 30, "Piłka siatkowa - grupa żeńska");
+            instruktor1.Grupy.Add(grupa1);
+            instruktor1.Grupy.Add(grupa2);
+            instruktor1.Grupy.Add(grupa3);
 
             //Zajecia
             List<WpisZajecia> zajecia = new List<WpisZajecia>
             {
-                new WpisZajecia(new DateTime(2017,1,1,16,0,0), new DateTime(2017,1,1,18,0,0),obiekt1,instruktor1,grupa1 ),
-                new WpisZajecia(new DateTime(2017,1,2,16,0,0), new DateTime(2017,1,2,18,0,0),obiekt1,instruktor1,grupa1 )
+                new WpisZajecia(new DateTime(2017,2,1,16,0,0), new DateTime(2017,2,1,18,0,0),obiekt1,instruktor1,grupa1 ),
+                new WpisZajecia(new DateTime(2017,2,2,16,0,0), new DateTime(2017,2,2,18,0,0),obiekt1,instruktor1,grupa1 ),
+                new WpisZajecia(new DateTime(2017,2,3,16,0,0), new DateTime(2017,2,3,18,0,0),obiekt1,instruktor1,grupa2 ),
+                new WpisZajecia(new DateTime(2017,2,4,16,0,0), new DateTime(2017,2,4,18,0,0),obiekt1,instruktor1,grupa2 ),
+                new WpisZajecia(new DateTime(2017,2,5,16,0,0), new DateTime(2017,2,5,18,0,0),obiekt1,instruktor1,grupa3 ),
+                new WpisZajecia(new DateTime(2017,2,6,16,0,0), new DateTime(2017,2,6,18,0,0),obiekt1,instruktor1,grupa3 )
             };      
             
             context.Instruktorzy.Add(instruktor1);

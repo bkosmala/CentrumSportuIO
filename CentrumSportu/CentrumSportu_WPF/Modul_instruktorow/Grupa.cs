@@ -16,6 +16,8 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get;  set; }
 
+        public string Nazwa { get; set; }
+
         public virtual Dyscyplina Dyscyplina { get; set; }
 
         public int  MinLiczebnosc { get; set; }
@@ -26,11 +28,12 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public virtual ICollection<UczestnikZajec> Uczestincy { get; set; }
 
-        public Grupa(Dyscyplina dyscyplina,int min,int max)
+        public Grupa(Dyscyplina dyscyplina,int min,int max,string nazwa)
         {
             Dyscyplina = dyscyplina;
             MinLiczebnosc = min;
             MaxLiczebnosc = max;
+            Nazwa = nazwa;
             Uczestincy = new List<UczestnikZajec>();
         }
 
