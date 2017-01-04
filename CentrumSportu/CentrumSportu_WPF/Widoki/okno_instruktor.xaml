@@ -53,31 +53,25 @@
             <TabItem Header="Informacje o grupach">
                 <Grid>
                     <Label Content="Wybierz grupę :" Margin="10,38,420,326" FontSize="18" FontWeight="Bold"/>
-                    <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="196,38,10,335" FontSize="18" SelectionChanged="GrupyComboBox_SelectionChanged"/>
-
-                    <ListView x:Name="InformacjeOgrupachListView" HorizontalAlignment="Left" Height="111" Margin="10,114,0,0" VerticalAlignment="Top" Width="576">
+                    <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="196,38,10,335" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
+                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="187" Margin="10,214,0,0" VerticalAlignment="Top" Width="576" MouseDoubleClick="UsunUczestnika">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="30px"/>
-                                <GridViewColumn Header="Nazwa grupy" Width="120px"/>
-                                <GridViewColumn Header="Dyscyplina" Width="120px"/>
-                                <GridViewColumn Header="Min Liczebność" Width="120"/>
-                                <GridViewColumn Header="Max Liczebność" Width="120"/>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Imię" Width="150px" DisplayMemberBinding="{Binding Imie}"/>
+                                <GridViewColumn Header="Nazwisko" Width="150px" DisplayMemberBinding="{Binding Nazwisko}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-
-                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="140" Margin="10,261,0,0" VerticalAlignment="Top" Width="576">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="ID" Width="30px"/>
-                                <GridViewColumn Header="Imię" Width="150px"/>
-                                <GridViewColumn Header="Nazwisko" Width="150px"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Label Content="Uczestnicy grupy:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="IdgrupyLabel" Content="IdGrupy" HorizontalAlignment="Left" Margin="115,230,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Uczestnicy grupy" HorizontalAlignment="Left" Margin="247,183,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="IdgrupyLabel" Content="value" HorizontalAlignment="Left" Margin="107,90,0,0" VerticalAlignment="Top"/>
+                    <Label Content="ID:" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Nazwa:" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="NazwagrupyLabel" Content="value" HorizontalAlignment="Left" Margin="107,121,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Min Liczebność:" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="minLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="107,152,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Max Liczebność:" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="maxLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="107,183,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

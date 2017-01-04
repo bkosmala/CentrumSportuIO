@@ -17,10 +17,22 @@ namespace CentrumSportu_WPF.Baza_danych
             return true;
         }
 
-        public static bool UsunUczestnikaZGrupy(string idGrupy,string idUczestnika)
+        public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
             //TO DO
-            return true;
+            List<UczestnikZajec> temp = new List<UczestnikZajec>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                    if(grupa.Id == idGrupy)
+                    {
+                        grupa.UsunUczestnika(idUczestnika);
+                        temp.AddRange(grupa.Uczestincy);
+                    }
+                }
+                return temp;
+            }
         }
 
         public static KontoUzytkownika SprawdzLoginiHaslo(string login, string haslo)
@@ -108,6 +120,20 @@ namespace CentrumSportu_WPF.Baza_danych
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now && e.Grupa.Id==idGrupy)
                         .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").ToList();
 
+                return result;
+            }
+        }
+
+        public static List<UczestnikZajec> ZwrocUczestnikowZajecDlaDanejGrupy(int idGrupy)
+        {
+            List<UczestnikZajec> result = new List<UczestnikZajec>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                    if (grupa.Id == idGrupy)
+                        result.AddRange(grupa.Uczestincy);
+                }
                 return result;
             }
         }
