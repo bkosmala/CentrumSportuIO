@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CentrumSportu_WPF.Modul_biletow;
+using CentrumSportu_WPF.Baza_danych;
+using CentrumSportu_WPF.Modul_instruktorow;
 
 namespace CentrumSportu_WPF.Widoki
 {
@@ -21,12 +23,55 @@ namespace CentrumSportu_WPF.Widoki
     public partial class okno_administrator : Window
     {
         private Administrator administrator;
+        private List<UczestnikZajec> niestudenci;
+        private List<Administrator> administratorzy;
+        private List<Student> studenci;
+        private List<Instruktor> instruktorzy;
 
         public okno_administrator(Administrator _administrator)
         {
             InitializeComponent();
             administrator = _administrator;
-            this.textBox.Text = administrator.Imie + " " + administrator.Nazwisko;
+            niestudenci = BazaMetody.ZwrocWszystkichNieStudentow();
+            administratorzy = BazaMetody.ZwrocWszystkichAdministratorow();
+            studenci = BazaMetody.ZwrocWszystkichStudentow();
+            instruktorzy = BazaMetody.ZwrocWszystkichInstruktorow();
+
+            // ---------------------------------------------------------------------------------- PROFIL
+            this.imieTB.Text = administrator.Imie;
+            this.nazwiskoTB.Text = administrator.Nazwisko;
+
+
+            // ---------------------------------------------------------------------------------- NIE STUDENCI
+            this.listaUzytkownicy.ItemsSource = niestudenci;
+
+
+
+            // ---------------------------------------------------------------------------------- STUDENCI
+
+            this.listaStudenci.ItemsSource = studenci;
+
+
+            // ---------------------------------------------------------------------------------- INSTRUKTORZY
+
+            this.listaInstruktorzy.ItemsSource = instruktorzy;
+
+
+            // ---------------------------------------------------------------------------------- ADMINISTRATORZY
+
+            this.listaAdministratorzy.ItemsSource = administratorzy;
+
+
+
+
+
+    }
+
+        private void DodajUzytkownika_Click(object sender, RoutedEventArgs e)
+        {
+            dodawanieUzytkownika okno = new dodawanieUzytkownika();
+            okno.Show();
         }
+
     }
 }

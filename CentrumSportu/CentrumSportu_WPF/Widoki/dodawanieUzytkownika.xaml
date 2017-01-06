@@ -1,0 +1,25 @@
+﻿<Window x:Class="CentrumSportu_WPF.Widoki.dodawanieUzytkownika"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
+        mc:Ignorable="d"
+        Title="dodawanieUzytkownika" Height="213.11" Width="420.732">
+    <Grid>
+        <Button x:Name="dodajUzytkownika" Content="Dodaj Uzytkownika" HorizontalAlignment="Left" Margin="294,143,0,0" VerticalAlignment="Top" Width="108" />
+        <ComboBox x:Name="typKontaCB" HorizontalAlignment="Left" Margin="103,143,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_SelectionChanged"/>
+        <TextBox x:Name="imieTB" HorizontalAlignment="Left" Height="23" Margin="103,31,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="nazwiskoTB" HorizontalAlignment="Left" Height="23" Margin="103,59,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="loginTB" HorizontalAlignment="Left" Height="23" Margin="103,87,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="hasloTB" HorizontalAlignment="Left" Height="23" Margin="103,115,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="tytulL" Content="Dodawanie Użytkownika" HorizontalAlignment="Left" Margin="83,0,0,0" VerticalAlignment="Top" Width="213"/>
+        <Label x:Name="imieL" Content="Imie:" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="nazwiskoL" Content="Nazwisko:" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="loginL" Content="Login:" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="hasloL" Content="Hasło:" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="typKontaL" Content="Typ Konta:" HorizontalAlignment="Left" Margin="8,143,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
