@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Modul_instruktorow;
 using CentrumSportu_WPF.Properties;
+using CentrumSportu_WPF.Modul_oferty;
 
 namespace CentrumSportu_WPF.Baza_danych
 {
@@ -71,6 +72,17 @@ namespace CentrumSportu_WPF.Baza_danych
                 new WpisZajecia(new DateTime(2017,2,6,16,0,0), new DateTime(2017,2,6,18,0,0),obiekt1,instruktor1,grupa3 )
             };
 
+            //Zajecia - moduł oferta
+
+            List<Zajecia> zajeciaOferta = new List<Zajecia>
+            {
+                new Zajecia("grupowe","Piłka nożna","Trening piłki nożnej","opis",null),
+                new Zajecia("grupowe","Piłka koszykowa","Trening koszykówki","opis",null),
+                new Zajecia("grupowe","Piłka siatkowa","Trening siatkówki","opis",null)
+
+            };
+
+
 
             context.Instruktorzy.Add(instruktor1);
             context.Studenci.Add(student1);
@@ -78,6 +90,10 @@ namespace CentrumSportu_WPF.Baza_danych
             foreach (var item in zajecia)
             {
                 context.WpisyZajecia.Add(item);
+            }
+            foreach (var item in zajeciaOferta)
+            {
+                context.Zajecia.Add(item);
             }
             context.UczestnicyZajec.Add(uczestnik1);
             context.UczestnicyZajec.Add(uczestnik2);

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Modul_instruktorow;
+using CentrumSportu_WPF.Modul_oferty;
 
 namespace CentrumSportu_WPF.Baza_danych
 {
@@ -137,5 +138,16 @@ namespace CentrumSportu_WPF.Baza_danych
                 return result;
             }
         }
+
+        public static List<Zajecia> ZwrocWszystkieZajeciaOferta()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var query = (from z in data.Zajecia
+                             select z).ToList();
+                return query;
+            }
+        }
+
     }
 }

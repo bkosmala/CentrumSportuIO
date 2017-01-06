@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CentrumSportu_WPF.Baza_danych;
+using CentrumSportu_WPF.Modul_oferty;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,22 @@ namespace CentrumSportu_WPF.Widoki
     /// </summary>
     public partial class OfertaWidok : UserControl
     {
+        private ObservableCollection<Zajecia> listZajecia;
+        private Zajecia selectedZajecia;
         public OfertaWidok()
         {
             InitializeComponent();
+            listZajecia = new ObservableCollection<Zajecia>(BazaMetody.ZwrocWszystkieZajeciaOferta());
+
+            listBoxZajecia.ItemsSource = listZajecia;
+            Console.WriteLine("Test:");
+            Console.WriteLine(listBoxZajecia.SelectedItem);
         }
+        private void ListBoxZajecia_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Console.WriteLine("Zmiana:");
+
+        }
+        
     }
 }
