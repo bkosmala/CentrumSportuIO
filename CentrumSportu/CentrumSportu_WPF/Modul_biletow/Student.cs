@@ -11,7 +11,6 @@ namespace CentrumSportu_WPF.Modul_biletow
     [Table("Studenci")]
     public class Student : UczestnikZajec
     {
-        public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
         public Student(string imie, string nazwisko,KontoUzytkownika konto):base(imie, nazwisko)
         {
