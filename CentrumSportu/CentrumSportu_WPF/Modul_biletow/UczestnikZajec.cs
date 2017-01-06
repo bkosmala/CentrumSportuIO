@@ -11,6 +11,14 @@ namespace CentrumSportu_WPF.Modul_biletow
     public class UczestnikZajec : Osoba
     {
         private List<Bilet> _bilety;
+        public virtual KontoUzytkownika KontoUzytkownika { get; set; }
+
+        public UczestnikZajec(string imie, string nazwisko, KontoUzytkownika konto):base(imie, nazwisko)
+        {
+            _bilety = new List<Bilet>();
+            KontoUzytkownika = konto;
+        }
+
 
         public UczestnikZajec(string imie, string nazwisko ):base (imie, nazwisko)
         {
