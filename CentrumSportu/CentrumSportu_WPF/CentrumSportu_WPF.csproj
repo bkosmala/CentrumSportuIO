@@ -95,6 +95,9 @@
     <Compile Include="Baza_danych\CentrumDBInitializer.cs" />
     <Compile Include="Modul_instruktorow\Dyscyplina.cs" />
     <Compile Include="Switcher.cs" />
+    <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
+      <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,9 @@
     </Compile>
     <Compile Include="Widoki\okno_student.xaml.cs">
       <DependentUpon>okno_student.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\ProfilUczestnikaWindow.xaml.cs">
+      <DependentUpon>ProfilUczestnikaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widoki\TworzenieGrupyWindow.xaml.cs">
       <DependentUpon>TworzenieGrupyWindow.xaml</DependentUpon>
@@ -125,6 +131,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Widoki\dodawanieUzytkownika.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Widoki\OfertaWidok.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\okno_student.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\ProfilUczestnikaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\instruktor_test.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profilPhoto.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

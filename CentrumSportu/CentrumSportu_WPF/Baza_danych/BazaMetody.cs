@@ -20,18 +20,18 @@ namespace CentrumSportu_WPF.Baza_danych
 
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
-            //TO DO
             List<UczestnikZajec> temp = new List<UczestnikZajec>();
             using (CentrumContext data = new CentrumContext())
             {
                 foreach (Grupa grupa in data.Grupy)
                 {
-                    if(grupa.Id == idGrupy)
+                    if (grupa.Id == idGrupy)
                     {
                         grupa.UsunUczestnika(idUczestnika);
                         temp.AddRange(grupa.Uczestincy);
                     }
                 }
+                data.SaveChanges();
                 return temp;
             }
         }
@@ -139,6 +139,46 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static List<UczestnikZajec>ZwrocWszystkichNieStudentow()
+        {
+            
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.UczestnicyZajec.Where(s => !data.Studenci.Where(es => es.Id == s.Id).Any()).ToList();
+                
+            }
+        }
+
+        public static List<Administrator> ZwrocWszystkichAdministratorow()
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Administratorzy.ToList();
+
+            }
+        }
+        public static List<Student> ZwrocWszystkichStudentow()
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Studenci.ToList();
+
+            }
+        }
+        public static List<Instruktor> ZwrocWszystkichInstruktorow()
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Instruktorzy.ToList();
+
+            }
+
+            
+        }
+
         public static List<Zajecia> ZwrocWszystkieZajeciaOferta()
         {
             using (CentrumContext data = new CentrumContext())
@@ -149,5 +189,149 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static bool DodajStudenta(Student K)
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.Studenci.Add(K);
+                    data.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        public static bool DodajAdministratora(Administrator K)
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.Administratorzy.Add(K);
+                    data.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool DodajUczestnika(UczestnikZajec K)
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.UczestnicyZajec.Add(K);
+                    data.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool DodajInstruktora(Instruktor K)
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.Instruktorzy.Add(K);
+                    data.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        
+        
+        
+        
+        public static bool UsunNieStudenta(UczestnikZajec K)
+        {
+
+            // to do
+
+            return false;
+        }
+
+        public static bool UsunStudenta(Student K)
+        {
+
+            // to do
+
+            return false;
+        }
+
+
+        public static bool UsunAdministratora(Administrator K)
+        {
+
+            // to do
+
+            return false;
+        }
+
+        public static bool UsunInstruktora(Instruktor K)
+        {
+
+            // to do
+
+            return false;
+        }
+
+        public static UczestnikZajec ZwrocWybranegoUczestnikaZajec(int idGrupy, int idUczestnika)
+        {
+            UczestnikZajec uczestnik = null;
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                    if (grupa.Id == idGrupy)
+                        uczestnik = grupa.ZwrocWybranegoUczestnika(idUczestnika);
+                }
+            }
+            return uczestnik;
+        }
+
+        public static List<UczestnikZajec> ZwrocWszystkichUczestnikowZajec()
+        {
+            List<UczestnikZajec> result = new List<UczestnikZajec>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                     result.AddRange(grupa.Uczestincy);
+                }
+                return result;
+            }
+        }
     }
 }

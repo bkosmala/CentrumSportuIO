@@ -44,9 +44,12 @@ namespace CentrumSportu_WPF.Baza_danych
             ObiektSportowy obiekt1 = new ObiektSportowy("Sala główna", dyscypliny, 25, 100);
 
             //UczestnicyZajec
-            UczestnikZajec uczestnik1 = new UczestnikZajec("Jan", "Kowalski");
-            UczestnikZajec uczestnik2 = new UczestnikZajec("Janusz", "Nowak");
-            UczestnikZajec uczestnik3 = new UczestnikZajec("Rafał", "Lebioda");
+            UczestnikZajec uczestnik1 = new UczestnikZajec("Jan", "Kowalski", "jan.kowalski@gmail.com", "608924351");
+            UczestnikZajec uczestnik2 = new UczestnikZajec("Janusz", "Nowak", "janusz.nowak@gmail.com", "709261789");
+            UczestnikZajec uczestnik3 = new UczestnikZajec("Rafał", "Lebioda", "rafal.lebioda@gmail.com", "666666666");
+            uczestnik1.Zdjecie = path + "../../Resources/profilPhoto.jpg";
+            uczestnik2.Zdjecie = path + "../../Resources/profilPhoto.jpg";
+            uczestnik3.Zdjecie = path + "../../Resources/profilPhoto.jpg";
 
             //Grupy
             Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30,"Piłka nożna - grupa męska");

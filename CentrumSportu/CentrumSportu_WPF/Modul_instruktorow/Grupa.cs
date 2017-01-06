@@ -65,5 +65,10 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             MinLiczebnosc = min;
             MaxLiczebnosc = max;
         }
+
+        public UczestnikZajec ZwrocWybranegoUczestnika(int idUczestnika)
+        {
+            return Uczestincy.First(e => e.Id == idUczestnika);
+        }
     }
 }

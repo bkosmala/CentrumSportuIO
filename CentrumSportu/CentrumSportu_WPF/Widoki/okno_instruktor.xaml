@@ -54,7 +54,7 @@
                 <Grid>
                     <Label Content="Wybierz grupę :" Margin="10,38,420,326" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="196,38,10,335" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
-                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="187" Margin="10,214,0,0" VerticalAlignment="Top" Width="576" MouseDoubleClick="UsunUczestnika">
+                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="187" Margin="10,214,0,0" VerticalAlignment="Top" Width="576" MouseDoubleClick="WyswietlOknoProfiloweUczestnika">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}"/>
