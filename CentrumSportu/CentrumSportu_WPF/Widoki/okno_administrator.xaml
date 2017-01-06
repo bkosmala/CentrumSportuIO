@@ -5,15 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         mc:Ignorable="d"
-        Title="okno_administrator" Height="494.25" Width="554">
+        Title="okno_administrator" Height="494.25" Width="632.75">
     <Grid>
         <TabControl>
             <TabItem Header="Profil Administratora" Margin="0,0,-4.5,-2">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="13*"/>
-                        <ColumnDefinition Width="168*"/>
-                    </Grid.ColumnDefinitions>
                     <Label x:Name="imieL" Content="Imie :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <Label x:Name="nazwiskoL" Content="Nazwisko :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="83" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="imieTB" HorizontalAlignment="Left" Height="23" Margin="67.25,14,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120" Grid.Column="1"/>
@@ -23,55 +19,70 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Zwykli użytkownicy">
-                <ListView x:Name="listaUzytkownicy" Margin="-2,0,242,-4" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
-                            <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
-                            <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid>
+                    <ListView x:Name="listaUzytkownicy" Margin="-2,0,242,-4" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
+                                <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Name="UsunU"  Width="100PX" Height="30px" Margin="349,22,94,366.5" Content="Usuń Użytkownika" Click="UsunU_Click" />
+                </Grid>
             </TabItem>
             <TabItem Header="Studenci">
-                <ListView x:Name="listaStudenci" Margin="-2,0,142,-4" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
-                            <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
-                            <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
-                            <GridViewColumn Header="Grupa" Width="100px" DisplayMemberBinding="{Binding Grupa}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid>
+                    <ListView x:Name="listaStudenci" Margin="-2,0,142,-4" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
+                                <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
+                                <GridViewColumn Header="Grupa" Width="100px" DisplayMemberBinding="{Binding Grupa}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Name="UsunS"  Width="100PX" Height="30px" Margin="485,10,37,398.5" Content="Usuń Użytkownika" Click="UsunS_Click" RenderTransformOrigin="1.415,0.417" />
+
+                </Grid>
 
             </TabItem>
             <TabItem Header="Instruktorzy">
-                <ListView x:Name="listaInstruktorzy" Margin="-2,0,63,-3.5" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
-                            <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
-                            <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
-                            <GridViewColumn Header="Mail" Width="150px" DisplayMemberBinding="{Binding Email}" />
-                            <GridViewColumn Header="Telefon" Width="100px" DisplayMemberBinding="{Binding Telefon}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid>
+                    <ListView x:Name="listaInstruktorzy" Margin="-2,0,137,-3.5" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
+                                <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
+                                <GridViewColumn Header="Mail" Width="150px" DisplayMemberBinding="{Binding Email}" />
+                                <GridViewColumn Header="Telefon" Width="100px" DisplayMemberBinding="{Binding Telefon}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Name="UsunI"  Width="100PX" Height="30px" Margin="512,10,10,398.5" Content="Usuń Użytkownika" Click="UsunI_Click" />
+
+                </Grid>
 
             </TabItem>
             <TabItem Header="Administratorzy" >
-                <ListView x:Name="listaAdministratorzy" Margin="-2,0,242,-4" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
-                            <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
-                            <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid>
+                    <ListView x:Name="listaAdministratorzy" Margin="-2,0,369,-3.5" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Imie" Width="100px" DisplayMemberBinding="{Binding Imie}" />
+                                <GridViewColumn Header="Nazwisko" Width="100px" DisplayMemberBinding="{Binding Nazwisko}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Name="UsunUA" Height="30px" Margin="280,10,213,398.5" Content="Usuń Użytkownika" Click="UsunA_Click" />
 
+                </Grid>
             </TabItem>
+
 
         </TabControl>
 

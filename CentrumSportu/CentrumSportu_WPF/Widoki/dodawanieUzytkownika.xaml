@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="dodawanieUzytkownika" Height="213.11" Width="420.732">
     <Grid>
-        <Button x:Name="dodajUzytkownika" Content="Dodaj Uzytkownika" HorizontalAlignment="Left" Margin="294,143,0,0" VerticalAlignment="Top" Width="108" />
-        <ComboBox x:Name="typKontaCB" HorizontalAlignment="Left" Margin="103,143,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_SelectionChanged"/>
+        <Button x:Name="dodajUzytkownika" Content="Dodaj Uzytkownika" HorizontalAlignment="Left" Margin="294,143,0,0" VerticalAlignment="Top" Width="108" Click="dodajUzytkownika_Click" />
+        <ComboBox x:Name="typKontaCB" HorizontalAlignment="Left" Margin="103,143,0,0" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="imieTB" HorizontalAlignment="Left" Height="23" Margin="103,31,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="nazwiskoTB" HorizontalAlignment="Left" Height="23" Margin="103,59,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="loginTB" HorizontalAlignment="Left" Height="23" Margin="103,87,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
