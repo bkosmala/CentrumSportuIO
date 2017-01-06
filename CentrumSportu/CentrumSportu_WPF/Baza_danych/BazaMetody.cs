@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Modul_instruktorow;
+using CentrumSportu_WPF.Modul_oferty;
 
 namespace CentrumSportu_WPF.Baza_danych
 {
@@ -351,6 +352,44 @@ namespace CentrumSportu_WPF.Baza_danych
                 //wpis.ObiektSportowy = obiekt;
                 data.WpisyZajecia.Attach(wpis);
                 data.SaveChanges();
+            }
+        }
+
+        public static List<Zajecia> ZwrocWszystkieZajeciaOferta()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var query = (from z in data.Zajecia
+                             select z).ToList();
+                return query;
+            }
+        }
+
+        public static UczestnikZajec ZwrocWybranegoUczestnikaZajec(int idGrupy, int idUczestnika)
+        {
+            UczestnikZajec uczestnik = null;
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                    if (grupa.Id == idGrupy)
+                        uczestnik = grupa.ZwrocWybranegoUczestnika(idUczestnika);
+                }
+            }
+            return uczestnik;
+        }
+
+        public static List<UczestnikZajec> ZwrocWszystkichUczestnikowZajec()
+        {
+            List<UczestnikZajec> result = new List<UczestnikZajec>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                    result.AddRange(grupa.Uczestincy);
+                }
+                return result;
             }
         }
     }

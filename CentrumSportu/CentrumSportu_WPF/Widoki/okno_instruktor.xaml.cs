@@ -156,6 +156,30 @@ namespace CentrumSportu_WPF.Widoki
             }
         }
 
+        private void WyswietlOknoProfiloweUczestnika(object sender, MouseButtonEventArgs e)
+        {
+            string groupName = (string)InformacjeOGrupachComboBox.SelectedItem;
+            int groupId = 0;
+            ListView tmp = (ListView)sender;
+            UczestnikZajec uczestnik = (UczestnikZajec)tmp.SelectedItem;
+
+            foreach (var item in grupy)
+            {
+                if (item.Nazwa == groupName)
+                    groupId = item.Id;
+            }
+            ProfilUczestnikaWindow profilUCzestnikaWindow = new ProfilUczestnikaWindow(BazaMetody.ZwrocWybranegoUczestnikaZajec(groupId, uczestnik.Id), groupId);
+            profilUCzestnikaWindow.Show();
+            profilUCzestnikaWindow.Closed += profilOkno_closed;
+
+        }
+
+        private void profilOkno_closed(object sender, EventArgs e)
+        {
+            ProfilUczestnikaWindow child = (ProfilUczestnikaWindow)sender;
+            UczestnicyGrupyListView.ItemsSource = child.UczestnicyProfilUczestnikaCollection;
+        }
+
 
 
     }
