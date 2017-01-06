@@ -137,5 +137,82 @@ namespace CentrumSportu_WPF.Baza_danych
                 return result;
             }
         }
+
+        public static List<UczestnikZajec>ZwrocWszystkichNieStudentow()
+        {
+            
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.UczestnicyZajec.Where(s => !data.Studenci.Where(es => es.Id == s.Id).Any()).ToList();
+                
+            }
+        }
+
+        public static List<Administrator> ZwrocWszystkichAdministratorow()
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Administratorzy.ToList();
+
+            }
+        }
+        public static List<Student> ZwrocWszystkichStudentow()
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Studenci.ToList();
+
+            }
+        }
+        public static List<Instruktor> ZwrocWszystkichInstruktorow()
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Instruktorzy.ToList();
+
+            }
+
+            
+        }
+
+        public static bool DodajUzytkownika(KontoUzytkownika K)
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Remove(K);
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    
+
+        public static bool UsunUzytkownika(KontoUzytkownika K)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Add(K);
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }  
+            }
+
+            return true;
+        }
+
     }
 }
