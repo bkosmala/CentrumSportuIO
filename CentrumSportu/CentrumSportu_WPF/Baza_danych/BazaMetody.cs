@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Modul_instruktorow;
-using CentrumSportu_WPF.Modul_oferty;
 
 namespace CentrumSportu_WPF.Baza_danych
 {
@@ -20,16 +20,18 @@ namespace CentrumSportu_WPF.Baza_danych
 
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
+            //TO DO
             List<UczestnikZajec> temp = new List<UczestnikZajec>();
             using (CentrumContext data = new CentrumContext())
             {
                 foreach (Grupa grupa in data.Grupy)
                 {
-                    if (grupa.Id == idGrupy)
+                    if(grupa.Id == idGrupy)
                     {
                         grupa.UsunUczestnika(idUczestnika);
                         temp.AddRange(grupa.Uczestincy);
                     }
+                    
                 }
                 data.SaveChanges();
                 return temp;
@@ -175,18 +177,7 @@ namespace CentrumSportu_WPF.Baza_danych
                 return data.Instruktorzy.ToList();
 
             }
-
             
-        }
-
-        public static List<Zajecia> ZwrocWszystkieZajeciaOferta()
-        {
-            using (CentrumContext data = new CentrumContext())
-            {
-                var query = (from z in data.Zajecia
-                             select z).ToList();
-                return query;
-            }
         }
 
         public static bool DodajStudenta(Student K)
@@ -306,31 +297,60 @@ namespace CentrumSportu_WPF.Baza_danych
             return false;
         }
 
-        public static UczestnikZajec ZwrocWybranegoUczestnikaZajec(int idGrupy, int idUczestnika)
+        public static List<ObiektSportowy> ZwrocListeObiektowDlaDanejDyscypliny(Dyscyplina dyscyplina)
         {
-            UczestnikZajec uczestnik = null;
-
+            List<ObiektSportowy> lista=new List<ObiektSportowy>();
             using (CentrumContext data = new CentrumContext())
             {
-                foreach (Grupa grupa in data.Grupy)
+                foreach (var item in data.ObiektySportowe)
                 {
-                    if (grupa.Id == idGrupy)
-                        uczestnik = grupa.ZwrocWybranegoUczestnika(idUczestnika);
+                    foreach (var d in item.DostepneDyscypliny)
+                    {
+                        if (d.Nazwa == dyscyplina.Nazwa)
+                        {
+                            lista.Add(item);
+                            break;
+                        }
+                    }
                 }
             }
-            return uczestnik;
+            return lista;
         }
 
-        public static List<UczestnikZajec> ZwrocWszystkichUczestnikowZajec()
+        public static bool SprawdzCzyJestWolnyTerminDlaDanegoObiektu(ObiektSportowy obiekt, DateTime dataRozp, DateTime dataZakon)
         {
-            List<UczestnikZajec> result = new List<UczestnikZajec>();
             using (CentrumContext data = new CentrumContext())
             {
-                foreach (Grupa grupa in data.Grupy)
+                var termin =
+                    data.WpisyZajecia.FirstOrDefault(
+                        x =>
+                            x.ObiektSportowy.Nazwa == obiekt.Nazwa && dataRozp >= x.DataRozpoczecia &&
+                            dataZakon < x.DataZakonczenia && dataZakon > x.DataRozpoczecia &&
+                            dataZakon <= x.DataZakonczenia);
+                if (termin == null)
                 {
-                     result.AddRange(grupa.Uczestincy);
+                    return true;
                 }
-                return result;
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static void DodajNowyTermin(WpisZajecia wpis)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                //var instruktor = data.Instruktorzy.FirstOrDefault(x => x.Id == wpis.Instruktor.Id);
+                //var grupa = data.Grupy.FirstOrDefault(x => x.Id == wpis.Grupa.Id);
+                //var obiekt = data.ObiektySportowe.FirstOrDefault(x => x.Id == wpis.ObiektSportowy.Id);                
+                //if (grupa != null)
+                //    wpis.Grupa = grupa;
+                //wpis.Instruktor = instruktor;
+                //wpis.ObiektSportowy = obiekt;
+                data.WpisyZajecia.Attach(wpis);
+                data.SaveChanges();
             }
         }
     }

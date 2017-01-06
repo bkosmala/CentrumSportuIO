@@ -12,6 +12,9 @@ namespace CentrumSportu_WPF
     public class KontoUzytkownika
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        
         public string Login { get;  set; }
 
         public string Haslo { get; private set; }

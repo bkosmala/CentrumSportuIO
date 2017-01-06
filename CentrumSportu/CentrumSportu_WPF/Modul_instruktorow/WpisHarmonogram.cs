@@ -14,11 +14,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get;  set; }
 
-        public DateTime DataRozpoczecia { get; private set; }
+        public DateTime DataRozpoczecia { get;  set; }
 
-        public DateTime DataZakonczenia { get; private set; }
+        public DateTime DataZakonczenia { get;  set; }
 
-        public double DlugoscZajec { get; private set; }    
+        public double DlugoscZajec { get;  set; }    
 
         public WpisHarmonogram(DateTime dataRozp,DateTime dataZak)
         {
