@@ -178,14 +178,16 @@ namespace CentrumSportu_WPF.Baza_danych
             
         }
 
-        public static bool DodajUzytkownika(KontoUzytkownika K)
+        public static bool DodajStudenta(Student K)
         {
 
             using (CentrumContext data = new CentrumContext())
             {
                 try
                 {
-                    data.KontaUzytkownikow.Remove(K);
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.Studenci.Add(K);
+                    data.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -195,24 +197,102 @@ namespace CentrumSportu_WPF.Baza_danych
 
             return true;
         }
-    
 
-        public static bool UsunUzytkownika(KontoUzytkownika K)
+
+        public static bool DodajAdministratora(Administrator K)
         {
+
             using (CentrumContext data = new CentrumContext())
             {
                 try
                 {
-                    data.KontaUzytkownikow.Add(K);
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.Administratorzy.Add(K);
+                    data.SaveChanges();
                 }
                 catch (Exception e)
                 {
                     return false;
-                }  
+                }
             }
 
             return true;
         }
 
+        public static bool DodajUczestnika(UczestnikZajec K)
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.UczestnicyZajec.Add(K);
+                    data.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool DodajInstruktora(Instruktor K)
+        {
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.KontaUzytkownikow.Add(K.KontoUzytkownika);
+                    data.Instruktorzy.Add(K);
+                    data.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        
+        
+        
+        
+        public static bool UsunNieStudenta(UczestnikZajec K)
+        {
+
+            // to do
+
+            return false;
+        }
+
+        public static bool UsunStudenta(Student K)
+        {
+
+            // to do
+
+            return false;
+        }
+
+
+        public static bool UsunAdministratora(Administrator K)
+        {
+
+            // to do
+
+            return false;
+        }
+
+        public static bool UsunInstruktora(Instruktor K)
+        {
+
+            // to do
+
+            return false;
+        }
     }
 }
