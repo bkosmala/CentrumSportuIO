@@ -13,6 +13,10 @@ namespace CentrumSportu_WPF.Modul_biletow
         private List<Bilet> _bilety;
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
+        public string Email { get; set; }
+        public string Telefon { get; set; }
+        public string Zdjecie { get; set; }
+
         public UczestnikZajec(string imie, string nazwisko, KontoUzytkownika konto):base(imie, nazwisko)
         {
             _bilety = new List<Bilet>();
@@ -64,6 +68,12 @@ namespace CentrumSportu_WPF.Modul_biletow
             kupBilet(biletdoKupienia);
         }
 
+        public UczestnikZajec(string imie, string nazwisko, string email, string telefon) : base(imie, nazwisko)
+        {
+            _bilety = new List<Bilet>();
+            this.Email = email;
+            this.Telefon = telefon;
+        }
 
     }
 }

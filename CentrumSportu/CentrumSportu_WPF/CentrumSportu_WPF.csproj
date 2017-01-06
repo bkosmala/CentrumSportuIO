@@ -110,6 +110,9 @@
     <Compile Include="Widoki\okno_student.xaml.cs">
       <DependentUpon>okno_student.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\ProfilUczestnikaWindow.xaml.cs">
+      <DependentUpon>ProfilUczestnikaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\TworzenieGrupyWindow.xaml.cs">
       <DependentUpon>TworzenieGrupyWindow.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\okno_student.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\ProfilUczestnikaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\instruktor_test.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profilPhoto.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,18 +19,18 @@ namespace CentrumSportu_WPF.Baza_danych
 
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
-            //TO DO
             List<UczestnikZajec> temp = new List<UczestnikZajec>();
             using (CentrumContext data = new CentrumContext())
             {
                 foreach (Grupa grupa in data.Grupy)
                 {
-                    if(grupa.Id == idGrupy)
+                    if (grupa.Id == idGrupy)
                     {
                         grupa.UsunUczestnika(idUczestnika);
                         temp.AddRange(grupa.Uczestincy);
                     }
                 }
+                data.SaveChanges();
                 return temp;
             }
         }
@@ -293,6 +293,34 @@ namespace CentrumSportu_WPF.Baza_danych
             // to do
 
             return false;
+        }
+
+        public static UczestnikZajec ZwrocWybranegoUczestnikaZajec(int idGrupy, int idUczestnika)
+        {
+            UczestnikZajec uczestnik = null;
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                    if (grupa.Id == idGrupy)
+                        uczestnik = grupa.ZwrocWybranegoUczestnika(idUczestnika);
+                }
+            }
+            return uczestnik;
+        }
+
+        public static List<UczestnikZajec> ZwrocWszystkichUczestnikowZajec()
+        {
+            List<UczestnikZajec> result = new List<UczestnikZajec>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Grupa grupa in data.Grupy)
+                {
+                     result.AddRange(grupa.Uczestincy);
+                }
+                return result;
+            }
         }
     }
 }

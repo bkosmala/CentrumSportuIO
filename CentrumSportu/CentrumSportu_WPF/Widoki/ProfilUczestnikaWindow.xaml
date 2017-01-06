@@ -1,0 +1,23 @@
+﻿<Window x:Class="CentrumSportu_WPF.Widoki.ProfilUczestnikaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
+        mc:Ignorable="d"
+        Title="ProfilUczestnikaWindow" Height="300" Width="350">
+    <Grid>
+        <Image x:Name="zdjecieProfiloweImage" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Imię:" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="115,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="nazwiskoLabel" Content="value" HorizontalAlignment="Left" Margin="183,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="imieLabel" Content="value" HorizontalAlignment="Left" Margin="183,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="115,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Telefon:" HorizontalAlignment="Left" Margin="115,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="emailLabel" Content="value" HorizontalAlignment="Left" Margin="183,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="telefonLabel" Content="value" HorizontalAlignment="Left" Margin="183,103,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="wysliWiadomoscButton" Content="Wyślij wiadomość" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="128"/>
+        <Button x:Name="usunUczestnikaButton" Content="Usuń" HorizontalAlignment="Left" Margin="143,239,0,0" VerticalAlignment="Top" Width="92" Click="usunUczestnikaButton_Click"/>
+        <Button x:Name="anulujButton" Content="Anuluj" HorizontalAlignment="Left" Margin="240,239,0,0" VerticalAlignment="Top" Width="92" Click="anulujButton_Click"/>
+    </Grid>
+</Window>

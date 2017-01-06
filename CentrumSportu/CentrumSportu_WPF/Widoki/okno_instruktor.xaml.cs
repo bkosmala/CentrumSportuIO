@@ -27,7 +27,7 @@ namespace CentrumSportu_WPF.Widoki
         private WpisZajecia najblizszeZajecia;
         private ObservableCollection<Grupa> grupy;
         private ObservableCollection<WpisZajecia> zajecia;
-        private ObservableCollection<UczestnikZajec> uczestnicyZajec;
+        public ObservableCollection<UczestnikZajec> UczestnicyZajec { get; set; }
 
         public okno_instruktor(Instruktor _instruktor)
         {
@@ -54,7 +54,6 @@ namespace CentrumSportu_WPF.Widoki
 
             //HARMONOGRAM
             GrupyComboBox.Items.Add("Wszystkie grupy");
-            InformacjeOGrupachComboBox.Items.Add("Wszystkie grupy");
             foreach (var item in grupy)
             {
                 GrupyComboBox.Items.Add(item.Nazwa);
@@ -63,6 +62,7 @@ namespace CentrumSportu_WPF.Widoki
             GrupyComboBox.SelectedIndex = 0;
             HarmonogramListView.ItemsSource = zajecia;
             InformacjeOGrupachComboBox.SelectedIndex = 0;
+            
         }
 
         private void DodajGrupeButton_Click(object sender, RoutedEventArgs e)
@@ -94,12 +94,6 @@ namespace CentrumSportu_WPF.Widoki
 
         private void InformacjeOGrupachComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (InformacjeOGrupachComboBox.SelectedIndex == 0)
-            {
-                zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
-            }
-            else
-            {
                 string groupName = (string)InformacjeOGrupachComboBox.SelectedItem;
                 int groupId = 0;
                 foreach (var item in grupy)
@@ -114,30 +108,54 @@ namespace CentrumSportu_WPF.Widoki
                     }
                 }
                 zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
-                uczestnicyZajec = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocUczestnikowZajecDlaDanejGrupy(groupId));
-            }
-            UczestnicyGrupyListView.ItemsSource = uczestnicyZajec;
+                UczestnicyZajec = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocUczestnikowZajecDlaDanejGrupy(groupId));
+   
+            UczestnicyGrupyListView.ItemsSource = UczestnicyZajec;
         }
 
-        private void UsunUczestnika(object sender, MouseButtonEventArgs e)
+        //private void UsunUczestnika(object sender, MouseButtonEventArgs e)
+        //{
+        //    string groupName = (string)InformacjeOGrupachComboBox.SelectedItem;
+        //    int groupId = 0;
+            
+
+        //    ListView tmp = (ListView)sender;
+        //    UczestnikZajec uczestnik = (UczestnikZajec)tmp.SelectedItem;
+        //    MessageBoxResult result = MessageBox.Show("czy chcesz usunąć " + uczestnik.Imie + " " + uczestnik.Nazwisko + " z zajęć?", "Usuwanie", MessageBoxButton.YesNo);
+        //    if(result == MessageBoxResult.Yes)
+        //    {
+        //        foreach (var item in grupy)
+        //        {
+        //            if (item.Nazwa == groupName)
+        //                groupId = item.Id;                   
+        //        }
+        //        UczestnicyZajec = new ObservableCollection<UczestnikZajec>(BazaMetody.UsunUczestnikaZGrupy(groupId, uczestnik.Id));
+        //        UczestnicyGrupyListView.ItemsSource = UczestnicyZajec;
+        //    }
+        //}
+
+        private void WyswietlOknoProfiloweUczestnika(object sender, MouseButtonEventArgs e)
         {
             string groupName = (string)InformacjeOGrupachComboBox.SelectedItem;
             int groupId = 0;
-            
-
             ListView tmp = (ListView)sender;
             UczestnikZajec uczestnik = (UczestnikZajec)tmp.SelectedItem;
-            MessageBoxResult result = MessageBox.Show("czy chcesz usunąć " + uczestnik.Imie + " " + uczestnik.Nazwisko + " z zajęć?", "Usuwanie", MessageBoxButton.YesNo);
-            if(result == MessageBoxResult.Yes)
+
+            foreach (var item in grupy)
             {
-                foreach (var item in grupy)
-                {
-                    if (item.Nazwa == groupName)
-                        groupId = item.Id;                   
-                }
-                uczestnicyZajec = new ObservableCollection<UczestnikZajec>(BazaMetody.UsunUczestnikaZGrupy(groupId, uczestnik.Id));
-                UczestnicyGrupyListView.ItemsSource = uczestnicyZajec;
+                if (item.Nazwa == groupName)
+                    groupId = item.Id;
             }
+            ProfilUczestnikaWindow profilUCzestnikaWindow = new ProfilUczestnikaWindow(BazaMetody.ZwrocWybranegoUczestnikaZajec(groupId, uczestnik.Id), groupId);
+            profilUCzestnikaWindow.Show();
+            profilUCzestnikaWindow.Closed += profilOkno_closed;
+
+        }
+
+        private void profilOkno_closed(object sender, EventArgs e)
+        {
+            ProfilUczestnikaWindow child = (ProfilUczestnikaWindow)sender;
+            UczestnicyGrupyListView.ItemsSource = child.UczestnicyProfilUczestnikaCollection;
         }
 
 
