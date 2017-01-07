@@ -343,14 +343,19 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data = new CentrumContext())
             {
-                //var instruktor = data.Instruktorzy.FirstOrDefault(x => x.Id == wpis.Instruktor.Id);
-                //var grupa = data.Grupy.FirstOrDefault(x => x.Id == wpis.Grupa.Id);
-                //var obiekt = data.ObiektySportowe.FirstOrDefault(x => x.Id == wpis.ObiektSportowy.Id);                
-                //if (grupa != null)
-                //    wpis.Grupa = grupa;
-                //wpis.Instruktor = instruktor;
-                //wpis.ObiektSportowy = obiekt;
-                data.WpisyZajecia.Attach(wpis);
+                data.Instruktorzy.Attach(wpis.Instruktor);
+                var temp = data.Dyscypliny.ToList();
+                foreach (var item in data.Dyscypliny)
+                {
+                    data.Entry(item).State=EntityState.Detached;
+                }   
+                if (data.Grupy.FirstOrDefault(x => x.Id == wpis.Grupa.Id) != null)
+                {
+                    data.Grupy.Attach(wpis.Grupa);
+                }
+                data.ObiektySportowe.Attach(wpis.ObiektSportowy);   
+                           
+                data.WpisyZajecia.Add(wpis);
                 data.SaveChanges();
             }
         }

@@ -85,7 +85,7 @@ namespace CentrumSportu_WPF.Widoki
                 {
                     DateTime dataRozpoczecia = (DateTime)DateTimePicker1.Value;
                     DateTime dataZakonczenia = new DateTime(dataRozpoczecia.Year,dataRozpoczecia.Month,dataRozpoczecia.Day,dataRozpoczecia.Hour,dataRozpoczecia.Minute,dataRozpoczecia.Second);
-                    dataZakonczenia.AddMinutes(dlugosc);
+                    dataZakonczenia=dataZakonczenia.AddMinutes(dlugosc);
                     if (BazaMetody.SprawdzCzyJestWolnyTerminDlaDanegoObiektu(obiekt, dataRozpoczecia, dataZakonczenia))
                     {
                         WpisZajecia wpis=new WpisZajecia()
@@ -101,20 +101,193 @@ namespace CentrumSportu_WPF.Widoki
                     }
                     else
                     {
-                        ///Termin zajety
+                        Xceed.Wpf.Toolkit.MessageBox.Show("Termin jest już zajety !!! Wybierz inny", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
                     }
 
                 }
                 else
                 {
+                    int iloscZajecWTygodniu = (int)IloscZajecUpDown.Value;
+                    int iloscTygodni = (int) IloscTygodniUpDown.Value;
+                    bool czyWolnyTermin = true;
+                    switch (iloscZajecWTygodniu)
+                    {
+                        case 1:
+                            DateTime dataRozpoczecia = (DateTime)DateTimePicker1.Value;
+                            DateTime dataZakonczenia = new DateTime(dataRozpoczecia.Year, dataRozpoczecia.Month, dataRozpoczecia.Day, dataRozpoczecia.Hour, dataRozpoczecia.Minute, dataRozpoczecia.Second);
+                            dataZakonczenia=dataZakonczenia.AddMinutes(dlugosc);                           
+                            for (int i = 0; i < iloscTygodni; i++)
+                            {
+                                czyWolnyTermin=BazaMetody.SprawdzCzyJestWolnyTerminDlaDanegoObiektu(obiekt, dataRozpoczecia,
+                                    dataZakonczenia);
+                                if (czyWolnyTermin == false)
+                                {
+                                    Xceed.Wpf.Toolkit.MessageBox.Show("Termin jest już zajety !!! Wybierz inny", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return;
+                                }
+                                dataRozpoczecia=dataRozpoczecia.AddDays(7);
+                                dataRozpoczecia=dataZakonczenia.AddDays(7);
+                            }
+                            dataRozpoczecia = (DateTime)DateTimePicker1.Value;
+                            dataZakonczenia = new DateTime(dataRozpoczecia.Year, dataRozpoczecia.Month, dataRozpoczecia.Day, dataRozpoczecia.Hour, dataRozpoczecia.Minute, dataRozpoczecia.Second);
+                            dataZakonczenia=dataZakonczenia.AddMinutes(dlugosc);                          
+                            for (int i = 0; i < iloscTygodni; i++)
+                            {
+                                WpisZajecia wpis = new WpisZajecia()
+                                {
+                                    ObiektSportowy = obiekt,
+                                    Instruktor = instruktor,
+                                    Grupa = grupa,
+                                    DataRozpoczecia = dataRozpoczecia,
+                                    DataZakonczenia = dataZakonczenia,
+                                    DlugoscZajec = dlugosc
+                                };
+                                BazaMetody.DodajNowyTermin(wpis);
+                                dataRozpoczecia= dataRozpoczecia.AddDays(7);
+                                dataZakonczenia=dataZakonczenia.AddDays(7);
+                            }                          
+                            break;
+                        case 2:
+                            DateTime dataRozpoczecia1 = (DateTime)DateTimePicker1.Value;
+                            DateTime dataZakonczenia1 = dataRozpoczecia1.AddMinutes(dlugosc);
+                            DateTime dataRozpoczecia2 = (DateTime)DateTimePicker2.Value;
+                            DateTime dataZakonczenia2 = dataRozpoczecia2.AddMinutes(dlugosc);
+                            for (int i = 0; i < iloscTygodni; i++)
+                            {
+                                czyWolnyTermin = BazaMetody.SprawdzCzyJestWolnyTerminDlaDanegoObiektu(obiekt, dataRozpoczecia1,
+                                    dataZakonczenia1);
+                                czyWolnyTermin = BazaMetody.SprawdzCzyJestWolnyTerminDlaDanegoObiektu(obiekt, dataRozpoczecia2,
+                                    dataZakonczenia2);
+                                if (czyWolnyTermin == false)
+                                {
+                                    Xceed.Wpf.Toolkit.MessageBox.Show("Jeden lub więcej terminów jest już zajety !!! Wybierz inny", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return;
+                                }
+                                dataRozpoczecia1 = dataRozpoczecia1.AddDays(7);
+                                dataRozpoczecia1 = dataZakonczenia1.AddDays(7);
+                                dataRozpoczecia2 = dataRozpoczecia2.AddDays(7);
+                                dataRozpoczecia2 = dataZakonczenia2.AddDays(7);
+                            }
+                            dataRozpoczecia1 = (DateTime)DateTimePicker1.Value;
+                            dataZakonczenia1 = dataRozpoczecia1.AddMinutes(dlugosc);
+                            dataRozpoczecia2 = (DateTime)DateTimePicker2.Value;
+                            dataZakonczenia2 = dataRozpoczecia2.AddMinutes(dlugosc);
+                            for (int i = 0; i < iloscTygodni; i++)
+                            {
+                                WpisZajecia wpis1 = new WpisZajecia()
+                                {
+                                    ObiektSportowy = obiekt,
+                                    Instruktor = instruktor,
+                                    Grupa = grupa,
+                                    DataRozpoczecia = dataRozpoczecia1,
+                                    DataZakonczenia = dataZakonczenia1,
+                                    DlugoscZajec = dlugosc
+                                };
+                                WpisZajecia wpis2 = new WpisZajecia()
+                                {
+                                    ObiektSportowy = obiekt,
+                                    Instruktor = instruktor,
+                                    Grupa = grupa,
+                                    DataRozpoczecia = dataRozpoczecia2,
+                                    DataZakonczenia = dataZakonczenia2,
+                                    DlugoscZajec = dlugosc
+                                };
+                                BazaMetody.DodajNowyTermin(wpis1);
+                                BazaMetody.DodajNowyTermin(wpis2);
+                                dataRozpoczecia1 = dataRozpoczecia1.AddDays(7);
+                                dataZakonczenia1 = dataZakonczenia1.AddDays(7);
+                                dataRozpoczecia2 = dataRozpoczecia2.AddDays(7);
+                                dataZakonczenia2 = dataZakonczenia2.AddDays(7);
+                            }
+                            break;
+                        case 3:
+                            dataRozpoczecia1 = (DateTime)DateTimePicker1.Value;
+                            dataZakonczenia1 = dataRozpoczecia1.AddMinutes(dlugosc);
+                            dataRozpoczecia2 = (DateTime)DateTimePicker2.Value;
+                            dataZakonczenia2 = dataRozpoczecia2.AddMinutes(dlugosc);
+                            DateTime dataRozpoczecia3 = (DateTime)DateTimePicker3.Value;
+                            DateTime dataZakonczenia3 = dataRozpoczecia3.AddMinutes(dlugosc);
+                            for (int i = 0; i < iloscTygodni; i++)
+                            {
+                                czyWolnyTermin = BazaMetody.SprawdzCzyJestWolnyTerminDlaDanegoObiektu(obiekt, dataRozpoczecia1,
+                                    dataZakonczenia1);
+                                czyWolnyTermin = BazaMetody.SprawdzCzyJestWolnyTerminDlaDanegoObiektu(obiekt, dataRozpoczecia2,
+                                    dataZakonczenia2);
+                                czyWolnyTermin = BazaMetody.SprawdzCzyJestWolnyTerminDlaDanegoObiektu(obiekt, dataRozpoczecia3,
+                                    dataZakonczenia3);
+                                if (czyWolnyTermin == false)
+                                {
+                                    Xceed.Wpf.Toolkit.MessageBox.Show("Jeden lub więcej terminów jest już zajety !!! Wybierz inny", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return;
+                                }
+                                dataRozpoczecia1 = dataRozpoczecia1.AddDays(7);
+                                dataRozpoczecia1 = dataZakonczenia1.AddDays(7);
+                                dataRozpoczecia2 = dataRozpoczecia2.AddDays(7);
+                                dataRozpoczecia2 = dataZakonczenia2.AddDays(7);
+                                dataRozpoczecia3 = dataRozpoczecia3.AddDays(7);
+                                dataRozpoczecia3 = dataZakonczenia3.AddDays(7);
+                            }
+                            dataRozpoczecia1 = (DateTime)DateTimePicker1.Value;
+                            dataZakonczenia1 = dataRozpoczecia1.AddMinutes(dlugosc);
+                            dataRozpoczecia2 = (DateTime)DateTimePicker2.Value;
+                            dataZakonczenia2 = dataRozpoczecia2.AddMinutes(dlugosc);
+                            dataRozpoczecia3 = (DateTime)DateTimePicker3.Value;
+                            dataZakonczenia3 = dataRozpoczecia3.AddMinutes(dlugosc);
+                            for (int i = 0; i < iloscTygodni; i++)
+                            {
+                                WpisZajecia wpis1 = new WpisZajecia()
+                                {
+                                    ObiektSportowy = obiekt,
+                                    Instruktor = instruktor,
+                                    Grupa = grupa,
+                                    DataRozpoczecia = dataRozpoczecia1,
+                                    DataZakonczenia = dataZakonczenia1,
+                                    DlugoscZajec = dlugosc
+                                };
+                                WpisZajecia wpis2 = new WpisZajecia()
+                                {
+                                    ObiektSportowy = obiekt,
+                                    Instruktor = instruktor,
+                                    Grupa = grupa,
+                                    DataRozpoczecia = dataRozpoczecia2,
+                                    DataZakonczenia = dataZakonczenia2,
+                                    DlugoscZajec = dlugosc
+                                };
+                                WpisZajecia wpis3 = new WpisZajecia()
+                                {
+                                    ObiektSportowy = obiekt,
+                                    Instruktor = instruktor,
+                                    Grupa = grupa,
+                                    DataRozpoczecia = dataRozpoczecia3,
+                                    DataZakonczenia = dataZakonczenia3,
+                                    DlugoscZajec = dlugosc
+                                };
+                                BazaMetody.DodajNowyTermin(wpis1);
+                                BazaMetody.DodajNowyTermin(wpis2);
+                                BazaMetody.DodajNowyTermin(wpis3);
+                                dataRozpoczecia1 = dataRozpoczecia1.AddDays(7);
+                                dataZakonczenia1 = dataZakonczenia1.AddDays(7);
+                                dataRozpoczecia2 = dataRozpoczecia2.AddDays(7);
+                                dataZakonczenia2 = dataZakonczenia2.AddDays(7);
+                                dataRozpoczecia3 = dataRozpoczecia3.AddDays(7);
+                                dataZakonczenia3 = dataZakonczenia3.AddDays(7);
+                            }
+                            break;
+                    }
+
 
                 }
                 isAdd = true;
-                this.Close();
+                var okno = Xceed.Wpf.Toolkit.MessageBox.Show("Grupa utworzona !!!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (okno == MessageBoxResult.OK)
+                {
+                    this.Close();
+                }              
             }
             catch (Exception ex)
             {
-                
+                Xceed.Wpf.Toolkit.MessageBox.Show("Wypełnij poprawnie wszystkie pola", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);               
             }
 
 
