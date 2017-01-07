@@ -58,6 +58,19 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             return false;
         }
 
+        public void UsunGrupe(int id)
+        {
+            foreach (Grupa grupa in Grupy)
+            {
+                if (grupa.Id == id)
+                {
+                    Grupy.Remove(grupa);
+                    return;
+                }
+
+            }
+        }
+
         public bool ZmienTerminZajec(int idWpisu,DateTime dataRozpoczecia,DateTime dataZakonczenia)
         {
             //TO DO
@@ -115,6 +128,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         public Instruktor() 
         {
 
+        }
+
+        public Grupa PodgladGrupy(string nazwa)
+        {
+            return Grupy.FirstOrDefault(i => i.Nazwa == nazwa);
         }
 
 

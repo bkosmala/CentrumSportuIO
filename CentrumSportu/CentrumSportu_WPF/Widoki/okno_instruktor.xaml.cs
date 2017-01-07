@@ -76,7 +76,7 @@ namespace CentrumSportu_WPF.Widoki
             InformacjeOGrupachComboBox.Items.Clear();
             GrupyComboBox.Items.Clear();
             GrupyComboBox.Items.Add("Wszystkie grupy");
-            InformacjeOGrupachComboBox.Items.Add("Wszystkie grupy");
+  
             foreach (var item in grupy)
             {
                 GrupyComboBox.Items.Add(item.Nazwa);
@@ -123,12 +123,7 @@ namespace CentrumSportu_WPF.Widoki
 
         private void InformacjeOGrupachComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (InformacjeOGrupachComboBox.SelectedIndex == 0)
-            {
-                zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
-            }
-            else
-            {
+            
                 string groupName = (string)InformacjeOGrupachComboBox.SelectedItem;
                 int groupId = 0;
                 foreach (var item in grupy)
@@ -144,7 +139,7 @@ namespace CentrumSportu_WPF.Widoki
                 }
                 zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
                 uczestnicyZajec = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocUczestnikowZajecDlaDanejGrupy(groupId));
-            }
+            
             UczestnicyGrupyListView.ItemsSource = uczestnicyZajec;
         }
 
@@ -198,6 +193,31 @@ namespace CentrumSportu_WPF.Widoki
             MainWindow okno=new MainWindow();
             okno.Show();
             this.Close();
+        }
+
+        private void RozwiazGrupeButton_Click(object sender, RoutedEventArgs e)
+        {
+            RozwiazywanieGrupyWindow okno = new RozwiazywanieGrupyWindow(BazaMetody.ZwrocGrupeDlaWybranegoInstruktora(instruktor.Id, InformacjeOGrupachComboBox.SelectedItem.ToString()), instruktor);
+            okno.Show();
+            okno.Closed += RozwiazywanieGrupyOkno_Closed;
+        }
+
+        private void RozwiazywanieGrupyOkno_Closed(object sender, EventArgs e)
+        {
+            RozwiazywanieGrupyWindow child = (RozwiazywanieGrupyWindow)sender;
+            foreach (var item in grupy)
+            {
+                GrupyComboBox.Items.Remove(item.Nazwa);
+                InformacjeOGrupachComboBox.Items.Remove(item.Nazwa);
+            }
+            foreach (var item in child.Grupy)
+            {
+                GrupyComboBox.Items.Add(item.Nazwa);
+                InformacjeOGrupachComboBox.Items.Add(item.Nazwa);
+            }
+            HarmonogramListView.ItemsSource = child.Zajecia;
+            GrupyComboBox.SelectedIndex = 0;
+            InformacjeOGrupachComboBox.SelectedIndex = 0;
         }
     }
 }

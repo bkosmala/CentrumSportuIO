@@ -13,10 +13,29 @@ namespace CentrumSportu_WPF.Baza_danych
 {
     public static class BazaMetody
     {
-        public static bool UsunGrupe(string id)
+        public static List<Grupa> Usungrupe(int idInstruktor, int idgrupy)
         {
-            // TO DO 
-            return true;
+            List<Grupa> temp = new List<Grupa>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (WpisZajecia wpisZajecia in data.WpisyZajecia)
+                {
+                    if (wpisZajecia.Grupa.Id == idgrupy)
+                    {
+                        data.WpisyZajecia.Remove(wpisZajecia);
+                    }
+                }
+                foreach (Instruktor instruktor in data.Instruktorzy)
+                {
+                    if (instruktor.Id == idInstruktor)
+                    {
+                        instruktor.UsunGrupe(idgrupy);
+                        temp.AddRange(instruktor.Grupy);
+                    }
+                }
+                data.SaveChanges();
+                return temp;
+            }
         }
 
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
@@ -398,6 +417,20 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
-        
+        public static Grupa ZwrocGrupeDlaWybranegoInstruktora(int idInstruktora, string nazwaGrupy)
+        {
+            Grupa temp = null;
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Instruktor instruktor in data.Instruktorzy)
+                {
+                    temp = instruktor.PodgladGrupy(nazwaGrupy);
+                }
+            }
+            return temp;
+        }
+
+
     }
 }

@@ -59,7 +59,7 @@
                 <Grid>
                     <Label Content="Wybierz grupę :" Margin="10,38,420,326" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="196,38,10,335" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
-                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="187" Margin="10,214,0,0" VerticalAlignment="Top" Width="576" MouseDoubleClick="WyswietlOknoProfiloweUczestnika">
+                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="189" Margin="10,214,0,0" VerticalAlignment="Top" Width="576" MouseDoubleClick="WyswietlOknoProfiloweUczestnika">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}"/>
@@ -78,6 +78,7 @@
                     <Label Content="Max Liczebność:" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="maxLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="107,183,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" Margin="427,106,34,252" Click="DodajGrupeButton_Click"/>
+                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="287,106,0,0" VerticalAlignment="Top" Width="135" Click="RozwiazGrupeButton_Click" Height="55"/>
                 </Grid>
             </TabItem>
 

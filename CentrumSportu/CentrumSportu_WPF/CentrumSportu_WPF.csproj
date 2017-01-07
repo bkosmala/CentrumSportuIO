@@ -113,6 +113,9 @@
     <Compile Include="Widoki\ProfilUczestnikaWindow.xaml.cs">
       <DependentUpon>ProfilUczestnikaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\RozwiazywanieGrupyWindow.xaml.cs">
+      <DependentUpon>RozwiazywanieGrupyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\TworzenieGrupyWindow.xaml.cs">
       <DependentUpon>TworzenieGrupyWindow.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\ProfilUczestnikaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\RozwiazywanieGrupyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
