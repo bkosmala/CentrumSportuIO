@@ -31,13 +31,12 @@ namespace CentrumSportu_WPF.Widoki
             listZajecia = new ObservableCollection<Zajecia>(BazaMetody.ZwrocWszystkieZajeciaOferta());
 
             listBoxZajecia.ItemsSource = listZajecia;
-            Console.WriteLine("Test:");
-            Console.WriteLine(listBoxZajecia.SelectedItem);
+            listBoxZajecia.SelectedIndex = 0;
+            ZajeciaViewBox.DataContext = selectedZajecia;
         }
         private void ListBoxZajecia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("Zmiana:");
-
+            selectedZajecia = listZajecia.ElementAt(listBoxZajecia.SelectedIndex);
         }
         
     }

@@ -30,7 +30,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left" Height="497"  VerticalAlignment="Top" Width="517" Margin="0,10,0,0" Stretch="Fill"/>
+                    <Canvas x:Name="ZajeciaViewBox" Grid.Column="1" HorizontalAlignment="Left" Height="497"  VerticalAlignment="Top" Width="517" Margin="0,10,0,0" Background="Red">
+                    </Canvas>
                     <Label Grid.Column="0" Content="Lista:" FontSize="16" HorizontalContentAlignment="Center"  Height="118" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Margin="5,0,522,399"  />
                     <ListBox Grid.Column="0" x:Name="listBoxZajecia" Background="White"  SelectionChanged="ListBoxZajecia_SelectionChanged" Margin="5,31,10,20">
                         <ListBox.ItemTemplate>
