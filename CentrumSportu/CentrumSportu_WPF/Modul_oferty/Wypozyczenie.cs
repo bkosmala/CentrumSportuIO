@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CentrumSportu_WPF.Modul_oferty
 {
-    [Table("Wypozyczenia")]
+    [Table("Wypozyczenie")]
     public class Wypozyczenie
     {
         [Key]

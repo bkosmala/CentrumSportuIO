@@ -8,16 +8,23 @@ using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_oferty
 {
-    [Table("Rezerwacje")]
+    [Table("Rezerwacja")]
     public class Rezerwacja
     {
+        public Rezerwacja()
+        {
+            this.Przedmioty = new HashSet<Przedmiot>();
+        }
+
         [Key]
         public int Id { get; set; }
         public DateTime OdDaty { get; private set; }
         public DateTime DoDaty { get; private set; }
         public Boolean CzyOplacone { get; private set; }
+        
+        public int? WypozyczenieId;
         public Wypozyczenie Wypozyczenie { get; private set; }
-        public List<Przedmiot> Przedmioty { get; set; }
+        public virtual ICollection<Przedmiot> Przedmioty { get; set; }
 
     }
 }

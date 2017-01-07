@@ -8,13 +8,20 @@ using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_oferty
 {
-    [Table("Przedmioty")]
+    [Table("Przedmiot")]
     public class Przedmiot
     {
+        public Przedmiot()
+        {
+            this.Rezerwacje = new HashSet<Rezerwacja>();
+        }
+
         [Key]
         public int Id { get; set; }
+        [MaxLength(40, ErrorMessage = "Property 'Nazwa' cannot be longer than 40")]
         public String Nazwa { get; set; }
         public Boolean Dostepnosc { get; set; }
+        public virtual ICollection<Rezerwacja> Rezerwacje { get; set; }
 
     }
 }
