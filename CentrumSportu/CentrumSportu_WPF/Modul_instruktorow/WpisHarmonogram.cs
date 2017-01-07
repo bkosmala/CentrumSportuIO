@@ -24,6 +24,8 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         {
             DataRozpoczecia = dataRozp;
             DataZakonczenia = dataZak;
+            TimeSpan dlugosc = DataZakonczenia.Subtract(DataRozpoczecia);
+            DlugoscZajec = dlugosc.TotalMinutes;
         }
 
         public void ZmienDateRozpoczecia(DateTime data)

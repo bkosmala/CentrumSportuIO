@@ -41,14 +41,27 @@ namespace CentrumSportu_WPF.Widoki
             nazwisko_textBlock.Text = instruktor.Nazwisko;
             telefon_textBlock.Text = instruktor.Telefon;
             email_textBlock.Text = instruktor.Email;
-            zdjecie_profilowe.Source = new BitmapImage(new Uri(instruktor.Zdjęcie));
+            if (instruktor.Zdjecie != null)
+            {
+                zdjecie_profilowe.Source = new BitmapImage(new Uri(instruktor.Zdjecie));
+            }
+            else
+            {
+                zdjecie_profilowe.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory+"../../Images/profilPhoto.jpg"));
+            }
             if (najblizszeZajecia != null)
             {
-
+                brakZajec_label.Visibility = Visibility.Hidden;
+                WrapPanel.Visibility = Visibility.Visible;
+                GrupaTextBlock.Text = najblizszeZajecia.Grupa.Nazwa;
+                SalaTextBlock.Text = najblizszeZajecia.ObiektSportowy.Nazwa;
+                DataTextBlock.Text = najblizszeZajecia.DataRozpoczecia.ToString();
+                DlugoscTextBlock.Text = najblizszeZajecia.DlugoscZajec.ToString();
             }
             else
             {
                 brakZajec_label.Visibility = Visibility.Visible;
+                WrapPanel.Visibility = Visibility.Hidden;
             }
 
             //HARMONOGRAM
@@ -180,7 +193,11 @@ namespace CentrumSportu_WPF.Widoki
             UczestnicyGrupyListView.ItemsSource = child.UczestnicyProfilUczestnikaCollection;
         }
 
-
-
+        private void WylogujButton_Click(object sender, RoutedEventArgs e)
+        {           
+            MainWindow okno=new MainWindow();
+            okno.Show();
+            this.Close();
+        }
     }
 }

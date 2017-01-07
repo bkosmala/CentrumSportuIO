@@ -32,7 +32,7 @@ namespace CentrumSportu_WPF.Baza_danych
             //Instruktorzy
             Instruktor instruktor1= new Instruktor("Piotr", "Kazmierczak", "pkazmierczak@gmail.com", "500600700",dyscypliny,kontoInstruktor);
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            instruktor1.Zdjęcie = path + "../../Resources/instruktor_test.jpg";
+            instruktor1.Zdjecie = path + "../../Images/instruktor_test.jpg";
 
             //Studenci
             Student student1 = new Student("Rafał", "Lebioda", kontoStudent);
@@ -47,9 +47,9 @@ namespace CentrumSportu_WPF.Baza_danych
             UczestnikZajec uczestnik1 = new UczestnikZajec("Jan", "Kowalski", "jan.kowalski@gmail.com", "608924351");
             UczestnikZajec uczestnik2 = new UczestnikZajec("Janusz", "Nowak", "janusz.nowak@gmail.com", "709261789");
             UczestnikZajec uczestnik3 = new UczestnikZajec("Rafał", "Lebioda", "rafal.lebioda@gmail.com", "666666666");
-            uczestnik1.Zdjecie = path + "../../Resources/profilPhoto.jpg";
-            uczestnik2.Zdjecie = path + "../../Resources/profilPhoto.jpg";
-            uczestnik3.Zdjecie = path + "../../Resources/profilPhoto.jpg";
+            uczestnik1.Zdjecie = path + "../../Images/profilPhoto.jpg";
+            uczestnik2.Zdjecie = path + "../../Images/profilPhoto.jpg";
+            uczestnik3.Zdjecie = path + "../../Images/profilPhoto.jpg";
 
             //Grupy
             Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30,"Piłka nożna - grupa męska");

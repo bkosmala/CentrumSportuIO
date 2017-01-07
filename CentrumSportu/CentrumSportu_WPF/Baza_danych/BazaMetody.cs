@@ -97,7 +97,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e=>e.Instruktor.Id==instruktor.Id && e.DataRozpoczecia > DateTime.Now)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy")
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa")
                         .FirstOrDefault();
               
                 return result;

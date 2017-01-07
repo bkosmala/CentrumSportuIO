@@ -15,7 +15,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public string Email { get; set; }
 
-        public string Zdjęcie { get; set; }
+        public string Zdjecie { get; set; }
 
         public virtual ICollection<Dyscyplina> Dyscypliny { get; set; }
 
