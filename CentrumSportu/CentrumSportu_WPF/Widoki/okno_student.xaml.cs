@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CentrumSportu_WPF.Modul_biletow;
+using System.Collections.ObjectModel;
+using CentrumSportu_WPF.Baza_danych;
 
 namespace CentrumSportu_WPF.Widoki
 {
@@ -21,12 +23,26 @@ namespace CentrumSportu_WPF.Widoki
     public partial class okno_student : Window
     {
         private Student student;
+        private ObservableCollection<Bilet> bilety;
+        private ObservableCollection<ZajeciaOdbyte> zajeciaOdbyte;
 
         public okno_student(Student _student)
         {
             InitializeComponent();
             student = _student;
-            this.textBox.Text = student.Imie + " " + student.Nazwisko;
+            imieStudentLabel.Content = student.Imie;
+            nazwiskoStudentLabel.Content = student.Nazwisko;
+            emailStudentLabel.Content = student.Email;
+            telefonStudentLabel.Content = student.Telefon;
+            zdjecieProfiloweStudentImage.Source = new BitmapImage(new Uri(student.Zdjecie));
+
+        }
+
+        private void WylogujStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow okno = new MainWindow();
+            okno.Show();
+            this.Close();
         }
     }
 }

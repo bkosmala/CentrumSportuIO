@@ -397,5 +397,7 @@ namespace CentrumSportu_WPF.Baza_danych
                 return result;
             }
         }
+
+        
     }
 }

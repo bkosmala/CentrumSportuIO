@@ -35,7 +35,8 @@ namespace CentrumSportu_WPF.Baza_danych
             instruktor1.Zdjecie = path + "../../Images/instruktor_test.jpg";
 
             //Studenci
-            Student student1 = new Student("Rafał", "Lebioda", kontoStudent);
+            Student student1 = new Student("Rafał", "Lebioda", kontoStudent, "rafal.lebioda@gmail.com", "666666666");
+            student1.Zdjecie = path + "../../Images/profilPhoto.jpg";
 
             //Administratorzy
             Administrator administrator1 = new Administrator("Super", "Admin",kontoAdministrator);
@@ -84,7 +85,6 @@ namespace CentrumSportu_WPF.Baza_danych
                 new Zajecia("grupowe","Piłka siatkowa","Trening siatkówki","opis",null)
 
             };
-
 
 
             context.Instruktorzy.Add(instruktor1);

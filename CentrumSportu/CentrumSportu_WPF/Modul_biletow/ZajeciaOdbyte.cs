@@ -24,7 +24,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         }
 
 
-        public Grupa grupa
+        public Grupa Grupa
         {
             get
             {
@@ -37,7 +37,7 @@ namespace CentrumSportu_WPF.Modul_biletow
             }
         }
 
-        public string obecnosc
+        public string Obecnosc
         {
             get
             {
@@ -50,7 +50,7 @@ namespace CentrumSportu_WPF.Modul_biletow
             }
         }
 
-        public DateTime data
+        public DateTime Data
         {
             get
             {

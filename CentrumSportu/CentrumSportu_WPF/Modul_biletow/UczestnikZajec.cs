@@ -35,7 +35,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         }
 
 
-        public List<Bilet> bilety
+        public List<Bilet> Bilety
         {
             get
             {
@@ -73,6 +73,11 @@ namespace CentrumSportu_WPF.Modul_biletow
             _bilety = new List<Bilet>();
             this.Email = email;
             this.Telefon = telefon;
+        }
+
+        public Bilet ZwrocWybranyBilet(int idBilet)
+        {
+            return Bilety.First(e => e.Id == idBilet);
         }
 
     }

@@ -23,7 +23,13 @@ namespace CentrumSportu_WPF.Modul_biletow
             _zajecia = zajecia;
         }
 
-        public int id
+        public Bilet(Zajecia zajecia)
+        {
+            this._zajecia = zajecia;
+            _zaplacono = false;
+        }
+
+        public int Id
         {
             get
             {
@@ -51,7 +57,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         }
         
 
-        public bool zaplacono
+        public bool Zaplacono
         {
             get
             {
