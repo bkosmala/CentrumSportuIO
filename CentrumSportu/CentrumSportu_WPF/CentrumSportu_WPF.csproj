@@ -98,6 +98,9 @@
     <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
       <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\ModyfikujTerminZajec.xaml.cs">
+      <DependentUpon>ModyfikujTerminZajec.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,9 @@
     <Compile Include="Widoki\TworzenieGrupyWindow.xaml.cs">
       <DependentUpon>TworzenieGrupyWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\UsunTerminZajec.xaml.cs">
+      <DependentUpon>UsunTerminZajec.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,6 +143,10 @@
     <Page Include="Widoki\dodawanieUzytkownika.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Widoki\ModyfikujTerminZajec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\OfertaWidok.xaml">
       <SubType>Designer</SubType>
@@ -163,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\TworzenieGrupyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\UsunTerminZajec.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

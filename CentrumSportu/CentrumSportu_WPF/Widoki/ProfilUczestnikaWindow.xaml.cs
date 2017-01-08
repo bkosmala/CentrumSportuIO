@@ -28,7 +28,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public ProfilUczestnikaWindow(UczestnikZajec uczestnikZajec, int idGrupyUczestnika)
         {
-            
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.uczestnikZajec = uczestnikZajec;
             this.idGrupyUczestnika = idGrupyUczestnika;
             InitializeComponent();

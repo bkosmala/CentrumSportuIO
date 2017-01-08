@@ -30,6 +30,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public TworzenieGrupyWindow(Instruktor _instruktor)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             instruktor = _instruktor;
             InitializeComponent();
             Init();

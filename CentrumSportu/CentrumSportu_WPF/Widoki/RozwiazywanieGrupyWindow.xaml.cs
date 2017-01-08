@@ -29,6 +29,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public RozwiazywanieGrupyWindow(Grupa grupa, Instruktor instruktor)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.grupa = grupa;
             this.instruktor = instruktor;

@@ -41,7 +41,14 @@
                 <Grid>
                     <Label x:Name="label" Content="Wybierz grupę :" Margin="23,38,407,326" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="GrupyComboBox" Margin="196,38,29,335" FontSize="18" SelectionChanged="GrupyComboBox_SelectionChanged"/>
-                    <ListView x:Name="HarmonogramListView" HorizontalAlignment="Left" Height="272" Margin="23,114,0,0" VerticalAlignment="Top" Width="546">
+                    <ListView x:Name="HarmonogramListView" HorizontalAlignment="Left" Height="272" Margin="23,114,0,0" VerticalAlignment="Top" Width="546" SelectionMode="Single">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="UsunMenuItem" Header="Usuń termin" Click="UsunMenuItem_Click"></MenuItem>
+                                <MenuItem x:Name="ZastepstwoMenuItem" Header="Ustaw zastępstwo" Click="ZastepstwoMenuItem_Click"></MenuItem>
+                                <MenuItem x:Name="ModyfikujMenuItem" Header="Modyfikuj termin" Click="ModyfikujMenuItem_Click"></MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />

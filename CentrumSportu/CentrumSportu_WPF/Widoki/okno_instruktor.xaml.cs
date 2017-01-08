@@ -32,6 +32,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public okno_instruktor(Instruktor _instruktor)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             instruktor = _instruktor;
             RefreshData();
@@ -218,6 +219,47 @@ namespace CentrumSportu_WPF.Widoki
             HarmonogramListView.ItemsSource = child.Zajecia;
             GrupyComboBox.SelectedIndex = 0;
             InformacjeOGrupachComboBox.SelectedIndex = 0;
+        }
+
+        private void UsunMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            WpisZajecia wpis = (WpisZajecia)HarmonogramListView.SelectedItem;
+            if (wpis != null)
+            {
+                UsunTerminZajec okno = new UsunTerminZajec(wpis);
+                okno.ShowDialog();
+                if (okno.czyUsuniety == true)
+                {
+                    //TO DO
+                }
+            }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }          
+        }
+
+        private void ZastepstwoMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Xceed.Wpf.Toolkit.MessageBox.Show("Ta funkcjonalność zostanie dodana wkrótce", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        private void ModyfikujMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            WpisZajecia wpis = (WpisZajecia)HarmonogramListView.SelectedItem;
+            if (wpis != null)
+            {
+                ModyfikujTerminZajec okno = new ModyfikujTerminZajec(wpis);
+                okno.ShowDialog();
+                if (okno.czyModyfikowane == true)
+                {
+                   //TO DO
+                }
+            }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
