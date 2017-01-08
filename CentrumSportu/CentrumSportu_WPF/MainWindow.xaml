@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF"
         mc:Ignorable="d"
-        Title="Centrum Sportu" Height="600" Width="800">
+        Title="Centrum Sportu" Height="600" Width="800" ResizeMode="NoResize">
     <Window.Background>
-        <ImageBrush ImageSource="Images/main_background.jpg" Opacity="0.7"></ImageBrush>
+        <ImageBrush ImageSource="Images/main_background.jpg" Opacity="0.5"></ImageBrush>
     </Window.Background>
     <Grid>
         <Label x:Name="HeaderLbl" Content="Centrum Sportu Politechniki Łódzkiej" 
@@ -23,10 +23,10 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="LogowanieLbl" Content="Logowanie" HorizontalContentAlignment="Center" FontSize="25" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="772" Foreground="White"/>
-        <Label x:Name="LoginLbl" Content="Login:" FontSize="16" HorizontalAlignment="Left" Margin="226,292,0,0" VerticalAlignment="Top" Height="39" Width="69" Foreground="White"/>
+        <Label x:Name="LogowanieLbl" Content="Logowanie" HorizontalContentAlignment="Center" FontSize="25" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="772" Foreground="White" FontWeight="Bold"/>
+        <Label x:Name="LoginLbl" Content="Login:" FontSize="16" HorizontalAlignment="Left" Margin="226,292,0,0" VerticalAlignment="Top" Height="39" Width="69" Foreground="White" FontWeight="Bold"/>
         <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="30" FontSize="16" Margin="300,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.492,0.533" Background="#FF750104" Foreground="White" />
-        <Label x:Name="PasswordLbl" Content="Hasło:" FontSize="16" HorizontalAlignment="Left" Margin="226,347,0,0" VerticalAlignment="Top" Height="30" Width="69" Foreground="White"/>
+        <Label x:Name="PasswordLbl" Content="Hasło:" FontSize="16" HorizontalAlignment="Left" Margin="226,347,0,0" VerticalAlignment="Top" Height="30" Width="69" Foreground="White" FontWeight="Bold"/>
         <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" FontSize="16" Margin="300,347,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FF750104" Foreground="White"/>
         <Button x:Name="ZalogujBtn" FontSize="18" Content="Zaloguj" HorizontalAlignment="Left" Margin="363,401,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.28,0.182" Click="ZalogujBtn_Click" Foreground="White" Background="#FF750104"/>
         <Button x:Name="GoscBtn" Content="Wejdź jako Gość" FontSize="18" HorizontalAlignment="Left" Margin="320,515,0,0" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.52,0.136" Click="GoscBtn_Click" Background="#FF750104" Foreground="White" />
