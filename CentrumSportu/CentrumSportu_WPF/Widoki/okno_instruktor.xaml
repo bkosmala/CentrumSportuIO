@@ -84,8 +84,9 @@
                     <Label x:Name="minLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="107,152,0,0" VerticalAlignment="Top"/>
                     <Label Content="Max Liczebność:" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="maxLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="107,183,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" Margin="427,106,34,252" Click="DodajGrupeButton_Click"/>
-                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="287,106,0,0" VerticalAlignment="Top" Width="135" Click="RozwiazGrupeButton_Click" Height="55"/>
+
+                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="337,106,0,0" VerticalAlignment="Top" Width="105" Click="RozwiazGrupeButton_Click" Height="55" />
+                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="447,106,0,0" VerticalAlignment="Top" Width="105"  Click="DodajGrupeButton_Click" Height="55"/>
                 </Grid>
             </TabItem>
 
