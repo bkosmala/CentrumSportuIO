@@ -38,6 +38,7 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
             //TO DO
@@ -441,6 +442,15 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        //OFERTA
+        public static List<Przedmiot> ZwrocWszystkiePrzedmioty()
+        {
+            using (CentrumContext context = new CentrumContext())
+            {
+                var ret = context.Przedmioty.ToList();
+                return ret;
+            }
+        }
 
     }
 }

@@ -45,7 +45,36 @@
             </TabItem>
             <TabItem Header="Nadchodzące wydarzenia" />
             <TabItem Header="Obiekty sportowe Centrum" />
-            <TabItem Header="Wypożyczanie sprzętu sportowego" />
+            <TabItem Header="Wypożyczanie sprzętu sportowego" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Left" Height="497"  VerticalAlignment="Top" Width="517" Margin="0,10,0,0" Stretch="Fill"/>
+                    <Label Grid.Column="0" Content="Oferowany sprzęt:" FontSize="16" HorizontalContentAlignment="Center"  Height="118" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Margin="5,0,522,399"  />
+                    <ListBox Grid.Column="0" x:Name="listBoxSprzet" Background="White"  SelectionChanged="ListBoxPrzedmiotySelectionChanged" Margin="5,31,10,20">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate >
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontSize="16" FontFamily="Verdana" Padding="15" Content="{Binding Nazwa}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Grid Grid.ColumnSpan="2" Margin="253,-10,12,10">
+                        <Label x:Name="label" Content="Nazwa:" HorizontalAlignment="Left" Margin="14,82,0,0" VerticalAlignment="Top" Height="32" Width="58"/>
+                        <TextBox x:Name="textBoxNazwaSprzetu" HorizontalAlignment="Left" Height="23" Margin="77,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" IsEnabled="False"/>
+                        <Label x:Name="label1" Content="Cena:" HorizontalAlignment="Left" Margin="14,139,0,0" VerticalAlignment="Top" Height="32" Width="58"/>
+                        <TextBox x:Name="textBoxCena" HorizontalAlignment="Left" Height="23" Margin="77,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" IsEnabled="False"/>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
 
         </TabControl>
 

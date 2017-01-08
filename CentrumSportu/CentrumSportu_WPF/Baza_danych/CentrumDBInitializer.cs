@@ -86,6 +86,18 @@ namespace CentrumSportu_WPF.Baza_danych
 
             };
 
+            List<Przedmiot> sprzetOferta = new List<Przedmiot>
+            {
+                new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true },
+                new Przedmiot() { Nazwa = "rakietka do badmintona", Dostepnosc = true },
+                new Przedmiot() { Nazwa = "piłka do siatkówki", Dostepnosc = true },
+                new Przedmiot() { Nazwa = "piłka do koszykówki", Dostepnosc = true }
+            };
+
+            foreach (var item in sprzetOferta)
+            {
+                context.Przedmioty.Add(item);
+            } 
 
             context.Instruktorzy.Add(instruktor1);
             context.Studenci.Add(student1);

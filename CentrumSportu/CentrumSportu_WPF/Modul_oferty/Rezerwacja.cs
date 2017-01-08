@@ -25,6 +25,20 @@ namespace CentrumSportu_WPF.Modul_oferty
         public int? WypozyczenieId;
         public Wypozyczenie Wypozyczenie { get; private set; }
         public virtual ICollection<Przedmiot> Przedmioty { get; set; }
+        [Range(1,3), Display(Name = "StatusRezerwacjiEnum")]
+        public StatusRezerwacji status;
+
+        public enum StatusRezerwacji
+        {
+            OCZEKUJACA = 1,
+            ZREALIZOWANA = 2,
+            ANULOWANA= 3
+        };
+
+        public void RezerwujPrzedmiot(Przedmiot przedmiot)
+        {
+            Przedmioty.Add(przedmiot);
+        }
 
     }
 }

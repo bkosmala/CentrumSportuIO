@@ -24,21 +24,34 @@ namespace CentrumSportu_WPF.Widoki
     public partial class OfertaWidok : UserControl
     {
         private ObservableCollection<Zajecia> listZajecia;
+        private ObservableCollection<Przedmiot> oferowanySprzet;
         private Zajecia selectedZajecia;
         public OfertaWidok()
         {
             InitializeComponent();
             listZajecia = new ObservableCollection<Zajecia>(BazaMetody.ZwrocWszystkieZajeciaOferta());
 
+            oferowanySprzet = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
+
             listBoxZajecia.ItemsSource = listZajecia;
+            listBoxSprzet.ItemsSource = oferowanySprzet;
             Console.WriteLine("Test:");
             Console.WriteLine(listBoxZajecia.SelectedItem);
         }
         private void ListBoxZajecia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Console.WriteLine("Zmiana:");
-
         }
+
+        private void ListBoxPrzedmiotySelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Przedmiot selectedPrzedmiot = (listBoxSprzet.SelectedItem as Przedmiot);
+            if (selectedPrzedmiot != null)
+            {
+                textBoxNazwaSprzetu.Text = selectedPrzedmiot.Nazwa;
+            }
+        }
+
         
     }
 }
