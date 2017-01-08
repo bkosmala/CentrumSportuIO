@@ -129,7 +129,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").ToList();
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Instruktor").ToList();
                        
                 return result;
             }
@@ -141,7 +141,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now && e.Grupa.Id==idGrupy)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").ToList();
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Instruktor").ToList();
 
                 return result;
             }
@@ -429,6 +429,16 @@ namespace CentrumSportu_WPF.Baza_danych
                 }
             }
             return temp;
+        }
+
+        public static void UsunTerminZajec(int wpisId)
+        {
+            using (CentrumContext data =new CentrumContext())
+            {
+                var result = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpisId);
+                data.WpisyZajecia.Remove(result);
+                data.SaveChanges();
+            }
         }
 
 

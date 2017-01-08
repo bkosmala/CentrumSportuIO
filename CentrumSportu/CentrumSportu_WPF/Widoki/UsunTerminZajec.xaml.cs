@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CentrumSportu_WPF.Baza_danych;
 using CentrumSportu_WPF.Modul_instruktorow;
 
 namespace CentrumSportu_WPF.Widoki
@@ -27,6 +28,25 @@ namespace CentrumSportu_WPF.Widoki
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             wpisZajecia = wpis;
+            InstruktorTextBlock.Text = wpisZajecia.Instruktor.Imie +" "+ wpisZajecia.Instruktor.Nazwisko;
+            GrupaTextBlock.Text = wpisZajecia.Grupa.Nazwa;
+            SalaTextBlock.Text = wpisZajecia.ObiektSportowy.Nazwa;
+            DataRozpTextBlock.Text = wpisZajecia.DataRozpoczecia.ToString();
+            DataZakonTextBlock.Text = wpisZajecia.DataZakonczenia.ToString();
+            DlugoscTextBlock.Text = wpisZajecia.DlugoscZajec.ToString()+" "+"minut";
+        }
+
+        private void UsunButton_Click(object sender, RoutedEventArgs e)
+        {
+            BazaMetody.UsunTerminZajec(wpisZajecia.Id);
+            czyUsuniety = true;
+            Xceed.Wpf.Toolkit.MessageBox.Show("Usunieto poprawnie dany termin", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
+        }
+
+        private void AnulujButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
