@@ -8,7 +8,7 @@
         Title="okno_instruktor" Height="469.522" Width="609.876" ResizeMode="CanMinimize">
     <Grid>
         <TabControl>
-            <TabItem Header="Profil instruktora" Width="200">
+            <TabItem Header="Profil instruktora" Margin="0,0,-20,-2">
                 <Grid>
                     <Image x:Name="zdjecie_profilowe" HorizontalAlignment="Left" Height="300" Margin="10,20,0,0" VerticalAlignment="Top" Width="289"/>
                     <Label x:Name="label1" Content="Imię :" HorizontalAlignment="Left" Margin="350,13,0,0" VerticalAlignment="Top" Height="33" Width="60"/>
@@ -37,7 +37,7 @@
                     <Label x:Name="brakZajec_label" Content="Brak zajęć" Margin="340,280,79,104" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" Visibility="Hidden" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Harmonogram zajęć" Width="200">
+            <TabItem Header="Harmonogram zajęć" Margin="20,0,-25,-2">
                 <Grid>
                     <Label x:Name="label" Content="Wybierz grupę :" Margin="23,38,407,326" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="GrupyComboBox" Margin="196,38,29,335" FontSize="18" SelectionChanged="GrupyComboBox_SelectionChanged"/>
@@ -62,7 +62,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Informacje o grupach" Width="190">
+            <TabItem Header="Informacje o grupach" Margin="26,0,-36,-2">
                 <Grid>
                     <Label Content="Wybierz grupę :" Margin="10,38,420,326" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="196,38,10,335" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
@@ -87,6 +87,9 @@
                     <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" Margin="427,106,34,252" Click="DodajGrupeButton_Click"/>
                     <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="287,106,0,0" VerticalAlignment="Top" Width="135" Click="RozwiazGrupeButton_Click" Height="55"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Wypożyczalnia" Margin="36,0,-40,-2">
+                
             </TabItem>
 
         </TabControl>

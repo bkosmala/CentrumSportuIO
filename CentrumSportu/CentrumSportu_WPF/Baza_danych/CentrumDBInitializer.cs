@@ -86,19 +86,25 @@ namespace CentrumSportu_WPF.Baza_danych
 
             };
 
+            Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA};
+            Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
             List<Przedmiot> sprzetOferta = new List<Przedmiot>
             {
                 new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true },
                 new Przedmiot() { Nazwa = "rakietka do badmintona", Dostepnosc = true },
                 new Przedmiot() { Nazwa = "piłka do siatkówki", Dostepnosc = true },
-                new Przedmiot() { Nazwa = "piłka do koszykówki", Dostepnosc = true }
+                new Przedmiot() { Nazwa = "piłka do koszykówki", Dostepnosc = true },
+                przedmiot1
             };
+            
 
             foreach (var item in sprzetOferta)
             {
                 context.Przedmioty.Add(item);
-            } 
+            }
 
+            rezerwacja1.RezerwujPrzedmiot(przedmiot1);
+            context.Rezerwacje.Add(rezerwacja1);
             context.Instruktorzy.Add(instruktor1);
             context.Studenci.Add(student1);
             context.Administratorzy.Add(administrator1);

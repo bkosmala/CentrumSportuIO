@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using CentrumSportu_WPF.Modul_biletow;
 using System.Collections.ObjectModel;
 using CentrumSportu_WPF.Baza_danych;
+using CentrumSportu_WPF.Modul_oferty;
 
 namespace CentrumSportu_WPF.Widoki
 {
@@ -25,6 +26,7 @@ namespace CentrumSportu_WPF.Widoki
         private Student student;
         private ObservableCollection<Bilet> bilety;
         private ObservableCollection<ZajeciaOdbyte> zajeciaOdbyte;
+        private ObservableCollection<Rezerwacja> rezerwacje;
 
         public okno_student(Student _student)
         {
@@ -36,6 +38,14 @@ namespace CentrumSportu_WPF.Widoki
             telefonStudentLabel.Content = student.Telefon;
             zdjecieProfiloweStudentImage.Source = new BitmapImage(new Uri(student.Zdjecie));
 
+            rezerwacje = new ObservableCollection<Rezerwacja>(BazaMetody.ZwrocRezerwacjeStudenta(student.Id));
+            foreach (var item in rezerwacje)
+            {
+                Console.WriteLine("Klient Id:" + item.KlientId + "\n" + item.OdDaty.ToString() + item.DoDaty.ToString());
+            }
+
+            rezerwacjeListView.ItemsSource = rezerwacje;
+            //datagridRezerwacje.ItemsSource = rezerwacje;
         }
 
         private void WylogujStudentButton_Click(object sender, RoutedEventArgs e)

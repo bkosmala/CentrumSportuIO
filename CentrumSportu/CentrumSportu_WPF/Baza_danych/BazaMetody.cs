@@ -446,9 +446,16 @@ namespace CentrumSportu_WPF.Baza_danych
         public static List<Przedmiot> ZwrocWszystkiePrzedmioty()
         {
             using (CentrumContext context = new CentrumContext())
+            { 
+                return context.Przedmioty.ToList();
+            }
+        }
+
+        public static List<Rezerwacja> ZwrocRezerwacjeStudenta(int id)
+        {
+            using (CentrumContext context = new CentrumContext())
             {
-                var ret = context.Przedmioty.ToList();
-                return ret;
+                return context.Rezerwacje.Where(p => p.Id == id).ToList();
             }
         }
 
