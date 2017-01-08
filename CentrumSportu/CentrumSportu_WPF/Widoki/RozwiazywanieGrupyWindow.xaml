@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         mc:Ignorable="d"
-        Title="RozwiazywanieGrupyWindow" Height="150" Width="300" ResizeMode="NoResize">
+        Height="150" Width="300" ResizeMode="NoResize">
     <Grid>
         <Button x:Name="WysliPowodButton" Content="Wyślij" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="85"/>
         <Button x:Name="PotwrdzUsuniecieButton" Content="Usuń grupę" HorizontalAlignment="Left" Margin="100,85,0,0" VerticalAlignment="Top" Width="90" Click="PotwrdzUsuniecieButton_Click"/>

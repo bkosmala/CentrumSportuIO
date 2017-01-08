@@ -42,6 +42,7 @@ namespace CentrumSportu_WPF.Widoki
             nazwisko_textBlock.Text = instruktor.Nazwisko;
             telefon_textBlock.Text = instruktor.Telefon;
             email_textBlock.Text = instruktor.Email;
+            iloscGrup_textBlock.Text = instruktor.Grupy.Count.ToString();
             if (instruktor.Zdjecie != null)
             {
                 zdjecie_profilowe.Source = new BitmapImage(new Uri(instruktor.Zdjecie));
