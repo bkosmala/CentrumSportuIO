@@ -514,5 +514,15 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static List<ObiektSportowy> ZwrocWszystkieObiektySportoweOferta()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var query = (from z in data.ObiektySportowe
+                             select z).ToList();
+                return query;
+            }
+        }
+
     }
 }
