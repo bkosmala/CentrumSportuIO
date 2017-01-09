@@ -23,6 +23,7 @@ namespace CentrumSportu_WPF.Widoki
     /// </summary>
     public partial class okno_administrator : Window
     {
+
         private Administrator administrator;
         private ObservableCollection<UczestnikZajec> niestudenci;
         private ObservableCollection<Administrator> administratorzy;
@@ -31,6 +32,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public okno_administrator(Administrator _administrator)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             administrator = _administrator;
             niestudenci = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocWszystkichNieStudentow());
@@ -95,7 +97,7 @@ namespace CentrumSportu_WPF.Widoki
             if (flaga)
             {
                 MessageBox.Show("Uzytkownik został usuniety");
-                
+                odśwież();
             }
             else
                 MessageBox.Show("Wystąpił błąd");
@@ -108,7 +110,7 @@ namespace CentrumSportu_WPF.Widoki
             if (flaga)
             {
                 MessageBox.Show("Uzytkownik został usuniety");
-
+                odśwież();
             }
             else
                 MessageBox.Show("Wystąpił błąd");
@@ -121,7 +123,7 @@ namespace CentrumSportu_WPF.Widoki
             if (flaga)
             {
                 MessageBox.Show("Uzytkownik został usuniety");
-
+                odśwież();
             }
             else
                 MessageBox.Show("Wystąpił błąd");
@@ -134,7 +136,7 @@ namespace CentrumSportu_WPF.Widoki
             if (flaga)
             {
                 MessageBox.Show("Uzytkownik został usuniety");
-
+                odśwież();
             }
             else
                 MessageBox.Show("Wystąpił błąd");

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         mc:Ignorable="d"
-        Title="dodawanieUzytkownika" Height="213.11" Width="420.732">
-    <Grid>
-        <Button x:Name="dodajUzytkownika" Content="Dodaj Uzytkownika" HorizontalAlignment="Left" Margin="294,143,0,0" VerticalAlignment="Top" Width="108" Click="dodajUzytkownika_Click" />
+        Title="dodawanieUzytkownika" Height="222.796" Width="597.283">
+    <Grid Margin="0,0,0.5,2.5">
+        <Button x:Name="dodajUzytkownika" Content="Dodaj Uzytkownika" HorizontalAlignment="Left" Margin="474,143,0,0" VerticalAlignment="Top" Width="108" Click="dodajUzytkownika_Click" />
         <ComboBox x:Name="typKontaCB" HorizontalAlignment="Left" Margin="103,143,0,0" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="imieTB" HorizontalAlignment="Left" Height="23" Margin="103,31,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="nazwiskoTB" HorizontalAlignment="Left" Height="23" Margin="103,59,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
@@ -20,6 +20,22 @@
         <Label x:Name="loginL" Content="Login:" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top"/>
         <Label x:Name="hasloL" Content="Hasło:" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top"/>
         <Label x:Name="typKontaL" Content="Typ Konta:" HorizontalAlignment="Left" Margin="8,143,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="emailL" Content="Email:" HorizontalAlignment="Left" Margin="235,29,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="telefonL" Content="Telefon:" HorizontalAlignment="Left" Margin="235,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.409,1.558"/>
+        <TextBox x:Name="emailTB" HorizontalAlignment="Left" Height="23" Margin="320,31,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="telefonTB" HorizontalAlignment="Left" Height="23" Margin="320,59,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="dyscyplinyL" Content="Dyscypliny:" HorizontalAlignment="Left" Margin="235,87,0,0" VerticalAlignment="Top"/>
+
+
+
+
+        <ListBox Name="listaDyscyplin"  Margin="0,87,126,0"  HorizontalAlignment="Right" Width="146" Height="75" VerticalAlignment="Top">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding dyscyplina.Nazwa}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

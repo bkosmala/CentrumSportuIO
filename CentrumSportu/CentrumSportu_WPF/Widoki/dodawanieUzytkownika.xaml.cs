@@ -23,15 +23,27 @@ namespace CentrumSportu_WPF.Widoki
     public partial class dodawanieUzytkownika : Window
     {
         okno_administrator okno;
+        List<Dyscyplina> dyscypliny;
+        List<DyscyplinaWybrane> wybory;
+
+
         public dodawanieUzytkownika(okno_administrator o)
         {
-            
+
             InitializeComponent();
             typKontaCB.Items.Add("student");
             okno = o;
             typKontaCB.Items.Add("administrator");
             typKontaCB.Items.Add("zwykły użytkownik");
             typKontaCB.Items.Add("instruktor");
+            dyscypliny = BazaMetody.ZwrocWszystkieDyscypliny();
+            wybory = new List<DyscyplinaWybrane>();
+            foreach (Dyscyplina d in dyscypliny)
+            {
+                wybory.Add(new DyscyplinaWybrane { IsSelected = false, dyscyplina = d });
+            }
+            this.listaDyscyplin.ItemsSource = wybory;
+
         }
 
 
@@ -43,6 +55,22 @@ namespace CentrumSportu_WPF.Widoki
             string login = this.loginTB.Text;
             string haslo = this.hasloTB.Text;
             KontoUzytkownika.RodzajKonta rk = KontoUzytkownika.RodzajKonta.Student;
+            string email = this.emailTB.Text;
+            string telefon = this.telefonTB.Text;
+            List<Dyscyplina> dyscyplinyInstruktora = new List<Dyscyplina>();
+
+
+            foreach (DyscyplinaWybrane d in wybory)
+            {
+                if (d.IsSelected)
+                {
+                    dyscyplinyInstruktora.Add(d.dyscyplina);
+                }
+
+            }
+
+
+
 
             switch (this.typKontaCB.Text)
             {
@@ -61,12 +89,12 @@ namespace CentrumSportu_WPF.Widoki
             }
 
             KontoUzytkownika konto = new KontoUzytkownika(login, haslo, rk);
-            bool flaga=false;
+            bool flaga = false;
 
             switch (this.typKontaCB.Text)
             {
                 case "student":
-                    Student o = new Student(imie, nazwisko, konto);
+                    Student o = new Student(imie, nazwisko, konto, email, telefon);
                     flaga = BazaMetody.DodajStudenta(o);
 
                     break;
@@ -75,15 +103,15 @@ namespace CentrumSportu_WPF.Widoki
                     flaga = BazaMetody.DodajAdministratora(a);
                     break;
                 case "instruktor":
-                    //Instruktor i = new Instruktor(imie, nazwisko, konto);
-                    flaga = false;
+                    Instruktor i = new Instruktor(imie, nazwisko, email, telefon, dyscyplinyInstruktora, konto);
+                    flaga = BazaMetody.DodajInstruktora(i);
 
                     break;
                 case "zwykły użytkownik":
-                    UczestnikZajec u = new UczestnikZajec(imie, nazwisko, konto);
+                    UczestnikZajec u = new UczestnikZajec(imie, nazwisko,  konto, email, telefon);
                     flaga = BazaMetody.DodajUczestnika(u);
                     break;
-                    
+
             }
 
             if (flaga)
@@ -102,4 +130,16 @@ namespace CentrumSportu_WPF.Widoki
 
         }
     }
+
+
+    public class DyscyplinaWybrane
+    {
+        public bool IsSelected { get; set; }
+        public Dyscyplina dyscyplina { get; set; }
+
+    }
+
+
+
+
 }

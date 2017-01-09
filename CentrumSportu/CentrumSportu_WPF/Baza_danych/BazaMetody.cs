@@ -281,42 +281,93 @@ namespace CentrumSportu_WPF.Baza_danych
 
             return true;
         }
-        
-        
-        
-        
+
+
         public static bool UsunNieStudenta(UczestnikZajec K)
         {
 
-            // to do
+            using (CentrumContext data = new CentrumContext())
+            {
 
-            return false;
+
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.UczestnicyZajec.Attach(K);
+                    data.UczestnicyZajec.Remove(K);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static bool UsunStudenta(Student K)
         {
-
-            // to do
-
-            return false;
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.Studenci.Attach(K);
+                    data.Studenci.Remove(K);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
 
         public static bool UsunAdministratora(Administrator K)
         {
-
-            // to do
-
-            return false;
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.Administratorzy.Attach(K);
+                    data.Administratorzy.Remove(K);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static bool UsunInstruktora(Instruktor K)
         {
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.Instruktorzy.Attach(K);
+                    data.Instruktorzy.Remove(K);
+                    data.SaveChanges();
 
-            // to do
-
-            return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
+
 
         public static List<ObiektSportowy> ZwrocListeObiektowDlaDanejDyscypliny(Dyscyplina dyscyplina)
         {
@@ -449,6 +500,17 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var ret = context.Przedmioty.ToList();
                 return ret;
+            }
+        }
+
+        public static List<Dyscyplina> ZwrocWszystkieDyscypliny()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+
+                return data.Dyscypliny.ToList();
+
+
             }
         }
 
