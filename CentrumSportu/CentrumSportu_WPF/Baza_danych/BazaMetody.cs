@@ -13,12 +13,32 @@ namespace CentrumSportu_WPF.Baza_danych
 {
     public static class BazaMetody
     {
-        public static bool UsunGrupe(string id)
+        public static List<Grupa> Usungrupe(int idInstruktor, int idgrupy)
         {
-            // TO DO 
-            return true;
+            List<Grupa> temp = new List<Grupa>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (WpisZajecia wpisZajecia in data.WpisyZajecia)
+                {
+                    if (wpisZajecia.Grupa.Id == idgrupy)
+                    {
+                        data.WpisyZajecia.Remove(wpisZajecia);
+                    }
+                }
+                foreach (Instruktor instruktor in data.Instruktorzy)
+                {
+                    if (instruktor.Id == idInstruktor)
+                    {
+                        instruktor.UsunGrupe(idgrupy);
+                        temp.AddRange(instruktor.Grupy);
+                    }
+                }
+                data.SaveChanges();
+                return temp;
+            }
         }
 
+        
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
             //TO DO
@@ -97,7 +117,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e=>e.Instruktor.Id==instruktor.Id && e.DataRozpoczecia > DateTime.Now)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy")
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa")
                         .FirstOrDefault();
               
                 return result;
@@ -110,7 +130,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").ToList();
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Instruktor").ToList();
                        
                 return result;
             }
@@ -122,7 +142,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now && e.Grupa.Id==idGrupy)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").ToList();
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Instruktor").ToList();
 
                 return result;
             }
@@ -261,42 +281,93 @@ namespace CentrumSportu_WPF.Baza_danych
 
             return true;
         }
-        
-        
-        
-        
+
+
         public static bool UsunNieStudenta(UczestnikZajec K)
         {
 
-            // to do
+            using (CentrumContext data = new CentrumContext())
+            {
 
-            return false;
+
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.UczestnicyZajec.Attach(K);
+                    data.UczestnicyZajec.Remove(K);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static bool UsunStudenta(Student K)
         {
-
-            // to do
-
-            return false;
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.Studenci.Attach(K);
+                    data.Studenci.Remove(K);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
 
         public static bool UsunAdministratora(Administrator K)
         {
-
-            // to do
-
-            return false;
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.Administratorzy.Attach(K);
+                    data.Administratorzy.Remove(K);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static bool UsunInstruktora(Instruktor K)
         {
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    var entry = data.Entry(K);
+                    if (entry.State == EntityState.Detached)
+                        data.Instruktorzy.Attach(K);
+                    data.Instruktorzy.Remove(K);
+                    data.SaveChanges();
 
-            // to do
-
-            return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
+
 
         public static List<ObiektSportowy> ZwrocListeObiektowDlaDanejDyscypliny(Dyscyplina dyscyplina)
         {
@@ -343,14 +414,19 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data = new CentrumContext())
             {
-                //var instruktor = data.Instruktorzy.FirstOrDefault(x => x.Id == wpis.Instruktor.Id);
-                //var grupa = data.Grupy.FirstOrDefault(x => x.Id == wpis.Grupa.Id);
-                //var obiekt = data.ObiektySportowe.FirstOrDefault(x => x.Id == wpis.ObiektSportowy.Id);                
-                //if (grupa != null)
-                //    wpis.Grupa = grupa;
-                //wpis.Instruktor = instruktor;
-                //wpis.ObiektSportowy = obiekt;
-                data.WpisyZajecia.Attach(wpis);
+                data.Instruktorzy.Attach(wpis.Instruktor);
+                var temp = data.Dyscypliny.ToList();
+                foreach (var item in data.Dyscypliny)
+                {
+                    data.Entry(item).State=EntityState.Detached;
+                }   
+                if (data.Grupy.FirstOrDefault(x => x.Id == wpis.Grupa.Id) != null)
+                {
+                    data.Grupy.Attach(wpis.Grupa);
+                }
+                data.ObiektySportowe.Attach(wpis.ObiektSportowy);   
+                           
+                data.WpisyZajecia.Add(wpis);
                 data.SaveChanges();
             }
         }
@@ -392,5 +468,51 @@ namespace CentrumSportu_WPF.Baza_danych
                 return result;
             }
         }
+
+        public static Grupa ZwrocGrupeDlaWybranegoInstruktora(int idInstruktora, string nazwaGrupy)
+        {
+            Grupa temp = null;
+
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Instruktor instruktor in data.Instruktorzy)
+                {
+                    temp = instruktor.PodgladGrupy(nazwaGrupy);
+                }
+            }
+            return temp;
+        }
+
+        public static void UsunTerminZajec(int wpisId)
+        {
+            using (CentrumContext data =new CentrumContext())
+            {
+                var result = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpisId);
+                data.WpisyZajecia.Remove(result);
+                data.SaveChanges();
+            }
+        }
+
+        //OFERTA
+        public static List<Przedmiot> ZwrocWszystkiePrzedmioty()
+        {
+            using (CentrumContext context = new CentrumContext())
+            {
+                var ret = context.Przedmioty.ToList();
+                return ret;
+            }
+        }
+
+        public static List<Dyscyplina> ZwrocWszystkieDyscypliny()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+
+                return data.Dyscypliny.ToList();
+
+
+            }
+        }
+
     }
 }

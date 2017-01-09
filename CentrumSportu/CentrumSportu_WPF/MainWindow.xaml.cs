@@ -26,6 +26,7 @@ namespace CentrumSportu_WPF
     {
         public MainWindow()
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             Switcher.pageSwitcher = this;
         }

@@ -98,6 +98,9 @@
     <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
       <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\ModyfikujTerminZajec.xaml.cs">
+      <DependentUpon>ModyfikujTerminZajec.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
     </Compile>
@@ -113,8 +116,14 @@
     <Compile Include="Widoki\ProfilUczestnikaWindow.xaml.cs">
       <DependentUpon>ProfilUczestnikaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\RozwiazywanieGrupyWindow.xaml.cs">
+      <DependentUpon>RozwiazywanieGrupyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\TworzenieGrupyWindow.xaml.cs">
       <DependentUpon>TworzenieGrupyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\UsunTerminZajec.xaml.cs">
+      <DependentUpon>UsunTerminZajec.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -134,6 +143,10 @@
     <Page Include="Widoki\dodawanieUzytkownika.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Widoki\ModyfikujTerminZajec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\OfertaWidok.xaml">
       <SubType>Designer</SubType>
@@ -155,7 +168,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Widoki\RozwiazywanieGrupyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Widoki\TworzenieGrupyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\UsunTerminZajec.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,6 +236,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\profilPhoto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\instruktor_test.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profilPhoto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\instruktor_test1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\main_background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

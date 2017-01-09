@@ -8,34 +8,34 @@
         mc:Ignorable="d"
         Title="Tworzenie nowej grupy" Height="495.676" Width="519.482">
     <Grid>
-        <Label x:Name="label" Content="Wypełni poniższy formularz aby utowrzyć nową grupę" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Wypełni poniższy formularz aby utowrzyć nową grupę" HorizontalAlignment="Center" Margin="102,6,92,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <ComboBox x:Name="DyscyplinaComboBox" HorizontalAlignment="Left" Margin="202,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="DyscyplinaComboBox_SelectionChanged"/>
         <Label x:Name="label1" Content="Wybierz dyscyplinę :" HorizontalAlignment="Left" Margin="54,37,0,0" VerticalAlignment="Top" Width="119"/>
-        <Button x:Name="UtworzGrupeButton" Content="Utwórz" HorizontalAlignment="Left" Margin="112,387,0,0" VerticalAlignment="Top" Width="75" Click="UtworzGrupeButton_Click"/>
-        <Button x:Name="AnulujButton" Content="Anuluj" HorizontalAlignment="Left" Margin="336,387,0,0" VerticalAlignment="Top" Width="74" Click="AnulujButton_Click"/>
+        <Button x:Name="UtworzGrupeButton" Content="Utwórz" HorizontalAlignment="Left" Margin="88,416,0,0" VerticalAlignment="Top" Width="100" Click="UtworzGrupeButton_Click" Height="35"/>
+        <Button x:Name="AnulujButton" Content="Anuluj" HorizontalAlignment="Left" Margin="292,416,0,0" VerticalAlignment="Top" Width="100" Height="35" Click="AnulujButton_Click"/>
         <Label x:Name="label2" Content="Nazwa zajęć :" HorizontalAlignment="Left" Margin="54,68,0,0" VerticalAlignment="Top" Width="119"/>
         <TextBox x:Name="NazwaZajecTextBox" HorizontalAlignment="Left" Height="23" Margin="202,72,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label3" Content="Liczebność " HorizontalAlignment="Left" Margin="54,137,0,0" VerticalAlignment="Top" Width="81"/>
         <Label x:Name="label4" Content="Min :" HorizontalAlignment="Left" Margin="156,137,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label4_Copy" Content="Max :" HorizontalAlignment="Left" Margin="258,137,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label5" Content="Ilość tygodni zajęć :" HorizontalAlignment="Left" Margin="54,194,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label x:Name="label6" Content="Długość zajęć(minuty) :" HorizontalAlignment="Left" Margin="54,235,0,0" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="DlugoscZajecTextBox" HorizontalAlignment="Left" Height="23" Margin="197,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
-        <Label x:Name="label6_Copy" Content="Ilość zajęć w tygodniu :" HorizontalAlignment="Left" Margin="54,277,0,0" VerticalAlignment="Top" Width="133"/>
-        <xctk:DateTimePicker Name="DateTimePicker1" HorizontalAlignment="Left" Margin="82,339,0,0" VerticalAlignment="Top"/>
-        <xctk:IntegerUpDown Name="IloscZajecUpDown" HorizontalAlignment="Left" Margin="226,283,0,0" VerticalAlignment="Top" ValueChanged="IloscZajecUpDown_ValueChanged"/>
+        <Label x:Name="label5" Content="Ilość tygodni zajęć :" HorizontalAlignment="Left" Margin="54,216,0,0" VerticalAlignment="Top" Width="114"/>
+        <Label x:Name="label6" Content="Długość zajęć(minuty) :" HorizontalAlignment="Left" Margin="54,165,0,0" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="DlugoscZajecTextBox" HorizontalAlignment="Left" Height="23" Margin="197,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
+        <Label x:Name="label6_Copy" Content="Ilość zajęć w tygodniu :" HorizontalAlignment="Left" Margin="55,247,0,0" VerticalAlignment="Top" Width="133"/>
+        <xctk:DateTimePicker Name="DateTimePicker1" HorizontalAlignment="Left" Margin="88,306,0,0" VerticalAlignment="Top"/>
+        <xctk:IntegerUpDown Name="IloscZajecUpDown" HorizontalAlignment="Left" Margin="202,253,0,0" VerticalAlignment="Top" ValueChanged="IloscZajecUpDown_ValueChanged"/>
         <xctk:IntegerUpDown Name="LiczebnoscMaxUpDown" HorizontalAlignment="Left" Margin="309,141,0,0" VerticalAlignment="Top"/>
         <xctk:IntegerUpDown Name="LiczebnoscMinUpDown" HorizontalAlignment="Left" Margin="202,141,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label7" Content="Podaj daty zajec :(Wszystkie musza byc w tym samym tygodniu !!!)" HorizontalAlignment="Left" Margin="54,303,0,0" VerticalAlignment="Top" Width="371"/>
-        <Label x:Name="label1_Copy" Content="Wybierz obiekt sportowy :" HorizontalAlignment="Left" Margin="54,106,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label x:Name="label7" Content="Podaj daty zajec :(Wszystkie musza byc w tym samym tygodniu !!!)" HorizontalAlignment="Left" Margin="55,278,0,0" VerticalAlignment="Top" Width="371"/>
+        <Label x:Name="label1_Copy" Content="Wybierz obiekt sportowy :" HorizontalAlignment="Left" Margin="54,106,0,0" VerticalAlignment="Top" Width="143"/>
         <ComboBox x:Name="ObiektSportowyComboBox" HorizontalAlignment="Left" Margin="202,110,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label8" Content="#1" HorizontalAlignment="Left" Margin="54,334,0,0" VerticalAlignment="Top" Width="28" FontSize="14"/>
-        <xctk:DateTimePicker x:Name="DateTimePicker2" HorizontalAlignment="Left" Margin="216,339,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LabelPicker2" Content="#2" HorizontalAlignment="Left" Margin="183,334,0,0" VerticalAlignment="Top" Width="28" FontSize="14"/>
-        <xctk:DateTimePicker x:Name="DateTimePicker3" HorizontalAlignment="Left" Margin="337,339,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LabelPicker3" Content="#3" HorizontalAlignment="Left" Margin="309,334,0,0" VerticalAlignment="Top" Width="28" FontSize="14"/>
-        <xctk:IntegerUpDown Name="IloscTygodniUpDown" HorizontalAlignment="Left" Margin="202,200,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="JednorazoweCheckBox" Content="Jednorazowe zajęcia" HorizontalAlignment="Left" Margin="59,168,0,0" VerticalAlignment="Top" Unchecked="JednorazoweCheckBox_Unchecked" Checked="JednorazoweCheckBox_Checked" />
+        <Label x:Name="label8" Content="#1" HorizontalAlignment="Left" Margin="60,301,0,0" VerticalAlignment="Top" Width="28" FontSize="14"/>
+        <xctk:DateTimePicker x:Name="DateTimePicker2" HorizontalAlignment="Left" Margin="88,341,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelPicker2" Content="#2" HorizontalAlignment="Left" Margin="60,335,0,0" VerticalAlignment="Top" Width="28" FontSize="14"/>
+        <xctk:DateTimePicker x:Name="DateTimePicker3" HorizontalAlignment="Left" Margin="88,374,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelPicker3" Content="#3" HorizontalAlignment="Left" Margin="60,369,0,0" VerticalAlignment="Top" Width="28" FontSize="14"/>
+        <xctk:IntegerUpDown Name="IloscTygodniUpDown" HorizontalAlignment="Left" Margin="202,222,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="JednorazoweCheckBox" Content="Jednorazowe zajęcia" HorizontalAlignment="Left" Margin="60,196,0,0" VerticalAlignment="Top" Unchecked="JednorazoweCheckBox_Unchecked" Checked="JednorazoweCheckBox_Checked" />
 
 
 

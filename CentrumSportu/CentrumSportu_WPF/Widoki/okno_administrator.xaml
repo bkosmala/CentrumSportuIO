@@ -29,7 +29,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="UsunU"  Width="100PX" Height="30px" Margin="349,22,94,366.5" Content="Usuń Użytkownika" Click="UsunU_Click" />
+                    <Button Name="UsunU" Margin="388,32,114,371.5" Content="Usuń Użytkownika" Click="UsunU_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Studenci">
@@ -44,7 +44,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="UsunS"  Width="100PX" Height="30px" Margin="485,10,37,398.5" Content="Usuń Użytkownika" Click="UsunS_Click" RenderTransformOrigin="1.415,0.417" />
+                    <Button Name="UsunS" Margin="485,10,10,392.5" Content="Usuń Użytkownika" Click="UsunS_Click" RenderTransformOrigin="1.415,0.417" />
 
                 </Grid>
 
@@ -62,7 +62,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="UsunI"  Width="100PX" Height="30px" Margin="512,10,10,398.5" Content="Usuń Użytkownika" Click="UsunI_Click" />
+                    <Button Name="UsunI" Margin="502,10,10,384.5" Content="Usuń Użytkownika" Click="UsunI_Click" />
 
                 </Grid>
 
@@ -78,7 +78,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="UsunUA" Height="30px" Margin="280,10,213,398.5" Content="Usuń Użytkownika" Click="UsunA_Click" />
+                    <Button Name="UsunUA" Margin="280,10,200,383.5" Content="Usuń Użytkownika" Click="UsunA_Click" />
 
                 </Grid>
             </TabItem>

@@ -17,6 +17,14 @@ namespace CentrumSportu_WPF.Modul_biletow
         public string Telefon { get; set; }
         public string Zdjecie { get; set; }
 
+        public UczestnikZajec(string imie, string nazwisko, KontoUzytkownika konto, string email, string telefon):base(imie, nazwisko)
+        {
+            _bilety = new List<Bilet>();
+            KontoUzytkownika = konto;
+            Email = email;
+            Telefon = telefon;
+        }
+
         public UczestnikZajec(string imie, string nazwisko, KontoUzytkownika konto):base(imie, nazwisko)
         {
             _bilety = new List<Bilet>();
@@ -35,7 +43,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         }
 
 
-        public List<Bilet> bilety
+        public List<Bilet> Bilety
         {
             get
             {
@@ -73,6 +81,11 @@ namespace CentrumSportu_WPF.Modul_biletow
             _bilety = new List<Bilet>();
             this.Email = email;
             this.Telefon = telefon;
+        }
+
+        public Bilet ZwrocWybranyBilet(int idBilet)
+        {
+            return Bilety.First(e => e.Id == idBilet);
         }
 
     }

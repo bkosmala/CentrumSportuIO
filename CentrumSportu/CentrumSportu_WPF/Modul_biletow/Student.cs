@@ -19,6 +19,14 @@ namespace CentrumSportu_WPF.Modul_biletow
             KontoUzytkownika = konto;
         }
 
+        public Student(string imie, string nazwisko, KontoUzytkownika konto, string email, string telefon) : base(imie, nazwisko, email, telefon)
+        {
+            Grupa = null;
+            Profil = null;
+            KontoUzytkownika = konto;
+            Bilety = new List<Bilet>();
+        }
+
         public Student()
         {
             

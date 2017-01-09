@@ -35,7 +35,7 @@ namespace CentrumSportu_WPF.Modul_biletow
             }
         }
 
-        public List<ZajeciaOdbyte> historia
+        public List<ZajeciaOdbyte> Historia
         {
             get
             {

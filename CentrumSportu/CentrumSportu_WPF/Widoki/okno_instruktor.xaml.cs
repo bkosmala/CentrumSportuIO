@@ -32,6 +32,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public okno_instruktor(Instruktor _instruktor)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             instruktor = _instruktor;
             RefreshData();
@@ -41,14 +42,28 @@ namespace CentrumSportu_WPF.Widoki
             nazwisko_textBlock.Text = instruktor.Nazwisko;
             telefon_textBlock.Text = instruktor.Telefon;
             email_textBlock.Text = instruktor.Email;
-            zdjecie_profilowe.Source = new BitmapImage(new Uri(instruktor.Zdjęcie));
+            iloscGrup_textBlock.Text = instruktor.Grupy.Count.ToString();
+            if (instruktor.Zdjecie != null)
+            {
+                zdjecie_profilowe.Source = new BitmapImage(new Uri(instruktor.Zdjecie));
+            }
+            else
+            {
+                zdjecie_profilowe.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory+"../../Images/profilPhoto.jpg"));
+            }
             if (najblizszeZajecia != null)
             {
-
+                brakZajec_label.Visibility = Visibility.Hidden;
+                WrapPanel.Visibility = Visibility.Visible;
+                GrupaTextBlock.Text = najblizszeZajecia.Grupa.Nazwa;
+                SalaTextBlock.Text = najblizszeZajecia.ObiektSportowy.Nazwa;
+                DataTextBlock.Text = najblizszeZajecia.DataRozpoczecia.ToString();
+                DlugoscTextBlock.Text = najblizszeZajecia.DlugoscZajec.ToString();
             }
             else
             {
                 brakZajec_label.Visibility = Visibility.Visible;
+                WrapPanel.Visibility = Visibility.Hidden;
             }
 
             //HARMONOGRAM
@@ -63,7 +78,7 @@ namespace CentrumSportu_WPF.Widoki
             InformacjeOGrupachComboBox.Items.Clear();
             GrupyComboBox.Items.Clear();
             GrupyComboBox.Items.Add("Wszystkie grupy");
-            InformacjeOGrupachComboBox.Items.Add("Wszystkie grupy");
+  
             foreach (var item in grupy)
             {
                 GrupyComboBox.Items.Add(item.Nazwa);
@@ -110,12 +125,7 @@ namespace CentrumSportu_WPF.Widoki
 
         private void InformacjeOGrupachComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (InformacjeOGrupachComboBox.SelectedIndex == 0)
-            {
-                zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
-            }
-            else
-            {
+            
                 string groupName = (string)InformacjeOGrupachComboBox.SelectedItem;
                 int groupId = 0;
                 foreach (var item in grupy)
@@ -131,7 +141,7 @@ namespace CentrumSportu_WPF.Widoki
                 }
                 zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
                 uczestnicyZajec = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocUczestnikowZajecDlaDanejGrupy(groupId));
-            }
+            
             UczestnicyGrupyListView.ItemsSource = uczestnicyZajec;
         }
 
@@ -180,7 +190,92 @@ namespace CentrumSportu_WPF.Widoki
             UczestnicyGrupyListView.ItemsSource = child.UczestnicyProfilUczestnikaCollection;
         }
 
+        private void WylogujButton_Click(object sender, RoutedEventArgs e)
+        {           
+            MainWindow okno=new MainWindow();
+            okno.Show();
+            this.Close();
+        }
 
+        private void RozwiazGrupeButton_Click(object sender, RoutedEventArgs e)
+        {
+            RozwiazywanieGrupyWindow okno = new RozwiazywanieGrupyWindow(BazaMetody.ZwrocGrupeDlaWybranegoInstruktora(instruktor.Id, InformacjeOGrupachComboBox.SelectedItem.ToString()), instruktor);
+            okno.Show();
+            okno.Closed += RozwiazywanieGrupyOkno_Closed;
+        }
 
+        private void RozwiazywanieGrupyOkno_Closed(object sender, EventArgs e)
+        {
+            RozwiazywanieGrupyWindow child = (RozwiazywanieGrupyWindow)sender;
+            foreach (var item in grupy)
+            {
+                GrupyComboBox.Items.Remove(item.Nazwa);
+                InformacjeOGrupachComboBox.Items.Remove(item.Nazwa);
+            }
+            foreach (var item in child.Grupy)
+            {
+                GrupyComboBox.Items.Add(item.Nazwa);
+                InformacjeOGrupachComboBox.Items.Add(item.Nazwa);
+            }
+            HarmonogramListView.ItemsSource = child.Zajecia;
+            GrupyComboBox.SelectedIndex = 0;
+            InformacjeOGrupachComboBox.SelectedIndex = 0;
+        }
+
+        private void UsunMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            WpisZajecia wpis = (WpisZajecia)HarmonogramListView.SelectedItem;
+            if (wpis != null)
+            {
+                UsunTerminZajec okno = new UsunTerminZajec(wpis);
+                okno.ShowDialog();
+                if (okno.czyUsuniety == true)
+                {
+                    if (GrupyComboBox.SelectedIndex == 0)
+                    {
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                    }
+                    else
+                    {
+                        string groupName = (string)GrupyComboBox.SelectedItem;
+                        int groupId = 0;
+                        foreach (var item in grupy)
+                        {
+                            if (item.Nazwa == groupName)
+                                groupId = item.Id;
+                        }
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
+                    }
+                    HarmonogramListView.ItemsSource = zajecia;
+                }
+            }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }          
+        }
+
+        private void ZastepstwoMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Xceed.Wpf.Toolkit.MessageBox.Show("Ta funkcjonalność zostanie dodana wkrótce", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        private void ModyfikujMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            WpisZajecia wpis = (WpisZajecia)HarmonogramListView.SelectedItem;
+            if (wpis != null)
+            {
+                ModyfikujTerminZajec okno = new ModyfikujTerminZajec(wpis);
+                okno.ShowDialog();
+                if (okno.czyModyfikowane == true)
+                {
+                   //TO DO
+                }
+            }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }
