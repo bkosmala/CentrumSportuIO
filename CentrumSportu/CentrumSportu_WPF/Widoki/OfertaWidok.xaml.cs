@@ -37,6 +37,7 @@ namespace CentrumSportu_WPF.Widoki
         private void ListBoxZajecia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedZajecia = listZajecia.ElementAt(listBoxZajecia.SelectedIndex);
+            ZajeciaViewBox.DataContext = selectedZajecia;
         }
         
     }

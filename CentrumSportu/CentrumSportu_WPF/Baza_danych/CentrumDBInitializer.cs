@@ -79,9 +79,9 @@ namespace CentrumSportu_WPF.Baza_danych
 
             List<Zajecia> zajeciaOferta = new List<Zajecia>
             {
-                new Zajecia("grupowe","Piłka nożna","Trening piłki nożnej","opis",null),
-                new Zajecia("grupowe","Piłka koszykowa","Trening koszykówki","opis",null),
-                new Zajecia("grupowe","Piłka siatkowa","Trening siatkówki","opis",null)
+                new Zajecia("grupowe","Piłka nożna","Trening piłki nożnej","Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ",null),
+                new Zajecia("grupowe","Piłka koszykowa","Trening koszykówki","Rozgrywka zespołowa na każdym treningu",null),
+                new Zajecia("grupowe","Piłka siatkowa","Trening siatkówki","Trening prowadzony przez doświadczonych trenerów.\n",null)
 
             };
 
