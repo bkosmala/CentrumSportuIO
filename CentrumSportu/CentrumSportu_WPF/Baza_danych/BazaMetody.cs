@@ -130,7 +130,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Instruktor").ToList();
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Grupa.Dyscyplina").Include("Instruktor").ToList();
                        
                 return result;
             }
@@ -524,5 +524,13 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static void AktualizujWpisZajec(WpisZajecia wpis)
+        {
+            using (CentrumContext data=new CentrumContext())
+            {
+                data.WpisyZajecia.AddOrUpdate(wpis);
+                data.SaveChanges();
+            }
+        }
     }
 }
