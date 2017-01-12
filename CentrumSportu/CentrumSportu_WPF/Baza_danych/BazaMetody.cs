@@ -396,9 +396,9 @@ namespace CentrumSportu_WPF.Baza_danych
                 var termin =
                     data.WpisyZajecia.FirstOrDefault(
                         x =>
-                            x.ObiektSportowy.Nazwa == obiekt.Nazwa && dataRozp >= x.DataRozpoczecia &&
-                            dataZakon < x.DataZakonczenia && dataZakon > x.DataRozpoczecia &&
-                            dataZakon <= x.DataZakonczenia);
+                            x.ObiektSportowy.Nazwa == obiekt.Nazwa && ((dataRozp >= x.DataRozpoczecia &&
+                            dataRozp < x.DataZakonczenia) || (dataZakon > x.DataRozpoczecia &&
+                            dataZakon <= x.DataZakonczenia)));
                 if (termin == null)
                 {
                     return true;

@@ -52,9 +52,21 @@
                     <ListView x:Name="HarmonogramListView" HorizontalAlignment="Left" Height="413" Margin="32,95,0,0" VerticalAlignment="Top" Width="727" SelectionMode="Single" FontSize="16">
                         <ListView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem x:Name="UsunMenuItem" Header="Usuń termin" Click="UsunMenuItem_Click"></MenuItem>
-                                <MenuItem x:Name="ZastepstwoMenuItem" Header="Ustaw zastępstwo" Click="ZastepstwoMenuItem_Click"></MenuItem>
-                                <MenuItem x:Name="ModyfikujMenuItem" Header="Modyfikuj termin" Click="ModyfikujMenuItem_Click"></MenuItem>
+                                <MenuItem x:Name="UsunMenuItem" Header="Usuń termin" Click="UsunMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="../Images/delete_icon.png"></Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem x:Name="ZastepstwoMenuItem" Header="Ustaw zastępstwo" Click="ZastepstwoMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="../Images/change_icon.png"></Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem x:Name="ModyfikujMenuItem" Header="Modyfikuj termin" Click="ModyfikujMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="../Images/edit_icon.png"></Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
                             </ContextMenu>
                         </ListView.ContextMenu>
                         <ListView.View>

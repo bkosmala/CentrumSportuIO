@@ -272,7 +272,22 @@ namespace CentrumSportu_WPF.Widoki
                 okno.ShowDialog();
                 if (okno.czyModyfikowane == true)
                 {
-                   //TO DO
+                    if (GrupyComboBox.SelectedIndex == 0)
+                    {
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                    }
+                    else
+                    {
+                        string groupName = (string)GrupyComboBox.SelectedItem;
+                        int groupId = 0;
+                        foreach (var item in grupy)
+                        {
+                            if (item.Nazwa == groupName)
+                                groupId = item.Id;
+                        }
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
+                    }
+                    HarmonogramListView.ItemsSource = zajecia;
                 }
             }
             else
