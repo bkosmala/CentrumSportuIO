@@ -532,5 +532,31 @@ namespace CentrumSportu_WPF.Baza_danych
                 data.SaveChanges();
             }
         }
+
+        public static List<Instruktor> ZwrocWszystkichInstrutorowDlaDanejDyscypliny(Dyscyplina dyscyplina)
+        {
+            List<Instruktor> lista = new List<Instruktor>();
+            using (CentrumContext data=new CentrumContext())
+            {
+                foreach (var item in data.Instruktorzy.Include("Zdarzenia"))
+                {
+                    var temp = item.Dyscypliny.FirstOrDefault(x => x.Nazwa == dyscyplina.Nazwa);
+                    if(temp==null)
+                        continue;
+                    else
+                        lista.Add(item);
+                }
+            }
+            return lista;
+        }
+
+        public static void AktualizujInstruktora(Instruktor instruktor)
+        {
+            using (CentrumContext data=new CentrumContext())
+            {
+                data.Instruktorzy.AddOrUpdate(instruktor);
+                data.SaveChanges();
+            }
+        }
     }
 }

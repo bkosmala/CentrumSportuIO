@@ -8,25 +8,30 @@ using System.Threading.Tasks;
 
 namespace CentrumSportu_WPF.Modul_instruktorow
 {
-    [Table("Dyscypliny")]
-    public class Dyscyplina
+    public class Zdarzenie
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string Nazwa { get; set; }
+        public RodzajZdarzenia TypZdarzenia { get; set; }
 
-        public ICollection<Instruktor> Instruktorzy { get; set; }
+        public string Message { get; set; }
 
-        public Dyscyplina()
+        public enum RodzajZdarzenia
+        {
+            Zastepstwo
+        };
+
+        public Zdarzenie()
         {
             
         }
 
-        public Dyscyplina(string nazwa)
+        public Zdarzenie(RodzajZdarzenia rodzaj, string message)
         {
-            Nazwa = nazwa;
+            TypZdarzenia = rodzaj;
+            Message = message;
         }
     }
 }

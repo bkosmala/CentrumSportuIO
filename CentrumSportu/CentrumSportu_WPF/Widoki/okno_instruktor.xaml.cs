@@ -260,7 +260,20 @@ namespace CentrumSportu_WPF.Widoki
 
         private void ZastepstwoMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Xceed.Wpf.Toolkit.MessageBox.Show("Ta funkcjonalność zostanie dodana wkrótce", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            WpisZajecia wpis = (WpisZajecia)HarmonogramListView.SelectedItem;
+            if (wpis != null)
+            {
+                Okno_Zastepstwo okno =new Okno_Zastepstwo(wpis);
+                okno.ShowDialog();
+                if (okno.czyWybrano == true)
+                {
+
+                }
+            }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ModyfikujMenuItem_Click(object sender, RoutedEventArgs e)

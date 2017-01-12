@@ -21,6 +21,9 @@ namespace CentrumSportu_WPF.Baza_danych
             KontoUzytkownika kontoAdministrator = new KontoUzytkownika("admin", "admin", KontoUzytkownika.RodzajKonta.Administrator);
             KontoUzytkownika kontoStudent= new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student);
 
+            KontoUzytkownika kontoInstruktor2 = new KontoUzytkownika("inst", "inst",
+                KontoUzytkownika.RodzajKonta.Instruktor);
+
             //Dyscypliny
             List<Dyscyplina> dyscypliny=new List<Dyscyplina>()
             {
@@ -29,10 +32,15 @@ namespace CentrumSportu_WPF.Baza_danych
                 new Dyscyplina("Piłka koszykowa")
             };
 
+
             //Instruktorzy
             Instruktor instruktor1= new Instruktor("Piotr", "Kazmierczak", "pkazmierczak@gmail.com", "500600700",dyscypliny,kontoInstruktor);
             string path = AppDomain.CurrentDomain.BaseDirectory;
             instruktor1.Zdjecie = path + "../../Images/instruktor_test.jpg";
+
+            Instruktor instruktor2 = new Instruktor("Jan", "Kowalski", "kowalski@gmail.com", "999999999", new List<Dyscyplina>(), kontoInstruktor2);
+            instruktor2.Zdjecie = path + "../../Images/instruktor_test1.jpg";
+            instruktor2.WpisZajecia = new List<WpisZajecia>();
 
             //Studenci
             Student student1 = new Student("Rafał", "Lebioda", kontoStudent, "rafal.lebioda@gmail.com", "666666666");
@@ -99,7 +107,10 @@ namespace CentrumSportu_WPF.Baza_danych
                 context.Przedmioty.Add(item);
             } 
 
-            context.Instruktorzy.Add(instruktor1);
+            context.Instruktorzy.Add(instruktor1);           
+            
+
+           
             context.Studenci.Add(student1);
             context.Administratorzy.Add(administrator1);
             foreach (var item in zajecia)
@@ -113,6 +124,12 @@ namespace CentrumSportu_WPF.Baza_danych
             context.UczestnicyZajec.Add(uczestnik1);
             context.UczestnicyZajec.Add(uczestnik2);
             context.UczestnicyZajec.Add(uczestnik3);
+            context.SaveChanges();
+
+
+            var d = context.Dyscypliny.ToList();
+            instruktor2.Dyscypliny = d;
+            context.Instruktorzy.Add(instruktor2);
             base.Seed(context);
         }
     }

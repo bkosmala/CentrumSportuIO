@@ -94,6 +94,7 @@
     </ApplicationDefinition>
     <Compile Include="Baza_danych\CentrumDBInitializer.cs" />
     <Compile Include="Modul_instruktorow\Dyscyplina.cs" />
+    <Compile Include="Modul_instruktorow\Zdarzenie.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
       <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
@@ -112,6 +113,9 @@
     </Compile>
     <Compile Include="Widoki\okno_student.xaml.cs">
       <DependentUpon>okno_student.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\Okno_Zastepstwo.xaml.cs">
+      <DependentUpon>Okno_Zastepstwo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widoki\ProfilUczestnikaWindow.xaml.cs">
       <DependentUpon>ProfilUczestnikaWindow.xaml</DependentUpon>
@@ -161,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\okno_student.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\Okno_Zastepstwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
