@@ -69,9 +69,10 @@ namespace CentrumSportu_WPF.Widoki
                 WrapPanel.Visibility = Visibility.Hidden;
             }
 
-            //HARMONOGRAM
             
         }
+
+        
 
         private void RefreshData()
         {
@@ -307,6 +308,34 @@ namespace CentrumSportu_WPF.Widoki
             {
                 Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void WywolajZdarzenia()
+        {
+            if (instruktor.Zdarzenia.Count != 0)
+            {
+                var temp = instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Zastepstwo).ToList();
+                foreach (var item in temp)
+                {
+                    var okno=Xceed.Wpf.Toolkit.MessageBox.Show("Prośba o zastępstwo :"+ Environment.NewLine+item.Message, "Zastepstwo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (okno == MessageBoxResult.Yes)
+                    {
+                        item.WpisZajecia.Instruktor = instruktor;
+                        BazaMetody.AktualizujInstruktoraWpisuZajec(item.WpisZajecia);
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                        HarmonogramListView.ItemsSource = zajecia;
+                    }
+                    else
+                    {
+                        //Odesłanie zdarzenia ze zastepstwo zostalo odrzucone
+                    }
+                }
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            WywolajZdarzenia();
         }
     }
 }

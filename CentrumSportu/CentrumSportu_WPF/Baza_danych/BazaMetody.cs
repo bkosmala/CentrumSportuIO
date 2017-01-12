@@ -76,7 +76,7 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data=new CentrumContext())
             {
-                foreach (var item in data.Instruktorzy.Include("Dyscypliny").Include("Grupy"))
+                foreach (var item in data.Instruktorzy.Include("Dyscypliny").Include("Grupy").Include("Zdarzenia").Include("Zdarzenia.WpisZajecia.Instruktor"))
                 {
                     if (item.KontoUzytkownika.Login == konto.Login)
                         return item;
@@ -529,6 +529,20 @@ namespace CentrumSportu_WPF.Baza_danych
             using (CentrumContext data=new CentrumContext())
             {
                 data.WpisyZajecia.AddOrUpdate(wpis);
+                var wpisStary = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpis.Id);
+                var obiekt = data.ObiektySportowe.FirstOrDefault(x => x.Id == wpis.ObiektSportowy.Id);
+                wpisStary.ObiektSportowy = obiekt;
+                data.SaveChanges();
+            }
+        }
+
+        public static void AktualizujInstruktoraWpisuZajec(WpisZajecia wpis)
+        {
+            using (CentrumContext data=new CentrumContext())
+            {
+                var wpisStary = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpis.Id);
+                var inst = data.Instruktorzy.FirstOrDefault(x => x.Id == wpis.Instruktor.Id);
+                wpisStary.Instruktor = inst;
                 data.SaveChanges();
             }
         }
@@ -550,11 +564,21 @@ namespace CentrumSportu_WPF.Baza_danych
             return lista;
         }
 
-        public static void AktualizujInstruktora(Instruktor instruktor)
+        public static void DodajZdarzenieDoInstruktora(Zdarzenie zdarzenie)
         {
             using (CentrumContext data=new CentrumContext())
             {
-                data.Instruktorzy.AddOrUpdate(instruktor);
+                data.WpisyZajecia.Attach(zdarzenie.WpisZajecia);               
+                foreach (var item in data.Dyscypliny)
+                {
+                    data.Entry(item).State = EntityState.Detached;
+                }
+                foreach (var item in data.Instruktorzy)
+                {
+                    data.Entry(item).State = EntityState.Detached;
+                }
+                data.Instruktorzy.Attach(zdarzenie.Instruktor);
+                data.Zdarzenia.Add(zdarzenie);
                 data.SaveChanges();
             }
         }

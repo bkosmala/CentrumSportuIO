@@ -18,6 +18,10 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public string Message { get; set; }
 
+        public virtual WpisZajecia WpisZajecia { get; set; }
+
+        public virtual Instruktor Instruktor { get; set; }
+
         public enum RodzajZdarzenia
         {
             Zastepstwo

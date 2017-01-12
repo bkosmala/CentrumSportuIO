@@ -48,11 +48,14 @@ namespace CentrumSportu_WPF.Widoki
                 Zdarzenie zdarzenie = new Zdarzenie()
                 {
                     TypZdarzenia = Zdarzenie.RodzajZdarzenia.Zastepstwo,
-                    Message = "Prośba o zastepstwo w sprawie zajęć : " + wpisZajecia.DataRozpoczecia + " " + wpisZajecia.Grupa.Nazwa
+                    Message = "Prośba o zastepstwo w sprawie zajęć : " + wpisZajecia.DataRozpoczecia + " " + wpisZajecia.Grupa.Nazwa,
+                    Instruktor = instruktor,
+                    WpisZajecia = wpisZajecia
                 };
-                instruktor.Zdarzenia.Add(zdarzenie);
-                BazaMetody.AktualizujInstruktora(instruktor);
+                BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
+                czyWybrano = true;
                 Xceed.Wpf.Toolkit.MessageBox.Show("Prośba została wysłana !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
             }
             else
             {
