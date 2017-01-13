@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
@@ -94,6 +95,7 @@
     </ApplicationDefinition>
     <Compile Include="Baza_danych\CentrumDBInitializer.cs" />
     <Compile Include="Modul_instruktorow\Dyscyplina.cs" />
+    <Compile Include="Modul_instruktorow\Zdarzenie.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
       <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
@@ -113,6 +115,9 @@
     <Compile Include="Widoki\okno_student.xaml.cs">
       <DependentUpon>okno_student.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\Okno_Zastepstwo.xaml.cs">
+      <DependentUpon>Okno_Zastepstwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\ProfilUczestnikaWindow.xaml.cs">
       <DependentUpon>ProfilUczestnikaWindow.xaml</DependentUpon>
     </Compile>
@@ -124,6 +129,9 @@
     </Compile>
     <Compile Include="Widoki\UsunTerminZajec.xaml.cs">
       <DependentUpon>UsunTerminZajec.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml.cs">
+      <DependentUpon>WysylanieWiadomosciDoUzytkownika.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -164,6 +172,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Widoki\Okno_Zastepstwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Widoki\ProfilUczestnikaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\UsunTerminZajec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,6 +264,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\main_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\change_icon.png" />
+    <Resource Include="Images\delete_icon.png" />
+    <Resource Include="Images\edit_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

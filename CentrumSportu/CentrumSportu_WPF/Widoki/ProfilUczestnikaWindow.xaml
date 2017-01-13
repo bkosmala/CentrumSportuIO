@@ -16,7 +16,7 @@
         <Label Content="Telefon:" HorizontalAlignment="Left" Margin="115,103,0,0" VerticalAlignment="Top"/>
         <Label x:Name="emailLabel" Content="value" HorizontalAlignment="Left" Margin="183,72,0,0" VerticalAlignment="Top"/>
         <Label x:Name="telefonLabel" Content="value" HorizontalAlignment="Left" Margin="183,103,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="wysliWiadomoscButton" Content="Wyślij wiadomość" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="128"/>
+        <Button x:Name="wysliWiadomoscButton" Content="Wyślij wiadomość" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="128" Click="wysliWiadomoscButton_Click"/>
         <Button x:Name="usunUczestnikaButton" Content="Usuń" HorizontalAlignment="Left" Margin="143,134,0,0" VerticalAlignment="Top" Width="92" Click="usunUczestnikaButton_Click"/>
         <Button x:Name="anulujButton" Content="Anuluj" HorizontalAlignment="Left" Margin="240,134,0,0" VerticalAlignment="Top" Width="92" Click="anulujButton_Click"/>
     </Grid>

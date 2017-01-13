@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,9 +34,11 @@ namespace CentrumSportu_WPF.Widoki
 
         public okno_instruktor(Instruktor _instruktor)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("pl-PL");           
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             instruktor = _instruktor;
+            this.Title ="Profil instruktora : "+ instruktor.Imie + " " + instruktor.Nazwisko;
             RefreshData();
 
             //PROFIL
@@ -66,9 +70,10 @@ namespace CentrumSportu_WPF.Widoki
                 WrapPanel.Visibility = Visibility.Hidden;
             }
 
-            //HARMONOGRAM
             
         }
+
+        
 
         private void RefreshData()
         {
@@ -178,7 +183,7 @@ namespace CentrumSportu_WPF.Widoki
                 if (item.Nazwa == groupName)
                     groupId = item.Id;
             }
-            ProfilUczestnikaWindow profilUCzestnikaWindow = new ProfilUczestnikaWindow(BazaMetody.ZwrocWybranegoUczestnikaZajec(groupId, uczestnik.Id), groupId);
+            ProfilUczestnikaWindow profilUCzestnikaWindow = new ProfilUczestnikaWindow(BazaMetody.ZwrocWybranegoUczestnikaZajec(groupId, uczestnik.Id), instruktor.PodgladGrupy(groupId));
             profilUCzestnikaWindow.Show();
             profilUCzestnikaWindow.Closed += profilOkno_closed;
 
@@ -257,7 +262,20 @@ namespace CentrumSportu_WPF.Widoki
 
         private void ZastepstwoMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Xceed.Wpf.Toolkit.MessageBox.Show("Ta funkcjonalność zostanie dodana wkrótce", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            WpisZajecia wpis = (WpisZajecia)HarmonogramListView.SelectedItem;
+            if (wpis != null)
+            {
+                Okno_Zastepstwo okno =new Okno_Zastepstwo(wpis);
+                okno.ShowDialog();
+                if (okno.czyWybrano == true)
+                {
+
+                }
+            }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ModyfikujMenuItem_Click(object sender, RoutedEventArgs e)
@@ -269,13 +287,77 @@ namespace CentrumSportu_WPF.Widoki
                 okno.ShowDialog();
                 if (okno.czyModyfikowane == true)
                 {
-                   //TO DO
+                    if (GrupyComboBox.SelectedIndex == 0)
+                    {
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                    }
+                    else
+                    {
+                        string groupName = (string)GrupyComboBox.SelectedItem;
+                        int groupId = 0;
+                        foreach (var item in grupy)
+                        {
+                            if (item.Nazwa == groupName)
+                                groupId = item.Id;
+                        }
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
+                    }
+                    HarmonogramListView.ItemsSource = zajecia;
                 }
             }
             else
             {
                 Xceed.Wpf.Toolkit.MessageBox.Show("Zaznacz jakiś termin !!!", "Ostrzeżenie", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void WywolajZdarzenia()
+        {
+            if (instruktor.Zdarzenia.Count != 0)
+            {
+                var temp = instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Zastepstwo).ToList();
+                foreach (var item in temp)
+                {
+                    var okno=Xceed.Wpf.Toolkit.MessageBox.Show("Prośba o zastępstwo :"+ Environment.NewLine+item.Message, "Zastepstwo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (okno == MessageBoxResult.Yes)
+                    {
+                        Zdarzenie zdarzenie = new Zdarzenie()
+                        {
+                            TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
+                            Message = "Zastępstow zostało zaakaceptowane : ",
+                            Instruktor = item.WpisZajecia.Instruktor,
+                            WpisZajecia = item.WpisZajecia
+                        };
+                        BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
+                        item.WpisZajecia.Instruktor = instruktor;
+                        BazaMetody.AktualizujInstruktoraWpisuZajec(item.WpisZajecia);
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                        HarmonogramListView.ItemsSource = zajecia;                  
+                    }
+                    else
+                    {
+                        Zdarzenie zdarzenie = new Zdarzenie()
+                        {
+                            TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
+                            Message = "Zastępstow nie zostało zaakaceptowane : ",
+                            Instruktor = item.WpisZajecia.Instruktor,
+                            WpisZajecia = item.WpisZajecia
+                        };
+                        BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
+                    }
+                }
+                temp= instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Komunikat).ToList();
+                foreach (var item in temp)
+                {
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Komunikat :" + Environment.NewLine + item.Message, "Komunikat", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                BazaMetody.UsunZdarzeniaDlaInstruktora(instruktor);
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            WywolajZdarzenia();
         }
     }
 }

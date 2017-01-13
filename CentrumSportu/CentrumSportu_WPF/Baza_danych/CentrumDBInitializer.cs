@@ -21,6 +21,9 @@ namespace CentrumSportu_WPF.Baza_danych
             KontoUzytkownika kontoAdministrator = new KontoUzytkownika("admin", "admin", KontoUzytkownika.RodzajKonta.Administrator);
             KontoUzytkownika kontoStudent= new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student);
 
+            KontoUzytkownika kontoInstruktor2 = new KontoUzytkownika("inst", "inst",
+                KontoUzytkownika.RodzajKonta.Instruktor);
+
             //Dyscypliny
             List<Dyscyplina> dyscypliny=new List<Dyscyplina>()
             {
@@ -29,10 +32,15 @@ namespace CentrumSportu_WPF.Baza_danych
                 new Dyscyplina("Piłka koszykowa")
             };
 
+
             //Instruktorzy
             Instruktor instruktor1= new Instruktor("Piotr", "Kazmierczak", "pkazmierczak@gmail.com", "500600700",dyscypliny,kontoInstruktor);
             string path = AppDomain.CurrentDomain.BaseDirectory;
             instruktor1.Zdjecie = path + "../../Images/instruktor_test.jpg";
+
+            Instruktor instruktor2 = new Instruktor("Jan", "Kowalski", "kowalski@gmail.com", "999999999", new List<Dyscyplina>(), kontoInstruktor2);
+            instruktor2.Zdjecie = path + "../../Images/instruktor_test1.jpg";
+            instruktor2.WpisZajecia = new List<WpisZajecia>();
 
             //Studenci
             Student student1 = new Student("Rafał", "Lebioda", kontoStudent, "rafal.lebioda@gmail.com", "666666666");
@@ -43,6 +51,10 @@ namespace CentrumSportu_WPF.Baza_danych
 
             //Obiekty sportowe
             ObiektSportowy obiekt1 = new ObiektSportowy("Sala główna", dyscypliny, 25, 100);
+            ObiektSportowy obiekt2 = new ObiektSportowy("Sala główna 2", null, 25, 100);
+            dyscypliny[1].ObiektySportowe.Add(obiekt2);
+            dyscypliny[0].ObiektySportowe.Add(obiekt2);
+
 
             //UczestnicyZajec
             UczestnikZajec uczestnik1 = new UczestnikZajec("Jan", "Kowalski", "jan.kowalski@gmail.com", "608924351");
@@ -86,20 +98,32 @@ namespace CentrumSportu_WPF.Baza_danych
 
             };
 
-            List<Przedmiot> sprzetOferta = new List<Przedmiot>
-            {
-                new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true },
-                new Przedmiot() { Nazwa = "rakietka do badmintona", Dostepnosc = true },
-                new Przedmiot() { Nazwa = "piłka do siatkówki", Dostepnosc = true },
-                new Przedmiot() { Nazwa = "piłka do koszykówki", Dostepnosc = true }
-            };
+            Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(20), DoDaty = DateTime.Now.AddHours(23), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
+            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(15), DoDaty = DateTime.Now.AddHours(17), Status = Rezerwacja.StatusRezerwacji.ZREALIZOWANA };
 
-            foreach (var item in sprzetOferta)
-            {
-                context.Przedmioty.Add(item);
-            } 
 
-            context.Instruktorzy.Add(instruktor1);
+            Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
+            Przedmiot przedmiot2 = new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true };
+            Przedmiot przedmiot3 = new Przedmiot() { Nazwa = "rakietka do badmintona", Dostepnosc = true };
+
+            rezerwacja1.RezerwujPrzedmiot(przedmiot1);
+            rezerwacja1.RezerwujPrzedmiot(przedmiot2);
+            rezerwacja2.RezerwujPrzedmiot(przedmiot3);
+            rezerwacja3.RezerwujPrzedmiot(przedmiot1);
+
+            context.Przedmioty.Add(przedmiot1);
+            context.Przedmioty.Add(przedmiot2);
+            context.Przedmioty.Add(przedmiot3);
+            context.Rezerwacje.Add(rezerwacja1);
+            context.Rezerwacje.Add(rezerwacja2);
+            context.Rezerwacje.Add(rezerwacja3);
+            
+
+            context.Instruktorzy.Add(instruktor1);           
+            
+
+           
             context.Studenci.Add(student1);
             context.Administratorzy.Add(administrator1);
             foreach (var item in zajecia)
@@ -113,6 +137,12 @@ namespace CentrumSportu_WPF.Baza_danych
             context.UczestnicyZajec.Add(uczestnik1);
             context.UczestnicyZajec.Add(uczestnik2);
             context.UczestnicyZajec.Add(uczestnik3);
+            context.SaveChanges();
+
+
+            var d = context.Dyscypliny.ToList();
+            instruktor2.Dyscypliny = d;
+            context.Instruktorzy.Add(instruktor2);
             base.Seed(context);
         }
     }

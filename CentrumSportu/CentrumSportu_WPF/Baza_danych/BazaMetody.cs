@@ -63,7 +63,8 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data=new CentrumContext())
             {
-                foreach (var item in data.KontaUzytkownikow)
+                foreach (var item in 
+                    data.KontaUzytkownikow)
                 {
                     if (item.Login == login && item.Haslo == login)
                         return item;
@@ -76,7 +77,7 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data=new CentrumContext())
             {
-                foreach (var item in data.Instruktorzy.Include("Dyscypliny").Include("Grupy"))
+                foreach (var item in data.Instruktorzy.Include("Dyscypliny").Include("Grupy").Include("Zdarzenia").Include("Zdarzenia.WpisZajecia.Instruktor"))
                 {
                     if (item.KontoUzytkownika.Login == konto.Login)
                         return item;
@@ -130,7 +131,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Instruktor").ToList();
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Grupa.Dyscyplina").Include("Instruktor").ToList();
                        
                 return result;
             }
@@ -142,7 +143,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 var result =
                     data.WpisyZajecia.Where(e => e.Instruktor.Id == instruktor.Id && e.DataRozpoczecia > DateTime.Now && e.Grupa.Id==idGrupy)
-                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Instruktor").ToList();
+                        .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Grupa.Dyscyplina").Include("Instruktor").ToList();
 
                 return result;
             }
@@ -396,9 +397,9 @@ namespace CentrumSportu_WPF.Baza_danych
                 var termin =
                     data.WpisyZajecia.FirstOrDefault(
                         x =>
-                            x.ObiektSportowy.Nazwa == obiekt.Nazwa && dataRozp >= x.DataRozpoczecia &&
-                            dataZakon < x.DataZakonczenia && dataZakon > x.DataRozpoczecia &&
-                            dataZakon <= x.DataZakonczenia);
+                            x.ObiektSportowy.Nazwa == obiekt.Nazwa && ((dataRozp >= x.DataRozpoczecia &&
+                            dataRozp < x.DataZakonczenia) || (dataZakon > x.DataRozpoczecia &&
+                            dataZakon <= x.DataZakonczenia)));
                 if (termin == null)
                 {
                     return true;
@@ -477,7 +478,8 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 foreach (Instruktor instruktor in data.Instruktorzy)
                 {
-                    temp = instruktor.PodgladGrupy(nazwaGrupy);
+                    if(instruktor.Id == idInstruktora)
+                        temp = instruktor.PodgladGrupy(nazwaGrupy);
                 }
             }
             return temp;
@@ -497,9 +499,25 @@ namespace CentrumSportu_WPF.Baza_danych
         public static List<Przedmiot> ZwrocWszystkiePrzedmioty()
         {
             using (CentrumContext context = new CentrumContext())
+            { 
+                return context.Przedmioty.ToList();
+            }
+        }
+
+        public static List<Rezerwacja> ZwrocRezerwacjeStudenta(int id)
+        {
+            using (CentrumContext context = new CentrumContext())
             {
-                var ret = context.Przedmioty.ToList();
-                return ret;
+                var rezerwacjeKlienta = context.Rezerwacje.Include("Przedmioty").Where(p => p.KlientId == id);
+                return rezerwacjeKlienta.ToList();
+            }
+        }
+
+        internal static List<Rezerwacja> PobierzRezerwacjeStudentaWedlugStatusu(int id, Rezerwacja.StatusRezerwacji status)
+        {
+            using(CentrumContext context = new CentrumContext())
+            {
+                return context.Rezerwacje.Include("Przedmioty").Where(r => r.Status == status && r.KlientId == id).ToList();
             }
         }
 
@@ -524,5 +542,73 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static void AktualizujWpisZajec(WpisZajecia wpis)
+        {
+            using (CentrumContext data=new CentrumContext())
+            {
+                data.WpisyZajecia.AddOrUpdate(wpis);
+                var wpisStary = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpis.Id);
+                var obiekt = data.ObiektySportowe.FirstOrDefault(x => x.Id == wpis.ObiektSportowy.Id);
+                wpisStary.ObiektSportowy = obiekt;
+                data.SaveChanges();
+            }
+        }
+
+        public static void AktualizujInstruktoraWpisuZajec(WpisZajecia wpis)
+        {
+            using (CentrumContext data=new CentrumContext())
+            {
+                var wpisStary = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpis.Id);
+                var inst = data.Instruktorzy.FirstOrDefault(x => x.Id == wpis.Instruktor.Id);
+                wpisStary.Instruktor = inst;
+                data.SaveChanges();
+            }
+        }
+
+        public static List<Instruktor> ZwrocWszystkichInstrutorowDlaDanejDyscypliny(Dyscyplina dyscyplina)
+        {
+            List<Instruktor> lista = new List<Instruktor>();
+            using (CentrumContext data=new CentrumContext())
+            {
+                foreach (var item in data.Instruktorzy.Include("Zdarzenia"))
+                {
+                    var temp = item.Dyscypliny.FirstOrDefault(x => x.Nazwa == dyscyplina.Nazwa);
+                    if(temp==null)
+                        continue;
+                    else
+                        lista.Add(item);
+                }
+            }
+            return lista;
+        }
+
+        public static void DodajZdarzenieDoInstruktora(Zdarzenie zdarzenie)
+        {
+            using (CentrumContext data=new CentrumContext())
+            {
+                data.WpisyZajecia.Attach(zdarzenie.WpisZajecia);               
+                foreach (var item in data.Dyscypliny)
+                {
+                    data.Entry(item).State = EntityState.Detached;
+                }
+                foreach (var item in data.Instruktorzy)
+                {
+                    data.Entry(item).State = EntityState.Detached;
+                }
+                data.Instruktorzy.Attach(zdarzenie.Instruktor);
+                data.Zdarzenia.Add(zdarzenie);
+                data.SaveChanges();
+            }
+        }
+
+        public static void UsunZdarzeniaDlaInstruktora(Instruktor instruktor)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var inst = data.Instruktorzy.FirstOrDefault(x => x.Id == instruktor.Id);
+                inst.Zdarzenia.Clear();
+                data.SaveChanges();
+            }
+        }
     }
 }

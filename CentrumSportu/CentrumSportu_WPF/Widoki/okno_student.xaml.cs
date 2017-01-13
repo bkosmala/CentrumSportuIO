@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using CentrumSportu_WPF.Modul_biletow;
 using System.Collections.ObjectModel;
 using CentrumSportu_WPF.Baza_danych;
+using CentrumSportu_WPF.Modul_oferty;
 
 namespace CentrumSportu_WPF.Widoki
 {
@@ -25,10 +26,12 @@ namespace CentrumSportu_WPF.Widoki
         private Student student;
         private ObservableCollection<Bilet> bilety;
         private ObservableCollection<ZajeciaOdbyte> zajeciaOdbyte;
+        private ObservableCollection<Rezerwacja> rezerwacje;
 
         public okno_student(Student _student)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             student = _student;
             imieStudentLabel.Content = student.Imie;
             nazwiskoStudentLabel.Content = student.Nazwisko;
@@ -36,6 +39,15 @@ namespace CentrumSportu_WPF.Widoki
             telefonStudentLabel.Content = student.Telefon;
             zdjecieProfiloweStudentImage.Source = new BitmapImage(new Uri(student.Zdjecie));
 
+            rezerwacje = new ObservableCollection<Rezerwacja>(BazaMetody.ZwrocRezerwacjeStudenta(student.Id));
+            foreach (var item in rezerwacje)
+            {
+                Console.WriteLine("Klient Id:" + item.KlientId + "\n" + item.OdDaty.ToString() + item.DoDaty.ToString());
+            }
+
+            rezerwacjeListView.ItemsSource = rezerwacje;
+            comboBoxRezerwacje.SelectedIndex = 0;
+            //datagridRezerwacje.ItemsSource = rezerwacje;
         }
 
         private void WylogujStudentButton_Click(object sender, RoutedEventArgs e)
@@ -43,6 +55,27 @@ namespace CentrumSportu_WPF.Widoki
             MainWindow okno = new MainWindow();
             okno.Show();
             this.Close();
+        }
+        private void comboBoxRezerwacje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            rezerwacje.Clear();
+            if (comboBoxRezerwacje.SelectedIndex == 0)
+            {
+                BazaMetody.ZwrocRezerwacjeStudenta(student.Id).ForEach(rezerwacje.Add);
+            } else
+            {
+                BazaMetody.PobierzRezerwacjeStudentaWedlugStatusu(student.Id, (Rezerwacja.StatusRezerwacji)comboBoxRezerwacje.SelectedIndex).ForEach(rezerwacje.Add);
+            }            
+        }
+
+        private void rezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var rezerwacjaTmp = (Rezerwacja)rezerwacjeListView.SelectedItems[0];
+            textBlock1.Text = String.Empty;
+            foreach (var item in rezerwacjaTmp.Przedmioty)
+            {
+                textBlock1.Text += item.Nazwa + "\n";
+            }
         }
     }
 }

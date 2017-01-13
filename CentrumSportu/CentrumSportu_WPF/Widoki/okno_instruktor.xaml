@@ -5,90 +5,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         mc:Ignorable="d"
-        Title="okno_instruktor" Height="469.522" Width="609.876" ResizeMode="CanMinimize">
+        Title="okno_instruktor" Height="600" Width="800" ResizeMode="CanMinimize" Loaded="Window_Loaded">
     <Grid>
         <TabControl>
-            <TabItem Header="Profil instruktora" Width="200">
+            <TabItem Header="Profil instruktora" Margin="0,0,-20,-2">
                 <Grid>
-                    <Image x:Name="zdjecie_profilowe" HorizontalAlignment="Left" Height="300" Margin="10,20,0,0" VerticalAlignment="Top" Width="289"/>
-                    <Label x:Name="label1" Content="Imię :" HorizontalAlignment="Left" Margin="304,25,0,0" VerticalAlignment="Top" Height="35" Width="60"/>
-                    <Label x:Name="label1_Copy" Content="Nazwisko :" HorizontalAlignment="Left" Margin="304,60,0,0" VerticalAlignment="Top" Height="35" Width="69"/>
-                    <Label x:Name="label2" Content="Email :" HorizontalAlignment="Left" Margin="304,95,0,0" VerticalAlignment="Top" Height="35" Width="69"/>
-                    <Label x:Name="label2_Copy" Content="Telefon :" HorizontalAlignment="Left" Margin="304,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.455,1.728" Height="35" Width="84"/>
-                    <TextBlock x:Name="imie_textBlock"  HorizontalAlignment="Left" Margin="378,30,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="21" Width="210" TextAlignment="Justify"/>
-                    <TextBlock x:Name="nazwisko_textBlock" HorizontalAlignment="Left" Margin="378,65,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="22" Width="210" TextAlignment="Justify"/>
-                    <TextBlock x:Name="email_textBlock" HorizontalAlignment="Left" Margin="378,100,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="19" Width="210" TextAlignment="Justify"/>
-                    <TextBlock x:Name="telefon_textBlock" HorizontalAlignment="Left" Margin="378,135,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="20" Width="210" TextAlignment="Justify"/>
-                    <TextBlock x:Name="iloscGrup_textBlock" HorizontalAlignment="Left" Margin="378,171,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="20" Width="210" TextAlignment="Justify"/>
-                    <GroupBox x:Name="najblizszeZajecia_groupBox" Header="Najbliższe zajęcia" HorizontalAlignment="Left" Margin="340,203,0,0" VerticalAlignment="Top" Height="190" Width="220" RenderTransformOrigin="0.432,0.812">
-                        <WrapPanel Name="WrapPanel" HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="190">
-                            <Label x:Name="label3" Content="Grupa: " Width="108" Height="40" VerticalAlignment="Center"/>
-                            <TextBlock x:Name="GrupaTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="81" TextAlignment="Center" VerticalAlignment="Center" Height="35"/>
-                            <Label x:Name="label4" Content="Sala :" Width="108" Height="32"/>
-                            <TextBlock x:Name="SalaTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="81" TextAlignment="Center" VerticalAlignment="Center" Height="20"/>
-                            <Label x:Name="label5" Content="Data rozpoczęcia :" Width="108" Height="40"/>
-                            <TextBlock x:Name="DataTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="81" TextAlignment="Center" VerticalAlignment="Center" Height="34"/>
-                            <Label x:Name="label6" Content="Długość zajęć" Width="108" Height="35"/>
-                            <TextBlock x:Name="DlugoscTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="81" TextAlignment="Center" VerticalAlignment="Center" Height="21"/>
+                    <Image x:Name="zdjecie_profilowe" HorizontalAlignment="Left" Height="350" Margin="30,34,0,0" VerticalAlignment="Top" Width="330"/>
+
+                    <GroupBox x:Name="najblizszeZajecia_groupBox" Header="Najbliższe zajęcia" HorizontalAlignment="Left" Margin="405,317,0,0" VerticalAlignment="Top" Height="176" Width="340" RenderTransformOrigin="0.432,0.812" BorderThickness="3">
+                        <WrapPanel Name="WrapPanel" HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="281">
+                            <Label x:Name="label3" Content="Grupa: " Width="108" Height="32" VerticalAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock x:Name="GrupaTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="160" TextAlignment="Center" VerticalAlignment="Center" Height="18"/>
+                            <Label x:Name="label4" Content="Sala :" Width="108" Height="32" FontWeight="Bold"/>
+                            <TextBlock x:Name="SalaTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="168" TextAlignment="Center" VerticalAlignment="Center" Height="20"/>
+                            <Label x:Name="label5" Content="Data rozpoczęcia :" Width="108" Height="30" FontWeight="Bold"/>
+                            <TextBlock x:Name="DataTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="167" TextAlignment="Center" VerticalAlignment="Center" Height="20"/>
+                            <Label x:Name="label6" Content="Długość zajęć" Width="108" Height="29" FontWeight="Bold"/>
+                            <TextBlock x:Name="DlugoscTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="164" TextAlignment="Center" VerticalAlignment="Center" Height="21"/>
 
                         </WrapPanel>
 
                     </GroupBox>
-                    <Button x:Name="WylogujButton" Content="Wyloguj" Margin="10,333,297,20" Click="WylogujButton_Click"/>
-                    <Label x:Name="brakZajec_label" Content="Brak zajęć" Margin="340,280,79,104" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" Visibility="Hidden" />
-                    <Label Content="Ilość grup:" HorizontalAlignment="Left" Margin="304,165,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="WylogujButton" Content="Wyloguj" Margin="30,406,414,41" Click="WylogujButton_Click" FontWeight="Bold" />
+                    <Label x:Name="brakZajec_label" Content="Brak zajęć" Margin="395,388,24,118" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" Visibility="Hidden" />
+                    <GroupBox x:Name="groupBox" Header="Twoje dane" HorizontalAlignment="Left" Margin="405,34,0,0" VerticalAlignment="Top" Height="219" Width="340" BorderThickness="3">
+                        <Grid>
+                            <Label x:Name="label1" Content="Imię :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="23" Width="72" FontWeight="Bold"/>
+                            <Label x:Name="label1_Copy" Content="Nazwisko :" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="23" Width="83" FontWeight="Bold"/>
+                            <Label x:Name="label2" Content="Email :" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" Height="30" Width="83" FontWeight="Bold"/>
+                            <Label x:Name="label2_Copy" Content="Telefon :" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.455,1.728" Height="28" Width="72" FontWeight="Bold"/>
+                            <TextBlock x:Name="imie_textBlock"  HorizontalAlignment="Left" Margin="98,15,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="18" Width="220" TextAlignment="Justify"/>
+                            <TextBlock x:Name="nazwisko_textBlock" HorizontalAlignment="Left" Margin="98,51,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="18" Width="220" TextAlignment="Justify"/>
+                            <TextBlock x:Name="email_textBlock" HorizontalAlignment="Left" Margin="98,86,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="17" Width="220" TextAlignment="Justify"/>
+                            <TextBlock x:Name="telefon_textBlock" HorizontalAlignment="Left" Margin="98,118,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="17" Width="220" TextAlignment="Justify"/>
+                            <TextBlock x:Name="iloscGrup_textBlock" HorizontalAlignment="Left" Margin="98,152,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="23" Width="220" TextAlignment="Justify"/>
+                            <Label Content="Ilość grup:" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Height="30" Width="78" FontWeight="Bold"/>
+                        </Grid>
+
+                    </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Harmonogram zajęć" Width="200">
+            <TabItem Header="Harmonogram zajęć" Margin="20,0,-25,-2">
                 <Grid>
-                    <Label x:Name="label" Content="Wybierz grupę :" Margin="23,38,407,326" FontSize="18" FontWeight="Bold"/>
-                    <ComboBox x:Name="GrupyComboBox" Margin="196,38,29,335" FontSize="18" SelectionChanged="GrupyComboBox_SelectionChanged"/>
-                    <ListView x:Name="HarmonogramListView" HorizontalAlignment="Left" Height="272" Margin="23,114,0,0" VerticalAlignment="Top" Width="546" SelectionMode="Single">
+                    <Label x:Name="label" Content="Wybierz grupę :" Margin="32,38,547,453" FontSize="18" FontWeight="Bold"/>
+                    <ComboBox x:Name="GrupyComboBox" Margin="263,38,29,463" FontSize="18" SelectionChanged="GrupyComboBox_SelectionChanged"/>
+                    <ListView x:Name="HarmonogramListView" HorizontalAlignment="Left" Height="413" Margin="32,95,0,0" VerticalAlignment="Top" Width="727" SelectionMode="Single" FontSize="16">
                         <ListView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem x:Name="UsunMenuItem" Header="Usuń termin" Click="UsunMenuItem_Click"></MenuItem>
-                                <MenuItem x:Name="ZastepstwoMenuItem" Header="Ustaw zastępstwo" Click="ZastepstwoMenuItem_Click"></MenuItem>
-                                <MenuItem x:Name="ModyfikujMenuItem" Header="Modyfikuj termin" Click="ModyfikujMenuItem_Click"></MenuItem>
+                                <MenuItem x:Name="UsunMenuItem" Header="Usuń termin" Click="UsunMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="../Images/delete_icon.png"></Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem x:Name="ZastepstwoMenuItem" Header="Ustaw zastępstwo" Click="ZastepstwoMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="../Images/change_icon.png"></Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem x:Name="ModyfikujMenuItem" Header="Modyfikuj termin" Click="ModyfikujMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="../Images/edit_icon.png"></Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
                             </ContextMenu>
                         </ListView.ContextMenu>
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
-                                <GridViewColumn Header="Nazwa grupy" Width="150px" DisplayMemberBinding="{Binding Grupa.Nazwa}" />
-                                <GridViewColumn Header="Data rozpoczęcia" Width="130" DisplayMemberBinding="{Binding DataRozpoczecia}" />
-                                <GridViewColumn Header="Data zakończenia" Width="130" DisplayMemberBinding="{Binding DataZakonczenia}" />
-                                <GridViewColumn Header="Obiekt sportowy" Width="100" DisplayMemberBinding="{Binding ObiektSportowy.Nazwa}" />
+                                <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Nazwa grupy" Width="200px" DisplayMemberBinding="{Binding Grupa.Nazwa}" />
+                                <GridViewColumn Header="Data rozpoczęcia" Width="160" DisplayMemberBinding="{Binding DataRozpoczecia, StringFormat='yyyy-MM-dd HH:mm'}" />
+                                <GridViewColumn Header="Data zakończenia" Width="160" DisplayMemberBinding="{Binding DataZakonczenia,StringFormat='yyyy-MM-dd HH:mm'}" />
+                                <GridViewColumn Header="Obiekt sportowy" Width="150" DisplayMemberBinding="{Binding ObiektSportowy.Nazwa}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Informacje o grupach" Width="190">
+            <TabItem Header="Informacje o grupach" Margin="26,0,-36,-2">
                 <Grid>
-                    <Label Content="Wybierz grupę :" Margin="10,38,420,326" FontSize="18" FontWeight="Bold"/>
-                    <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="196,38,10,335" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
-                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="181" Margin="10,214,0,0" VerticalAlignment="Top" Width="572" MouseDoubleClick="WyswietlOknoProfiloweUczestnika">
+                    <Label Content="Wybierz grupę :" Margin="22,27,568,458" FontSize="18" FontWeight="Bold"/>
+                    <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="182,27,213,476" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
+                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="276" Margin="22,233,0,0" VerticalAlignment="Top" Width="739" MouseDoubleClick="WyswietlOknoProfiloweUczestnika" FontSize="20">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="Imię" Width="150px" DisplayMemberBinding="{Binding Imie}"/>
-                                <GridViewColumn Header="Nazwisko" Width="150px" DisplayMemberBinding="{Binding Nazwisko}"/>
+                                <GridViewColumn Header="ID" Width="100px" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Imię" Width="250px" DisplayMemberBinding="{Binding Imie}"/>
+                                <GridViewColumn Header="Nazwisko" Width="250px" DisplayMemberBinding="{Binding Nazwisko}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Label x:Name="IdgrupyLabel" Content="value" HorizontalAlignment="Left" Margin="107,90,0,0" VerticalAlignment="Top"/>
-                    <Label Content="ID:" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Nazwa:" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="NazwagrupyLabel" Content="value" HorizontalAlignment="Left" Margin="107,121,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Min Liczebność:" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="minLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="107,152,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Max Liczebność:" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="maxLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="107,183,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="IdgrupyLabel" Content="value" HorizontalAlignment="Left" Margin="117,90,0,0" VerticalAlignment="Top" Width="103"/>
+                    <Label Content="ID:" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label Content="Nazwa:" HorizontalAlignment="Left" Margin="20,121,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label x:Name="NazwagrupyLabel" Content="value" HorizontalAlignment="Left" Margin="117,121,0,0" VerticalAlignment="Top" Width="175"/>
+                    <Label Content="Min Liczebność:" HorizontalAlignment="Left" Margin="20,152,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label x:Name="minLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="117,152,0,0" VerticalAlignment="Top" Width="103"/>
+                    <Label Content="Max Liczebność:" HorizontalAlignment="Left" Margin="20,183,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label x:Name="maxLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="117,183,0,0" VerticalAlignment="Top" Width="103"/>
 
-                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="337,106,0,0" VerticalAlignment="Top" Width="105" Click="RozwiazGrupeButton_Click" Height="55" />
-                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="447,106,0,0" VerticalAlignment="Top" Width="105"  Click="DodajGrupeButton_Click" Height="55"/>
+                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="561,123,0,0" VerticalAlignment="Top" Width="200" Click="RozwiazGrupeButton_Click" Height="55" />
+                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="310,123,0,0" VerticalAlignment="Top" Width="200"  Click="DodajGrupeButton_Click" Height="55"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Wypożyczalnia" Margin="36,0,-40,-2">
+                
             </TabItem>
 
         </TabControl>

@@ -25,6 +25,8 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public virtual ICollection<WpisZajecia> WpisZajecia { get; set; }
 
+        public virtual ICollection<Zdarzenie> Zdarzenia { get; set; }
+
         public Instruktor(string imie, string nazwisko,string email,string telefon,List<Dyscyplina> dyscypliny,KontoUzytkownika konto) : base(imie, nazwisko)
         {
             Email = email;
@@ -32,6 +34,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             Dyscypliny = dyscypliny;
             Grupy = new List<Grupa>();
             KontoUzytkownika = konto;
+            Zdarzenia=new List<Zdarzenie>();
         }
 
         public bool ZalozGrupe(Grupa grupa,WpisHarmonogram wpis)
@@ -135,6 +138,10 @@ namespace CentrumSportu_WPF.Modul_instruktorow
             return Grupy.FirstOrDefault(i => i.Nazwa == nazwa);
         }
 
+        public override string ToString()
+        {
+            return Imie+" "+Nazwisko;
+        }
 
     }
 }
