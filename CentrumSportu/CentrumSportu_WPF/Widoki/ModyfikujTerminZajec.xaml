@@ -26,7 +26,7 @@
         <Label x:Name="label6_Copy" Content="Długość :" HorizontalAlignment="Left" Margin="66,189,0,0" VerticalAlignment="Top" />
         <Label x:Name="label2_Copy" Content="Sala :" HorizontalAlignment="Left" Margin="66,215,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="DlugoscTextBox" HorizontalAlignment="Left" Height="23" Margin="184,189,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <xctk:DateTimePicker x:Name="DateTimePicker"  Width="120" Height="23" Margin="184,162,158,166"/>
+        <xctk:DateTimePicker Name="DateTimePicker" HorizontalAlignment="Left" Margin="184,165,0,0" VerticalAlignment="Top"/>
         <Label x:Name="komunikatLabel" Content="Ten termin jest już zajęty !!! Wybierz inny" HorizontalAlignment="Left" Margin="86,252,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="Red" Visibility="Hidden"/>
         <Button x:Name="ZmienButton" Content="Zmień termin" HorizontalAlignment="Left" Margin="92,310,0,0" VerticalAlignment="Top" Width="88" Click="ZmienButton_Click"/>
         <Button x:Name="AnulujButton" Content="Anuluj" HorizontalAlignment="Left" Margin="280,310,0,0" VerticalAlignment="Top" Width="88" Click="AnulujButton_Click"/>

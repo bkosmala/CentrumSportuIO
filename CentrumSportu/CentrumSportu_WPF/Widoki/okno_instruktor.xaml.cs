@@ -34,10 +34,11 @@ namespace CentrumSportu_WPF.Widoki
 
         public okno_instruktor(Instruktor _instruktor)
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("pl-PL");
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("pl-PL");           
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             instruktor = _instruktor;
+            this.Title ="Profil instruktora : "+ instruktor.Imie + " " + instruktor.Nazwisko;
             RefreshData();
 
             //PROFIL

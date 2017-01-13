@@ -12,7 +12,7 @@
                 <Grid>
                     <Image x:Name="zdjecie_profilowe" HorizontalAlignment="Left" Height="350" Margin="30,34,0,0" VerticalAlignment="Top" Width="330"/>
 
-                    <GroupBox x:Name="najblizszeZajecia_groupBox" Header="Najbliższe zajęcia" HorizontalAlignment="Left" Margin="405,317,0,0" VerticalAlignment="Top" Height="176" Width="340" RenderTransformOrigin="0.432,0.812">
+                    <GroupBox x:Name="najblizszeZajecia_groupBox" Header="Najbliższe zajęcia" HorizontalAlignment="Left" Margin="405,317,0,0" VerticalAlignment="Top" Height="176" Width="340" RenderTransformOrigin="0.432,0.812" BorderThickness="3">
                         <WrapPanel Name="WrapPanel" HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="281">
                             <Label x:Name="label3" Content="Grupa: " Width="108" Height="32" VerticalAlignment="Center" FontWeight="Bold"/>
                             <TextBlock x:Name="GrupaTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="160" TextAlignment="Center" VerticalAlignment="Center" Height="18"/>
@@ -26,9 +26,9 @@
                         </WrapPanel>
 
                     </GroupBox>
-                    <Button x:Name="WylogujButton" Content="Wyloguj" Margin="30,406,414,41" Click="WylogujButton_Click"/>
+                    <Button x:Name="WylogujButton" Content="Wyloguj" Margin="30,406,414,41" Click="WylogujButton_Click" FontWeight="Bold" />
                     <Label x:Name="brakZajec_label" Content="Brak zajęć" Margin="340,280,79,104" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" Visibility="Hidden" />
-                    <GroupBox x:Name="groupBox" Header="Twoje dane" HorizontalAlignment="Left" Margin="405,34,0,0" VerticalAlignment="Top" Height="219" Width="340">
+                    <GroupBox x:Name="groupBox" Header="Twoje dane" HorizontalAlignment="Left" Margin="405,34,0,0" VerticalAlignment="Top" Height="219" Width="340" BorderThickness="3">
                         <Grid>
                             <Label x:Name="label1" Content="Imię :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="23" Width="72" FontWeight="Bold"/>
                             <Label x:Name="label1_Copy" Content="Nazwisko :" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="23" Width="83" FontWeight="Bold"/>
@@ -73,8 +73,8 @@
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding Id}" />
                                 <GridViewColumn Header="Nazwa grupy" Width="200px" DisplayMemberBinding="{Binding Grupa.Nazwa}" />
-                                <GridViewColumn Header="Data rozpoczęcia" Width="160" DisplayMemberBinding="{Binding DataRozpoczecia}" />
-                                <GridViewColumn Header="Data zakończenia" Width="160" DisplayMemberBinding="{Binding DataZakonczenia}" />
+                                <GridViewColumn Header="Data rozpoczęcia" Width="160" DisplayMemberBinding="{Binding DataRozpoczecia, StringFormat='yyyy-MM-dd HH:mm'}" />
+                                <GridViewColumn Header="Data zakończenia" Width="160" DisplayMemberBinding="{Binding DataZakonczenia,StringFormat='yyyy-MM-dd HH:mm'}" />
                                 <GridViewColumn Header="Obiekt sportowy" Width="150" DisplayMemberBinding="{Binding ObiektSportowy.Nazwa}" />
                             </GridView>
                         </ListView.View>
