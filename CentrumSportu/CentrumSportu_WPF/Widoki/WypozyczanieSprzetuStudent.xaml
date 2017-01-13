@@ -1,0 +1,21 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="CentrumSportu_WPF.Widoki.WypozyczanieSprzetuStudent"
+        mc:Ignorable="d"
+        Title="WypozyczanieSprzetuStudent" Height="377" Width="454">
+    <Grid>
+        <Label x:Name="label" Content="Wybierz datę i godzinę rozpoczęcia:" HorizontalAlignment="Left" Margin="210,21,0,0" VerticalAlignment="Top" Height="27" Width="215"/>
+        <Label x:Name="label1" Content="Wybierz godzinę zakończenia:" HorizontalAlignment="Left" Margin="210,94,0,0" VerticalAlignment="Top" Width="215"/>
+        <xctk:TimePicker Name="koniecGodzinaControl" HorizontalAlignment="Left" Margin="210,120,0,0" VerticalAlignment="Top" Width="215"/>
+        <Label x:Name="label2" Content="Cena:" HorizontalAlignment="Left" Margin="210,185,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="cenaLabel" Content="Label" HorizontalAlignment="Left" Margin="252,185,0,0" VerticalAlignment="Top" Width="173"/>
+        <xctk:CheckListBox ItemsSource="{Binding dostepnePrzedmioty}" HorizontalAlignment="Left" Height="299" Margin="0,21,0,0" VerticalAlignment="Top" Width="205"/>
+        <DatePicker Name="wyborDatyControl" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Width="215"/>
+        <xctk:TimePicker Name="startGodzinaControl" HorizontalAlignment="Left" Margin="210,72,0,0" VerticalAlignment="Top" Width="215" RenderTransformOrigin="0.442,0.3"/>
+
+    </Grid>
+</Window>

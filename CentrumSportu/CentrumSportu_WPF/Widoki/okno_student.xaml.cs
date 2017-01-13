@@ -70,12 +70,19 @@ namespace CentrumSportu_WPF.Widoki
 
         private void rezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (rezerwacjeListView.SelectedItems.Count < 1) return;
             var rezerwacjaTmp = (Rezerwacja)rezerwacjeListView.SelectedItems[0];
             textBlock1.Text = String.Empty;
             foreach (var item in rezerwacjaTmp.Przedmioty)
             {
                 textBlock1.Text += item.Nazwa + "\n";
             }
+        }
+
+        private void WypozyczButton_Click(object sender, RoutedEventArgs e)
+        {
+            WypozyczanieSprzetuStudent okno = new WypozyczanieSprzetuStudent(this);
+            okno.ShowDialog();
         }
     }
 }

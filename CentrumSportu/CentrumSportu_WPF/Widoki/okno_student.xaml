@@ -70,6 +70,8 @@
                     </ComboBox>
                     <Label x:Name="label" Content="Wypozyczane przedmioty:&#xA;" Margin="485,55,46,450"/>
                     <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="" Margin="485,98,10,295"/>
+                    <Button x:Name="wypozyczButton" Content="Wypożycz..." Click="WypozyczButton_Click" Margin="497,433,21,0"/>
+
                 </Grid>
 
             </TabItem>
