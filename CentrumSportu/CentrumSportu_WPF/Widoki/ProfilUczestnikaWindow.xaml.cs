@@ -1,5 +1,6 @@
 ﻿using CentrumSportu_WPF.Baza_danych;
 using CentrumSportu_WPF.Modul_biletow;
+using CentrumSportu_WPF.Modul_instruktorow;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,15 +24,15 @@ namespace CentrumSportu_WPF.Widoki
     public partial class ProfilUczestnikaWindow : Window
     {
         private UczestnikZajec uczestnikZajec;
-        private int idGrupyUczestnika;
+        private Grupa grupaUczestnika;
         public ObservableCollection<UczestnikZajec> UczestnicyProfilUczestnikaCollection { get; set; }
 
-        public ProfilUczestnikaWindow(UczestnikZajec uczestnikZajec, int idGrupyUczestnika)
+        public ProfilUczestnikaWindow(UczestnikZajec uczestnikZajec, Grupa grupaUczestnika)
         {
             this.Title = uczestnikZajec.Imie + " " + uczestnikZajec.Nazwisko;
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.uczestnikZajec = uczestnikZajec;
-            this.idGrupyUczestnika = idGrupyUczestnika;
+            this.grupaUczestnika = grupaUczestnika;
             InitializeComponent();
             imieLabel.Content = uczestnikZajec.Imie;
             nazwiskoLabel.Content = uczestnikZajec.Nazwisko;
@@ -43,7 +44,7 @@ namespace CentrumSportu_WPF.Widoki
 
         private void anulujButton_Click(object sender, RoutedEventArgs e)
         {
-            UczestnicyProfilUczestnikaCollection = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocUczestnikowZajecDlaDanejGrupy(idGrupyUczestnika));
+            UczestnicyProfilUczestnikaCollection = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocUczestnikowZajecDlaDanejGrupy(grupaUczestnika.Id));
             this.Close();
         }
 
@@ -52,9 +53,15 @@ namespace CentrumSportu_WPF.Widoki
             MessageBoxResult result = MessageBox.Show("czy chcesz usunąć " + uczestnikZajec.Imie + " " + uczestnikZajec.Nazwisko + " z zajęć?", "Usuwanie", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                UczestnicyProfilUczestnikaCollection = new ObservableCollection<UczestnikZajec>(BazaMetody.UsunUczestnikaZGrupy(idGrupyUczestnika, uczestnikZajec.Id));
+                UczestnicyProfilUczestnikaCollection = new ObservableCollection<UczestnikZajec>(BazaMetody.UsunUczestnikaZGrupy(grupaUczestnika.Id, uczestnikZajec.Id));
                 this.Close();
             }
+        }
+
+        private void wysliWiadomoscButton_Click(object sender, RoutedEventArgs e)
+        {
+            WysylanieWiadomosciDoUzytkownika okno = new WysylanieWiadomosciDoUzytkownika(this.uczestnikZajec, this.grupaUczestnika.Instruktor);
+            okno.Show();
         }
     }
 }

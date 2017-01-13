@@ -182,7 +182,7 @@ namespace CentrumSportu_WPF.Widoki
                 if (item.Nazwa == groupName)
                     groupId = item.Id;
             }
-            ProfilUczestnikaWindow profilUCzestnikaWindow = new ProfilUczestnikaWindow(BazaMetody.ZwrocWybranegoUczestnikaZajec(groupId, uczestnik.Id), groupId);
+            ProfilUczestnikaWindow profilUCzestnikaWindow = new ProfilUczestnikaWindow(BazaMetody.ZwrocWybranegoUczestnikaZajec(groupId, uczestnik.Id), instruktor.PodgladGrupy(groupId));
             profilUCzestnikaWindow.Show();
             profilUCzestnikaWindow.Closed += profilOkno_closed;
 
