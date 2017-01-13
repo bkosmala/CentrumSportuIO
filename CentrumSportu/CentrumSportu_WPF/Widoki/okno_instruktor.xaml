@@ -84,28 +84,28 @@
             </TabItem>
             <TabItem Header="Informacje o grupach" Margin="26,0,-36,-2">
                 <Grid>
-                    <Label Content="Wybierz grupę :" Margin="22,27,568,476" FontSize="18" FontWeight="Bold"/>
+                    <Label Content="Wybierz grupę :" Margin="22,27,568,458" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="182,27,213,476" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
-                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="276" Margin="22,233,0,0" VerticalAlignment="Top" Width="553" MouseDoubleClick="WyswietlOknoProfiloweUczestnika" FontSize="16">
+                    <ListView x:Name="UczestnicyGrupyListView" HorizontalAlignment="Left" Height="276" Margin="22,233,0,0" VerticalAlignment="Top" Width="739" MouseDoubleClick="WyswietlOknoProfiloweUczestnika" FontSize="20">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="Imię" Width="200px" DisplayMemberBinding="{Binding Imie}"/>
-                                <GridViewColumn Header="Nazwisko" Width="200px" DisplayMemberBinding="{Binding Nazwisko}"/>
+                                <GridViewColumn Header="ID" Width="100px" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Imię" Width="250px" DisplayMemberBinding="{Binding Imie}"/>
+                                <GridViewColumn Header="Nazwisko" Width="250px" DisplayMemberBinding="{Binding Nazwisko}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
                     <Label x:Name="IdgrupyLabel" Content="value" HorizontalAlignment="Left" Margin="117,90,0,0" VerticalAlignment="Top" Width="103"/>
                     <Label Content="ID:" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label Content="Nazwa:" HorizontalAlignment="Left" Margin="20,121,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <Label x:Name="NazwagrupyLabel" Content="value" HorizontalAlignment="Left" Margin="117,121,0,0" VerticalAlignment="Top" Width="103"/>
+                    <Label x:Name="NazwagrupyLabel" Content="value" HorizontalAlignment="Left" Margin="117,121,0,0" VerticalAlignment="Top" Width="175"/>
                     <Label Content="Min Liczebność:" HorizontalAlignment="Left" Margin="20,152,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label x:Name="minLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="117,152,0,0" VerticalAlignment="Top" Width="103"/>
                     <Label Content="Max Liczebność:" HorizontalAlignment="Left" Margin="20,183,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label x:Name="maxLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="117,183,0,0" VerticalAlignment="Top" Width="103"/>
 
-                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="626,307,0,0" VerticalAlignment="Top" Width="105" Click="RozwiazGrupeButton_Click" Height="55" />
-                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="626,233,0,0" VerticalAlignment="Top" Width="105"  Click="DodajGrupeButton_Click" Height="55"/>
+                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="561,123,0,0" VerticalAlignment="Top" Width="200" Click="RozwiazGrupeButton_Click" Height="55" />
+                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="310,123,0,0" VerticalAlignment="Top" Width="200"  Click="DodajGrupeButton_Click" Height="55"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Wypożyczalnia" Margin="36,0,-40,-2">

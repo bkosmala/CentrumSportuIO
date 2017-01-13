@@ -51,6 +51,10 @@ namespace CentrumSportu_WPF.Baza_danych
 
             //Obiekty sportowe
             ObiektSportowy obiekt1 = new ObiektSportowy("Sala główna", dyscypliny, 25, 100);
+            ObiektSportowy obiekt2 = new ObiektSportowy("Sala główna 2", null, 25, 100);
+            dyscypliny[1].ObiektySportowe.Add(obiekt2);
+            dyscypliny[0].ObiektySportowe.Add(obiekt2);
+
 
             //UczestnicyZajec
             UczestnikZajec uczestnik1 = new UczestnikZajec("Jan", "Kowalski", "jan.kowalski@gmail.com", "608924351");

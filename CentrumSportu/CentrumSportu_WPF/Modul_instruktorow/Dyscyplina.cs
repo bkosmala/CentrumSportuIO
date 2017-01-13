@@ -17,7 +17,9 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public string Nazwa { get; set; }
 
-        public ICollection<Instruktor> Instruktorzy { get; set; }
+        public virtual ICollection<Instruktor> Instruktorzy { get; set; }
+
+        public virtual ICollection<ObiektSportowy> ObiektySportowe { get; set; }
 
         public Dyscyplina()
         {
@@ -27,6 +29,7 @@ namespace CentrumSportu_WPF.Modul_instruktorow
         public Dyscyplina(string nazwa)
         {
             Nazwa = nazwa;
+            ObiektySportowe=new List<ObiektSportowy>();
         }
     }
 }
