@@ -70,6 +70,7 @@ namespace CentrumSportu_WPF.Widoki
         private void rezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var rezerwacjaTmp = (Rezerwacja)rezerwacjeListView.SelectedItems[0];
+            textBlock1.Text = String.Empty;
             foreach (var item in rezerwacjaTmp.Przedmioty)
             {
                 textBlock1.Text += item.Nazwa + "\n";

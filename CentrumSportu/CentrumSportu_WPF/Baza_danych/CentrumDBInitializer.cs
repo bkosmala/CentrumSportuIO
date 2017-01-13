@@ -100,9 +100,9 @@ namespace CentrumSportu_WPF.Baza_danych
             rezerwacja2.RezerwujPrzedmiot(przedmiot3);
             rezerwacja3.RezerwujPrzedmiot(przedmiot1);
 
-            /*context.Przedmioty.Add(przedmiot1);
+            context.Przedmioty.Add(przedmiot1);
             context.Przedmioty.Add(przedmiot2);
-            context.Przedmioty.Add(przedmiot3);*/
+            context.Przedmioty.Add(przedmiot3);
             context.Rezerwacje.Add(rezerwacja1);
             context.Rezerwacje.Add(rezerwacja2);
             context.Rezerwacje.Add(rezerwacja3);
