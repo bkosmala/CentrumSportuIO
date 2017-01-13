@@ -31,6 +31,7 @@ namespace CentrumSportu_WPF.Widoki
         public okno_student(Student _student)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             student = _student;
             imieStudentLabel.Content = student.Imie;
             nazwiskoStudentLabel.Content = student.Nazwisko;
