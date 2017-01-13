@@ -27,7 +27,7 @@
 
                     </GroupBox>
                     <Button x:Name="WylogujButton" Content="Wyloguj" Margin="30,406,414,41" Click="WylogujButton_Click" FontWeight="Bold" />
-                    <Label x:Name="brakZajec_label" Content="Brak zajęć" Margin="340,280,79,104" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" Visibility="Hidden" />
+                    <Label x:Name="brakZajec_label" Content="Brak zajęć" Margin="395,388,24,118" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" Visibility="Hidden" />
                     <GroupBox x:Name="groupBox" Header="Twoje dane" HorizontalAlignment="Left" Margin="405,34,0,0" VerticalAlignment="Top" Height="219" Width="340" BorderThickness="3">
                         <Grid>
                             <Label x:Name="label1" Content="Imię :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="23" Width="72" FontWeight="Bold"/>
