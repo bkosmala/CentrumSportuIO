@@ -13,9 +13,16 @@
         <xctk:TimePicker Name="koniecGodzinaControl" HorizontalAlignment="Left" Margin="210,120,0,0" VerticalAlignment="Top" Width="215"/>
         <Label x:Name="label2" Content="Cena:" HorizontalAlignment="Left" Margin="210,185,0,0" VerticalAlignment="Top"/>
         <Label x:Name="cenaLabel" Content="Label" HorizontalAlignment="Left" Margin="252,185,0,0" VerticalAlignment="Top" Width="173"/>
-        <xctk:CheckListBox ItemsSource="{Binding dostepnePrzedmioty}" HorizontalAlignment="Left" Height="299" Margin="0,21,0,0" VerticalAlignment="Top" Width="205"/>
         <DatePicker Name="wyborDatyControl" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Width="215"/>
         <xctk:TimePicker Name="startGodzinaControl" HorizontalAlignment="Left" Margin="210,72,0,0" VerticalAlignment="Top" Width="215" RenderTransformOrigin="0.442,0.3"/>
+        <ListBox x:Name="listBox" ItemsSource="{Binding dostepnePrzedmioty}" HorizontalAlignment="Left" Height="304" Margin="0,21,0,0" VerticalAlignment="Top" Width="205" SelectionChanged="listBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Nazwa}" IsChecked="False"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label x:Name="label3" Content="Label" HorizontalAlignment="Left" Margin="211,216,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

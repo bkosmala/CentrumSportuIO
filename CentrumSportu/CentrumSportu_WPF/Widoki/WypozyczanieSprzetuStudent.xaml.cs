@@ -41,10 +41,16 @@ namespace CentrumSportu_WPF.Widoki
             koniecGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 22, 0, 0);
             koniecGodzinaControl.EndTime = new TimeSpan(22, 0, 0);
             koniecGodzinaControl.StartTime = new TimeSpan(7, 15, 0);
+            
 
             dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
-            int i = 10;
+            listBox.ItemsSource = dostepnePrzedmioty;
         }
-        
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var wybranyPrzedmiot = (Przedmiot)listBox.SelectedItem;
+            label3.Content = wybranyPrzedmiot.Nazwa;
+        }
     }
 }
