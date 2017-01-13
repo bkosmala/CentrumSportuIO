@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CentrumSportu_WPF.Modul_oferty;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -16,11 +17,14 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public virtual ObiektSportowy ObiektSportowy { get; set; }
 
-        public WpisZajecia(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Instruktor instruktor,Grupa grupa) : base(dataRozp, dataZak)
+        public virtual Zajecia Zajecia { get; set; }
+
+        public WpisZajecia(DateTime dataRozp, DateTime dataZak, ObiektSportowy obiektSportowy,Instruktor instruktor,Grupa grupa, Zajecia zajecia) : base(dataRozp, dataZak)
         {
             Instruktor = instruktor;
             Grupa = grupa;
             ObiektSportowy = obiektSportowy;
+            Zajecia = zajecia;
         }
 
         public WpisZajecia()

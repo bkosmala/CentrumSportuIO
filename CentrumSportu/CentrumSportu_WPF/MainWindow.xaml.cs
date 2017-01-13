@@ -70,7 +70,9 @@ namespace CentrumSportu_WPF
 
         private void GoscBtn_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new OfertaWidok());
+            OfertaWidok widok = new OfertaWidok();
+            //widok.fromWhere = 0;
+            Switcher.Switch(widok);
         }
         public void Navigate(UserControl nextPage)
         {

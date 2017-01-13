@@ -24,16 +24,22 @@ namespace CentrumSportu_WPF.Widoki
     /// </summary>
     public partial class OfertaWidok : UserControl
     {
+        public int fromWhere;
+        // jeśli fromWhere = 1 - przejście od modułu biletów
+
         private ObservableCollection<Zajecia> listZajecia;
         private ObservableCollection<ObiektSportowy> listObiekty;
         private ObservableCollection<Wydarzenie> listWydarzenia;
         private ObservableCollection<Przedmiot> oferowanySprzet;
         private Zajecia selectedZajecia;
+
+        
         public OfertaWidok()
         {
             InitializeComponent();
+            fromWhere = 0;
             listZajecia = new ObservableCollection<Zajecia>(BazaMetody.ZwrocWszystkieZajeciaOferta());
-            listWydarzenia = new ObservableCollection<Wydarzenie>();
+            //listWydarzenia = new ObservableCollection<Wydarzenie>();
 
             oferowanySprzet = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
 
@@ -46,10 +52,10 @@ namespace CentrumSportu_WPF.Widoki
             listBoxObiekty.ItemsSource = listObiekty;
             obiektyViewBox.DataContext = listObiekty.ElementAt(0);
 
-            Wydarzenie a = new Wydarzenie("Koncert zespołu Beam");
-            listWydarzenia.Add(a);
-            listBoxObiekty.ItemsSource = listWydarzenia;
-            wydarzeniaViewBox.DataContext = listObiekty.ElementAt(0);
+            //Wydarzenie a = new Wydarzenie("Koncert zespołu Beam");
+            //listWydarzenia.Add(a);
+            //listBoxObiekty.ItemsSource = listWydarzenia;
+            //wydarzeniaViewBox.DataContext = listObiekty.ElementAt(0);
         }
         private void ListBoxZajecia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

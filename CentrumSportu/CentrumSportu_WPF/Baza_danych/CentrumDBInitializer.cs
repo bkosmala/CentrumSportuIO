@@ -77,26 +77,28 @@ namespace CentrumSportu_WPF.Baza_danych
             instruktor1.Grupy.Add(grupa2);
             instruktor1.Grupy.Add(grupa3);
 
+            //Zajecia - moduł oferta
+            Zajecia zajecia1 = new Zajecia("grupowe", "Piłka nożna", "Trening piłki nożnej", "Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ", null);
+            Zajecia zajecia2 = new Zajecia("grupowe", "Piłka koszykowa", "Trening koszykówki", "Rozgrywka zespołowa na każdym treningu", null);
+            Zajecia zajecia3 = new Zajecia("grupowe", "Piłka siatkowa", "Trening siatkówki", "Trening prowadzony przez doświadczonych trenerów.\n", null);
+            List<Zajecia> zajeciaOferta = new List<Zajecia>();
+
+            zajeciaOferta.Add(zajecia1);
+            zajeciaOferta.Add(zajecia2);
+            zajeciaOferta.Add(zajecia3);
+
             //Zajecia
             List<WpisZajecia> zajecia = new List<WpisZajecia>
             {
-                new WpisZajecia(new DateTime(2017,2,1,16,0,0), new DateTime(2017,2,1,18,0,0),obiekt1,instruktor1,grupa1 ),
-                new WpisZajecia(new DateTime(2017,2,2,16,0,0), new DateTime(2017,2,2,18,0,0),obiekt1,instruktor1,grupa1 ),
-                new WpisZajecia(new DateTime(2017,2,3,16,0,0), new DateTime(2017,2,3,18,0,0),obiekt1,instruktor1,grupa2 ),
-                new WpisZajecia(new DateTime(2017,2,4,16,0,0), new DateTime(2017,2,4,18,0,0),obiekt1,instruktor1,grupa2 ),
-                new WpisZajecia(new DateTime(2017,2,5,16,0,0), new DateTime(2017,2,5,18,0,0),obiekt1,instruktor1,grupa3 ),
-                new WpisZajecia(new DateTime(2017,2,6,16,0,0), new DateTime(2017,2,6,18,0,0),obiekt1,instruktor1,grupa3 )
+                new WpisZajecia(new DateTime(2017,2,1,16,0,0), new DateTime(2017,2,1,18,0,0),obiekt1,instruktor1,grupa1,zajecia1 ),
+                new WpisZajecia(new DateTime(2017,2,2,16,0,0), new DateTime(2017,2,2,18,0,0),obiekt1,instruktor1,grupa1,zajecia1 ),
+                new WpisZajecia(new DateTime(2017,2,3,16,0,0), new DateTime(2017,2,3,18,0,0),obiekt1,instruktor1,grupa2,zajecia1 ),
+                new WpisZajecia(new DateTime(2017,2,4,16,0,0), new DateTime(2017,2,4,18,0,0),obiekt1,instruktor1,grupa2,zajecia1 ),
+                new WpisZajecia(new DateTime(2017,2,5,16,0,0), new DateTime(2017,2,5,18,0,0),obiekt1,instruktor1,grupa3,zajecia3 ),
+                new WpisZajecia(new DateTime(2017,2,6,16,0,0), new DateTime(2017,2,6,18,0,0),obiekt1,instruktor1,grupa3,zajecia3 )
             };
 
-            //Zajecia - moduł oferta
-
-            List<Zajecia> zajeciaOferta = new List<Zajecia>
-            {
-                new Zajecia("grupowe","Piłka nożna","Trening piłki nożnej","Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ",null),
-                new Zajecia("grupowe","Piłka koszykowa","Trening koszykówki","Rozgrywka zespołowa na każdym treningu",null),
-                new Zajecia("grupowe","Piłka siatkowa","Trening siatkówki","Trening prowadzony przez doświadczonych trenerów.\n",null)
-
-            };
+            //Rezerwacje - moduł oferta
 
             Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
             Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(20), DoDaty = DateTime.Now.AddHours(23), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };

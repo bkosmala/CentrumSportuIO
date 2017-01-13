@@ -56,32 +56,6 @@
                     </ListBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Nadchodzące wydarzenia" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="2*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-                    <Canvas x:Name="wydarzeniaViewBox" Grid.Column="1" HorizontalAlignment="Left" Height="497"  VerticalAlignment="Top" Width="517" Margin="0,10,0,0" >
-
-                        <TextBlock x:Name="textBlockWydarzeniaZajecia_Copy1" FontSize="16" TextWrapping="Wrap" Text="Brak wydarzeń" Canvas.Top="403" Width="397" Height="84" Canvas.Left="108"/>
-
-                    </Canvas>
-                    <Label Grid.Column="0" Content="Lista:" FontSize="16" HorizontalContentAlignment="Center"  Height="118" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Margin="5,0,522,399"  />
-                    <ListBox Grid.Column="0" x:Name="listBoxWydarzenia" Background="White"  Margin="5,31,10,20">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate >
-                                <StackPanel Orientation="Horizontal">
-                                    <Label FontSize="16" FontFamily="Verdana" Padding="15" Content="{Binding Nazwa}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </TabItem>
             <TabItem Header="Obiekty sportowe Centrum" >
                 <Grid>
                     <Grid.ColumnDefinitions>
