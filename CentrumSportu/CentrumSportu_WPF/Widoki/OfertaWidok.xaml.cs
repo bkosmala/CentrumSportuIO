@@ -33,6 +33,7 @@ namespace CentrumSportu_WPF.Widoki
         {
             InitializeComponent();
             listZajecia = new ObservableCollection<Zajecia>(BazaMetody.ZwrocWszystkieZajeciaOferta());
+            listWydarzenia = new ObservableCollection<Wydarzenie>();
 
             oferowanySprzet = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
 
@@ -44,6 +45,11 @@ namespace CentrumSportu_WPF.Widoki
             listObiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
             listBoxObiekty.ItemsSource = listObiekty;
             obiektyViewBox.DataContext = listObiekty.ElementAt(0);
+
+            Wydarzenie a = new Wydarzenie("Koncert zespołu Beam");
+            listWydarzenia.Add(a);
+            listBoxObiekty.ItemsSource = listWydarzenia;
+            wydarzeniaViewBox.DataContext = listObiekty.ElementAt(0);
         }
         private void ListBoxZajecia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

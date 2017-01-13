@@ -19,5 +19,10 @@ namespace CentrumSportu_WPF.Modul_oferty
         public string Kategoria { get; set; }
         public DateTime ProponowanyTerminRozp { get; set; }
         public DateTime ProponowanyTerminZak { get; set; }
+
+        public Wydarzenie(string nazwa)
+        {
+            this.Nazwa = nazwa;
+        }
     }
 }
