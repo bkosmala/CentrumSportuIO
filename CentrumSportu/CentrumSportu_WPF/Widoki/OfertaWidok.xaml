@@ -20,7 +20,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TabControl Margin="0,51,0,0" Background="White">
+        <TabControl Margin="0,51,0,0" Background="White" Opacity="0.8">
             <TabItem Header="Dostępne zajęcia">
                 <Grid>
                     <Grid.ColumnDefinitions>
