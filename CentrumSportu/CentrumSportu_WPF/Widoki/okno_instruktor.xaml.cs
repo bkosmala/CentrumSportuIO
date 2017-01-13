@@ -324,6 +324,7 @@ namespace CentrumSportu_WPF.Widoki
                         BazaMetody.AktualizujInstruktoraWpisuZajec(item.WpisZajecia);
                         zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
                         HarmonogramListView.ItemsSource = zajecia;
+
                     }
                     else
                     {
