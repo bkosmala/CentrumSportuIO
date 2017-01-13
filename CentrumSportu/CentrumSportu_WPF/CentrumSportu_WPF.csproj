@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
@@ -129,6 +130,9 @@
     <Compile Include="Widoki\UsunTerminZajec.xaml.cs">
       <DependentUpon>UsunTerminZajec.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml.cs">
+      <DependentUpon>WysylanieWiadomosciDoUzytkownika.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -185,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\UsunTerminZajec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

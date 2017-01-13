@@ -63,7 +63,8 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data=new CentrumContext())
             {
-                foreach (var item in data.KontaUzytkownikow)
+                foreach (var item in 
+                    data.KontaUzytkownikow)
                 {
                     if (item.Login == login && item.Haslo == login)
                         return item;
@@ -477,7 +478,8 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 foreach (Instruktor instruktor in data.Instruktorzy)
                 {
-                    temp = instruktor.PodgladGrupy(nazwaGrupy);
+                    if(instruktor.Id == idInstruktora)
+                        temp = instruktor.PodgladGrupy(nazwaGrupy);
                 }
             }
             return temp;
