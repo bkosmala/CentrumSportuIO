@@ -600,5 +600,15 @@ namespace CentrumSportu_WPF.Baza_danych
                 data.SaveChanges();
             }
         }
+
+        public static void UsunZdarzeniaDlaInstruktora(Instruktor instruktor)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var inst = data.Instruktorzy.FirstOrDefault(x => x.Id == instruktor.Id);
+                inst.Zdarzenia.Clear();
+                data.SaveChanges();
+            }
+        }
     }
 }

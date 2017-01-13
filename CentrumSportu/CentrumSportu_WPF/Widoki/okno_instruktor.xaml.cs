@@ -320,17 +320,37 @@ namespace CentrumSportu_WPF.Widoki
                     var okno=Xceed.Wpf.Toolkit.MessageBox.Show("Prośba o zastępstwo :"+ Environment.NewLine+item.Message, "Zastepstwo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (okno == MessageBoxResult.Yes)
                     {
+                        Zdarzenie zdarzenie = new Zdarzenie()
+                        {
+                            TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
+                            Message = "Zastępstow zostało zaakaceptowane : ",
+                            Instruktor = item.WpisZajecia.Instruktor,
+                            WpisZajecia = item.WpisZajecia
+                        };
+                        BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
                         item.WpisZajecia.Instruktor = instruktor;
                         BazaMetody.AktualizujInstruktoraWpisuZajec(item.WpisZajecia);
                         zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
-                        HarmonogramListView.ItemsSource = zajecia;
-
+                        HarmonogramListView.ItemsSource = zajecia;                  
                     }
                     else
                     {
-                        //Odesłanie zdarzenia ze zastepstwo zostalo odrzucone
+                        Zdarzenie zdarzenie = new Zdarzenie()
+                        {
+                            TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
+                            Message = "Zastępstow nie zostało zaakaceptowane : ",
+                            Instruktor = item.WpisZajecia.Instruktor,
+                            WpisZajecia = item.WpisZajecia
+                        };
+                        BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
                     }
                 }
+                temp= instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Komunikat).ToList();
+                foreach (var item in temp)
+                {
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Komunikat :" + Environment.NewLine + item.Message, "Komunikat", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                BazaMetody.UsunZdarzeniaDlaInstruktora(instruktor);
             }
         }
 

@@ -24,7 +24,8 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public enum RodzajZdarzenia
         {
-            Zastepstwo
+            Zastepstwo,
+            Komunikat
         };
 
         public Zdarzenie()
