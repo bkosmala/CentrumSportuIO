@@ -45,6 +45,7 @@ namespace CentrumSportu_WPF.Widoki
             }
 
             rezerwacjeListView.ItemsSource = rezerwacje;
+            comboBoxRezerwacje.SelectedIndex = 0;
             //datagridRezerwacje.ItemsSource = rezerwacje;
         }
 
@@ -53,6 +54,26 @@ namespace CentrumSportu_WPF.Widoki
             MainWindow okno = new MainWindow();
             okno.Show();
             this.Close();
+        }
+        private void comboBoxRezerwacje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            rezerwacje.Clear();
+            if (comboBoxRezerwacje.SelectedIndex == 0)
+            {
+                BazaMetody.ZwrocRezerwacjeStudenta(student.Id).ForEach(rezerwacje.Add);
+            } else
+            {
+                BazaMetody.PobierzRezerwacjeStudentaWedlugStatusu(student.Id, (Rezerwacja.StatusRezerwacji)comboBoxRezerwacje.SelectedIndex).ForEach(rezerwacje.Add);
+            }            
+        }
+
+        private void rezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var rezerwacjaTmp = (Rezerwacja)rezerwacjeListView.SelectedItems[0];
+            foreach (var item in rezerwacjaTmp.Przedmioty)
+            {
+                textBlock1.Text += item.Nazwa + "\n";
+            }
         }
     }
 }

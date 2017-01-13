@@ -20,10 +20,10 @@ namespace CentrumSportu_WPF.Modul_oferty
         public int Id { get; set; }
         public DateTime OdDaty { get; set; }
         public DateTime DoDaty { get; set; }
-        public Boolean CzyOplacone { get; private set; }
+        public Boolean CzyOplacone { get; set; }
         
         public int? WypozyczenieId;
-        public Wypozyczenie Wypozyczenie { get; private set; }
+        public Wypozyczenie Wypozyczenie { get; set; }
         public virtual ICollection<Przedmiot> Przedmioty { get; set; }
         public int KlientId { get; set; }
         public Osoba Klient { get; set; }
@@ -31,9 +31,9 @@ namespace CentrumSportu_WPF.Modul_oferty
 
         public enum StatusRezerwacji
         {
-            OCZEKUJACA,
-            ZREALIZOWANA,
-            ANULOWANA
+            OCZEKUJACA = 1,
+            ZREALIZOWANA = 2,
+            ANULOWANA = 3
         };
 
         public void RezerwujPrzedmiot(Przedmiot przedmiot)

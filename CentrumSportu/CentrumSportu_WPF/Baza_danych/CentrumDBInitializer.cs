@@ -86,25 +86,28 @@ namespace CentrumSportu_WPF.Baza_danych
 
             };
 
-            Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA};
-            Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
-            List<Przedmiot> sprzetOferta = new List<Przedmiot>
-            {
-                new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true },
-                new Przedmiot() { Nazwa = "rakietka do badmintona", Dostepnosc = true },
-                new Przedmiot() { Nazwa = "piłka do siatkówki", Dostepnosc = true },
-                new Przedmiot() { Nazwa = "piłka do koszykówki", Dostepnosc = true },
-                przedmiot1
-            };
-            
+            Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(20), DoDaty = DateTime.Now.AddHours(23), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
+            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(15), DoDaty = DateTime.Now.AddHours(17), Status = Rezerwacja.StatusRezerwacji.ZREALIZOWANA };
 
-            foreach (var item in sprzetOferta)
-            {
-                context.Przedmioty.Add(item);
-            }
+
+            Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
+            Przedmiot przedmiot2 = new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true };
+            Przedmiot przedmiot3 = new Przedmiot() { Nazwa = "rakietka do badmintona", Dostepnosc = true };
 
             rezerwacja1.RezerwujPrzedmiot(przedmiot1);
+            rezerwacja1.RezerwujPrzedmiot(przedmiot2);
+            rezerwacja2.RezerwujPrzedmiot(przedmiot3);
+            rezerwacja3.RezerwujPrzedmiot(przedmiot1);
+
+            /*context.Przedmioty.Add(przedmiot1);
+            context.Przedmioty.Add(przedmiot2);
+            context.Przedmioty.Add(przedmiot3);*/
             context.Rezerwacje.Add(rezerwacja1);
+            context.Rezerwacje.Add(rezerwacja2);
+            context.Rezerwacje.Add(rezerwacja3);
+            
+
             context.Instruktorzy.Add(instruktor1);
             context.Studenci.Add(student1);
             context.Administratorzy.Add(administrator1);

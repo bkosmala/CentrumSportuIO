@@ -455,7 +455,20 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext context = new CentrumContext())
             {
-                return context.Rezerwacje.Where(p => p.Id == id).ToList();
+                var test = context.Rezerwacje.Where(p => p.Id == id).Include("Przedmioty").ToList();
+                foreach(var item in test)
+                {
+                    Console.WriteLine("HALLLO" + item.Id + " " + item.OdDaty);
+                }
+                return test;
+            }
+        }
+
+        internal static List<Rezerwacja> PobierzRezerwacjeStudentaWedlugStatusu(int id, Rezerwacja.StatusRezerwacji status)
+        {
+            using(CentrumContext context = new CentrumContext())
+            {
+                return context.Rezerwacje.Where(r => r.Status == status && r.Id == id).ToList();
             }
         }
 

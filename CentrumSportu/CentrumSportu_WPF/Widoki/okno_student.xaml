@@ -51,15 +51,8 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Wypożyczalnia Sprzętu">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="2*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-                    <ListView Name="rezerwacjeListView" Margin="0,0,223,0" Grid.ColumnSpan="2">
+                <Grid Margin="0,-18,0,18">
+                    <ListView Name="rezerwacjeListView" Margin="0,53,223,-22" SelectionChanged="rezerwacjeListView_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
@@ -69,7 +62,16 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <ComboBox x:Name="comboBoxRezerwacje" Margin="195,23,223,305" SelectionChanged="comboBoxRezerwacje_SelectionChanged">
+                        <ComboBoxItem>WSZYSTKIE</ComboBoxItem>
+                        <ComboBoxItem>OCZEKUJACE</ComboBoxItem>
+                        <ComboBoxItem>ZREALIZOWANE</ComboBoxItem>
+                        <ComboBoxItem>ANULOWANE</ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="label" Content="Wypozyczone przedmioty:&#xD;&#xA;" Margin="482,23,33,295"/>
+                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="" Margin="462,68,33,230"/>
                 </Grid>
+
             </TabItem>
         </TabControl>
     </Grid>
