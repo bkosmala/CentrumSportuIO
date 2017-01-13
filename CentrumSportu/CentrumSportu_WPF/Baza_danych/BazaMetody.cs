@@ -499,9 +499,25 @@ namespace CentrumSportu_WPF.Baza_danych
         public static List<Przedmiot> ZwrocWszystkiePrzedmioty()
         {
             using (CentrumContext context = new CentrumContext())
+            { 
+                return context.Przedmioty.ToList();
+            }
+        }
+
+        public static List<Rezerwacja> ZwrocRezerwacjeStudenta(int id)
+        {
+            using (CentrumContext context = new CentrumContext())
             {
-                var ret = context.Przedmioty.ToList();
-                return ret;
+                var rezerwacjeKlienta = context.Rezerwacje.Include("Przedmioty").Where(p => p.KlientId == id);
+                return rezerwacjeKlienta.ToList();
+            }
+        }
+
+        internal static List<Rezerwacja> PobierzRezerwacjeStudentaWedlugStatusu(int id, Rezerwacja.StatusRezerwacji status)
+        {
+            using(CentrumContext context = new CentrumContext())
+            {
+                return context.Rezerwacje.Include("Przedmioty").Where(r => r.Status == status && r.KlientId == id).ToList();
             }
         }
 

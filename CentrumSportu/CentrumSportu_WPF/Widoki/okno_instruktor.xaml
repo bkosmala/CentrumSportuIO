@@ -8,7 +8,7 @@
         Title="okno_instruktor" Height="600" Width="800" ResizeMode="CanMinimize" Loaded="Window_Loaded">
     <Grid>
         <TabControl>
-            <TabItem Header="Profil instruktora" Width="200">
+            <TabItem Header="Profil instruktora" Margin="0,0,-20,-2">
                 <Grid>
                     <Image x:Name="zdjecie_profilowe" HorizontalAlignment="Left" Height="350" Margin="30,34,0,0" VerticalAlignment="Top" Width="330"/>
 
@@ -45,7 +45,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Harmonogram zajęć" Width="200">
+            <TabItem Header="Harmonogram zajęć" Margin="20,0,-25,-2">
                 <Grid>
                     <Label x:Name="label" Content="Wybierz grupę :" Margin="32,38,547,453" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="GrupyComboBox" Margin="263,38,29,463" FontSize="18" SelectionChanged="GrupyComboBox_SelectionChanged"/>
@@ -82,7 +82,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Informacje o grupach" Width="190">
+            <TabItem Header="Informacje o grupach" Margin="26,0,-36,-2">
                 <Grid>
                     <Label Content="Wybierz grupę :" Margin="22,27,568,476" FontSize="18" FontWeight="Bold"/>
                     <ComboBox x:Name="InformacjeOGrupachComboBox" Margin="182,27,213,476" FontSize="18" SelectionChanged="InformacjeOGrupachComboBox_SelectionChanged"/>
@@ -107,6 +107,9 @@
                     <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="626,307,0,0" VerticalAlignment="Top" Width="105" Click="RozwiazGrupeButton_Click" Height="55" />
                     <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="626,233,0,0" VerticalAlignment="Top" Width="105"  Click="DodajGrupeButton_Click" Height="55"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Wypożyczalnia" Margin="36,0,-40,-2">
+                
             </TabItem>
 
         </TabControl>

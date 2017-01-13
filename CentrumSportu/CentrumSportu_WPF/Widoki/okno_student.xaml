@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         mc:Ignorable="d"
-        Title="okno_student" Height="252" Width="350">
+        Title="okno_student" Height="417" Width="684">
     <Grid>
         <TabControl>
             <TabItem Header="Profil Student">
@@ -49,6 +49,29 @@
                     </ListView>
 
                 </Grid>
+            </TabItem>
+            <TabItem Header="Wypożyczalnia Sprzętu">
+                <Grid Margin="0,-18,0,18">
+                    <ListView Name="rezerwacjeListView" Margin="0,53,223,-22" SelectionChanged="rezerwacjeListView_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="od" Width="145px" DisplayMemberBinding="{Binding OdDaty}" />
+                                <GridViewColumn Header="do" Width="145px" DisplayMemberBinding="{Binding DoDaty}" />
+                                <GridViewColumn Header="Status" Width="120px" DisplayMemberBinding="{Binding Status}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ComboBox x:Name="comboBoxRezerwacje" Margin="195,23,223,305" SelectionChanged="comboBoxRezerwacje_SelectionChanged">
+                        <ComboBoxItem>WSZYSTKIE</ComboBoxItem>
+                        <ComboBoxItem>OCZEKUJACE</ComboBoxItem>
+                        <ComboBoxItem>ZREALIZOWANE</ComboBoxItem>
+                        <ComboBoxItem>ANULOWANE</ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="label" Content="Wypozyczone przedmioty:&#xD;&#xA;" Margin="482,23,33,295"/>
+                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="" Margin="462,68,33,230"/>
+                </Grid>
+
             </TabItem>
         </TabControl>
     </Grid>
