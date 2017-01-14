@@ -480,7 +480,7 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data = new CentrumContext())
             {
-                var query = (from z in data.Zajecia.Include("Dyscyplina")
+                var query = (from z in data.Zajecia.Include("Dyscyplina").Include("CennikZajec")
                              select z).ToList();
                 return query;
             }

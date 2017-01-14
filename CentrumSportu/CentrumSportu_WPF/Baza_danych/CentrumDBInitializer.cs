@@ -81,10 +81,16 @@ namespace CentrumSportu_WPF.Baza_danych
             instruktor1.Grupy.Add(grupa2);
             instruktor1.Grupy.Add(grupa3);
 
+            //Cenniki - moduł oferta
+
+            Cennik cennik1 = new Cennik(12, "zł", "Cennik - zajęcia grupowe, piłka nożna");
+            Cennik cennik2 = new Cennik(13, "zł", "Cennik - zajęcia grupowe, koszykówka");
+            Cennik cennik3 = new Cennik(15, "zł", "Cennik - zajęcia grupowe, siatkówka");
+
             //Zajecia - moduł oferta
-            Zajecia zajecia1 = new Zajecia("grupowe", dyscypliny[0], "Trening piłki nożnej", "Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ", null);
-            Zajecia zajecia2 = new Zajecia("grupowe", dyscypliny[2], "Trening koszykówki", "Rozgrywka zespołowa na każdym treningu", null);
-            Zajecia zajecia3 = new Zajecia("grupowe", dyscypliny[1], "Trening siatkówki", "Trening prowadzony przez doświadczonych trenerów.\n", null);
+            Zajecia zajecia1 = new Zajecia("grupowe", dyscypliny[0], "Trening piłki nożnej", "Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ", cennik1);
+            Zajecia zajecia2 = new Zajecia("grupowe", dyscypliny[2], "Trening koszykówki", "Rozgrywka zespołowa na każdym treningu", cennik2);
+            Zajecia zajecia3 = new Zajecia("grupowe", dyscypliny[1], "Trening siatkówki", "Trening prowadzony przez doświadczonych trenerów.\n", cennik3);
             List<Zajecia> zajeciaOferta = new List<Zajecia>();
 
             zajeciaOferta.Add(zajecia1);
@@ -144,6 +150,9 @@ namespace CentrumSportu_WPF.Baza_danych
             context.UczestnicyZajec.Add(uczestnik1);
             context.UczestnicyZajec.Add(uczestnik2);
             context.UczestnicyZajec.Add(uczestnik3);
+            context.Cennik.Add(cennik1);
+            context.Cennik.Add(cennik2);
+            context.Cennik.Add(cennik3);
             context.SaveChanges();
 
             var d = new List<Dyscyplina>(dyscypliny.Take<Dyscyplina>(2));
