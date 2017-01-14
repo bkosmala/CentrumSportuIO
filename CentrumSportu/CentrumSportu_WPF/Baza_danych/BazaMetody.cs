@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Modul_instruktorow;
 using CentrumSportu_WPF.Modul_oferty;
+using System.Data.Entity.Core.Objects;
 
 namespace CentrumSportu_WPF.Baza_danych
 {
@@ -38,7 +39,15 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
-        
+        //takie, ktore juz moga zostac wypozyczone - zrealizowane
+        internal static List<Rezerwacja> ZwrocRezerwacjeAktywne()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Rezerwacje.Include("Przedmioty").Include(t => t.Klient).Where(x => Math.Abs(DbFunctions.DiffMinutes(x.OdDaty, DateTime.Now) ?? 11) < 10).ToList();
+            }
+        }
+
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
             //TO DO

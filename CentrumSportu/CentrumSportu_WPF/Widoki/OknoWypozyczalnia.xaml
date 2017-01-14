@@ -8,6 +8,37 @@
         Title="OknoWypozyczalnia" Height="600" Width="800" ResizeMode="CanMinimize">
     <Grid>
         <Button x:Name="wylogujButton" Content="Wyloguj" HorizontalAlignment="Left" Margin="40,480,0,0" VerticalAlignment="Top" Width="165" Height="45" Click="wylogujButton_Click"/>
+        <Label x:Name="label" Content="Zalogowany jako:" HorizontalAlignment="Left" Margin="435,0,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="UzytkownikLabel" Content="" HorizontalAlignment="Left" Margin="573,0,0,0" VerticalAlignment="Top" Width="211" FontWeight="Bold" FontSize="16"/>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="340" Margin="10,55,0,0" VerticalAlignment="Top" Width="774">
+            <TabItem Header="Wypożyczaj" Margin="0,0,-4,-2">
+                <Grid Background="#FFE5E5E5">
 
+                    <ListView x:Name="rezerwacjeAktywneListView" SelectionChanged="rezerwacjeListView_SelectionChanged" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Od" Width="130" DisplayMemberBinding="{Binding OdDaty}"/>
+                                <GridViewColumn Header="Do" Width="130" DisplayMemberBinding="{Binding DoDaty}"/>
+                                <GridViewColumn Header="Id Klienta" Width="60" DisplayMemberBinding="{Binding KlientId}"/>
+                                <GridViewColumn Header="Nazwisko Klienta" Width="130" DisplayMemberBinding="{Binding Klient.Nazwisko}"/>
+                                <GridViewColumn Header="Imie Klienta" Width="120" DisplayMemberBinding="{Binding Klient.Imie}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Przyjmuj zwroty" Margin="6,0,-10,-2">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
