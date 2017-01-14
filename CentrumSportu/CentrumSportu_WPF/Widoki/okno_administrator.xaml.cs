@@ -15,6 +15,7 @@ using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Baza_danych;
 using CentrumSportu_WPF.Modul_instruktorow;
 using System.Collections.ObjectModel;
+using CentrumSportu_WPF.Modul_oferty;
 
 namespace CentrumSportu_WPF.Widoki
 {
@@ -29,6 +30,8 @@ namespace CentrumSportu_WPF.Widoki
         private ObservableCollection<Administrator> administratorzy;
         private ObservableCollection<Student> studenci;
         private ObservableCollection<Instruktor> instruktorzy;
+        private ObservableCollection<ObiektSportowy> obiekty;
+        private ObservableCollection<Przedmiot> przedmioty;
 
         public okno_administrator(Administrator _administrator)
         {
@@ -39,6 +42,8 @@ namespace CentrumSportu_WPF.Widoki
             administratorzy = new ObservableCollection<Administrator>(BazaMetody.ZwrocWszystkichAdministratorow());
             studenci = new ObservableCollection<Student>(BazaMetody.ZwrocWszystkichStudentow());
             instruktorzy = new ObservableCollection<Instruktor>(BazaMetody.ZwrocWszystkichInstruktorow());
+            obiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
+            przedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
 
             // ---------------------------------------------------------------------------------- PROFIL
             //this.imieTB.Text = administrator.Imie;
@@ -74,6 +79,8 @@ namespace CentrumSportu_WPF.Widoki
             InstruktorzyListView.SelectedIndex = 0;
             AdministratorzyListView.SelectedIndex = 0;
 
+            this.ObiektySportoweListView.ItemsSource = obiekty;
+            this.SprzetListView.ItemsSource = przedmioty;
 
         }
 

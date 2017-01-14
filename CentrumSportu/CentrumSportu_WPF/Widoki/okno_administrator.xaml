@@ -93,7 +93,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    
+
                     <Label Content="Studenci" HorizontalAlignment="Left" Margin="281,115,0,0" VerticalAlignment="Top" FontSize="16"/>
                     <ListView x:Name="StudenciListView" Height="64" Margin="10,151,10,0" VerticalAlignment="Top">
                         <ListView.View>
@@ -104,7 +104,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    
+
                     <Label Content="Instruktorzy" HorizontalAlignment="Left" Margin="272,220,0,0" VerticalAlignment="Top" FontSize="16"/>
                     <ListView x:Name="InstruktorzyListView" Height="64" Margin="10,256,10,0" VerticalAlignment="Top">
                         <ListView.View>
@@ -133,7 +133,38 @@
                     <Button x:Name="DodajUzytkownikaButton" Content="Dodaj użytkownika" Margin="8,441,494,0" Height="32" VerticalAlignment="Top" Click="DodajUzytkownika_Click"/>
                 </Grid>
             </TabItem>
-            
+            <TabItem Header="Obiekty sportowe i sprzęt">
+                <Grid>
+                    <Label Content="Obiekty sportowe" HorizontalAlignment="Left" Margin="252,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <ListView x:Name="ObiektySportoweListView" Height="179" Margin="10,46,10,0" VerticalAlignment="Top">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Nazwa" Width="150px"/>
+                                <GridViewColumn Header="Maksymalna ilość uczestników" Width="165px"/>
+                                <GridViewColumn Header="Pojemność trybun" Width="150px" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <Label Content="Sprzęt do wypożyczenia" HorizontalAlignment="Left" Margin="242,230,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <ListView x:Name="SprzetListView" Height="179" Margin="10,266,10,0" VerticalAlignment="Top">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Nazwa" Width="150px" DisplayMemberBinding="{Binding Nazwa}"/>
+                                <GridViewColumn Header="Dostępność" Width="150px" DisplayMemberBinding="{Binding Dostepnosc}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="DodajObiektSportowyButton" Content="Dodaj obiekt sportowy" Margin="10,450,479,0" Height="33" VerticalAlignment="Top"/>
+                    <Button x:Name="UsunObiektSportowyButton" Content="Usuń obiekt sportowy" Margin="147,450,299,0" Height="33" VerticalAlignment="Top"/>
+                    <Button x:Name="DodajSprzetButton" Content="Dodaj sprzęt" HorizontalAlignment="Left" Margin="327,450,0,0" VerticalAlignment="Top" Width="159" Height="33"/>
+                    <Button x:Name="UsunSprzetButton" Content="Usuń sprzęt" HorizontalAlignment="Left" Margin="491,450,0,0" VerticalAlignment="Top" Width="120" Height="33"/>
+
+                </Grid>
+            </TabItem>
+
+
+
         </TabControl>
 
     </Grid>
