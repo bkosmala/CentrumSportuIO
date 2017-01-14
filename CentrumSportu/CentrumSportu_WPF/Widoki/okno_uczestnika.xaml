@@ -1,0 +1,53 @@
+﻿<Window x:Class="CentrumSportu_WPF.Widoki.okno_uczestnika"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
+        mc:Ignorable="d"
+        Title="okno_uczestnika" Height="600" Width="800">
+        <Grid>
+            <TabControl>
+                <TabItem Header="Profil Użytkownika">
+                    <Grid>
+                        <Image x:Name="zdjecieProfiloweStudentImage" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+                        <Label Content="Imię:" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="115,41,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="nazwiskoStudentLabel" Content="value" HorizontalAlignment="Left" Margin="183,41,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="imieStudentLabel" Content="value" HorizontalAlignment="Left" Margin="183,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Email:" HorizontalAlignment="Left" Margin="115,72,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Telefon:" HorizontalAlignment="Left" Margin="115,103,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="emailStudentLabel" Content="value" HorizontalAlignment="Left" Margin="183,72,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="telefonStudentLabel" Content="value" HorizontalAlignment="Left" Margin="183,103,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="WylogujStudentButton" Content="Wyloguj" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="75" Click="WylogujStudentButton_Click"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Bilety">
+                    <Grid>
+                        <ListView x:Name="BiletyListView" HorizontalAlignment="Left" Height="413" Margin="10,10,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="BiletyListView_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Data" Width="150px" DisplayMemberBinding="{Binding Zajecia.DataRozpoczecia}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Label x:Name="label1" Content="Nazwa:" Width="100" Height="50" Margin="244,10,444,483.5"/>
+                        <Label x:Name="label2" Content="Opis:" Width="100" Height="50" Margin="244,185,444,308.5"/>
+                        <Label x:Name="label3" Content="Dyscyplina" Height="50" Margin="244,70,464,423.5"/>
+                        <Label x:Name="label4" Content="Długoość Zajęć" Height="50" Margin="239,130,449,363.5"/>
+                        <Label x:Name="dlugoscL" Content=" " Height="50" Margin="344,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="232" />
+
+                        <Label x:Name="nazwaL" Content=" " Height="50" Margin="344,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="344" />
+                        <Label x:Name="opisL" Content=" " Height="173" Margin="344,185,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="434" />
+                        <Label x:Name="DyscyplinaL" Content=" " Height="50" Margin="344,70,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="232" />
+
+                        <Button Width="85" Height="55" Content="Oddaj Bilet" Margin="10,430,78,31.5" VerticalAlignment="Top" HorizontalAlignment="Left"  Name="oddajBilet" Click="oddajBilet_Click" />
+                        <Button Width="85" Height="55" Content="Nowy bilet"  Margin="105,430,504,31.5" VerticalAlignment="Top" HorizontalAlignment="Left" Name="nowyBilet" Click="nowyBilet_Click"  />
+
+                    </Grid>
+                </TabItem>
+
+        </TabControl>
+        </Grid>
+</Window>

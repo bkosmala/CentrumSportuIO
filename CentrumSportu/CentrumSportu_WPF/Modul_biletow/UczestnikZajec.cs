@@ -10,7 +10,7 @@ namespace CentrumSportu_WPF.Modul_biletow
     [Table("UczestnicyZajec")]
     public class UczestnikZajec : Osoba
     {
-        private List<Bilet> _bilety;
+        private ICollection<Bilet> _bilety;
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
         public string Email { get; set; }
@@ -43,7 +43,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         }
 
 
-        public List<Bilet> Bilety
+        public ICollection<Bilet> Bilety
         {
             get
             {
@@ -67,7 +67,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         {
             
             _bilety.Remove(b);
-            // Zajecia: potrzebuje daty i liczby osob
+            
         }
 
         public void zamienBilet(Bilet biletdoOddania, Bilet biletdoKupienia)

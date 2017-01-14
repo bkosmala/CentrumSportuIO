@@ -115,6 +115,9 @@
     <Compile Include="Widoki\okno_student.xaml.cs">
       <DependentUpon>okno_student.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\okno_uczestnika.xaml.cs">
+      <DependentUpon>okno_uczestnika.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\Okno_Zastepstwo.xaml.cs">
       <DependentUpon>Okno_Zastepstwo.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\okno_student.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\okno_uczestnika.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

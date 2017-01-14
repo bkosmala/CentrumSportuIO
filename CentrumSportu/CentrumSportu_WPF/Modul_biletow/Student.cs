@@ -32,9 +32,9 @@ namespace CentrumSportu_WPF.Modul_biletow
             
         }
 
-        public Grupa Grupa { get;  set; }
+        public virtual Grupa Grupa { get;  set; }
 
-        public Profil Profil { get; set; }
+        public virtual Profil Profil { get; set; }
 
 
         public void odejdzZGrupy()

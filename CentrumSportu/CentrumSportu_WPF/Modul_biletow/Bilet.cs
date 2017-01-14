@@ -1,4 +1,5 @@
-﻿using CentrumSportu_WPF.Modul_oferty;
+﻿using CentrumSportu_WPF.Modul_instruktorow;
+using CentrumSportu_WPF.Modul_oferty;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,21 +13,41 @@ namespace CentrumSportu_WPF.Modul_biletow
     public class Bilet
     {
         private int _id;
-        private Zajecia _zajecia;  
+        public virtual WpisZajecia Zajecia { get; set; }  
         private bool _zaplacono;
-  
+        
 
-        public Bilet(int id, Zajecia zajecia)
+        
+        public string Oplacone
+        {
+            get
+            {
+                if (_zaplacono)
+                    return "opłacono";
+                else
+                    return "nie opłacono";
+            }
+        }
+
+        public UczestnikZajec Uczestnik { get; set; }
+  
+        public Bilet()
+        {
+
+        }
+
+        public Bilet(int id, WpisZajecia zajecia)
         {
             _zaplacono = false;
             _id = id;
-            _zajecia = zajecia;
+            Zajecia = zajecia;
         }
 
-        public Bilet(Zajecia zajecia)
+        public Bilet(WpisZajecia zajecia, UczestnikZajec idU)
         {
-            this._zajecia = zajecia;
+            this.Zajecia = zajecia;
             _zaplacono = false;
+            this.Uczestnik = idU;
         }
 
         public int Id
@@ -43,18 +64,7 @@ namespace CentrumSportu_WPF.Modul_biletow
         }
 
         
-        public Zajecia zajecia
-        {
-            get
-            {
-                return _zajecia;
-            }
 
-            set
-            {
-                _zajecia = value;
-            }
-        }
         
 
         public bool Zaplacono

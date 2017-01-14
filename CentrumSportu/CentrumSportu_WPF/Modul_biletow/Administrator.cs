@@ -24,22 +24,7 @@ namespace CentrumSportu_WPF.Modul_biletow
 
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
-        private void StworzAdministratora(string imie, string nazwisko)
-        {
-            //Instruktor a = new Instruktor(imie, nazwisko);
-            //dodanie do listy?
-        }
 
-        private void StworzInstruktora(string imie, string nazwisko)
-        {
-            //Instruktor a = new Instruktor(imie, nazwisko);
-            //dodanie do listy?
-        }
-
-        private void usunUzytkownika(Osoba o)
-        {
-            
-        }
 
     }
 }

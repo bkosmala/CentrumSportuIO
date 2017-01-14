@@ -26,27 +26,26 @@
             </TabItem>
             <TabItem Header="Bilety">
                 <Grid>
-                    <ListView x:Name="BiletyListView" HorizontalAlignment="Left" Height="125" Margin="10,10,0,0" VerticalAlignment="Top" Width="316">
+                    <ListView x:Name="BiletyListView" HorizontalAlignment="Left" Height="413" Margin="10,10,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="BiletyListView_SelectionChanged">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="30px"/>
-                                <GridViewColumn Header="Zajęcia" Width="150px"/>
+                                <GridViewColumn Header="ID" Width="30px" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Data" Width="150px" DisplayMemberBinding="{Binding Zajecia.DataRozpoczecia}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Zajęcia odbyte">
-                <Grid>
-                    <ListView x:Name="ZajeciaOdbyteListView" HorizontalAlignment="Left" Height="125" Margin="10,10,0,0" VerticalAlignment="Top" Width="316">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Grupa" Width="105px"/>
-                                <GridViewColumn Header="Data" Width="105px"/>
-                                <GridViewColumn Header="Obecność" Width="105px"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <Label x:Name="label1" Content="Nazwa:" Width="100" Height="50" Margin="244,10,444,483.5"/>
+                    <Label x:Name="label2" Content="Opis:" Width="100" Height="50" Margin="244,185,444,308.5"/>
+                    <Label x:Name="label3" Content="Dyscyplina" Height="50" Margin="244,70,464,423.5"/>
+                    <Label x:Name="label4" Content="Długoość Zajęć" Height="50" Margin="239,130,449,363.5"/>
+                    <Label x:Name="dlugoscL" Content=" " Height="50" Margin="344,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="232" />
+
+                    <Label x:Name="nazwaL" Content=" " Height="50" Margin="344,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="344" />
+                    <Label x:Name="opisL" Content=" " Height="173" Margin="344,185,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="434" />
+                    <Label x:Name="DyscyplinaL" Content=" " Height="50" Margin="344,70,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="232" />
+
+                    <Button Width="85" Height="55" Content="Oddaj Bilet" Margin="10,430,78,31.5" VerticalAlignment="Top" HorizontalAlignment="Left"  Name="oddajBilet" Click="oddajBilet_Click" />
+                    <Button Width="85" Height="55" Content="Nowy bilet"  Margin="105,430,504,31.5" VerticalAlignment="Top" HorizontalAlignment="Left" Name="nowyBilet" Click="nowyBilet_Click"  />
 
                 </Grid>
             </TabItem>
@@ -76,6 +75,7 @@
                 </Grid>
 
             </TabItem>
+
         </TabControl>
     </Grid>
 </Window>

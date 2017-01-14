@@ -26,7 +26,6 @@ namespace CentrumSportu_WPF.Widoki
     {
         private Student student;
         private ObservableCollection<Bilet> bilety;
-        private ObservableCollection<ZajeciaOdbyte> zajeciaOdbyte;
         private ObservableCollection<Rezerwacja> rezerwacje;
         
         public okno_student(Student _student)
@@ -44,6 +43,12 @@ namespace CentrumSportu_WPF.Widoki
             
             rezerwacjeListView.ItemsSource = rezerwacje;
             comboBoxRezerwacje.SelectedIndex = 0;
+
+            bilety = new ObservableCollection<Bilet>(BazaMetody.ZwrocBiletyUzytkownika(student));
+            this.BiletyListView.ItemsSource = bilety;
+            
+
+
         }
 
         private void WylogujStudentButton_Click(object sender, RoutedEventArgs e)
@@ -94,6 +99,63 @@ namespace CentrumSportu_WPF.Widoki
             var rezerwacja = (Rezerwacja)rezerwacjeListView.SelectedItem;
             rezerwacja.Status = Rezerwacja.StatusRezerwacji.ANULOWANA;
             BazaMetody.AnulujRezerwacje(rezerwacja);
+        }
+
+        private void BiletyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            Bilet bilet = (Bilet)BiletyListView.SelectedItem;
+            if (bilet != null)
+            {
+                this.nazwaL.Content = bilet.Zajecia.Zajecia.Nazwa;
+                this.opisL.Content = bilet.Zajecia.Zajecia.Opis;
+                this.DyscyplinaL.Content = bilet.Zajecia.Zajecia.Dyscyplina.Nazwa;
+                this.dlugoscL.Content = bilet.Zajecia.DlugoscZajec + " min";
+            }
+            else
+            {
+                this.nazwaL.Content = " ";
+                this.opisL.Content = " ";
+                this.DyscyplinaL.Content = " ";
+                this.dlugoscL.Content = " ";
+            }
+            
+            if (bilet.Zajecia.DataRozpoczecia > DateTime.Now)
+                this.oddajBilet.IsEnabled = false;
+            else
+                this.oddajBilet.IsEnabled = true;
+               
+        }
+
+        private void oddajBilet_Click(object sender, RoutedEventArgs e)
+        {
+            Bilet bilet = (Bilet)BiletyListView.SelectedItem;
+
+
+
+            bool flaga = BazaMetody.UsunBilet(bilet);
+            if (flaga)
+            {
+                MessageBox.Show("Bilet Zostal usuniety");
+                bilet.Zajecia.Grupa.UsunUczestnika(student.Id);
+                bilety = new ObservableCollection<Bilet>(BazaMetody.ZwrocBiletyUzytkownika(student));
+                this.BiletyListView.ItemsSource = bilety;
+            }
+
+            else
+                MessageBox.Show("Wystapil blad");
+
+
+
+
+
+        }
+
+        private void nowyBilet_Click(object sender, RoutedEventArgs e)
+        {
+            OfertaWidok widok = new OfertaWidok();
+            //widok.fromWhere = 1;
+            Switcher.Switch(widok);
         }
     }
 }

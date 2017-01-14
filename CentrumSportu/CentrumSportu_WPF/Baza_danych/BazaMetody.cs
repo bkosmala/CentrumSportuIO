@@ -662,5 +662,37 @@ namespace CentrumSportu_WPF.Baza_danych
             return lista;
         }
 
+        public static List<Bilet> ZwrocBiletyUzytkownika(UczestnikZajec u)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Bilety.Include("Zajecia").Include("Zajecia.Zajecia").Include("Zajecia.Zajecia.Dyscyplina").Include("Zajecia.Grupa").Include("Zajecia.Grupa.Uczestincy").Where(r =>  r.Uczestnik.Id == u.Id).ToList();
+                
+
+            }
+        }
+
+        public static bool UsunBilet(Bilet bilet)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    var b = data.Bilety.FirstOrDefault(r => r.Id == bilet.Id);
+                    data.Bilety.Remove(b);
+                    data.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+
+            }
+            return true;
+
+        }
+
+
+
     }
 }

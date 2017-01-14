@@ -42,9 +42,11 @@ namespace CentrumSportu_WPF.Baza_danych
             instruktor2.Zdjecie = path + "../../Images/instruktor_test1.jpg";
             instruktor2.WpisZajecia = new List<WpisZajecia>();
 
+
             //Studenci
             Student student1 = new Student("Rafał", "Lebioda", kontoStudent, "rafal.lebioda@gmail.com", "666666666");
             student1.Zdjecie = path + "../../Images/profilPhoto.jpg";
+
 
             //Administratorzy
             Administrator administrator1 = new Administrator("Super", "Admin",kontoAdministrator);
@@ -104,6 +106,19 @@ namespace CentrumSportu_WPF.Baza_danych
                 new WpisZajecia(new DateTime(2017,2,6,16,0,0), new DateTime(2017,2,6,18,0,0),obiekt1,instruktor1,grupa3,zajecia3 )
             };
 
+
+            //Bilety
+            Bilet b1 = new Bilet(zajecia[0], student1);
+            student1.Bilety = new List<Bilet>();
+            student1.Bilety.Add(b1);
+
+
+            context.Bilety.Add(b1);
+            
+
+
+
+
             //Rezerwacje - moduł oferta
 
             Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
@@ -155,6 +170,10 @@ namespace CentrumSportu_WPF.Baza_danych
             instruktor2.Dyscypliny = d;
             context.Instruktorzy.Add(instruktor2);
             base.Seed(context);
+
+
+            
+            
         }
     }
 }
