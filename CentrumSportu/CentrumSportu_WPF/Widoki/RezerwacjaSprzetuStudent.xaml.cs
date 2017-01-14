@@ -23,38 +23,45 @@ namespace CentrumSportu_WPF.Widoki
     public partial class WypozyczanieSprzetuStudent : Window
     {
         private ObservableCollection<Przedmiot> dostepnePrzedmioty;
+        private Osoba klient;
        
-        public WypozyczanieSprzetuStudent(okno_student o)
+        public WypozyczanieSprzetuStudent(okno_student o, Osoba klient)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            this.klient = klient;
+            dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
 
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {
             CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today);
             CalendarDateRange cdr2 = new CalendarDateRange(DateTime.Today.AddDays(22), DateTime.MaxValue);
             wyborDatyControl.BlackoutDates.Add(cdr);
             wyborDatyControl.BlackoutDates.Add(cdr2);
             startGodzinaControl.TimeInterval = new TimeSpan(0, 15, 0);
-            //startGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 7, 0, 0);
+            startGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 7, 0, 0);
+            startGodzinaControl.DisplayDefaultValueOnEmptyText = true;
             startGodzinaControl.EndTime = new TimeSpan(21, 0, 0);
             startGodzinaControl.StartTime = new TimeSpan(7, 0, 0);
             koniecGodzinaControl.TimeInterval = new TimeSpan(0, 15, 0);
-            //koniecGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 22, 0, 0);
+            koniecGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 8, 0, 0);
             koniecGodzinaControl.EndTime = new TimeSpan(22, 0, 0);
+            koniecGodzinaControl.DisplayDefaultValueOnEmptyText = true;
             koniecGodzinaControl.StartTime = new TimeSpan(7, 15, 0);
-            
-
-            dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
             listView.ItemsSource = dostepnePrzedmioty;
             listView.IsEnabled = false;
         }
-        
+
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var wybranyPrzedmiot = (Przedmiot)listView.SelectedItem;
             if (wybranyPrzedmiot != null)
             {
-                label3.Content = wybranyPrzedmiot.Nazwa;
-                textBox.Text = wybranyPrzedmiot.Nazwa;
+                nazwaPrzedmiotuLabel.Content = wybranyPrzedmiot.Nazwa;
+                idPrzedmiotuLabel.Content = wybranyPrzedmiot.Id;
             }
             
         }
@@ -109,6 +116,11 @@ namespace CentrumSportu_WPF.Widoki
 
             dostepnePrzedmioty.Clear();
             BazaMetody.ZwrocDostepnePrzedmiotyWTerminie(startDate, endDate).ForEach(dostepnePrzedmioty.Add);
+        }
+
+        private void rezerwujButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

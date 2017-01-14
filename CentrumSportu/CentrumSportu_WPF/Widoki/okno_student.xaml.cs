@@ -81,7 +81,7 @@ namespace CentrumSportu_WPF.Widoki
 
         private void WypozyczButton_Click(object sender, RoutedEventArgs e)
         {
-            WypozyczanieSprzetuStudent okno = new WypozyczanieSprzetuStudent(this);
+            WypozyczanieSprzetuStudent okno = new WypozyczanieSprzetuStudent(this, this.student);
             okno.ShowDialog();
         }
     }
