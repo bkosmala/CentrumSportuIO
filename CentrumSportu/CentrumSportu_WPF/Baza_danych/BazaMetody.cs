@@ -39,6 +39,14 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        internal static List<Rezerwacja> ZwrocRezerwacjeWedlugStatusu(Rezerwacja.StatusRezerwacji status)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Rezerwacje.Include(x => x.Klient).Include(x => x.Przedmioty).Include(x => x.Wypozyczenie).Where(x => x.Status == status).ToList();
+            }
+        }
+
         //takie, ktore juz moga zostac wypozyczone - zrealizowane
         internal static List<Rezerwacja> ZwrocRezerwacjeAktywne()
         {

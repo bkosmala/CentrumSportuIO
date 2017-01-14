@@ -94,10 +94,10 @@ namespace CentrumSportu_WPF.Widoki
 
         private void ListBoxPrzedmiotySelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Przedmiot selectedPrzedmiot = (listBoxSprzet.SelectedItem as Przedmiot);
+            Przedmiot selectedPrzedmiot = listBoxSprzet.SelectedItem as Przedmiot;
             if (selectedPrzedmiot != null)
             {
-                textBoxNazwaSprzetu.Text = selectedPrzedmiot.Nazwa;
+                nazwaPrzedmiotuLabel.Content = selectedPrzedmiot.Nazwa;
             }
         }
 

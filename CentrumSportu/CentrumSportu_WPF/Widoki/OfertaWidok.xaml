@@ -141,10 +141,8 @@
                     </ListBox>
                     <Grid Grid.ColumnSpan="2" Margin="253,-10,12,10">
                         <Label x:Name="label" Content="Nazwa:" HorizontalAlignment="Left" Margin="14,82,0,0" VerticalAlignment="Top" Height="32" Width="58"/>
-                        <TextBox x:Name="textBoxNazwaSprzetu" HorizontalAlignment="Left" Height="23" Margin="77,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" IsEnabled="False"/>
                         <Label x:Name="label1" Content="Cena:" HorizontalAlignment="Left" Margin="14,139,0,0" VerticalAlignment="Top" Height="32" Width="58"/>
-                        <TextBox x:Name="textBoxCena" HorizontalAlignment="Left" Height="23" Margin="77,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" IsEnabled="False"/>
-
+                        <Label x:Name="nazwaPrzedmiotuLabel" Content="" HorizontalAlignment="Left" Margin="77,82,0,0" VerticalAlignment="Top" Height="32" Width="387"/>
                     </Grid>
 
                 </Grid>
