@@ -23,7 +23,11 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public int IloscMiejscTrybuny { get; set; }
 
-        public ObiektSportowy(string nazwa,List<Dyscyplina> dyscypliny,int maxUczestnicy,int trybuny)
+        public string Opis { get; set; }
+
+        public string Zdjecie { get; set; }
+
+        public ObiektSportowy(string nazwa,List<Dyscyplina> dyscypliny,int maxUczestnicy,int trybuny )
         {
             Nazwa = nazwa;
             DostepneDyscypliny = dyscypliny;

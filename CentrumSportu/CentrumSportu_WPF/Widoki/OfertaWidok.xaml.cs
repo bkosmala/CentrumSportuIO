@@ -32,8 +32,9 @@ namespace CentrumSportu_WPF.Widoki
         private ObservableCollection<Wydarzenie> listWydarzenia;
         private ObservableCollection<Przedmiot> oferowanySprzet;
         private Zajecia selectedZajecia;
+        private ObiektSportowy selectedObiekt;
 
-        
+
         public OfertaWidok()
         {
             InitializeComponent();
@@ -62,9 +63,16 @@ namespace CentrumSportu_WPF.Widoki
             }
              else { textBlockCena.Text = ""; }
 
-    listObiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
+            listObiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
             listBoxObiekty.ItemsSource = listObiekty;
-            obiektyViewBox.DataContext = listObiekty.ElementAt(0);
+            selectedObiekt = listObiekty.ElementAt(0);
+            obiektyViewBox.DataContext = selectedObiekt;
+
+            if (selectedObiekt.Zdjecie != null)
+            {
+                zdjecie_obiektu.Source = new BitmapImage(new Uri(selectedObiekt.Zdjecie));
+            }
+            zdjecie_obiektu.Visibility = System.Windows.Visibility.Hidden;
 
             //Wydarzenie a = new Wydarzenie("Koncert zespołu Beam");
             //listWydarzenia.Add(a);
@@ -90,6 +98,26 @@ namespace CentrumSportu_WPF.Widoki
                 textBlockCena.Text = c.CenaPodstawowa + c.Waluta + "/za godzinę";
             }
             else { textBlockCena.Text = ""; }
+        }
+
+        private void ListBoxObiekty_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedObiekt = listObiekty.ElementAt(listBoxObiekty.SelectedIndex);
+            obiektyViewBox.DataContext = selectedObiekt;
+
+            if (selectedObiekt.Zdjecie != null)
+            {
+                zdjecie_obiektu.Source = new BitmapImage(new Uri(selectedObiekt.Zdjecie));
+            }
+        }
+
+
+        private void Tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(tab.SelectedIndex==1)
+            { zdjecie_obiektu.Visibility = System.Windows.Visibility.Visible; }
+            else
+            { zdjecie_obiektu.Visibility = System.Windows.Visibility.Hidden; }
         }
 
         private void ListBoxPrzedmiotySelectionChanged(object sender, SelectionChangedEventArgs e)
