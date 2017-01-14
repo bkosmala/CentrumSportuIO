@@ -130,8 +130,8 @@
     <Compile Include="Widoki\UsunTerminZajec.xaml.cs">
       <DependentUpon>UsunTerminZajec.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Widoki\WypozyczanieSprzetuStudent.xaml.cs">
-      <DependentUpon>WypozyczanieSprzetuStudent.xaml</DependentUpon>
+    <Compile Include="Widoki\RezerwacjaSprzetuStudent.xaml.cs">
+      <DependentUpon>RezerwacjaSprzetuStudent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml.cs">
       <DependentUpon>WysylanieWiadomosciDoUzytkownika.xaml</DependentUpon>
@@ -195,7 +195,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Widoki\WypozyczanieSprzetuStudent.xaml">
+    <Page Include="Widoki\RezerwacjaSprzetuStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -44,13 +44,14 @@ namespace CentrumSportu_WPF.Widoki
             
 
             dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
-            listBox.ItemsSource = dostepnePrzedmioty;
+            listView.ItemsSource = dostepnePrzedmioty;
         }
-
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var wybranyPrzedmiot = (Przedmiot)listBox.SelectedItem;
+            var wybranyPrzedmiot = (Przedmiot)listView.SelectedItem;
             label3.Content = wybranyPrzedmiot.Nazwa;
+            textBox.Text = wybranyPrzedmiot.Nazwa;
         }
     }
 }

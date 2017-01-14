@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="CentrumSportu_WPF.Widoki.WypozyczanieSprzetuStudent"
         mc:Ignorable="d"
-        Title="WypozyczanieSprzetuStudent" Height="377" Width="454">
+        Title="RezerwacjaSprzetuStudent" Height="377" Width="454">
+    <Window.Resources>
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Label x:Name="label" Content="Wybierz datę i godzinę rozpoczęcia:" HorizontalAlignment="Left" Margin="210,21,0,0" VerticalAlignment="Top" Height="27" Width="215"/>
         <Label x:Name="label1" Content="Wybierz godzinę zakończenia:" HorizontalAlignment="Left" Margin="210,94,0,0" VerticalAlignment="Top" Width="215"/>
@@ -15,14 +20,24 @@
         <Label x:Name="cenaLabel" Content="Label" HorizontalAlignment="Left" Margin="252,185,0,0" VerticalAlignment="Top" Width="173"/>
         <DatePicker Name="wyborDatyControl" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Width="215"/>
         <xctk:TimePicker Name="startGodzinaControl" HorizontalAlignment="Left" Margin="210,72,0,0" VerticalAlignment="Top" Width="215" RenderTransformOrigin="0.442,0.3"/>
-        <ListBox x:Name="listBox" ItemsSource="{Binding dostepnePrzedmioty}" HorizontalAlignment="Left" Height="304" Margin="0,21,0,0" VerticalAlignment="Top" Width="205" SelectionChanged="listBox_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <CheckBox Content="{Binding Nazwa}" IsChecked="False"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
         <Label x:Name="label3" Content="Label" HorizontalAlignment="Left" Margin="211,216,0,0" VerticalAlignment="Top"/>
+        <ListView ItemsSource="{Binding dostepnePrzedmioty}" x:Name="listView" HorizontalAlignment="Left" Height="289" Margin="10,21,0,0" VerticalAlignment="Top" Width="195" SelectionChanged="listView_SelectionChanged">
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                    <GridView.Columns>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Tag="{Binding Id}" IsChecked="False"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Nazwa}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="290,270,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
