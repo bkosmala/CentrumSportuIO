@@ -99,6 +99,17 @@ namespace CentrumSportu_WPF.Baza_danych
             return null;
         }
 
+        internal static List<Przedmiot> ZwrocDostepnePrzedmiotyWTerminie(DateTime startDate, DateTime endDate)
+        {
+            using (CentrumContext context = new CentrumContext())
+            {
+                var res = from przedmiot in context.Przedmioty
+                          where przedmiot.Rezerwacje.All(r => r.OdDaty > endDate || r.DoDaty < startDate)
+                          select przedmiot;
+                return res.ToList(); 
+            }
+        }
+
         public static Student ZwrocStudenta(KontoUzytkownika konto)
         {
             using (CentrumContext data = new CentrumContext())

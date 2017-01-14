@@ -130,6 +130,9 @@
     <Compile Include="Widoki\UsunTerminZajec.xaml.cs">
       <DependentUpon>UsunTerminZajec.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\RezerwacjaSprzetuStudent.xaml.cs">
+      <DependentUpon>RezerwacjaSprzetuStudent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml.cs">
       <DependentUpon>WysylanieWiadomosciDoUzytkownika.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\UsunTerminZajec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\RezerwacjaSprzetuStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
