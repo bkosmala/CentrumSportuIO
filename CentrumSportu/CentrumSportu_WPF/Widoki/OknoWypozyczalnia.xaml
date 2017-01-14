@@ -29,6 +29,7 @@
                                 <GridViewColumn Header="Id Klienta" Width="60" DisplayMemberBinding="{Binding KlientId}"/>
                                 <GridViewColumn Header="Nazwisko Klienta" Width="130" DisplayMemberBinding="{Binding Klient.Nazwisko}"/>
                                 <GridViewColumn Header="Imie Klienta" Width="120" DisplayMemberBinding="{Binding Klient.Imie}"/>
+                                <GridViewColumn Header="Status" Width="130" DisplayMemberBinding="{Binding Status}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

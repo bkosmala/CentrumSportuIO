@@ -42,9 +42,12 @@ namespace CentrumSportu_WPF.Baza_danych
         //takie, ktore juz moga zostac wypozyczone - zrealizowane
         internal static List<Rezerwacja> ZwrocRezerwacjeAktywne()
         {
+            int maksRoznicaRozpoczeciaWypozyczenia = 10;
             using (CentrumContext data = new CentrumContext())
             {
-                return data.Rezerwacje.Include("Przedmioty").Include(t => t.Klient).Where(x => Math.Abs(DbFunctions.DiffMinutes(x.OdDaty, DateTime.Now) ?? 11) < 10).ToList();
+                return data.Rezerwacje.Include("Przedmioty").Include(t => t.Klient)
+                    .Where(x => Math.Abs(DbFunctions.DiffMinutes(x.OdDaty, DateTime.Now) ?? maksRoznicaRozpoczeciaWypozyczenia + 1) < maksRoznicaRozpoczeciaWypozyczenia
+                            && x.Status == Rezerwacja.StatusRezerwacji.OCZEKUJACA).ToList();
             }
         }
 
