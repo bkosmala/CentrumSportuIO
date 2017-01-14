@@ -184,5 +184,18 @@ namespace CentrumSportu_WPF.Widoki
                 odśwież();
             }
         }
+
+        private void DodajObiektSportowyButton_Click(object sender, RoutedEventArgs e)
+        {
+            DodawanieObiektuSportowego okno = new DodawanieObiektuSportowego(this);
+            okno.Show();
+        }
+
+        private void TabItem_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            this.Close();
+            window.Show();
+        }
     }
 }
