@@ -359,5 +359,10 @@ namespace CentrumSportu_WPF.Widoki
         {
             WywolajZdarzenia();
         }
+
+        private void DodajTerminButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
