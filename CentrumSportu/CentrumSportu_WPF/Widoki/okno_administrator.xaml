@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         mc:Ignorable="d"
-        Height="550" Width="632.75" ResizeMode="CanMinimize">
+        Height="550" Width="672.75" ResizeMode="CanMinimize">
     <Grid>
         <TabControl>
             <!--<TabItem Header="Profil Administratora" Margin="0,0,-4.5,-2">
@@ -126,11 +126,11 @@
                         </ListView.View>
                     </ListView>
 
-                    <Button x:Name="UsunZwyklegoButton" Content="Usuń zwykłego użytkownika" Margin="132,441,329,0" Height="32" VerticalAlignment="Top" Click="UsunU_Click"/>
-                    <Button x:Name="UsunStudentaButton" Content="Usuń studenta" Margin="297,441,238,0" Height="32" VerticalAlignment="Top" Click="UsunS_Click"/>
-                    <Button x:Name="UsunInstruktoraButton" Content="Usuń instruktora" Margin="388,441,134,0" Height="32" VerticalAlignment="Top" Click="UsunI_Click"/>
-                    <Button x:Name="Usunadminstratora" Content="Usuń administratora" Margin="492,441,10,0" Height="32" VerticalAlignment="Top" Click="UsunA_Click"/>
-                    <Button x:Name="DodajUzytkownikaButton" Content="Dodaj użytkownika" Margin="8,441,494,0" Height="32" VerticalAlignment="Top" Click="DodajUzytkownika_Click"/>
+                    <Button x:Name="UsunZwyklegoButton" Content="Usuń zwykłego użytkownika" Margin="127,441,0,0" Height="32" VerticalAlignment="Top" Click="UsunU_Click" HorizontalAlignment="Left" Width="165"/>
+                    <Button x:Name="UsunStudentaButton" Content="Usuń studenta" Margin="297,441,0,0" Height="32" VerticalAlignment="Top" Click="UsunS_Click" HorizontalAlignment="Left" Width="100"/>
+                    <Button x:Name="UsunInstruktoraButton" Content="Usuń instruktora" Margin="402,441,0,0" Height="32" VerticalAlignment="Top" Click="UsunI_Click" HorizontalAlignment="Left" Width="120"/>
+                    <Button x:Name="Usunadminstratora" Content="Usuń administratora" Margin="527,441,0,0" Height="32" VerticalAlignment="Top" Click="UsunA_Click" HorizontalAlignment="Left" Width="115"/>
+                    <Button x:Name="DodajUzytkownikaButton" Content="Dodaj użytkownika" Margin="8,441,0,0" Height="32" VerticalAlignment="Top" Click="DodajUzytkownika_Click" HorizontalAlignment="Left" Width="114"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Obiekty sportowe i sprzęt">
@@ -139,9 +139,9 @@
                     <ListView x:Name="ObiektySportoweListView" Height="179" Margin="10,46,10,0" VerticalAlignment="Top">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Nazwa" Width="150px"/>
-                                <GridViewColumn Header="Maksymalna ilość uczestników" Width="165px"/>
-                                <GridViewColumn Header="Pojemność trybun" Width="150px" />
+                                <GridViewColumn Header="Nazwa" Width="150px" DisplayMemberBinding="{Binding Nazwa}"/>
+                                <GridViewColumn Header="Maksymalna ilość uczestników" Width="165px" DisplayMemberBinding="{Binding MaxUczestnikow}"/>
+                                <GridViewColumn Header="Pojemność trybun" Width="150px" DisplayMemberBinding="{Binding IloscMiejscTrybuny}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -155,10 +155,10 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="DodajObiektSportowyButton" Content="Dodaj obiekt sportowy" Margin="10,450,479,0" Height="33" VerticalAlignment="Top"/>
-                    <Button x:Name="UsunObiektSportowyButton" Content="Usuń obiekt sportowy" Margin="147,450,299,0" Height="33" VerticalAlignment="Top"/>
-                    <Button x:Name="DodajSprzetButton" Content="Dodaj sprzęt" HorizontalAlignment="Left" Margin="327,450,0,0" VerticalAlignment="Top" Width="159" Height="33"/>
-                    <Button x:Name="UsunSprzetButton" Content="Usuń sprzęt" HorizontalAlignment="Left" Margin="491,450,0,0" VerticalAlignment="Top" Width="120" Height="33"/>
+                    <Button x:Name="DodajObiektSportowyButton" Content="Dodaj obiekt sportowy" Margin="10,450,0,0" Height="33" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162"/>
+                    <Button x:Name="UsunObiektSportowyButton" Content="Usuń obiekt sportowy" Margin="177,450,0,0" Height="33" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185"/>
+                    <Button x:Name="DodajSprzetButton" Content="Dodaj sprzęt" HorizontalAlignment="Left" Margin="367,450,0,0" VerticalAlignment="Top" Width="159" Height="33" Click="DodajSprzetButton_Click"/>
+                    <Button x:Name="UsunSprzetButton" Content="Usuń sprzęt" HorizontalAlignment="Left" Margin="531,450,0,0" VerticalAlignment="Top" Width="111" Height="33"/>
 
                 </Grid>
             </TabItem>

@@ -58,7 +58,7 @@ namespace CentrumSportu_WPF.Widoki
 
             // ---------------------------------------------------------------------------------- STUDENCI
 
-           // this.listaStudenci.ItemsSource = studenci;
+            // this.listaStudenci.ItemsSource = studenci;
             this.StudenciListView.ItemsSource = studenci;
 
 
@@ -97,17 +97,21 @@ namespace CentrumSportu_WPF.Widoki
             administratorzy = new ObservableCollection<Administrator>(BazaMetody.ZwrocWszystkichAdministratorow());
             niestudenci = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocWszystkichNieStudentow());
             instruktorzy = new ObservableCollection<Instruktor>(BazaMetody.ZwrocWszystkichInstruktorow());
+            przedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
+            obiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
 
             this.ZwykliUzytkownicyListView.ItemsSource = niestudenci;
             this.StudenciListView.ItemsSource = studenci;
             this.InstruktorzyListView.ItemsSource = instruktorzy;
             this.AdministratorzyListView.ItemsSource = administratorzy;
+            this.SprzetListView.ItemsSource = przedmioty;
+            this.ObiektySportoweListView.ItemsSource = obiekty;
         }
 
         private void UsunU_Click(object sender, RoutedEventArgs e)
         {
-            
-           bool flaga = BazaMetody.UsunNieStudenta(niestudenci[ZwykliUzytkownicyListView.SelectedIndex]);
+
+            bool flaga = BazaMetody.UsunNieStudenta(niestudenci[ZwykliUzytkownicyListView.SelectedIndex]);
 
             if (flaga)
             {
@@ -120,7 +124,7 @@ namespace CentrumSportu_WPF.Widoki
         }
         private void UsunS_Click(object sender, RoutedEventArgs e)
         {
-            
+
             bool flaga = BazaMetody.UsunStudenta(studenci[StudenciListView.SelectedIndex]);
 
             if (flaga)
@@ -134,7 +138,7 @@ namespace CentrumSportu_WPF.Widoki
         }
         private void UsunI_Click(object sender, RoutedEventArgs e)
         {
-            
+
             bool flaga = BazaMetody.UsunInstruktora(instruktorzy[InstruktorzyListView.SelectedIndex]);
 
             if (flaga)
@@ -148,7 +152,7 @@ namespace CentrumSportu_WPF.Widoki
         }
         private void UsunA_Click(object sender, RoutedEventArgs e)
         {
-            
+
             bool flaga = BazaMetody.UsunAdministratora(administratorzy[AdministratorzyListView.SelectedIndex]);
 
             if (flaga)
@@ -159,6 +163,12 @@ namespace CentrumSportu_WPF.Widoki
             else
                 MessageBox.Show("Wystąpił błąd");
 
+        }
+
+        private void DodajSprzetButton_Click(object sender, RoutedEventArgs e)
+        {
+            DodawanieNowegoSprzetuWindow okno = new DodawanieNowegoSprzetuWindow(this);
+            okno.Show();
         }
     }
 }

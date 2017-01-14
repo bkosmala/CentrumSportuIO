@@ -703,5 +703,31 @@ namespace CentrumSportu_WPF.Baza_danych
             return lista;
         }
 
+        public static void DodajObiektSportowy(ObiektSportowy obiekt)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                data.ObiektySportowe.Add(obiekt);
+                data.SaveChanges();
+            }
+
+        }
+
+        public static bool DodajPrzedmiot(Przedmiot przedmiot)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.Przedmioty.Add(przedmiot);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }
