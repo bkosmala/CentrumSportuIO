@@ -41,34 +41,41 @@ namespace CentrumSportu_WPF.Widoki
             instruktorzy = new ObservableCollection<Instruktor>(BazaMetody.ZwrocWszystkichInstruktorow());
 
             // ---------------------------------------------------------------------------------- PROFIL
-            this.imieTB.Text = administrator.Imie;
-            this.nazwiskoTB.Text = administrator.Nazwisko;
+            //this.imieTB.Text = administrator.Imie;
+            //this.nazwiskoTB.Text = administrator.Nazwisko;
+            Title = administrator.Imie + " " + administrator.Nazwisko;
 
 
             // ---------------------------------------------------------------------------------- NIE STUDENCI
-            this.listaUzytkownicy.ItemsSource = niestudenci;
-
+            //this.listaUzytkownicy.ItemsSource = niestudenci;
+            this.ZwykliUzytkownicyListView.ItemsSource = niestudenci;
 
 
             // ---------------------------------------------------------------------------------- STUDENCI
 
-            this.listaStudenci.ItemsSource = studenci;
+           // this.listaStudenci.ItemsSource = studenci;
+            this.StudenciListView.ItemsSource = studenci;
 
 
             // ---------------------------------------------------------------------------------- INSTRUKTORZY
 
-            this.listaInstruktorzy.ItemsSource = instruktorzy;
+            //this.listaInstruktorzy.ItemsSource = instruktorzy;
+            this.InstruktorzyListView.ItemsSource = instruktorzy;
 
 
             // ---------------------------------------------------------------------------------- ADMINISTRATORZY
 
-            this.listaAdministratorzy.ItemsSource = administratorzy;
+            //this.listaAdministratorzy.ItemsSource = administratorzy;
+            this.AdministratorzyListView.ItemsSource = administratorzy;
 
 
+            ZwykliUzytkownicyListView.SelectedIndex = 0;
+            StudenciListView.SelectedIndex = 0;
+            InstruktorzyListView.SelectedIndex = 0;
+            AdministratorzyListView.SelectedIndex = 0;
 
 
-
-    }
+        }
 
         private void DodajUzytkownika_Click(object sender, RoutedEventArgs e)
         {
@@ -84,15 +91,16 @@ namespace CentrumSportu_WPF.Widoki
             niestudenci = new ObservableCollection<UczestnikZajec>(BazaMetody.ZwrocWszystkichNieStudentow());
             instruktorzy = new ObservableCollection<Instruktor>(BazaMetody.ZwrocWszystkichInstruktorow());
 
-            this.listaUzytkownicy.ItemsSource = niestudenci;
-            this.listaStudenci.ItemsSource = studenci;
-            this.listaInstruktorzy.ItemsSource = instruktorzy;
-            this.listaAdministratorzy.ItemsSource = administratorzy;
+            this.ZwykliUzytkownicyListView.ItemsSource = niestudenci;
+            this.StudenciListView.ItemsSource = studenci;
+            this.InstruktorzyListView.ItemsSource = instruktorzy;
+            this.AdministratorzyListView.ItemsSource = administratorzy;
         }
 
         private void UsunU_Click(object sender, RoutedEventArgs e)
         {
-           bool flaga = BazaMetody.UsunNieStudenta(niestudenci[listaUzytkownicy.SelectedIndex]);
+            
+           bool flaga = BazaMetody.UsunNieStudenta(niestudenci[ZwykliUzytkownicyListView.SelectedIndex]);
 
             if (flaga)
             {
@@ -105,7 +113,8 @@ namespace CentrumSportu_WPF.Widoki
         }
         private void UsunS_Click(object sender, RoutedEventArgs e)
         {
-            bool flaga = BazaMetody.UsunStudenta(studenci[listaStudenci.SelectedIndex]);
+            
+            bool flaga = BazaMetody.UsunStudenta(studenci[StudenciListView.SelectedIndex]);
 
             if (flaga)
             {
@@ -118,7 +127,8 @@ namespace CentrumSportu_WPF.Widoki
         }
         private void UsunI_Click(object sender, RoutedEventArgs e)
         {
-            bool flaga = BazaMetody.UsunInstruktora(instruktorzy[listaInstruktorzy.SelectedIndex]);
+            
+            bool flaga = BazaMetody.UsunInstruktora(instruktorzy[InstruktorzyListView.SelectedIndex]);
 
             if (flaga)
             {
@@ -131,7 +141,8 @@ namespace CentrumSportu_WPF.Widoki
         }
         private void UsunA_Click(object sender, RoutedEventArgs e)
         {
-            bool flaga = BazaMetody.UsunAdministratora(administratorzy[listaAdministratorzy.SelectedIndex]);
+            
+            bool flaga = BazaMetody.UsunAdministratora(administratorzy[AdministratorzyListView.SelectedIndex]);
 
             if (flaga)
             {
