@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CentrumSportu_WPF.Modul_instruktorow
 {
     [Table("Instruktorzy")]
-    public class Instruktor :Osoba
+    public class Instruktor : Pracownik
     {
         public string Telefon { get; set; }
 
@@ -21,19 +21,16 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public virtual ICollection<Grupa> Grupy { get; set; }
 
-        public virtual KontoUzytkownika KontoUzytkownika { get; set; }
-
         public virtual ICollection<WpisZajecia> WpisZajecia { get; set; }
 
         public virtual ICollection<Zdarzenie> Zdarzenia { get; set; }
 
-        public Instruktor(string imie, string nazwisko,string email,string telefon,List<Dyscyplina> dyscypliny,KontoUzytkownika konto) : base(imie, nazwisko)
+        public Instruktor(string imie, string nazwisko,string email,string telefon,List<Dyscyplina> dyscypliny,KontoUzytkownika konto) : base(imie, nazwisko, konto)
         {
             Email = email;
             Telefon = telefon;
             Dyscypliny = dyscypliny;
             Grupy = new List<Grupa>();
-            KontoUzytkownika = konto;
             Zdarzenia=new List<Zdarzenie>();
         }
 

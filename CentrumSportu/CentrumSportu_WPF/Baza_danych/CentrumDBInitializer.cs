@@ -20,6 +20,7 @@ namespace CentrumSportu_WPF.Baza_danych
             KontoUzytkownika kontoInstruktor = new KontoUzytkownika("kazik", "kazik", KontoUzytkownika.RodzajKonta.Instruktor);
             KontoUzytkownika kontoAdministrator = new KontoUzytkownika("admin", "admin", KontoUzytkownika.RodzajKonta.Administrator);
             KontoUzytkownika kontoStudent= new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student);
+            KontoUzytkownika kontoPracownikWypozyczalni = new KontoUzytkownika("test", "test", KontoUzytkownika.RodzajKonta.PracownikWypozyczalni);
 
             KontoUzytkownika kontoInstruktor2 = new KontoUzytkownika("inst", "inst",
                 KontoUzytkownika.RodzajKonta.Instruktor);
@@ -50,6 +51,9 @@ namespace CentrumSportu_WPF.Baza_danych
 
             //Administratorzy
             Administrator administrator1 = new Administrator("Super", "Admin",kontoAdministrator);
+
+            //PracownicyWypozyczalni
+            Pracownik pracownikWypozyczalni = new Pracownik("Jas", "Kowalski", kontoPracownikWypozyczalni);
 
             //Obiekty sportowe
             ObiektSportowy obiekt1 = new ObiektSportowy("Sala główna", dyscypliny, 25, 100);
@@ -149,6 +153,7 @@ namespace CentrumSportu_WPF.Baza_danych
            
             context.Studenci.Add(student1);
             context.Administratorzy.Add(administrator1);
+            context.Pracownicy.Add(pracownikWypozyczalni);
             foreach (var item in zajecia)
             {
                 context.WpisyZajecia.Add(item);

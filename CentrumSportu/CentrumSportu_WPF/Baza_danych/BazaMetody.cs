@@ -86,6 +86,19 @@ namespace CentrumSportu_WPF.Baza_danych
             return null;
         }
 
+        internal static Pracownik ZwrocPracownika(KontoUzytkownika konto)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (var item in data.Pracownicy)
+                {
+                    if (item.KontoUzytkownika.Login == konto.Login)
+                        return item;
+                }
+            }
+            return null;
+        }
+
         public static Administrator ZwrocAdministratora(KontoUzytkownika konto)
         {
             using (CentrumContext data = new CentrumContext())
@@ -463,6 +476,22 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static void DodajNowyTerminDoInstniejacejGrupy(WpisZajecia wpis,Grupa grupa)
+        {
+            using (CentrumContext data =new CentrumContext())
+            {
+                data.ObiektySportowe.Attach(wpis.ObiektSportowy);
+                foreach (var item in data.Dyscypliny)
+                {
+                    data.Entry(item).State = EntityState.Detached;
+                }
+                data.Instruktorzy.Attach(wpis.Instruktor);
+                var temp = data.Grupy.FirstOrDefault(x => x.Id == grupa.Id);
+                temp.Wpisy.Add(wpis);
+                data.SaveChanges();
+            }
+        }
+
         public static List<Zajecia> ZwrocWszystkieZajeciaOferta()
         {
             using (CentrumContext data = new CentrumContext())
@@ -507,7 +536,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
             using (CentrumContext data = new CentrumContext())
             {
-                foreach (Instruktor instruktor in data.Instruktorzy)
+                foreach (Instruktor instruktor in data.Instruktorzy.Include("Grupy.Dyscyplina"))
                 {
                     if(instruktor.Id == idInstruktora)
                         temp = instruktor.PodgladGrupy(nazwaGrupy);
@@ -662,6 +691,7 @@ namespace CentrumSportu_WPF.Baza_danych
             return lista;
         }
 
+<<<<<<< HEAD
         public static List<Bilet> ZwrocBiletyUzytkownika(UczestnikZajec u)
         {
             using (CentrumContext data = new CentrumContext())
@@ -673,11 +703,25 @@ namespace CentrumSportu_WPF.Baza_danych
         }
 
         public static bool UsunBilet(Bilet bilet)
+=======
+        public static void DodajObiektSportowy(ObiektSportowy obiekt)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                data.ObiektySportowe.Add(obiekt);
+                data.SaveChanges();
+            }
+
+        }
+
+        public static bool DodajPrzedmiot(Przedmiot przedmiot)
+>>>>>>> 5fcb6885dca59b2970942c46d6e7e63ad6d3357f
         {
             using (CentrumContext data = new CentrumContext())
             {
                 try
                 {
+<<<<<<< HEAD
                     var b = data.Bilety.FirstOrDefault(r => r.Id == bilet.Id);
                     data.Bilety.Remove(b);
                     data.SaveChanges();
@@ -694,5 +738,17 @@ namespace CentrumSportu_WPF.Baza_danych
 
 
 
+=======
+                    data.Przedmioty.Add(przedmiot);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+>>>>>>> 5fcb6885dca59b2970942c46d6e7e63ad6d3357f
     }
 }

@@ -22,6 +22,8 @@ namespace CentrumSportu_WPF.Modul_oferty
         public String Nazwa { get; set; }
         public Boolean Dostepnosc { get; set; }
         public virtual ICollection<Rezerwacja> Rezerwacje { get; set; }
+        public int? CennikId;
+        public Cennik Cennik { get; set; }
 
     }
 }
