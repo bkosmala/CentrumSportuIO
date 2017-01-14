@@ -27,6 +27,7 @@ namespace CentrumSportu_WPF.Widoki
         public DodawanieObiektuSportowego(okno_administrator okno)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.okno = okno;
             dyscypliny = BazaMetody.ZwrocWszystkieDyscypliny();
             wybory = new List<DyscyplinaWybrane>();

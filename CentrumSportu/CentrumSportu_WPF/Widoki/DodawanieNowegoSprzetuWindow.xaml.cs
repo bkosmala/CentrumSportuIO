@@ -25,6 +25,7 @@ namespace CentrumSportu_WPF.Widoki
         public DodawanieNowegoSprzetuWindow(okno_administrator okno)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.okno = okno;
             this.DostepnoscComboBox.Items.Add("Dostępny");
             this.DostepnoscComboBox.Items.Add("Niedostępny");

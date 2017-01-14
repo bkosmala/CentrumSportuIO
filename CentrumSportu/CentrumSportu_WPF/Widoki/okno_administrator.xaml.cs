@@ -78,6 +78,8 @@ namespace CentrumSportu_WPF.Widoki
             StudenciListView.SelectedIndex = 0;
             InstruktorzyListView.SelectedIndex = 0;
             AdministratorzyListView.SelectedIndex = 0;
+            ObiektySportoweListView.SelectedIndex = 0;
+            SprzetListView.SelectedIndex = 0;
 
             this.ObiektySportoweListView.ItemsSource = obiekty;
             this.SprzetListView.ItemsSource = przedmioty;
