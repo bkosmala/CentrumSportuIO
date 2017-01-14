@@ -8,7 +8,10 @@ namespace CentrumSportu_WPF
     {
         public virtual KontoUzytkownika KontoUzytkownika { get; set; }
 
-        public Pracownik(String imie, String nazwisko) : base(imie, nazwisko) { }
+        public Pracownik(String imie, String nazwisko, KontoUzytkownika kontoUzytkownika) : base(imie, nazwisko)
+        {
+            KontoUzytkownika = kontoUzytkownika;
+        }
         public Pracownik() : base() { }
     }
 }

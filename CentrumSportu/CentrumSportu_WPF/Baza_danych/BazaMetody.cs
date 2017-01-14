@@ -86,6 +86,19 @@ namespace CentrumSportu_WPF.Baza_danych
             return null;
         }
 
+        internal static Pracownik ZwrocPracownika(KontoUzytkownika konto)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (var item in data.Pracownicy)
+                {
+                    if (item.KontoUzytkownika.Login == konto.Login)
+                        return item;
+                }
+            }
+            return null;
+        }
+
         public static Administrator ZwrocAdministratora(KontoUzytkownika konto)
         {
             using (CentrumContext data = new CentrumContext())

@@ -107,6 +107,9 @@
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\OknoWypozyczalnia.xaml.cs">
+      <DependentUpon>OknoWypozyczalnia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\okno_administrator.xaml.cs">
       <DependentUpon>okno_administrator.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\OfertaWidok.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\OknoWypozyczalnia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
