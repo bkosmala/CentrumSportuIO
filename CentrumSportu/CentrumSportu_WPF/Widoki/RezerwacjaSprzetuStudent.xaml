@@ -28,7 +28,8 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox Tag="{Binding Id}" IsChecked="False"/>
+                                    <CheckBox Tag="{Binding Id}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" IsChecked="{Binding Path=IsSelected, 
+                                    RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -40,7 +41,7 @@
         <Label x:Name="label4" Content="Dostępne przedmioty:" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.346"/>
         <Label x:Name="idPrzedmiotuLabel" Content="" HorizontalAlignment="Left" Margin="265,173,0,0" VerticalAlignment="Top" Width="173"/>
         <Button x:Name="rezerwujButton" Content="Rezerwuj" HorizontalAlignment="Left" Margin="305,350,0,0" VerticalAlignment="Top" Width="85" Height="30" Click="rezerwujButton_Click"/>
-        <Label x:Name="label5" Content="Nazwa:" HorizontalAlignment="Left" Margin="210,199,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label x:Name="label5" Content="Nazwa:" HorizontalAlignment="Left" Margin="210,199,0,0" VerticalAlignment="Top" Width="55"/>
         <Label x:Name="nazwaPrzedmiotuLabel" Content="" HorizontalAlignment="Left" Margin="265,199,0,0" VerticalAlignment="Top" Width="173"/>
 
     </Grid>

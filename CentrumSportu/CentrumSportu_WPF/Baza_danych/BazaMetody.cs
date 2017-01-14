@@ -160,6 +160,15 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        internal static void UtworzNowaRezerwacje(Rezerwacja rezerwacja)
+        {
+            using (CentrumContext context = new CentrumContext())
+            {
+                context.Rezerwacje.Add(rezerwacja);
+                context.SaveChanges();
+            }
+        }
+
         public static List<UczestnikZajec> ZwrocUczestnikowZajecDlaDanejGrupy(int idGrupy)
         {
             List<UczestnikZajec> result = new List<UczestnikZajec>();

@@ -24,12 +24,17 @@ namespace CentrumSportu_WPF.Widoki
     {
         private ObservableCollection<Przedmiot> dostepnePrzedmioty;
         private Osoba klient;
-       
+        private okno_student oknoStudenta;
+        private DateTime odDaty;
+        private DateTime doDaty;
+
         public WypozyczanieSprzetuStudent(okno_student o, Osoba klient)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.klient = klient;
+            oknoStudenta = o;
+
             dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
 
             InitializeControls();
@@ -53,6 +58,7 @@ namespace CentrumSportu_WPF.Widoki
             koniecGodzinaControl.StartTime = new TimeSpan(7, 15, 0);
             listView.ItemsSource = dostepnePrzedmioty;
             listView.IsEnabled = false;
+            rezerwujButton.IsEnabled = false;
         }
 
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,7 +76,7 @@ namespace CentrumSportu_WPF.Widoki
         {
             if (koniecGodzinaControl.Value != null && startGodzinaControl.Value != null)
             {
-                listView.IsEnabled = true;
+                aktywujKontrolki();
                 SprawdzDostepnoscPrzedmiotow();
             }
         }
@@ -83,7 +89,7 @@ namespace CentrumSportu_WPF.Widoki
                 koniecGodzinaControl.StartTime = ts.Value.TimeOfDay.Add(new TimeSpan(0, 15, 0));
                 if (koniecGodzinaControl.Value != null && wyborDatyControl.SelectedDate != null)
                 {
-                    listView.IsEnabled = true;
+                    aktywujKontrolki();
                     SprawdzDostepnoscPrzedmiotow();
                 }
             }            
@@ -98,7 +104,7 @@ namespace CentrumSportu_WPF.Widoki
                 startGodzinaControl.EndTime = ts.Value.TimeOfDay.Add(new TimeSpan(0, -15, 0));
                 if (startGodzinaControl.Value != null && wyborDatyControl.SelectedDate != null)
                 {
-                    listView.IsEnabled = true;
+                    aktywujKontrolki();
                     SprawdzDostepnoscPrzedmiotow();
                 }
             }
@@ -106,21 +112,61 @@ namespace CentrumSportu_WPF.Widoki
 
         private void SprawdzDostepnoscPrzedmiotow()
         {
+            AktualizujPrzedzialCzasu();
+            dostepnePrzedmioty.Clear();
+            BazaMetody.ZwrocDostepnePrzedmiotyWTerminie(odDaty, doDaty).ForEach(dostepnePrzedmioty.Add);
+        }
+
+        private void AktualizujPrzedzialCzasu()
+        {
             DateTime dataDzien = wyborDatyControl.SelectedDate.Value;
             DateTime godzinaStart = startGodzinaControl.Value.Value;
             DateTime godzinaKoniec = koniecGodzinaControl.Value.Value;
-            DateTime startDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
+            odDaty = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
                                 godzinaStart.Hour, godzinaStart.Minute, 0);
-            DateTime endDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
+            doDaty = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
                                 godzinaKoniec.Hour, godzinaKoniec.Minute, 0);
-
-            dostepnePrzedmioty.Clear();
-            BazaMetody.ZwrocDostepnePrzedmiotyWTerminie(startDate, endDate).ForEach(dostepnePrzedmioty.Add);
         }
 
         private void rezerwujButton_Click(object sender, RoutedEventArgs e)
         {
+            var test = listView.SelectedItems;
+            if (test.Count > 0)
+            {
+                WprowadzRezerwacje();                
+            }
+            else
+            {
+                MessageBox.Show("Wybierz Przedmiot/y!");
+            }
+        }
 
+        private void WprowadzRezerwacje()
+        {
+            Rezerwacja rezerwacja = new Rezerwacja() { Klient = klient, OdDaty = odDaty, DoDaty = doDaty, Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            var rezerwowanePrzedmioty = listView.SelectedItems;
+            foreach (Przedmiot item in rezerwowanePrzedmioty)
+            {
+                rezerwacja.RezerwujPrzedmiot(item);
+            }
+            
+            BazaMetody.UtworzNowaRezerwacje(rezerwacja);
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void aktywujKontrolki()
+        {
+            listView.IsEnabled = true;
+            rezerwujButton.IsEnabled = true;
         }
     }
 }
