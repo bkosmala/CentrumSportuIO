@@ -110,6 +110,17 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        internal static void AnulujRezerwacje(Rezerwacja r)
+        {
+            using (CentrumContext context = new CentrumContext())
+            {
+                context.Rezerwacje.AddOrUpdate(r);
+                var rezerwacjaPrzed = context.Rezerwacje.FirstOrDefault(x => x.Id == r.Id);
+                rezerwacjaPrzed.Status = Rezerwacja.StatusRezerwacji.ANULOWANA;
+                context.SaveChanges();   
+            }
+        }
+
         public static Student ZwrocStudenta(KontoUzytkownika konto)
         {
             using (CentrumContext data = new CentrumContext())
@@ -157,6 +168,15 @@ namespace CentrumSportu_WPF.Baza_danych
                         .OrderBy(e => e.DataRozpoczecia).Include("ObiektSportowy").Include("Grupa").Include("Grupa.Dyscyplina").Include("Instruktor").ToList();
 
                 return result;
+            }
+        }
+
+        internal static void UtworzNowaRezerwacje(Rezerwacja rezerwacja)
+        {
+            using (CentrumContext context = new CentrumContext())
+            {
+                context.Rezerwacje.Add(rezerwacja);
+                context.SaveChanges();
             }
         }
 

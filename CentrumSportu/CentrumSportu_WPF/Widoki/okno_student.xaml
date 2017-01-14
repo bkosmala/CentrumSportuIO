@@ -70,7 +70,8 @@
                     </ComboBox>
                     <Label x:Name="label" Content="Wypozyczane przedmioty:&#xA;" Margin="485,55,46,450"/>
                     <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="" Margin="485,98,10,295"/>
-                    <Button x:Name="wypozyczButton" Content="Złóż rezerwację" Click="WypozyczButton_Click" Margin="497,433,21,0"/>
+                    <Button x:Name="wypozyczButton" Content="Złóż nową rezerwację" Click="WypozyczButton_Click" Margin="497,433,21,0"/>
+                    <Button x:Name="anulujButton" Content="Odwołaj" HorizontalAlignment="Left" Margin="52,33,0,0" VerticalAlignment="Top" Width="125" Height="32" IsEnabled="False" Click="anulujButton_Click"/>
 
                 </Grid>
 
