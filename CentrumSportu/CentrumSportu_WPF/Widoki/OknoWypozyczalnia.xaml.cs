@@ -46,5 +46,17 @@ namespace CentrumSportu_WPF.Widoki
         {
 
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            if (rezerwacjeAktywneListView.SelectedItem != null)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Zaznacz rezerwacje.");
+            }
+        }
     }
 }
