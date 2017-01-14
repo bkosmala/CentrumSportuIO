@@ -1,19 +1,9 @@
 ﻿using CentrumSportu_WPF.Baza_danych;
 using CentrumSportu_WPF.Modul_oferty;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CentrumSportu_WPF.Widoki
 {
@@ -23,7 +13,7 @@ namespace CentrumSportu_WPF.Widoki
     public partial class WypozyczanieSprzetuStudent : Window
     {
         private ObservableCollection<Przedmiot> dostepnePrzedmioty;
-        private Osoba klient;
+        private readonly Osoba klient;
         private okno_student oknoStudenta;
         private DateTime odDaty;
         private DateTime doDaty;
@@ -33,7 +23,6 @@ namespace CentrumSportu_WPF.Widoki
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.klient = klient;
-            Console.WriteLine(klient.Id);
             oknoStudenta = o;
 
             dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
