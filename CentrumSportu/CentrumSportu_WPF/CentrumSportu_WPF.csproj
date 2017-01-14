@@ -96,6 +96,7 @@
     <Compile Include="Baza_danych\CentrumDBInitializer.cs" />
     <Compile Include="Modul_instruktorow\Dyscyplina.cs" />
     <Compile Include="Modul_instruktorow\Zdarzenie.cs" />
+    <Compile Include="Pracownik.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
       <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
