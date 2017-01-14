@@ -65,7 +65,8 @@ namespace CentrumSportu_WPF.Widoki
             } else
             {
                 BazaMetody.PobierzRezerwacjeStudentaWedlugStatusu(student.Id, (Rezerwacja.StatusRezerwacji)comboBoxRezerwacje.SelectedIndex).ForEach(rezerwacje.Add);
-            }            
+            }
+            Console.WriteLine(student.Id);            
         }
 
         private void rezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

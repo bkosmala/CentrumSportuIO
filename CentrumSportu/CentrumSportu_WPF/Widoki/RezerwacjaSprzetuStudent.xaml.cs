@@ -33,6 +33,7 @@ namespace CentrumSportu_WPF.Widoki
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.klient = klient;
+            Console.WriteLine(klient.Id);
             oknoStudenta = o;
 
             dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
@@ -143,7 +144,7 @@ namespace CentrumSportu_WPF.Widoki
 
         private void WprowadzRezerwacje()
         {
-            Rezerwacja rezerwacja = new Rezerwacja() { Klient = klient, OdDaty = odDaty, DoDaty = doDaty, Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            Rezerwacja rezerwacja = new Rezerwacja() { KlientId = klient.Id, OdDaty = odDaty, DoDaty = doDaty, Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
             var rezerwowanePrzedmioty = listView.SelectedItems;
             foreach (Przedmiot item in rezerwowanePrzedmioty)
             {
@@ -152,17 +153,7 @@ namespace CentrumSportu_WPF.Widoki
             
             BazaMetody.UtworzNowaRezerwacje(rezerwacja);
         }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void aktywujKontrolki()
         {
             listView.IsEnabled = true;
