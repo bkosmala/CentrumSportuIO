@@ -56,8 +56,13 @@ namespace CentrumSportu_WPF.Widoki
                 { napis += ins.Imie + " " + ins.Nazwisko + "; "; }
                 textBlockInstruktorzy.Text = napis;
             }
+            if (selectedZajecia.CennikZajec != null) {
+                var c = selectedZajecia.CennikZajec;
+                textBlockCena.Text = c.CenaPodstawowa + c.Waluta + "/za godzinę";
+            }
+             else { textBlockCena.Text = ""; }
 
-            listObiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
+    listObiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
             listBoxObiekty.ItemsSource = listObiekty;
             obiektyViewBox.DataContext = listObiekty.ElementAt(0);
 
@@ -79,6 +84,12 @@ namespace CentrumSportu_WPF.Widoki
                 { napis += ins.Imie + " " + ins.Nazwisko + "; "; }
                 textBlockInstruktorzy.Text = napis;
             }
+            if (selectedZajecia.CennikZajec != null)
+            {
+                var c = selectedZajecia.CennikZajec;
+                textBlockCena.Text = c.CenaPodstawowa + c.Waluta + "/za godzinę";
+            }
+            else { textBlockCena.Text = ""; }
         }
 
         private void ListBoxPrzedmiotySelectionChanged(object sender, SelectionChangedEventArgs e)

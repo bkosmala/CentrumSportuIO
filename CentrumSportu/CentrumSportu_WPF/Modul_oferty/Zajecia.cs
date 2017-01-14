@@ -22,7 +22,7 @@ namespace CentrumSportu_WPF.Modul_oferty
         public virtual Dyscyplina Dyscyplina { get; set; }
         public string Nazwa { get; set; }
         public string Opis { get; set; }
-        public Cennik CennikZajec { get; set; }
+        public virtual Cennik CennikZajec { get; set; }
         public List<Instruktor> Instruktorzy
         {
             get { return instruktorzy; }
