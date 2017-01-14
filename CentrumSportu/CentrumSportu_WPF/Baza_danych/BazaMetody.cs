@@ -476,6 +476,22 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static void DodajNowyTerminDoInstniejacejGrupy(WpisZajecia wpis,Grupa grupa)
+        {
+            using (CentrumContext data =new CentrumContext())
+            {
+                data.ObiektySportowe.Attach(wpis.ObiektSportowy);
+                foreach (var item in data.Dyscypliny)
+                {
+                    data.Entry(item).State = EntityState.Detached;
+                }
+                data.Instruktorzy.Attach(wpis.Instruktor);
+                var temp = data.Grupy.FirstOrDefault(x => x.Id == grupa.Id);
+                temp.Wpisy.Add(wpis);
+                data.SaveChanges();
+            }
+        }
+
         public static List<Zajecia> ZwrocWszystkieZajeciaOferta()
         {
             using (CentrumContext data = new CentrumContext())
@@ -520,7 +536,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
             using (CentrumContext data = new CentrumContext())
             {
-                foreach (Instruktor instruktor in data.Instruktorzy)
+                foreach (Instruktor instruktor in data.Instruktorzy.Include("Grupy.Dyscyplina"))
                 {
                     if(instruktor.Id == idInstruktora)
                         temp = instruktor.PodgladGrupy(nazwaGrupy);

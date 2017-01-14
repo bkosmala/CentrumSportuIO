@@ -29,6 +29,8 @@ namespace CentrumSportu_WPF.Modul_instruktorow
 
         public virtual ICollection<UczestnikZajec> Uczestincy { get; set; }
 
+        public virtual ICollection<WpisZajecia> Wpisy { get; set; }
+
         public Grupa(Dyscyplina dyscyplina,int min,int max,string nazwa)
         {
             Dyscyplina = dyscyplina;

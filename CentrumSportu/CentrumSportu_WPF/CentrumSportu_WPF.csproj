@@ -113,6 +113,9 @@
     <Compile Include="Widoki\okno_administrator.xaml.cs">
       <DependentUpon>okno_administrator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\Okno_Dodaj_Termin.xaml.cs">
+      <DependentUpon>Okno_Dodaj_Termin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\okno_instruktor.xaml.cs">
       <DependentUpon>okno_instruktor.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\okno_administrator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\Okno_Dodaj_Termin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

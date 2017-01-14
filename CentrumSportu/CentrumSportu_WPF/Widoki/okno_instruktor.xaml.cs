@@ -362,7 +362,29 @@ namespace CentrumSportu_WPF.Widoki
 
         private void DodajTerminButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var okno =new Okno_Dodaj_Termin(instruktor,
+                BazaMetody.ZwrocGrupeDlaWybranegoInstruktora(instruktor.Id,
+                    InformacjeOGrupachComboBox.SelectedItem.ToString()));
+            okno.ShowDialog();
+            if (okno.czyDodano == true)
+            {
+                if (GrupyComboBox.SelectedIndex == 0)
+                {
+                    zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                }
+                else
+                {
+                    string groupName = (string)GrupyComboBox.SelectedItem;
+                    int groupId = 0;
+                    foreach (var item in grupy)
+                    {
+                        if (item.Nazwa == groupName)
+                            groupId = item.Id;
+                    }
+                    zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
+                }
+                HarmonogramListView.ItemsSource = zajecia;
+            }
         }
     }
 }
