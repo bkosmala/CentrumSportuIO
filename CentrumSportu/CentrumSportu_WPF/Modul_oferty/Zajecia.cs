@@ -19,7 +19,7 @@ namespace CentrumSportu_WPF.Modul_oferty
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Typ { get; set; }
-        public string Dyscyplina { get; set; }
+        public virtual Dyscyplina Dyscyplina { get; set; }
         public string Nazwa { get; set; }
         public string Opis { get; set; }
         public Cennik CennikZajec { get; set; }
@@ -31,7 +31,7 @@ namespace CentrumSportu_WPF.Modul_oferty
         {
 
         }
-        public Zajecia(string typ, string dyscyplina, string nazwa, string opis, Cennik cennik)
+        public Zajecia(string typ, Dyscyplina dyscyplina, string nazwa, string opis, Cennik cennik)
         {
             this.Typ = typ;
             this.Dyscyplina = dyscyplina;

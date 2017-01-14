@@ -447,7 +447,7 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data = new CentrumContext())
             {
-                var query = (from z in data.Zajecia
+                var query = (from z in data.Zajecia.Include("Dyscyplina")
                              select z).ToList();
                 return query;
             }
@@ -621,5 +621,26 @@ namespace CentrumSportu_WPF.Baza_danych
                 data.SaveChanges();
             }
         }
+
+        public static List<Instruktor> ZwrocListeInstruktorowDlaDanejDyscypliny(Dyscyplina dyscyplina)
+        {
+            List<Instruktor> lista = new List<Instruktor>();
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (var item in data.Instruktorzy)
+                {
+                    foreach (var d in item.Dyscypliny)
+                    {
+                        if (d.Nazwa == dyscyplina.Nazwa)
+                        {
+                            lista.Add(item);
+                            break;
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
     }
 }

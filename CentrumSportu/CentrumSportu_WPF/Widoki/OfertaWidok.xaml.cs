@@ -47,6 +47,15 @@ namespace CentrumSportu_WPF.Widoki
             listBoxSprzet.ItemsSource = oferowanySprzet;
             listBoxZajecia.SelectedIndex = 0;
             ZajeciaViewBox.DataContext = selectedZajecia;
+            if (selectedZajecia.Dyscyplina != null) DyscyplinaLabel.Content = selectedZajecia.Dyscyplina.Nazwa;
+            if (selectedZajecia.Dyscyplina != null)
+            {
+                var instruktorzy = BazaMetody.ZwrocListeInstruktorowDlaDanejDyscypliny(selectedZajecia.Dyscyplina);
+                string napis = "";
+                foreach (Instruktor ins in instruktorzy)
+                { napis += ins.Imie + " " + ins.Nazwisko + "; "; }
+                textBlockInstruktorzy.Text = napis;
+            }
 
             listObiekty = new ObservableCollection<ObiektSportowy>(BazaMetody.ZwrocWszystkieObiektySportoweOferta());
             listBoxObiekty.ItemsSource = listObiekty;
@@ -61,6 +70,15 @@ namespace CentrumSportu_WPF.Widoki
         {
             selectedZajecia = listZajecia.ElementAt(listBoxZajecia.SelectedIndex);
             ZajeciaViewBox.DataContext = selectedZajecia;
+            if(selectedZajecia.Dyscyplina != null) DyscyplinaLabel.Content = selectedZajecia.Dyscyplina.Nazwa;
+            if (selectedZajecia.Dyscyplina != null)
+            {
+                var instruktorzy = BazaMetody.ZwrocListeInstruktorowDlaDanejDyscypliny(selectedZajecia.Dyscyplina);
+                string napis = "";
+                foreach (Instruktor ins in instruktorzy)
+                { napis += ins.Imie + " " + ins.Nazwisko + "; "; }
+                textBlockInstruktorzy.Text = napis;
+            }
         }
 
         private void ListBoxPrzedmiotySelectionChanged(object sender, SelectionChangedEventArgs e)

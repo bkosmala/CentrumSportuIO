@@ -10,7 +10,7 @@
         <SolidColorBrush x:Key="RedBrush" Color="Azure"/>
         <SolidColorBrush x:Key="SolidBorderBrush" Color="#888" />
         <SolidColorBrush x:Key="SelectedBrush" Color="#750104" />
-        
+
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -73,13 +73,13 @@
                         <Label Content="Typ zajęć:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="110" Canvas.Top="34"  />
                         <Label Content="Dyscyplina:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="108" Canvas.Top="68"  />
                         <Label Content="{Binding Typ}" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="399" Canvas.Top="34" Canvas.Left="108"  />
-                        <Label Content="{Binding Dyscyplina}" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="399" Canvas.Left="108" Canvas.Top="68"  />
-                        <Label Content="Opis:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="108" Canvas.Top="175"  />
-                        <TextBlock x:Name="textBlockZajecia" FontSize="16" TextWrapping="Wrap" Text="{Binding Opis}" Foreground="Black" Canvas.Top="209" Width="505" Height="194" Canvas.Left="4"/>
+                        <Label x:Name="DyscyplinaLabel" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="399" Canvas.Left="108" Canvas.Top="68"  />
+                        <Label Content="Opis:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="108" Canvas.Top="164"  />
+                        <TextBlock x:Name="textBlockZajecia" FontSize="16" TextWrapping="Wrap" Text="{Binding Opis}" Foreground="Black" Canvas.Top="198" Width="505" Height="194" Canvas.Left="4"/>
                         <Label Content="Instruktorzy:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Width="108" Canvas.Top="102"  />
-                        <TextBlock x:Name="textBlockZajecia_Copy" FontSize="16" TextWrapping="Wrap" Text="" Foreground="Black" Canvas.Top="102" Width="397" Height="68" Canvas.Left="110"/>
-                        <Label Content="Cennik:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Width="108" Canvas.Top="403"  />
-                        <TextBlock x:Name="textBlockZajecia_Copy1" FontSize="16" TextWrapping="Wrap" Text="" Foreground="Black" Canvas.Top="403" Width="397" Height="84" Canvas.Left="108"/>
+                        <TextBlock x:Name="textBlockInstruktorzy" FontSize="16" TextWrapping="Wrap" Text="" Foreground="Black" Canvas.Top="107" Width="397" Height="55" Canvas.Left="110"/>
+                        <Label Content="Cennik:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Width="108" Canvas.Top="394"  />
+                        <TextBlock x:Name="textBlockZajecia_Copy1" FontSize="16" TextWrapping="Wrap" Text="" Foreground="Black" Canvas.Top="394" Width="397" Height="84" Canvas.Left="108"/>
 
                     </Canvas>
                     <ListBox Grid.Column="0" x:Name="listBoxZajecia" Background="White" Opacity="1"  SelectionChanged="ListBoxZajecia_SelectionChanged" Margin="5,31,10,20">

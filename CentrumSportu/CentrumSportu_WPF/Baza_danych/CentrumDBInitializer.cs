@@ -78,9 +78,9 @@ namespace CentrumSportu_WPF.Baza_danych
             instruktor1.Grupy.Add(grupa3);
 
             //Zajecia - moduł oferta
-            Zajecia zajecia1 = new Zajecia("grupowe", "Piłka nożna", "Trening piłki nożnej", "Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ", null);
-            Zajecia zajecia2 = new Zajecia("grupowe", "Piłka koszykowa", "Trening koszykówki", "Rozgrywka zespołowa na każdym treningu", null);
-            Zajecia zajecia3 = new Zajecia("grupowe", "Piłka siatkowa", "Trening siatkówki", "Trening prowadzony przez doświadczonych trenerów.\n", null);
+            Zajecia zajecia1 = new Zajecia("grupowe", dyscypliny[0], "Trening piłki nożnej", "Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ", null);
+            Zajecia zajecia2 = new Zajecia("grupowe", dyscypliny[2], "Trening koszykówki", "Rozgrywka zespołowa na każdym treningu", null);
+            Zajecia zajecia3 = new Zajecia("grupowe", dyscypliny[1], "Trening siatkówki", "Trening prowadzony przez doświadczonych trenerów.\n", null);
             List<Zajecia> zajeciaOferta = new List<Zajecia>();
 
             zajeciaOferta.Add(zajecia1);
@@ -141,8 +141,8 @@ namespace CentrumSportu_WPF.Baza_danych
             context.UczestnicyZajec.Add(uczestnik3);
             context.SaveChanges();
 
-
-            var d = context.Dyscypliny.ToList();
+            var d = new List<Dyscyplina>(dyscypliny.Take<Dyscyplina>(2));
+            //var d = context.Dyscypliny.ToList();
             instruktor2.Dyscypliny = d;
             context.Instruktorzy.Add(instruktor2);
             base.Seed(context);

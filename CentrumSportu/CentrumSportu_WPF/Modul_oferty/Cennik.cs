@@ -24,6 +24,11 @@ namespace CentrumSportu_WPF.Modul_oferty
         public DateTime DataModyfikacji { get; set; }
         public string Opis { get; set; }
 
+        public Cennik()
+        {
+
+        }
+
         public bool DodajZnizke(string nazwa, float ile)
         {
              if (znizki.ContainsKey(nazwa))
