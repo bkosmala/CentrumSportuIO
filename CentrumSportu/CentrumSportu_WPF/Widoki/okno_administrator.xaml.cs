@@ -170,5 +170,19 @@ namespace CentrumSportu_WPF.Widoki
             DodawanieNowegoSprzetuWindow okno = new DodawanieNowegoSprzetuWindow(this);
             okno.Show();
         }
+
+        private void UsunSprzetButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (BazaMetody.UsunPrzedmiot(przedmioty[SprzetListView.SelectedIndex]))
+            {
+                MessageBox.Show("Przedmiot usunięty");
+                odśwież();
+            }
+            else
+            {
+                MessageBox.Show("Błąd usuwania przedmiotu");
+                odśwież();
+            }
+        }
     }
 }
