@@ -119,6 +119,11 @@ namespace CentrumSportu_WPF.Widoki
             else
             { zdjecie_obiektu.Visibility = System.Windows.Visibility.Hidden; }
         }
+        private void LogowanieBtn_Click(object sender, RoutedEventArgs e)
+        { 
+            this.Content = Switcher.lastWindowContent;
+        }
+       
 
         private void ListBoxPrzedmiotySelectionChanged(object sender, SelectionChangedEventArgs e)
         {

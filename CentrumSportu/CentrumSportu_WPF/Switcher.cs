@@ -10,12 +10,17 @@ namespace CentrumSportu_WPF
     public static class Switcher
     {
         public static MainWindow pageSwitcher;
+        public static object lastWindowContent;
 
         public static void Switch(UserControl newPage)
         {
             pageSwitcher.Navigate(newPage);
         }
-
+        public static void Switch(UserControl newPage, object lastPage)
+        {
+            pageSwitcher.Navigate(newPage);
+            lastWindowContent = lastPage;
+        }
     }
 
 

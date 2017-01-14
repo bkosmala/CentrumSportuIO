@@ -45,7 +45,7 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-
+        <Button x:Name="LogowanieBtn" FontSize="18" Content="Logowanie" HorizontalAlignment="Left" Margin="674,10,0,0" VerticalAlignment="Top" Width="106" RenderTransformOrigin="0.28,0.182" Click="LogowanieBtn_Click" Foreground="White" Background="#FF750104" Panel.ZIndex="1000"/>
         <Image x:Name="zdjecie_obiektu" HorizontalAlignment="Left" Height="245"  Opacity="1" VerticalAlignment="Top" Width="287" Margin="488,131,0,0" Panel.ZIndex="1000"/>
 
         <Label x:Name="HeaderLbl" Content="Oferta" 
