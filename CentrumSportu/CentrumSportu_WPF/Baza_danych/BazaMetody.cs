@@ -488,17 +488,14 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
-        public static void DodajNowyTerminDoInstniejacejGrupy(WpisZajecia wpis,Grupa grupa)
+        public static void DodajNowyTerminDoInstniejacejGrupy(WpisZajecia wpis, Grupa grupa)
         {
-            using (CentrumContext data =new CentrumContext())
+            using (CentrumContext data = new CentrumContext())
             {
-                data.ObiektySportowe.Attach(wpis.ObiektSportowy);
-                foreach (var item in data.Dyscypliny)
-                {
-                    data.Entry(item).State = EntityState.Detached;
-                }
                 data.Instruktorzy.Attach(wpis.Instruktor);
                 var temp = data.Grupy.FirstOrDefault(x => x.Id == grupa.Id);
+                wpis.Instruktor = data.Instruktorzy.FirstOrDefault(x => x.Id == wpis.Instruktor.Id);
+                wpis.ObiektSportowy = data.ObiektySportowe.FirstOrDefault(x => x.Id == wpis.ObiektSportowy.Id);
                 temp.Wpisy.Add(wpis);
                 data.SaveChanges();
             }
@@ -720,39 +717,6 @@ namespace CentrumSportu_WPF.Baza_danych
                 try
                 {
                     data.Przedmioty.Add(przedmiot);
-                    data.SaveChanges();
-                }
-                catch
-                {
-                    return false;
-                }
-                return true;
-            }
-        }
-
-        public static bool UsunPrzedmiot(Przedmiot przedmiot)
-        {
-            using (CentrumContext data = new CentrumContext())
-            {
-                var entry = data.Entry(przedmiot);
-                if (entry.State == EntityState.Detached)
-                    data.Przedmioty.Attach(przedmiot);
-                data.Przedmioty.Remove(przedmiot);
-
-                try
-                {
-                    foreach (Rezerwacja rezerwacja in data.Rezerwacje)
-                    {
-                        foreach (Przedmiot p in rezerwacja.Przedmioty)
-                        {
-                            if (przedmiot.Id == p.Id)
-                            {
-                                data.Rezerwacje.Remove(rezerwacja);
-                            }
-                            break;
-                        }
-                        break;
-                    }
                     data.SaveChanges();
                 }
                 catch
