@@ -20,6 +20,7 @@ namespace CentrumSportu_WPF.Baza_danych
             KontoUzytkownika kontoInstruktor = new KontoUzytkownika("kazik", "kazik", KontoUzytkownika.RodzajKonta.Instruktor);
             KontoUzytkownika kontoAdministrator = new KontoUzytkownika("admin", "admin", KontoUzytkownika.RodzajKonta.Administrator);
             KontoUzytkownika kontoStudent= new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student);
+            KontoUzytkownika kontoPracownikWypozyczalni = new KontoUzytkownika("test", "test", KontoUzytkownika.RodzajKonta.PracownikWypozyczalni);
 
             KontoUzytkownika kontoInstruktor2 = new KontoUzytkownika("inst", "inst",
                 KontoUzytkownika.RodzajKonta.Instruktor);
@@ -48,6 +49,9 @@ namespace CentrumSportu_WPF.Baza_danych
 
             //Administratorzy
             Administrator administrator1 = new Administrator("Super", "Admin",kontoAdministrator);
+
+            //PracownicyWypozyczalni
+            Pracownik pracownikWypozyczalni = new Pracownik("Jan", "Kowalski", kontoPracownikWypozyczalni);
 
             //Obiekty sportowe
             ObiektSportowy obiekt1 = new ObiektSportowy("Główna hala sportowa", dyscypliny, 40, 500);
@@ -114,8 +118,8 @@ namespace CentrumSportu_WPF.Baza_danych
             //Rezerwacje - moduł oferta
 
             Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
-            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(20), DoDaty = DateTime.Now.AddHours(23), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
-            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(39), DoDaty = DateTime.Now.AddHours(41), Status = Rezerwacja.StatusRezerwacji.ZREALIZOWANA };
+            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(5), DoDaty = DateTime.Now.AddHours(1), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(39), DoDaty = DateTime.Now.AddHours(45), Status = Rezerwacja.StatusRezerwacji.ZREALIZOWANA };
 
 
             Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
@@ -141,6 +145,7 @@ namespace CentrumSportu_WPF.Baza_danych
            
             context.Studenci.Add(student1);
             context.Administratorzy.Add(administrator1);
+            context.Pracownicy.Add(pracownikWypozyczalni);
             foreach (var item in zajecia)
             {
                 context.WpisyZajecia.Add(item);

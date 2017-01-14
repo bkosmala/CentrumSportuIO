@@ -28,7 +28,8 @@ namespace CentrumSportu_WPF
             Student,
             Instruktor,
             Administrator,
-            NieStudent
+            NieStudent,
+            PracownikWypozyczalni
         };
 
         public KontoUzytkownika(string login, string haslo, RodzajKonta konto)

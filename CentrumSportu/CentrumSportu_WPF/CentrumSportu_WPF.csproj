@@ -96,7 +96,11 @@
     <Compile Include="Baza_danych\CentrumDBInitializer.cs" />
     <Compile Include="Modul_instruktorow\Dyscyplina.cs" />
     <Compile Include="Modul_instruktorow\Zdarzenie.cs" />
+    <Compile Include="Pracownik.cs" />
     <Compile Include="Switcher.cs" />
+    <Compile Include="Widoki\DodawanieNowegoSprzetuWindow.xaml.cs">
+      <DependentUpon>DodawanieNowegoSprzetuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
       <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
     </Compile>
@@ -106,8 +110,14 @@
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\OknoWypozyczalnia.xaml.cs">
+      <DependentUpon>OknoWypozyczalnia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\okno_administrator.xaml.cs">
       <DependentUpon>okno_administrator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\Okno_Dodaj_Termin.xaml.cs">
+      <DependentUpon>Okno_Dodaj_Termin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widoki\okno_instruktor.xaml.cs">
       <DependentUpon>okno_instruktor.xaml</DependentUpon>
@@ -151,6 +161,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Widoki\DodawanieNowegoSprzetuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Widoki\dodawanieUzytkownika.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,7 +177,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Widoki\OknoWypozyczalnia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Widoki\okno_administrator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\Okno_Dodaj_Termin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

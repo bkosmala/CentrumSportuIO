@@ -104,12 +104,10 @@
                     <Label Content="Max Liczebność:" HorizontalAlignment="Left" Margin="20,183,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Label x:Name="maxLiczebnoscLabel" Content="value" HorizontalAlignment="Left" Margin="117,183,0,0" VerticalAlignment="Top" Width="103"/>
 
-                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="561,123,0,0" VerticalAlignment="Top" Width="200" Click="RozwiazGrupeButton_Click" Height="55" />
-                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="310,123,0,0" VerticalAlignment="Top" Width="200"  Click="DodajGrupeButton_Click" Height="55"/>
+                    <Button x:Name="RozwiazGrupeButton" Content="Rozwiąż grupę" HorizontalAlignment="Left" Margin="292,168,0,0" VerticalAlignment="Top" Width="200" Click="RozwiazGrupeButton_Click" Height="55" />
+                    <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="292,88,0,0" VerticalAlignment="Top" Width="200"  Click="DodajGrupeButton_Click" Height="55"/>
+                    <Button x:Name="DodajTerminButton" Content="Dodaj termin " HorizontalAlignment="Left" Margin="526,88,0,0" VerticalAlignment="Top" Width="200"  Click="DodajTerminButton_Click" Height="55"/>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Wypożyczalnia" Margin="36,0,-40,-2">
-                
             </TabItem>
 
         </TabControl>

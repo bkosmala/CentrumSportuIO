@@ -16,7 +16,7 @@ namespace CentrumSportu_WPF.Modul_oferty
         public int IdWypozyczenia { get; set; }
         public DateTime DataRozpoczecia { get; set; }
         public DateTime DataZwrotu { get; private set; }
-        public Instruktor WydawcaSprzetu { get; set; }
+        public Pracownik WydawcaSprzetu { get; set; }
         
     }
 }

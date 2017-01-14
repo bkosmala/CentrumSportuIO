@@ -66,6 +66,16 @@ namespace CentrumSportu_WPF
                     this.Close();
                 }
             }
+            else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.PracownikWypozyczalni)
+            {
+                Pracownik pracownikWypozyczalni = BazaMetody.ZwrocPracownika(Konto);
+                if (pracownikWypozyczalni != null)
+                {
+                    OknoWypozyczalnia okno = new OknoWypozyczalnia(pracownikWypozyczalni);
+                    okno.Show();
+                    this.Close();
+                }
+            }
         }
 
         private void GoscBtn_Click(object sender, RoutedEventArgs e)

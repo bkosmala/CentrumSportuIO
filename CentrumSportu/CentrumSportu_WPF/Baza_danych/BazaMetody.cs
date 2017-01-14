@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Modul_instruktorow;
 using CentrumSportu_WPF.Modul_oferty;
+using System.Data.Entity.Core.Objects;
 
 namespace CentrumSportu_WPF.Baza_danych
 {
@@ -38,7 +39,18 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
-        
+        //takie, ktore juz moga zostac wypozyczone - zrealizowane
+        internal static List<Rezerwacja> ZwrocRezerwacjeAktywne()
+        {
+            int maksRoznicaRozpoczeciaWypozyczenia = 10;
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Rezerwacje.Include("Przedmioty").Include(t => t.Klient)
+                    .Where(x => Math.Abs(DbFunctions.DiffMinutes(x.OdDaty, DateTime.Now) ?? maksRoznicaRozpoczeciaWypozyczenia + 1) < maksRoznicaRozpoczeciaWypozyczenia
+                            && x.Status == Rezerwacja.StatusRezerwacji.OCZEKUJACA).ToList();
+            }
+        }
+
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy,int idUczestnika)
         {
             //TO DO
@@ -78,6 +90,19 @@ namespace CentrumSportu_WPF.Baza_danych
             using (CentrumContext data=new CentrumContext())
             {
                 foreach (var item in data.Instruktorzy.Include("Dyscypliny").Include("Grupy").Include("Zdarzenia").Include("Zdarzenia.WpisZajecia.Instruktor"))
+                {
+                    if (item.KontoUzytkownika.Login == konto.Login)
+                        return item;
+                }
+            }
+            return null;
+        }
+
+        internal static Pracownik ZwrocPracownika(KontoUzytkownika konto)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (var item in data.Pracownicy)
                 {
                     if (item.KontoUzytkownika.Login == konto.Login)
                         return item;
@@ -463,6 +488,22 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static void DodajNowyTerminDoInstniejacejGrupy(WpisZajecia wpis,Grupa grupa)
+        {
+            using (CentrumContext data =new CentrumContext())
+            {
+                data.ObiektySportowe.Attach(wpis.ObiektSportowy);
+                foreach (var item in data.Dyscypliny)
+                {
+                    data.Entry(item).State = EntityState.Detached;
+                }
+                data.Instruktorzy.Attach(wpis.Instruktor);
+                var temp = data.Grupy.FirstOrDefault(x => x.Id == grupa.Id);
+                temp.Wpisy.Add(wpis);
+                data.SaveChanges();
+            }
+        }
+
         public static List<Zajecia> ZwrocWszystkieZajeciaOferta()
         {
             using (CentrumContext data = new CentrumContext())
@@ -507,7 +548,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
             using (CentrumContext data = new CentrumContext())
             {
-                foreach (Instruktor instruktor in data.Instruktorzy)
+                foreach (Instruktor instruktor in data.Instruktorzy.Include("Grupy.Dyscyplina"))
                 {
                     if(instruktor.Id == idInstruktora)
                         temp = instruktor.PodgladGrupy(nazwaGrupy);
@@ -662,5 +703,64 @@ namespace CentrumSportu_WPF.Baza_danych
             return lista;
         }
 
+        public static void DodajObiektSportowy(ObiektSportowy obiekt)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                data.ObiektySportowe.Add(obiekt);
+                data.SaveChanges();
+            }
+
+        }
+
+        public static bool DodajPrzedmiot(Przedmiot przedmiot)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                try
+                {
+                    data.Przedmioty.Add(przedmiot);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public static bool UsunPrzedmiot(Przedmiot przedmiot)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var entry = data.Entry(przedmiot);
+                if (entry.State == EntityState.Detached)
+                    data.Przedmioty.Attach(przedmiot);
+                data.Przedmioty.Remove(przedmiot);
+
+                try
+                {
+                    foreach (Rezerwacja rezerwacja in data.Rezerwacje)
+                    {
+                        foreach (Przedmiot p in rezerwacja.Przedmioty)
+                        {
+                            if (przedmiot.Id == p.Id)
+                            {
+                                data.Rezerwacje.Remove(rezerwacja);
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }

@@ -9,20 +9,18 @@ using System.Threading.Tasks;
 namespace CentrumSportu_WPF.Modul_biletow
 {
     [Table("Administratorzy")]
-    public class Administrator : Osoba
+    public class Administrator : Pracownik
     {
-        public Administrator(string imie, string nazwisko, KontoUzytkownika konto) : base(imie, nazwisko)
+        public Administrator(string imie, string nazwisko, KontoUzytkownika konto) : base(imie, nazwisko, konto)
         {
-            KontoUzytkownika = konto;
-
+            
         }
 
         public Administrator()
         {
             
         }
-
-        public virtual KontoUzytkownika KontoUzytkownika { get; set; }
+        
 
         private void StworzAdministratora(string imie, string nazwisko)
         {
