@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CentrumSportu_WPF.Widoki"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="CentrumSportu_WPF.Widoki.WypozyczanieSprzetuStudent"
         mc:Ignorable="d"
-        Title="RezerwacjaSprzetuStudent" Height="377" Width="454">
+        Title="RezerwacjaSprzetuStudent" Height="377" Width="454" ResizeMode="CanMinimize">
     <Window.Resources>
         <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
@@ -15,11 +15,11 @@
     <Grid>
         <Label x:Name="label" Content="Wybierz datę i godzinę rozpoczęcia:" HorizontalAlignment="Left" Margin="210,21,0,0" VerticalAlignment="Top" Height="27" Width="215"/>
         <Label x:Name="label1" Content="Wybierz godzinę zakończenia:" HorizontalAlignment="Left" Margin="210,94,0,0" VerticalAlignment="Top" Width="215"/>
-        <xctk:TimePicker Name="koniecGodzinaControl" HorizontalAlignment="Left" Margin="210,120,0,0" VerticalAlignment="Top" Width="215"/>
+        <xctk:TimePicker ValueChanged="KoniecGodzina_ValueChanged" Name="koniecGodzinaControl" HorizontalAlignment="Left" Margin="210,120,0,0" VerticalAlignment="Top" Width="215"/>
         <Label x:Name="label2" Content="Cena:" HorizontalAlignment="Left" Margin="210,185,0,0" VerticalAlignment="Top"/>
         <Label x:Name="cenaLabel" Content="Label" HorizontalAlignment="Left" Margin="252,185,0,0" VerticalAlignment="Top" Width="173"/>
-        <DatePicker SelectedDateChanged="wyborDaty_SelectionDateChanged" Name="wyborDatyControl" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Width="215"/>
-        <xctk:TimePicker Name="startGodzinaControl" HorizontalAlignment="Left" Margin="210,72,0,0" VerticalAlignment="Top" Width="215" RenderTransformOrigin="0.442,0.3"/>
+        <DatePicker SelectedDateChanged="WyborDaty_SelectionDateChanged" Name="wyborDatyControl" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Width="215"/>
+        <xctk:TimePicker ValueChanged="StartGodzina_ValueChanged" Name="startGodzinaControl" HorizontalAlignment="Left" Margin="210,72,0,0" VerticalAlignment="Top" Width="215" RenderTransformOrigin="0.442,0.3"/>
         <Label x:Name="label3" Content="Label" HorizontalAlignment="Left" Margin="211,216,0,0" VerticalAlignment="Top"/>
         <ListView ItemsSource="{Binding dostepnePrzedmioty}" x:Name="listView" HorizontalAlignment="Left" Height="289" Margin="10,48,0,0" VerticalAlignment="Top" Width="195" SelectionChanged="listView_SelectionChanged">
             <ListView.View>

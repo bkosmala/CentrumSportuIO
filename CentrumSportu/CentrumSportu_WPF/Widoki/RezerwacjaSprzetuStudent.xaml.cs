@@ -59,22 +59,56 @@ namespace CentrumSportu_WPF.Widoki
             
         }
 
-        private void wyborDaty_SelectionDateChanged(object sender, SelectionChangedEventArgs e)
+        private void WyborDaty_SelectionDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (koniecGodzinaControl.Value != null && startGodzinaControl.Value != null)
             {
-                listView.IsEnabled = false;
-                DateTime dataDzien = wyborDatyControl.SelectedDate.Value;
-                DateTime godzinaStart = startGodzinaControl.Value.Value;
-                DateTime godzinaKoniec = koniecGodzinaControl.Value.Value;
-                DateTime startDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
-                                    godzinaStart.Hour, godzinaStart.Minute, 0);
-                DateTime endDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
-                                    godzinaKoniec.Hour, godzinaKoniec.Minute, 0);
-
-                dostepnePrzedmioty.Clear();
-                BazaMetody.ZwrocDostepnePrzedmiotyWTerminie(startDate, endDate).ForEach(dostepnePrzedmioty.Add);
+                listView.IsEnabled = true;
+                SprawdzDostepnoscPrzedmiotow();
             }
+        }
+
+        private void StartGodzina_ValueChanged(Object sender, EventArgs e)
+        {
+            DateTime? ts = startGodzinaControl.Value;
+            if (ts.HasValue)
+            {
+                koniecGodzinaControl.StartTime = ts.Value.TimeOfDay.Add(new TimeSpan(0, 15, 0));
+                if (koniecGodzinaControl.Value != null && wyborDatyControl.SelectedDate != null)
+                {
+                    listView.IsEnabled = true;
+                    SprawdzDostepnoscPrzedmiotow();
+                }
+            }            
+            
+        }
+
+        private void KoniecGodzina_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime? ts = koniecGodzinaControl.Value;
+            if (ts.HasValue)
+            {
+                startGodzinaControl.EndTime = ts.Value.TimeOfDay.Add(new TimeSpan(0, -15, 0));
+                if (startGodzinaControl.Value != null && wyborDatyControl.SelectedDate != null)
+                {
+                    listView.IsEnabled = true;
+                    SprawdzDostepnoscPrzedmiotow();
+                }
+            }
+        }
+
+        private void SprawdzDostepnoscPrzedmiotow()
+        {
+            DateTime dataDzien = wyborDatyControl.SelectedDate.Value;
+            DateTime godzinaStart = startGodzinaControl.Value.Value;
+            DateTime godzinaKoniec = koniecGodzinaControl.Value.Value;
+            DateTime startDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
+                                godzinaStart.Hour, godzinaStart.Minute, 0);
+            DateTime endDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
+                                godzinaKoniec.Hour, godzinaKoniec.Minute, 0);
+
+            dostepnePrzedmioty.Clear();
+            BazaMetody.ZwrocDostepnePrzedmiotyWTerminie(startDate, endDate).ForEach(dostepnePrzedmioty.Add);
         }
     }
 }
