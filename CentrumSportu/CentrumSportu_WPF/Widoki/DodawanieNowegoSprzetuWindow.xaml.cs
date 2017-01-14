@@ -56,6 +56,7 @@ namespace CentrumSportu_WPF.Widoki
             {
                 MessageBox.Show("Dodano nowy przedmiot");
                 okno.odśwież();
+                this.Close();
             }
             else
             {
