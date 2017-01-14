@@ -23,7 +23,7 @@ namespace CentrumSportu_WPF.Widoki
     public partial class WypozyczanieSprzetuStudent : Window
     {
         private ObservableCollection<Przedmiot> dostepnePrzedmioty;
-
+       
         public WypozyczanieSprzetuStudent(okno_student o)
         {
             InitializeComponent();
@@ -34,24 +34,47 @@ namespace CentrumSportu_WPF.Widoki
             wyborDatyControl.BlackoutDates.Add(cdr);
             wyborDatyControl.BlackoutDates.Add(cdr2);
             startGodzinaControl.TimeInterval = new TimeSpan(0, 15, 0);
-            startGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 7, 0, 0);
+            //startGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 7, 0, 0);
             startGodzinaControl.EndTime = new TimeSpan(21, 0, 0);
             startGodzinaControl.StartTime = new TimeSpan(7, 0, 0);
             koniecGodzinaControl.TimeInterval = new TimeSpan(0, 15, 0);
-            koniecGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 22, 0, 0);
+            //koniecGodzinaControl.DefaultValue = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 22, 0, 0);
             koniecGodzinaControl.EndTime = new TimeSpan(22, 0, 0);
             koniecGodzinaControl.StartTime = new TimeSpan(7, 15, 0);
             
 
             dostepnePrzedmioty = new ObservableCollection<Przedmiot>(BazaMetody.ZwrocWszystkiePrzedmioty());
             listView.ItemsSource = dostepnePrzedmioty;
+            listView.IsEnabled = false;
         }
         
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var wybranyPrzedmiot = (Przedmiot)listView.SelectedItem;
-            label3.Content = wybranyPrzedmiot.Nazwa;
-            textBox.Text = wybranyPrzedmiot.Nazwa;
+            if (wybranyPrzedmiot != null)
+            {
+                label3.Content = wybranyPrzedmiot.Nazwa;
+                textBox.Text = wybranyPrzedmiot.Nazwa;
+            }
+            
+        }
+
+        private void wyborDaty_SelectionDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (koniecGodzinaControl.Value != null && startGodzinaControl.Value != null)
+            {
+                listView.IsEnabled = false;
+                DateTime dataDzien = wyborDatyControl.SelectedDate.Value;
+                DateTime godzinaStart = startGodzinaControl.Value.Value;
+                DateTime godzinaKoniec = koniecGodzinaControl.Value.Value;
+                DateTime startDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
+                                    godzinaStart.Hour, godzinaStart.Minute, 0);
+                DateTime endDate = new DateTime(dataDzien.Year, dataDzien.Month, dataDzien.Day,
+                                    godzinaKoniec.Hour, godzinaKoniec.Minute, 0);
+
+                dostepnePrzedmioty.Clear();
+                BazaMetody.ZwrocDostepnePrzedmiotyWTerminie(startDate, endDate).ForEach(dostepnePrzedmioty.Add);
+            }
         }
     }
 }
