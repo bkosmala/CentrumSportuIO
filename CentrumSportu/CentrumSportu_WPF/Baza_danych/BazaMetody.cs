@@ -726,5 +726,37 @@ namespace CentrumSportu_WPF.Baza_danych
                 return true;
             }
         }
+        public static bool UsunPrzedmiot(Przedmiot przedmiot)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var entry = data.Entry(przedmiot);
+                if (entry.State == EntityState.Detached)
+                    data.Przedmioty.Attach(przedmiot);
+                data.Przedmioty.Remove(przedmiot);
+
+                try
+                {
+                    foreach (Rezerwacja rezerwacja in data.Rezerwacje)
+                    {
+                        foreach (Przedmiot p in rezerwacja.Przedmioty)
+                        {
+                            if (przedmiot.Id == p.Id)
+                            {
+                                data.Rezerwacje.Remove(rezerwacja);
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }
