@@ -108,9 +108,6 @@
                     <Button x:Name="DodajGrupeButton" Content="Utwórz grupę" HorizontalAlignment="Left" Margin="310,123,0,0" VerticalAlignment="Top" Width="200"  Click="DodajGrupeButton_Click" Height="55"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Wypożyczalnia" Margin="36,0,-40,-2">
-                
-            </TabItem>
 
         </TabControl>
 
