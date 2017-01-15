@@ -53,11 +53,18 @@ namespace CentrumSportu_WPF.Baza_danych
             Administrator administrator1 = new Administrator("Super", "Admin",kontoAdministrator);
 
             //PracownicyWypozyczalni
-            Pracownik pracownikWypozyczalni = new Pracownik("Jas", "Kowalski", kontoPracownikWypozyczalni);
+            Pracownik pracownikWypozyczalni = new Pracownik("Jan", "Kowalski", kontoPracownikWypozyczalni);
 
             //Obiekty sportowe
-            ObiektSportowy obiekt1 = new ObiektSportowy("Sala główna", dyscypliny, 25, 100);
-            ObiektSportowy obiekt2 = new ObiektSportowy("Sala główna 2", null, 25, 100);
+            ObiektSportowy obiekt1 = new ObiektSportowy("Główna hala sportowa", dyscypliny, 40, 500);
+            ObiektSportowy obiekt2 = new ObiektSportowy("Basen", null, 30, 100);
+            ObiektSportowy obiekt3 = new ObiektSportowy("Siłownia", null, 20, 0);
+            obiekt1.Zdjecie = path + "../../Images/hala.jpg";
+            obiekt2.Zdjecie = path + "../../Images/basen.jpg";
+            obiekt3.Zdjecie = path + "../../Images/gym.jpg";
+            obiekt1.Opis = "- usytuowana w centrum miasta,\n- przystosowana do osób niepełnosprawnych,\n-płyta główna o powierzchni 2349 metrów kwadratowych";
+            obiekt2.Opis = "- długość basenu 25 m,\n- głębokość jest stopniowana od 1,2 – 1,8 m.";
+            obiekt3.Opis = "- trzy wydzielone strefy, w zależności od planu treningowego";
             dyscypliny[1].ObiektySportowe.Add(obiekt2);
             dyscypliny[0].ObiektySportowe.Add(obiekt2);
 
@@ -130,8 +137,8 @@ namespace CentrumSportu_WPF.Baza_danych
             //Rezerwacje - moduł oferta
 
             Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
-            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(20), DoDaty = DateTime.Now.AddHours(23), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
-            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(39), DoDaty = DateTime.Now.AddHours(41), Status = Rezerwacja.StatusRezerwacji.ZREALIZOWANA };
+            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(5), DoDaty = DateTime.Now.AddHours(1), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(39), DoDaty = DateTime.Now.AddHours(45), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA };
 
 
             Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
@@ -172,6 +179,11 @@ namespace CentrumSportu_WPF.Baza_danych
             context.Cennik.Add(cennik1);
             context.Cennik.Add(cennik2);
             context.Cennik.Add(cennik3);
+
+            context.ObiektySportowe.Add(obiekt1);
+            context.ObiektySportowe.Add(obiekt2);
+            context.ObiektySportowe.Add(obiekt3);
+
             context.SaveChanges();
 
             var d = new List<Dyscyplina>(dyscypliny.Take<Dyscyplina>(2));

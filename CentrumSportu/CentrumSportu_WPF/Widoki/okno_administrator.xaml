@@ -155,12 +155,15 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="DodajObiektSportowyButton" Content="Dodaj obiekt sportowy" Margin="10,450,0,0" Height="33" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162"/>
+                    <Button x:Name="DodajObiektSportowyButton" Content="Dodaj obiekt sportowy" Margin="10,450,0,0" Height="33" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" Click="DodajObiektSportowyButton_Click"/>
                     <Button x:Name="UsunObiektSportowyButton" Content="Usuń obiekt sportowy" Margin="177,450,0,0" Height="33" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185"/>
                     <Button x:Name="DodajSprzetButton" Content="Dodaj sprzęt" HorizontalAlignment="Left" Margin="367,450,0,0" VerticalAlignment="Top" Width="159" Height="33" Click="DodajSprzetButton_Click"/>
-                    <Button x:Name="UsunSprzetButton" Content="Usuń sprzęt" HorizontalAlignment="Left" Margin="531,450,0,0" VerticalAlignment="Top" Width="111" Height="33"/>
+                    <Button x:Name="UsunSprzetButton" Content="Usuń sprzęt" HorizontalAlignment="Left" Margin="531,450,0,0" VerticalAlignment="Top" Width="111" Height="33" Click="UsunSprzetButton_Click"/>
 
                 </Grid>
+            </TabItem>
+            <TabItem Header="Wyloguj" MouseUp="TabItem_MouseUp">
+                
             </TabItem>
 
 

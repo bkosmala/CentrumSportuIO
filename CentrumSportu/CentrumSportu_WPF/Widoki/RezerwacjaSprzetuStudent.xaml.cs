@@ -123,7 +123,8 @@ namespace CentrumSportu_WPF.Widoki
             var test = listView.SelectedItems;
             if (test.Count > 0)
             {
-                WprowadzRezerwacje();                
+                WprowadzRezerwacje();
+                this.Close();                
             }
             else
             {

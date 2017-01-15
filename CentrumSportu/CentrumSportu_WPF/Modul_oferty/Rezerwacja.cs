@@ -32,8 +32,9 @@ namespace CentrumSportu_WPF.Modul_oferty
         public enum StatusRezerwacji
         {
             OCZEKUJACA = 1,
-            ZREALIZOWANA = 2,
-            ANULOWANA = 3
+            REALIZOWANA = 2,
+            ANULOWANA = 3,
+            ZAKONCZONA = 4
         };
 
         public void RezerwujPrzedmiot(Przedmiot przedmiot)

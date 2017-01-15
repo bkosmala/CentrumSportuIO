@@ -104,6 +104,9 @@
     <Compile Include="Widoki\DodawanieNowegoSprzetuWindow.xaml.cs">
       <DependentUpon>DodawanieNowegoSprzetuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\DodawanieObiektuSportowego.xaml.cs">
+      <DependentUpon>DodawanieObiektuSportowego.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\dodawanieUzytkownika.xaml.cs">
       <DependentUpon>dodawanieUzytkownika.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\DodawanieNowegoSprzetuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\DodawanieObiektuSportowego.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

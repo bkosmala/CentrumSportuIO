@@ -72,14 +72,7 @@ namespace CentrumSportu_WPF.Widoki
         }
         private void comboBoxRezerwacje_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            rezerwacje.Clear();
-            if (comboBoxRezerwacje.SelectedIndex == 0)
-            {
-                BazaMetody.ZwrocRezerwacjeStudenta(student.Id).ForEach(rezerwacje.Add);
-            } else
-            {
-                BazaMetody.PobierzRezerwacjeStudentaWedlugStatusu(student.Id, (Rezerwacja.StatusRezerwacji)comboBoxRezerwacje.SelectedIndex).ForEach(rezerwacje.Add);
-            }            
+            RefreshRezerwacjeListView();      
         }
 
         private void rezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,6 +98,7 @@ namespace CentrumSportu_WPF.Widoki
         {
             WypozyczanieSprzetuStudent okno = new WypozyczanieSprzetuStudent(this, this.student);
             okno.ShowDialog();
+            RefreshRezerwacjeListView();
         }
 
         private void anulujButton_Click(object sender, RoutedEventArgs e)
@@ -112,6 +106,20 @@ namespace CentrumSportu_WPF.Widoki
             var rezerwacja = (Rezerwacja)rezerwacjeListView.SelectedItem;
             rezerwacja.Status = Rezerwacja.StatusRezerwacji.ANULOWANA;
             BazaMetody.AnulujRezerwacje(rezerwacja);
+            RefreshRezerwacjeListView();
+        }
+
+        private void RefreshRezerwacjeListView()
+        {
+            rezerwacje.Clear();
+            if (comboBoxRezerwacje.SelectedIndex == 0)
+            {
+                BazaMetody.ZwrocRezerwacjeStudenta(student.Id).ForEach(rezerwacje.Add);
+            }
+            else
+            {
+                BazaMetody.PobierzRezerwacjeStudentaWedlugStatusu(student.Id, (Rezerwacja.StatusRezerwacji)comboBoxRezerwacje.SelectedIndex).ForEach(rezerwacje.Add);
+            }
         }
 
         private void BiletyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

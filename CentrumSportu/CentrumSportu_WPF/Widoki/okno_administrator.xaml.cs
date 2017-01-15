@@ -78,6 +78,8 @@ namespace CentrumSportu_WPF.Widoki
             StudenciListView.SelectedIndex = 0;
             InstruktorzyListView.SelectedIndex = 0;
             AdministratorzyListView.SelectedIndex = 0;
+            ObiektySportoweListView.SelectedIndex = 0;
+            SprzetListView.SelectedIndex = 0;
 
             this.ObiektySportoweListView.ItemsSource = obiekty;
             this.SprzetListView.ItemsSource = przedmioty;
@@ -169,6 +171,33 @@ namespace CentrumSportu_WPF.Widoki
         {
             DodawanieNowegoSprzetuWindow okno = new DodawanieNowegoSprzetuWindow(this);
             okno.Show();
+        }
+
+        private void UsunSprzetButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (BazaMetody.UsunPrzedmiot(przedmioty[SprzetListView.SelectedIndex]))
+            {
+                MessageBox.Show("Przedmiot usunięty");
+                odśwież();
+            }
+            else
+            {
+                MessageBox.Show("Błąd usuwania przedmiotu");
+                odśwież();
+            }
+        }
+
+        private void DodajObiektSportowyButton_Click(object sender, RoutedEventArgs e)
+        {
+            DodawanieObiektuSportowego okno = new DodawanieObiektuSportowego(this);
+            okno.Show();
+        }
+
+        private void TabItem_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            this.Close();
+            window.Show();
         }
     }
 }

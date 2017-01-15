@@ -45,6 +45,9 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <Button x:Name="LogowanieBtn" FontSize="18" Content="Logowanie" HorizontalAlignment="Left" Margin="674,10,0,0" VerticalAlignment="Top" Width="106" RenderTransformOrigin="0.28,0.182" Click="LogowanieBtn_Click" Foreground="White" Background="#FF750104" Panel.ZIndex="1000"/>
+        <Image x:Name="zdjecie_obiektu" HorizontalAlignment="Left" Height="245"  Opacity="1" VerticalAlignment="Top" Width="287" Margin="488,131,0,0" Panel.ZIndex="1000"/>
+
         <Label x:Name="HeaderLbl" Content="Oferta" 
                HorizontalContentAlignment="Center" FontSize="28"
                Height="84" Margin="10,1,10,0" 
@@ -58,7 +61,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TabControl Margin="0,51,0,0" Background="White" Opacity="0.8">
+        <TabControl x:Name="tab" Margin="0,51,0,0" Background="White" Opacity="0.8" SelectionChanged="Tab_SelectionChanged">
             <TabItem Header="Dostępne zajęcia" FontSize="14" FontWeight="Bold" Opacity="1" Height="25" VerticalAlignment="Top" Margin="2,-3,-87,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -104,11 +107,13 @@
                     </Grid.RowDefinitions>
                     <Canvas x:Name="obiektyViewBox" Grid.Column="1" HorizontalAlignment="Left" Height="497"  VerticalAlignment="Top" Width="517" Margin="0,10,0,0" >
                         <Label Content="{Binding Nazwa}" FontSize="18" HorizontalContentAlignment="Center"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="517"  />
-                        <Label Content="Ilość miejsc na trybunach:" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="191" Canvas.Left="2" Canvas.Top="68"  />
-                        <Label Content="{Binding IloscMiejscTrybuny}" FontSize="16" HorizontalContentAlignment="Left"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="309" Canvas.Left="198" Canvas.Top="68"  />
+                        <Label Content="Ilość miejsc na trybunach" FontSize="16" HorizontalContentAlignment="Center"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="215" Canvas.Top="68"  />
+                        <Label Content="{Binding IloscMiejscTrybuny}" FontSize="16" HorizontalContentAlignment="Center"  Height="34" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="215" Canvas.Top="102"  />
+                        <Label Content="Charakterystyka:" FontSize="16" HorizontalContentAlignment="Center"  Height="32" RenderTransformOrigin="0.366,-0.246" Grid.ColumnSpan="2" Width="215" Canvas.Top="285"  />
+                        <TextBlock x:Name="textBlockObiekty" FontSize="16" TextWrapping="Wrap" Text="{Binding Opis}" Foreground="Black" Canvas.Top="317" Width="505" Height="180" Canvas.Left="4"/>
 
                     </Canvas>
-                    <ListBox Grid.Column="0" x:Name="listBoxObiekty" Background="White"  Margin="5,31,10,20">
+                    <ListBox Grid.Column="0" x:Name="listBoxObiekty" Background="White" SelectionChanged="ListBoxObiekty_SelectionChanged" Margin="5,31,10,20">
                         <ListBox.ItemTemplate>
                             <DataTemplate >
                                 <StackPanel Orientation="Horizontal">
@@ -141,10 +146,8 @@
                     </ListBox>
                     <Grid Grid.ColumnSpan="2" Margin="253,-10,12,10">
                         <Label x:Name="label" Content="Nazwa:" HorizontalAlignment="Left" Margin="14,82,0,0" VerticalAlignment="Top" Height="32" Width="58"/>
-                        <TextBox x:Name="textBoxNazwaSprzetu" HorizontalAlignment="Left" Height="23" Margin="77,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" IsEnabled="False"/>
                         <Label x:Name="label1" Content="Cena:" HorizontalAlignment="Left" Margin="14,139,0,0" VerticalAlignment="Top" Height="32" Width="58"/>
-                        <TextBox x:Name="textBoxCena" HorizontalAlignment="Left" Height="23" Margin="77,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" IsEnabled="False"/>
-
+                        <Label x:Name="nazwaPrzedmiotuLabel" Content="" HorizontalAlignment="Left" Margin="77,82,0,0" VerticalAlignment="Top" Height="32" Width="387"/>
                     </Grid>
 
                 </Grid>

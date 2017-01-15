@@ -93,7 +93,7 @@ namespace CentrumSportu_WPF
         {
             OfertaWidok widok = new OfertaWidok();
             //widok.fromWhere = 0;
-            Switcher.Switch(widok);
+            Switcher.Switch(widok, this.Content);
         }
         public void Navigate(UserControl nextPage)
         {

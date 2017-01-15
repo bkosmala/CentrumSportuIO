@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CentrumSportu_WPF.Modul_biletow;
 using CentrumSportu_WPF.Modul_instruktorow;
 using CentrumSportu_WPF.Modul_oferty;
+using System.Data.Entity.Core.Objects;
 
 namespace CentrumSportu_WPF.Baza_danych
 {
@@ -39,6 +40,27 @@ namespace CentrumSportu_WPF.Baza_danych
         }
 
 
+        internal static List<Rezerwacja> ZwrocRezerwacjeWedlugStatusu(Rezerwacja.StatusRezerwacji status)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Rezerwacje.Include(x => x.Klient).Include(x => x.Przedmioty).Include(x => x.Wypozyczenie).Include(x => x.Wypozyczenie.WydawcaSprzetu).Where(x => x.Status == status).ToList();
+            }
+        }
+
+        //takie, ktore juz moga zostac wypozyczone - REALIZOWANE
+        internal static List<Rezerwacja> ZwrocRezerwacjeAktywne()
+        {
+            int maksRoznicaRozpoczeciaWypozyczenia = 10;
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Rezerwacje.Include("Przedmioty").Include(p => p.Wypozyczenie).Include(t => t.Klient)
+                    .Where(x => Math.Abs(DbFunctions.DiffMinutes(x.OdDaty, DateTime.Now) ?? maksRoznicaRozpoczeciaWypozyczenia + 1) < maksRoznicaRozpoczeciaWypozyczenia
+                            && x.Status == Rezerwacja.StatusRezerwacji.OCZEKUJACA).ToList();
+            }
+        }
+
+
         public static List<UczestnikZajec> UsunUczestnikaZGrupy(int idGrupy, int idUczestnika)
         {
             //TO DO
@@ -56,6 +78,18 @@ namespace CentrumSportu_WPF.Baza_danych
                 }
                 data.SaveChanges();
                 return temp;
+            }
+        }
+
+
+        internal static void AktualizujRezerwacje(Rezerwacja zaktualizowanaRezerwacja)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                data.Rezerwacje.AddOrUpdate(zaktualizowanaRezerwacja);
+                var rezerwacjaPrzed = data.Rezerwacje.Include(p => p.Wypozyczenie).Where(p => p.Id == zaktualizowanaRezerwacja.Id).FirstOrDefault();
+                rezerwacjaPrzed = zaktualizowanaRezerwacja;
+                data.SaveChanges();
             }
         }
 
@@ -711,6 +745,7 @@ namespace CentrumSportu_WPF.Baza_danych
         }
 
 
+
         public static List<Bilet> ZwrocBiletyUzytkownika(UczestnikZajec u)
         {
             using (CentrumContext data = new CentrumContext())
@@ -741,14 +776,30 @@ namespace CentrumSportu_WPF.Baza_danych
 
         }
 
-        public static void DodajObiektSportowy(ObiektSportowy obiekt)
+        
+
+        public static bool DodajObiektSportowy(ObiektSportowy obiekt)
+
         {
             using (CentrumContext data = new CentrumContext())
             {
-                data.ObiektySportowe.Add(obiekt);
-                data.SaveChanges();
+                try
+                {
+                    List<Dyscyplina> temp = new List<Dyscyplina>();
+                    foreach (Dyscyplina dyscyplina in obiekt.DostepneDyscypliny)
+                    {
+                        temp.Add(data.Dyscypliny.FirstOrDefault(x => x.Id == dyscyplina.Id));
+                    }
+                    obiekt.DostepneDyscypliny = temp;
+                    data.ObiektySportowe.Add(obiekt);
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
             }
-
         }
 
         public static bool DodajPrzedmiot(Przedmiot przedmiot)
@@ -893,6 +944,39 @@ namespace CentrumSportu_WPF.Baza_danych
                 }
             }
             return null;
+        }
+
+        public static bool UsunPrzedmiot(Przedmiot przedmiot)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                var entry = data.Entry(przedmiot);
+                if (entry.State == EntityState.Detached)
+                    data.Przedmioty.Attach(przedmiot);
+                data.Przedmioty.Remove(przedmiot);
+
+                try
+                {
+                    foreach (Rezerwacja rezerwacja in data.Rezerwacje)
+                    {
+                        foreach (Przedmiot p in rezerwacja.Przedmioty)
+                        {
+                            if (przedmiot.Id == p.Id)
+                            {
+                                data.Rezerwacje.Remove(rezerwacja);
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                    data.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
     }

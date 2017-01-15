@@ -7,7 +7,85 @@
         mc:Ignorable="d"
         Title="OknoWypozyczalnia" Height="600" Width="800" ResizeMode="CanMinimize">
     <Grid>
-        <Button x:Name="wylogujButton" Content="Wyloguj" HorizontalAlignment="Left" Margin="40,480,0,0" VerticalAlignment="Top" Width="165" Height="45" Click="wylogujButton_Click"/>
+        <Button x:Name="wylogujButton" Content="Wyloguj" HorizontalAlignment="Left" Margin="10,500,0,0" VerticalAlignment="Top" Width="165" Height="45" Click="wylogujButton_Click"/>
+        <Label x:Name="label" Content="Zalogowany jako:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="UzytkownikLabel" Content="" HorizontalAlignment="Left" Margin="148,0,0,0" VerticalAlignment="Top" Width="211" FontWeight="Bold" FontSize="16"/>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="410" Margin="10,55,0,0" VerticalAlignment="Top" Width="774">
+            <TabItem Header="Wypożyczaj" Margin="0,0,-4,-2">
+                <Grid>
+
+                    <ListView x:Name="rezerwacjeAktywneListView" SelectionChanged="rezerwacjeListView_SelectionChanged" Margin="0,0,0,117" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Od" Width="130" DisplayMemberBinding="{Binding OdDaty}"/>
+                                <GridViewColumn Header="Do" Width="130" DisplayMemberBinding="{Binding DoDaty}"/>
+                                <GridViewColumn Header="Id Klienta" Width="60" DisplayMemberBinding="{Binding KlientId}"/>
+                                <GridViewColumn Header="Nazwisko Klienta" Width="130" DisplayMemberBinding="{Binding Klient.Nazwisko}"/>
+                                <GridViewColumn Header="Imie Klienta" Width="120" DisplayMemberBinding="{Binding Klient.Imie}"/>
+                                <GridViewColumn Header="Status" Width="130" DisplayMemberBinding="{Binding Status}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="wypozyczButton" Content="Wypożycz" HorizontalAlignment="Left" Margin="537,300,0,0" VerticalAlignment="Top" Width="105" Height="35" Click="wypozyczButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Przyjmuj zwroty" Margin="1,0,-5,-2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="137*"/>
+                        <ColumnDefinition Width="631*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="realizowaneRezerwacjeListView" HorizontalAlignment="Left" Height="310" Margin="10,10,0,0" VerticalAlignment="Top" Width="748" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Od" Width="150" DisplayMemberBinding="{Binding OdDaty}"/>
+                                <GridViewColumn Header="Do" Width="150" DisplayMemberBinding="{Binding DoDaty}"/>
+                                <GridViewColumn Header="Id Klienta" Width="60" DisplayMemberBinding="{Binding KlientId}"/>
+                                <GridViewColumn Header="Imie klienta" Width="100" DisplayMemberBinding="{Binding Klient.Imie}"/>
+                                <GridViewColumn Header="Nazwisko klienta" Width="140" DisplayMemberBinding="{Binding Klient.Nazwisko}"/>
+                                <GridViewColumn Header="Status Rezerwacji" Width="130" DisplayMemberBinding="{Binding Status}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="przyjmijZwrotButton" Content="Przyjmij zwrot sprzętu" HorizontalAlignment="Left" Margin="360,337,0,0" VerticalAlignment="Top" Width="170" Height="35" Grid.Column="1" Click="przyjmijZwrotButton_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Historia Rezerwacji" Margin="5,0,-9,-2">
+                <Grid>
+                    <ListView x:Name="historiaRezerwacjiListView" Margin="-2,18,-5,144" RenderTransformOrigin="0.5,0.5" SelectionChanged="historiaRezerwacjiListView_SelectionChanged">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Od" Width="150" DisplayMemberBinding="{Binding OdDaty}"/>
+                                <GridViewColumn Header="Do" Width="150" DisplayMemberBinding="{Binding DoDaty}"/>
+                                <GridViewColumn Header="Id Klienta" Width="60" DisplayMemberBinding="{Binding KlientId}"/>
+                                <GridViewColumn Header="Imie klienta" Width="100" DisplayMemberBinding="{Binding Klient.Imie}"/>
+                                <GridViewColumn Header="Nazwisko klienta" Width="140" DisplayMemberBinding="{Binding Klient.Nazwisko}"/>
+                                <GridViewColumn Header="Status Rezerwacji" Width="130" DisplayMemberBinding="{Binding Status}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Label x:Name="label2" Content="Przedmioty:" HorizontalAlignment="Left" Margin="10,296,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="label3" Content="Przedmiot\y zostały wydane przez:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="przedmiotyLabel" Content="" Margin="93,296,18,52" FontSize="14" FontWeight="Bold"/>
+                    <Label x:Name="wydawcaSprzetuLabel" Content="" HorizontalAlignment="Left" Margin="238,262,0,0" VerticalAlignment="Top" Width="321" FontSize="14" FontWeight="Bold"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

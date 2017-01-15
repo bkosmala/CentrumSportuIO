@@ -74,8 +74,9 @@
                     <ComboBox x:Name="comboBoxRezerwacje" Margin="222,33,331,478" SelectionChanged="comboBoxRezerwacje_SelectionChanged">
                         <ComboBoxItem>WSZYSTKIE</ComboBoxItem>
                         <ComboBoxItem>OCZEKUJACE</ComboBoxItem>
-                        <ComboBoxItem>ZREALIZOWANE</ComboBoxItem>
+                        <ComboBoxItem>W REALIZACJI</ComboBoxItem>
                         <ComboBoxItem>ANULOWANE</ComboBoxItem>
+                        <ComboBoxItem>ZAKONCZONE</ComboBoxItem>
                     </ComboBox>
                     <Label x:Name="label" Content="Wypozyczane przedmioty:&#xA;" Margin="485,55,46,450"/>
                     <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="" Margin="485,98,10,295"/>
