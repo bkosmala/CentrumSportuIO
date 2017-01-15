@@ -61,7 +61,7 @@
                     <Button x:Name="przyjmijZwrotButton" Content="Przyjmij zwrot sprzętu" HorizontalAlignment="Left" Margin="360,337,0,0" VerticalAlignment="Top" Width="170" Height="35" Grid.Column="1" Click="przyjmijZwrotButton_Click" />
                     <Label x:Name="label4" Content="Przedmioty:" HorizontalAlignment="Left" Margin="10,296,0,0" VerticalAlignment="Top" FontSize="14"/>
                     <Label x:Name="label5" Content="Przedmiot\y zostały wydane przez:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2" Width="228"/>
-                    <Label x:Name="przedmiotyLabel2" Content="" Margin="93,296,351,57" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                    <Label x:Name="przedmiotyLabel2" Content="" Margin="93,296,10,57" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="2"/>
                     <Label x:Name="wydawcaSprzetuLabel2" Content="" HorizontalAlignment="Left" Margin="106,262,0,0" VerticalAlignment="Top" Width="321" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
                 </Grid>
             </TabItem>
@@ -88,7 +88,7 @@
                     <Label x:Name="label2" Content="Przedmioty:" HorizontalAlignment="Left" Margin="10,296,0,0" VerticalAlignment="Top" FontSize="14"/>
                     <Label x:Name="label3" Content="Przedmiot\y zostały wydane przez:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" FontSize="14"/>
                     <Label x:Name="przedmiotyLabel" Content="" Margin="93,296,18,52" FontSize="14" FontWeight="Bold"/>
-                    <Label x:Name="wydawcaSprzetuLabel" Content="" HorizontalAlignment="Left" Margin="238,262,0,0" VerticalAlignment="Top" Width="321" FontSize="14" FontWeight="Bold"/>
+                    <Label x:Name="wydawcaSprzetuLabel" Content="" HorizontalAlignment="Left" Margin="238,262,0,0" VerticalAlignment="Top" Width="520" FontSize="14" FontWeight="Bold"/>
 
                 </Grid>
             </TabItem>

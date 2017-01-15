@@ -143,8 +143,8 @@ namespace CentrumSportu_WPF.Baza_danych
             Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(7), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
             Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(45), DoDaty = DateTime.Now.AddHours(47), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
             Rezerwacja rezerwacja4 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddDays(-2), DoDaty = DateTime.Now.AddDays(2), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
-            Rezerwacja rezerwacja5 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(-5), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA, WypozyczenieId = wypozyczenie1.IdWypozyczenia, Wypozyczenie = wypozyczenie1};
-            Rezerwacja rezerwacja6 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(-50), DoDaty = DateTime.Now.AddDays(-2), Status = Rezerwacja.StatusRezerwacji.ZAKONCZONA, WypozyczenieId = wypozyczenie2.IdWypozyczenia, Wypozyczenie = wypozyczenie2 };
+            Rezerwacja rezerwacja5 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(-5), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA, Wypozyczenie = wypozyczenie1};
+            Rezerwacja rezerwacja6 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(-50), DoDaty = DateTime.Now.AddDays(-2), Status = Rezerwacja.StatusRezerwacji.ZAKONCZONA, Wypozyczenie = wypozyczenie2 };
            
 
             Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };

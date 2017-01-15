@@ -162,10 +162,10 @@ namespace CentrumSportu_WPF.Widoki
             if (zaznaczonaRezerwacja != null)
             {
                 przedmiotyLabel2.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
-            }
-            if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.REALIZOWANA)
-            {
-                wydawcaSprzetuLabel2.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
+                if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.REALIZOWANA)
+                {
+                    wydawcaSprzetuLabel2.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
+                }
             }
         }
         
