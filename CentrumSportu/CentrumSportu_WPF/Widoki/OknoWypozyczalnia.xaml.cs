@@ -51,7 +51,11 @@ namespace CentrumSportu_WPF.Widoki
 
         private void rezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var zaznaczonaRezerwacja = rezerwacjeAktywneListView.SelectedItem as Rezerwacja;
+            if (zaznaczonaRezerwacja != null)
+            {
+                przedmiotyLabel1.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
+            }
         }
 
         private void wypozyczButton_Click(object sender, RoutedEventArgs e)
@@ -111,7 +115,7 @@ namespace CentrumSportu_WPF.Widoki
                 if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.ZAKONCZONA)
                 {
                     //TODO -- NullReference
-                    //wydawcaSprzetuLabel.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
+                    wydawcaSprzetuLabel.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
                 }
             }
         }
@@ -139,11 +143,27 @@ namespace CentrumSportu_WPF.Widoki
         {
             WyszukiwanieKlientaOkno okno = new WyszukiwanieKlientaOkno(pracownikWypozyczalni);
             okno.ShowDialog();
+            RefreshData();
         }
 
         private void refreshButton_Click(object sender, RoutedEventArgs e)
         {
             RefreshData();
         }
+
+        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            przedmiotyLabel.Content = "";
+        }
+
+        private void realizowaneRezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var zaznaczonaRezerwacja = realizowaneRezerwacjeListView.SelectedItem as Rezerwacja;
+            if (zaznaczonaRezerwacja != null)
+            {
+                przedmiotyLabel2.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
+            }
+        }
+        
     }
 }
