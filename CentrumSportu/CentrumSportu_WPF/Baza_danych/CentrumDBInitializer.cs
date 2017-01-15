@@ -129,17 +129,23 @@ namespace CentrumSportu_WPF.Baza_danych
 
 
             context.Bilety.Add(b1);
-            
 
 
+
+            context.Pracownicy.Add(pracownikWypozyczalni);
 
 
             //Rezerwacje - moduł oferta
+            Wypozyczenie wypozyczenie1 = new Wypozyczenie(DateTime.Now, pracownikWypozyczalni) { WydawcaSprzetuId = pracownikWypozyczalni.Id };
+            Wypozyczenie wypozyczenie2 = new Wypozyczenie() { DataRozpoczecia = DateTime.Now.AddHours(-50), DataZwrotu = DateTime.Now.AddDays(-2), WydawcaSprzetu = pracownikWypozyczalni};
 
             Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
-            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(5), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
-            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(39), DoDaty = DateTime.Now.AddHours(45), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA };
-
+            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(7), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(45), DoDaty = DateTime.Now.AddHours(47), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
+            Rezerwacja rezerwacja4 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddDays(-2), DoDaty = DateTime.Now.AddDays(2), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
+            Rezerwacja rezerwacja5 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(-5), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA, WypozyczenieId = wypozyczenie1.IdWypozyczenia, Wypozyczenie = wypozyczenie1};
+            Rezerwacja rezerwacja6 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(-50), DoDaty = DateTime.Now.AddDays(-2), Status = Rezerwacja.StatusRezerwacji.ZAKONCZONA, WypozyczenieId = wypozyczenie2.IdWypozyczenia, Wypozyczenie = wypozyczenie2 };
+           
 
             Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
             Przedmiot przedmiot2 = new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true };
@@ -149,22 +155,30 @@ namespace CentrumSportu_WPF.Baza_danych
             rezerwacja1.RezerwujPrzedmiot(przedmiot2);
             rezerwacja2.RezerwujPrzedmiot(przedmiot3);
             rezerwacja3.RezerwujPrzedmiot(przedmiot1);
+            rezerwacja4.RezerwujPrzedmiot(przedmiot3);
+            rezerwacja5.RezerwujPrzedmiot(przedmiot1);
+            rezerwacja5.RezerwujPrzedmiot(przedmiot2);
+            rezerwacja6.RezerwujPrzedmiot(przedmiot2);
 
+            
             context.Przedmioty.Add(przedmiot1);
             context.Przedmioty.Add(przedmiot2);
             context.Przedmioty.Add(przedmiot3);
             context.Rezerwacje.Add(rezerwacja1);
             context.Rezerwacje.Add(rezerwacja2);
             context.Rezerwacje.Add(rezerwacja3);
-            
+            context.Rezerwacje.Add(rezerwacja4);
+            context.Rezerwacje.Add(rezerwacja5);
+            context.Rezerwacje.Add(rezerwacja6);
+
 
             context.Instruktorzy.Add(instruktor1);           
             
 
-           
+            context.Wypozyczenia.Add(wypozyczenie1);
+            context.Wypozyczenia.Add(wypozyczenie2);
             context.Studenci.Add(student1);
             context.Administratorzy.Add(administrator1);
-            context.Pracownicy.Add(pracownikWypozyczalni);
             foreach (var item in zajecia)
             {
                 context.WpisyZajecia.Add(item);

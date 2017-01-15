@@ -108,13 +108,13 @@ namespace CentrumSportu_WPF.Widoki
 
         private void historiaRezerwacjiListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            wydawcaSprzetuLabel.Content = "BRAK";
             var zaznaczonaRezerwacja = historiaRezerwacjiListView.SelectedItem as Rezerwacja;
             if (zaznaczonaRezerwacja != null)
             {
                 przedmiotyLabel.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
                 if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.ZAKONCZONA)
                 {
-                    //TODO -- NullReference
                     wydawcaSprzetuLabel.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
                 }
             }
@@ -162,6 +162,10 @@ namespace CentrumSportu_WPF.Widoki
             if (zaznaczonaRezerwacja != null)
             {
                 przedmiotyLabel2.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
+            }
+            if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.REALIZOWANA)
+            {
+                wydawcaSprzetuLabel2.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
             }
         }
         
