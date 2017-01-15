@@ -110,6 +110,9 @@
     <Compile Include="Widoki\ModyfikujTerminZajec.xaml.cs">
       <DependentUpon>ModyfikujTerminZajec.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\NoweWypozyczenieOkno.xaml.cs">
+      <DependentUpon>NoweWypozyczenieOkno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Widoki\ModyfikujTerminZajec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\NoweWypozyczenieOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

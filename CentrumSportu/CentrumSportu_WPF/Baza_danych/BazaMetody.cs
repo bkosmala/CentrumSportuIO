@@ -149,7 +149,7 @@ namespace CentrumSportu_WPF.Baza_danych
             using (CentrumContext context = new CentrumContext())
             {
                 var res = from przedmiot in context.Przedmioty
-                          where przedmiot.Rezerwacje.All(r => r.OdDaty > endDate || r.DoDaty < startDate)
+                          where przedmiot.Rezerwacje.All(r => r.Status == Rezerwacja.StatusRezerwacji.ANULOWANA ? true : (r.OdDaty > endDate || r.DoDaty < startDate))
                           select przedmiot;
                 return res.ToList();
             }

@@ -35,7 +35,9 @@ namespace CentrumSportu_WPF.Widoki
                 MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show(osobaTozsamosc + "?", "Tozsamosc klienta", System.Windows.MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-
+                    NoweWypozyczenieOkno okno = new NoweWypozyczenieOkno(osoba);
+                    this.Close();
+                    okno.ShowDialog();
                 }
             }   
         }
