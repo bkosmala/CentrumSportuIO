@@ -60,7 +60,12 @@ namespace CentrumSportu_WPF.Widoki
             if (zaznaczonaRezerwacja != null)
             {
                 zaznaczonaRezerwacja.Wypozyczenie = new Wypozyczenie(DateTime.Now, pracownikWypozyczalni);
+                BazaMetody.DodajWypozyczenie(zaznaczonaRezerwacja.Wypozyczenie);
                 zaznaczonaRezerwacja.Status = Rezerwacja.StatusRezerwacji.REALIZOWANA;
+                foreach (var item in zaznaczonaRezerwacja.Przedmioty)
+                {
+                    item.Dostepnosc = false;
+                }
                 BazaMetody.AktualizujRezerwacje(zaznaczonaRezerwacja);
                 RefreshData();
             }
@@ -105,7 +110,7 @@ namespace CentrumSportu_WPF.Widoki
                 przedmiotyLabel.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
                 if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.ZAKONCZONA)
                 {
-                    //TODO
+                    //TODO -- NullReference
                     //wydawcaSprzetuLabel.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
                 }
             }
@@ -117,6 +122,10 @@ namespace CentrumSportu_WPF.Widoki
             if (zaznaczonaRezerwacja != null)
             {
                 zaznaczonaRezerwacja.Status = Rezerwacja.StatusRezerwacji.ZAKONCZONA;
+                foreach (var item in zaznaczonaRezerwacja.Przedmioty)
+                {
+                    item.Dostepnosc = true;
+                }
                 BazaMetody.AktualizujRezerwacje(zaznaczonaRezerwacja);
                 RefreshData();
             } 
@@ -124,6 +133,17 @@ namespace CentrumSportu_WPF.Widoki
             {
                 MessageBox.Show("Wybierz rezerwacje.");
             }
+        }
+
+        private void noweWypozyczenieButton_Click(object sender, RoutedEventArgs e)
+        {
+            WyszukiwanieKlientaOkno okno = new WyszukiwanieKlientaOkno(pracownikWypozyczalni);
+            okno.ShowDialog();
+        }
+
+        private void refreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshData();
         }
     }
 }

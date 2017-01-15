@@ -151,7 +151,7 @@ namespace CentrumSportu_WPF.Baza_danych
             using (CentrumContext context = new CentrumContext())
             {
                 var res = from przedmiot in context.Przedmioty
-                          where przedmiot.Rezerwacje.All(r => r.OdDaty > endDate || r.DoDaty < startDate)
+                          where przedmiot.Rezerwacje.All(r => r.Status == Rezerwacja.StatusRezerwacji.ANULOWANA ? true : (r.OdDaty > endDate || r.DoDaty < startDate))
                           select przedmiot;
                 return res.ToList();
             }
@@ -455,8 +455,8 @@ namespace CentrumSportu_WPF.Baza_danych
                                     data.Grupy.Remove(g);
                                 }
                             data.Instruktorzy.Remove(i);
-                            
-                        }
+
+                }
                 }
                 catch
                 {
@@ -816,8 +816,8 @@ namespace CentrumSportu_WPF.Baza_danych
                     return false;
                 }
             }
-            return true;
-        }
+                return true;
+            }
 
 
         public static List<Grupa> ZwrocWszystkieGrupy()
@@ -979,5 +979,21 @@ namespace CentrumSportu_WPF.Baza_danych
             }
         }
 
+        public static Osoba ZwrocOsobe(int id)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Uzytkownicy.Where(p => p.Id == id).FirstOrDefault();
+            }
+        }
+
+        public static void DodajWypozyczenie(Wypozyczenie noweWypozyczenie)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                data.Wypozyczenia.Add(noweWypozyczenie);
+                data.SaveChanges();
+            }
+        } 
     }
 }

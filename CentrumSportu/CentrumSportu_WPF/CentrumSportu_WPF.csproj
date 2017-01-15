@@ -113,6 +113,9 @@
     <Compile Include="Widoki\ModyfikujTerminZajec.xaml.cs">
       <DependentUpon>ModyfikujTerminZajec.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\NoweWypozyczenieOkno.xaml.cs">
+      <DependentUpon>NoweWypozyczenieOkno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\OfertaWidok.xaml.cs">
       <DependentUpon>OfertaWidok.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,9 @@
     <Compile Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml.cs">
       <DependentUpon>WysylanieWiadomosciDoUzytkownika.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\WyszukiwanieKlientaOkno.xaml.cs">
+      <DependentUpon>WyszukiwanieKlientaOkno.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -190,6 +196,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Widoki\ModyfikujTerminZajec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\NoweWypozyczenieOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\WyszukiwanieKlientaOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

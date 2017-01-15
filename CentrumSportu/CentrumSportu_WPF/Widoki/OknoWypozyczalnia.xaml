@@ -34,6 +34,7 @@
                         </ListView.View>
                     </ListView>
                     <Button x:Name="wypozyczButton" Content="Wypożycz" HorizontalAlignment="Left" Margin="537,300,0,0" VerticalAlignment="Top" Width="105" Height="35" Click="wypozyczButton_Click"/>
+                    <Button x:Name="noweWypozyczenieButton" Content="Wypożycz bez rezerwacji" Margin="347,300,276,0" VerticalAlignment="Top" Width="145" Height="35" Click="noweWypozyczenieButton_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Przyjmuj zwroty" Margin="1,0,-5,-2">
@@ -86,6 +87,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="refreshButton" Content="Odśwież" HorizontalAlignment="Left" Margin="385,500,0,0" VerticalAlignment="Top" Width="150" Height="45" Click="refreshButton_Click"/>
 
     </Grid>
 </Window>

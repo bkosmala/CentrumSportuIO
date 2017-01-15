@@ -40,6 +40,7 @@ namespace CentrumSportu_WPF.Baza_danych
         public DbSet<Bilet> Bilety { get; set; }
 
         public DbSet<Pracownik> Pracownicy { get; set; }
+        public DbSet<Osoba> Uzytkownicy { get; set; }
 
 
 
