@@ -125,14 +125,19 @@ namespace CentrumSportu_WPF.Widoki
 
         private void BiletyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             Bilet bilet = (Bilet)BiletyListView.SelectedItem;
-            if (bilet != null)
+
+            if (bilet!=null)
             {
-                this.nazwaL.Content = bilet.Zajecia.Zajecia.Nazwa;
-                this.opisL.Content = bilet.Zajecia.Zajecia.Opis;
-                this.DyscyplinaL.Content = bilet.Zajecia.Zajecia.Dyscyplina.Nazwa;
-                this.dlugoscL.Content = bilet.Zajecia.DlugoscZajec + " min";
+                Zajecia zz = BazaMetody.zwrocZajeciaBiletu(bilet);
+                if (zz != null)
+                {
+                    this.nazwaL.Content = zz.Nazwa;
+                    this.opisL.Content = zz.Opis;
+                    //this.DyscyplinaL.Content = zz.Dyscyplina.Nazwa;
+                    this.dlugoscL.Content = bilet.Zajecia.DlugoscZajec + " min";
+                }
             }
             else
             {
@@ -141,12 +146,7 @@ namespace CentrumSportu_WPF.Widoki
                 this.DyscyplinaL.Content = " ";
                 this.dlugoscL.Content = " ";
             }
-            
-            if (bilet.Zajecia.DataRozpoczecia > DateTime.Now)
-                this.oddajBilet.IsEnabled = false;
-            else
-                this.oddajBilet.IsEnabled = true;
-               
+
         }
 
         private void oddajBilet_Click(object sender, RoutedEventArgs e)

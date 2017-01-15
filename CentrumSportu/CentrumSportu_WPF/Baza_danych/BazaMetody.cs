@@ -100,7 +100,7 @@ namespace CentrumSportu_WPF.Baza_danych
                 foreach (var item in
                     data.KontaUzytkownikow)
                 {
-                    if (item.Login == login && item.Haslo == haslo)
+                    if (item.Login == login && item.Haslo == login)
                         return item;
                 }
             }
@@ -912,21 +912,26 @@ namespace CentrumSportu_WPF.Baza_danych
         }
 
 
+
+
         public static void dodajBilet(UczestnikZajec u, int g)
         {
             using (CentrumContext data = new CentrumContext())
             {
-                foreach(Grupa gg in data.Grupy)
-                {
-                    if (gg.Id == g)
-                        gg.Uczestincy.Add(u);
-                    foreach (WpisZajecia wz in data.WpisyZajecia)
-                        if (wz.Grupa.Id == gg.Id)
+                foreach (WpisZajecia wz in data.WpisyZajecia)
+                    if (wz.Grupa.Id == g)
+                    {
+                        foreach(UczestnikZajec uu in data.UczestnicyZajec)
                         {
-                            Bilet b = new Bilet(wz, u);
-                            data.Bilety.Add(b);
-                        }                           
-                }
+                            if(uu.Id==u.Id)
+                            {
+                                Bilet b = new Bilet(wz, uu);
+                                data.Bilety.Add(b);
+
+                            }
+                        }
+
+                    }
                 data.SaveChanges();
             }
             
@@ -994,6 +999,38 @@ namespace CentrumSportu_WPF.Baza_danych
                 data.Wypozyczenia.Add(noweWypozyczenie);
                 data.SaveChanges();
             }
-        } 
+        }
+        
+        
+        public static Zajecia zwrocZajeciaBiletu(Bilet b)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                Zajecia zz = new Zajecia();
+                foreach(Bilet bb in data.Bilety)
+                {
+                    if (bb.Id == b.Id)
+                    {
+                        
+                        foreach(WpisZajecia wz in data.WpisyZajecia)
+                        {
+                            if (bb.Zajecia.Id == wz.Id)
+                            {
+                                foreach (Grupa g in data.Grupy)
+                                    if (g.Id == wz.Grupa.Id)
+                                        foreach (Dyscyplina d in data.Dyscypliny)
+                                            if (d.Id == g.Dyscyplina.Id)
+                                                foreach (Zajecia z in data.Zajecia)
+                                                    if (z.Dyscyplina.Nazwa == d.Nazwa)
+                                                        return z;
+                            }
+
+                        }
+                    }
+                }
+                return zz;
+            }
+        }
+         
     }
 }

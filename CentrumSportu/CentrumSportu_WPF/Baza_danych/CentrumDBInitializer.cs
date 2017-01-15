@@ -104,8 +104,8 @@ namespace CentrumSportu_WPF.Baza_danych
             Zajecia zajecia1 = new Zajecia("grupowe", dyscypliny[0], "Trening piłki nożnej", "Dlaczego warto u nas trenować:\n - Trening prowadzony przez doświadczonych trenerów. \n - Własna metodologia szkolenia oparta na zachodnich wzorcach.\n - Możliwość korzystanie z bogatego wyposażenia Centrum.\n - Rozgrywka zespołowa na każdym treningu, przez ponad połowę czasu.  \n - I wiele innych :) ", cennik1);
             Zajecia zajecia2 = new Zajecia("grupowe", dyscypliny[2], "Trening koszykówki", "Rozgrywka zespołowa na każdym treningu", cennik2);
             Zajecia zajecia3 = new Zajecia("grupowe", dyscypliny[1], "Trening siatkówki", "Trening prowadzony przez doświadczonych trenerów.\n", cennik3);
-            List<Zajecia> zajeciaOferta = new List<Zajecia>();
 
+            List<Zajecia> zajeciaOferta = new List<Zajecia>();
             zajeciaOferta.Add(zajecia1);
             zajeciaOferta.Add(zajecia2);
             zajeciaOferta.Add(zajecia3);
