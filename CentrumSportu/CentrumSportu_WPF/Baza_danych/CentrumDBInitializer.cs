@@ -14,19 +14,19 @@ namespace CentrumSportu_WPF.Baza_danych
 {
     public class CentrumDBInitializer :DropCreateDatabaseAlways<CentrumContext>
     {
-        protected override void Seed(CentrumContext context)  
-        {      
+        protected override void Seed(CentrumContext context)
+        {
             //Konta uzytkownikow
             KontoUzytkownika kontoInstruktor = new KontoUzytkownika("kazik", "kazik", KontoUzytkownika.RodzajKonta.Instruktor);
             KontoUzytkownika kontoAdministrator = new KontoUzytkownika("admin", "admin", KontoUzytkownika.RodzajKonta.Administrator);
-            KontoUzytkownika kontoStudent= new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student);
+            KontoUzytkownika kontoStudent = new KontoUzytkownika("lebioda", "lebioda", KontoUzytkownika.RodzajKonta.Student);
             KontoUzytkownika kontoPracownikWypozyczalni = new KontoUzytkownika("test", "test", KontoUzytkownika.RodzajKonta.PracownikWypozyczalni);
 
             KontoUzytkownika kontoInstruktor2 = new KontoUzytkownika("inst", "inst",
                 KontoUzytkownika.RodzajKonta.Instruktor);
 
             //Dyscypliny
-            List<Dyscyplina> dyscypliny=new List<Dyscyplina>()
+            List<Dyscyplina> dyscypliny = new List<Dyscyplina>()
             {
                 new Dyscyplina("Piłka nożna"),
                 new Dyscyplina("Piłka siatkowa"),
@@ -35,7 +35,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
 
             //Instruktorzy
-            Instruktor instruktor1= new Instruktor("Piotr", "Kazmierczak", "pkazmierczak@gmail.com", "500600700",dyscypliny,kontoInstruktor);
+            Instruktor instruktor1 = new Instruktor("Piotr", "Kazmierczak", "pkazmierczak@gmail.com", "500600700", dyscypliny, kontoInstruktor);
             string path = AppDomain.CurrentDomain.BaseDirectory;
             instruktor1.Zdjecie = path + "../../Images/instruktor_test.jpg";
 
@@ -50,7 +50,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
 
             //Administratorzy
-            Administrator administrator1 = new Administrator("Super", "Admin",kontoAdministrator);
+            Administrator administrator1 = new Administrator("Super", "Admin", kontoAdministrator);
 
             //PracownicyWypozyczalni
             Pracownik pracownikWypozyczalni = new Pracownik("Jan", "Kowalski", kontoPracownikWypozyczalni);
@@ -70,7 +70,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
             KontoUzytkownika k1 = new KontoUzytkownika("l", "l", KontoUzytkownika.RodzajKonta.NieStudent);
 
-            
+
 
             //UczestnicyZajec
             UczestnikZajec uczestnik1 = new UczestnikZajec("Jan", "Kowalski", "jan.kowalski@gmail.com", "608924351");
@@ -82,7 +82,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
             uczestnik1.KontoUzytkownika = k1;
             //Grupy
-            Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30,"Piłka nożna - grupa męska");
+            Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30, "Piłka nożna - grupa męska");
             Grupa grupa2 = new Grupa(dyscypliny[0], 5, 30, "Piłka nożna - grupa żeńska");
             Grupa grupa3 = new Grupa(dyscypliny[1], 5, 30, "Piłka siatkowa - grupa żeńska");
 
@@ -137,19 +137,21 @@ namespace CentrumSportu_WPF.Baza_danych
 
             //Rezerwacje - moduł oferta
             Wypozyczenie wypozyczenie1 = new Wypozyczenie(DateTime.Now, pracownikWypozyczalni) { WydawcaSprzetuId = pracownikWypozyczalni.Id };
-            Wypozyczenie wypozyczenie2 = new Wypozyczenie() { DataRozpoczecia = DateTime.Now.AddHours(-50), DataZwrotu = DateTime.Now.AddDays(-2), WydawcaSprzetu = pracownikWypozyczalni};
+            Wypozyczenie wypozyczenie2 = new Wypozyczenie() { DataRozpoczecia = DateTime.Now.AddHours(-50), DataZwrotu = DateTime.Now.AddDays(-2), WydawcaSprzetu = pracownikWypozyczalni };
 
             Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
             Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(7), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
             Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(45), DoDaty = DateTime.Now.AddHours(47), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
             Rezerwacja rezerwacja4 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddDays(-2), DoDaty = DateTime.Now.AddDays(2), Status = Rezerwacja.StatusRezerwacji.ANULOWANA };
-            Rezerwacja rezerwacja5 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(-5), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA, Wypozyczenie = wypozyczenie1};
+            Rezerwacja rezerwacja5 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(-5), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA, Wypozyczenie = wypozyczenie1 };
             Rezerwacja rezerwacja6 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(-50), DoDaty = DateTime.Now.AddDays(-2), Status = Rezerwacja.StatusRezerwacji.ZAKONCZONA, Wypozyczenie = wypozyczenie2 };
-           
+
 
             Przedmiot przedmiot1 = new Przedmiot() { Nazwa = "paletka do tenisa stołowego", Dostepnosc = true };
             Przedmiot przedmiot2 = new Przedmiot() { Nazwa = "rakietka do squasha", Dostepnosc = true };
             Przedmiot przedmiot3 = new Przedmiot() { Nazwa = "rakietka do badmintona", Dostepnosc = true };
+            Przedmiot przedmiot4 = new Przedmiot() { Nazwa = "piłka do koszykówki", Dostepnosc = true };
+            Przedmiot przedmiot5 = new Przedmiot() { Nazwa = "Okulary pływackie Speeed", Dostepnosc = true };
 
             rezerwacja1.RezerwujPrzedmiot(przedmiot1);
             rezerwacja1.RezerwujPrzedmiot(przedmiot2);
@@ -164,6 +166,9 @@ namespace CentrumSportu_WPF.Baza_danych
             context.Przedmioty.Add(przedmiot1);
             context.Przedmioty.Add(przedmiot2);
             context.Przedmioty.Add(przedmiot3);
+            context.Przedmioty.Add(przedmiot4);
+            context.Przedmioty.Add(przedmiot5);
+
             context.Rezerwacje.Add(rezerwacja1);
             context.Rezerwacje.Add(rezerwacja2);
             context.Rezerwacje.Add(rezerwacja3);
