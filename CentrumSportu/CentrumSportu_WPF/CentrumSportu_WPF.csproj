@@ -149,6 +149,9 @@
     <Compile Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml.cs">
       <DependentUpon>WysylanieWiadomosciDoUzytkownika.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\WyszukiwanieKlientaOkno.xaml.cs">
+      <DependentUpon>WyszukiwanieKlientaOkno.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -229,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\WyszukiwanieKlientaOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

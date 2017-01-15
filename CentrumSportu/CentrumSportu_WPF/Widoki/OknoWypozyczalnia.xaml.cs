@@ -61,6 +61,10 @@ namespace CentrumSportu_WPF.Widoki
             {
                 zaznaczonaRezerwacja.Wypozyczenie = new Wypozyczenie(DateTime.Now, pracownikWypozyczalni);
                 zaznaczonaRezerwacja.Status = Rezerwacja.StatusRezerwacji.REALIZOWANA;
+                foreach (var item in zaznaczonaRezerwacja.Przedmioty)
+                {
+                    item.Dostepnosc = false;
+                }
                 BazaMetody.AktualizujRezerwacje(zaznaczonaRezerwacja);
                 RefreshData();
             }
@@ -117,6 +121,10 @@ namespace CentrumSportu_WPF.Widoki
             if (zaznaczonaRezerwacja != null)
             {
                 zaznaczonaRezerwacja.Status = Rezerwacja.StatusRezerwacji.ZAKONCZONA;
+                foreach (var item in zaznaczonaRezerwacja.Przedmioty)
+                {
+                    item.Dostepnosc = true;
+                }
                 BazaMetody.AktualizujRezerwacje(zaznaczonaRezerwacja);
                 RefreshData();
             } 
@@ -124,6 +132,12 @@ namespace CentrumSportu_WPF.Widoki
             {
                 MessageBox.Show("Wybierz rezerwacje.");
             }
+        }
+
+        private void noweWypozyczenieButton_Click(object sender, RoutedEventArgs e)
+        {
+            WyszukiwanieKlientaOkno okno = new WyszukiwanieKlientaOkno();
+            okno.ShowDialog();
         }
     }
 }

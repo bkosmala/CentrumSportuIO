@@ -795,5 +795,13 @@ namespace CentrumSportu_WPF.Baza_danych
                 return true;
             }
         }
+
+        public static Osoba ZwrocOsobe(int id)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                return data.Uzytkownicy.Where(p => p.Id == id).FirstOrDefault();
+            }
+        }
     }
 }
