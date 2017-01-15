@@ -33,59 +33,66 @@ namespace CentrumSportu_WPF
 
         private void ZalogujBtn_Click(object sender, RoutedEventArgs e)
         {
-            string login = LoginTextBox.Text;
-            string haslo = PasswordBox.Password;
-            var Konto= BazaMetody.SprawdzLoginiHaslo(login, haslo);
-            if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.NieStudent)
+            try
             {
-                UczestnikZajec uczestnik = BazaMetody.ZwrocUczestnika(Konto);
-                if (uczestnik != null)
+                string login = LoginTextBox.Text;
+                string haslo = PasswordBox.Password;
+                var Konto = BazaMetody.SprawdzLoginiHaslo(login, haslo);
+                if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.NieStudent)
                 {
-                    okno_uczestnika okno = new okno_uczestnika(uczestnik);
-                    okno.Show();
-                    this.Close();
+                    UczestnikZajec uczestnik = BazaMetody.ZwrocUczestnika(Konto);
+                    if (uczestnik != null)
+                    {
+                        okno_uczestnika okno = new okno_uczestnika(uczestnik);
+                        okno.Show();
+                        this.Close();
+                    }
                 }
-            }
 
-            if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Instruktor)
-            {
-                Instruktor instruktor = BazaMetody.ZwrocInstruktora(Konto);
-                if (instruktor != null)
+                if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Instruktor)
                 {
-                    okno_instruktor okno = new okno_instruktor(instruktor);
-                    okno.Show();
-                    this.Close();
+                    Instruktor instruktor = BazaMetody.ZwrocInstruktora(Konto);
+                    if (instruktor != null)
+                    {
+                        okno_instruktor okno = new okno_instruktor(instruktor);
+                        okno.Show();
+                        this.Close();
+                    }
+                }
+                else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Administrator)
+                {
+                    Administrator administrator = BazaMetody.ZwrocAdministratora(Konto);
+                    if (administrator != null)
+                    {
+                        okno_administrator okno = new okno_administrator(administrator);
+                        okno.Show();
+                        this.Close();
+                    }
+                }
+                else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Student)
+                {
+                    Student student = BazaMetody.ZwrocStudenta(Konto);
+                    if (student != null)
+                    {
+                        okno_student okno = new okno_student(student);
+                        okno.Show();
+                        this.Close();
+                    }
+                }
+                else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.PracownikWypozyczalni)
+                {
+                    Pracownik pracownikWypozyczalni = BazaMetody.ZwrocPracownika(Konto);
+                    if (pracownikWypozyczalni != null)
+                    {
+                        OknoWypozyczalnia okno = new OknoWypozyczalnia(pracownikWypozyczalni);
+                        okno.Show();
+                        this.Close();
+                    }
                 }
             }
-            else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Administrator)
+            catch (Exception)
             {
-                Administrator administrator = BazaMetody.ZwrocAdministratora(Konto);
-                if (administrator != null)
-                {
-                    okno_administrator okno = new okno_administrator(administrator);
-                    okno.Show();
-                    this.Close();
-                }
-            }
-            else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Student)
-            {
-                Student student = BazaMetody.ZwrocStudenta(Konto);
-                if (student != null)
-                {
-                    okno_student okno = new okno_student(student);
-                    okno.Show();
-                    this.Close();
-                }
-            }
-            else if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.PracownikWypozyczalni)
-            {
-                Pracownik pracownikWypozyczalni = BazaMetody.ZwrocPracownika(Konto);
-                if (pracownikWypozyczalni != null)
-                {
-                    OknoWypozyczalnia okno = new OknoWypozyczalnia(pracownikWypozyczalni);
-                    okno.Show();
-                    this.Close();
-                }
+                Xceed.Wpf.Toolkit.MessageBox.Show("Zły login lub hasło !!!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

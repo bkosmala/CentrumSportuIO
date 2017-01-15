@@ -100,7 +100,7 @@ namespace CentrumSportu_WPF.Baza_danych
                 foreach (var item in
                     data.KontaUzytkownikow)
                 {
-                    if (item.Login == login && item.Haslo == login)
+                    if (item.Login == login && item.Haslo == haslo)
                         return item;
                 }
             }

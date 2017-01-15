@@ -38,7 +38,8 @@ namespace CentrumSportu_WPF.Widoki
             nazwiskoStudentLabel.Content = student.Nazwisko;
             emailStudentLabel.Content = student.Email;
             telefonStudentLabel.Content = student.Telefon;
-            zdjecieProfiloweStudentImage.Source = new BitmapImage(new Uri(student.Zdjecie));
+            if(!string.IsNullOrEmpty(student.Zdjecie))
+                zdjecieProfiloweStudentImage.Source = new BitmapImage(new Uri(student.Zdjecie));
 
             rezerwacje = new ObservableCollection<Rezerwacja>(BazaMetody.ZwrocRezerwacjeStudenta(student.Id));
             

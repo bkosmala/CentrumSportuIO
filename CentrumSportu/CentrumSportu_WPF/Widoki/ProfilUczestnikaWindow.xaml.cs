@@ -38,7 +38,8 @@ namespace CentrumSportu_WPF.Widoki
             nazwiskoLabel.Content = uczestnikZajec.Nazwisko;
             emailLabel.Content = uczestnikZajec.Email;
             telefonLabel.Content = uczestnikZajec.Telefon;
-            zdjecieProfiloweImage.Source = new BitmapImage(new Uri(uczestnikZajec.Zdjecie));
+            if(!string.IsNullOrEmpty(uczestnikZajec.Zdjecie))
+                zdjecieProfiloweImage.Source = new BitmapImage(new Uri(uczestnikZajec.Zdjecie));
 
         }
 
