@@ -46,7 +46,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
             //Studenci
             Student student1 = new Student("Rafał", "Lebioda", kontoStudent, "rafal.lebioda@gmail.com", "666666666");
-            student1.Zdjecie = path + "../../Images/profilPhoto.jpg";
+            student1.Zdjecie = path + "../../Images/student.jpg";
 
 
             //Administratorzy
