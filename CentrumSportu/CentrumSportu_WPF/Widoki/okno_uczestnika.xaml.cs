@@ -1,5 +1,6 @@
 ﻿using CentrumSportu_WPF.Baza_danych;
 using CentrumSportu_WPF.Modul_biletow;
+using CentrumSportu_WPF.Modul_oferty;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,33 +53,33 @@ namespace CentrumSportu_WPF.Widoki
     }
 
 
-    private void BiletyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-
-        Bilet bilet = (Bilet)BiletyListView.SelectedItem;
-        if (bilet != null)
+        private void BiletyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.nazwaL.Content = bilet.Zajecia.Zajecia.Nazwa;
-            this.opisL.Content = bilet.Zajecia.Zajecia.Opis;
-            this.DyscyplinaL.Content = bilet.Zajecia.Zajecia.Dyscyplina.Nazwa;
-            this.dlugoscL.Content = bilet.Zajecia.DlugoscZajec + " min";
+
+            Bilet bilet = (Bilet)BiletyListView.SelectedItem;
+
+            if (bilet != null)
+            {
+                Zajecia zz = BazaMetody.zwrocZajeciaBiletu(bilet);
+                if (zz != null)
+                {
+                    this.nazwaL.Content = zz.Nazwa;
+                    this.opisL.Content = zz.Opis;
+                    this.DyscyplinaL.Content = zz.Dyscyplina.Nazwa;
+                    this.dlugoscL.Content = bilet.Zajecia.DlugoscZajec + " min";
+                }
+            }
+            else
+            {
+                this.nazwaL.Content = " ";
+                this.opisL.Content = " ";
+                this.DyscyplinaL.Content = " ";
+                this.dlugoscL.Content = " ";
+            }
+
         }
-        else
-        {
-            this.nazwaL.Content = " ";
-            this.opisL.Content = " ";
-            this.DyscyplinaL.Content = " ";
-            this.dlugoscL.Content = " ";
-        }
 
-        if (bilet.Zajecia.DataRozpoczecia > DateTime.Now)
-            this.oddajBilet.IsEnabled = false;
-        else
-            this.oddajBilet.IsEnabled = true;
-
-    }
-
-    private void oddajBilet_Click(object sender, RoutedEventArgs e)
+        private void oddajBilet_Click(object sender, RoutedEventArgs e)
     {
         Bilet bilet = (Bilet)BiletyListView.SelectedItem;
 
@@ -104,9 +105,14 @@ namespace CentrumSportu_WPF.Widoki
 
     private void nowyBilet_Click(object sender, RoutedEventArgs e)
     {
-        OfertaWidok widok = new OfertaWidok();
-        //widok.fromWhere = 1;
-        Switcher.Switch(widok);
+            dodajBilet1 okno = new dodajBilet1(this, uczestnik);
+            okno.Show();
+        }
+
+        public void odsiwez()
+        {
+            bilety = new ObservableCollection<Bilet>(BazaMetody.ZwrocBiletyUzytkownika(uczestnik));
+            this.BiletyListView.ItemsSource = bilety;
+        }
     }
-}
 }

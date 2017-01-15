@@ -98,6 +98,9 @@
     <Compile Include="Modul_instruktorow\Zdarzenie.cs" />
     <Compile Include="Pracownik.cs" />
     <Compile Include="Switcher.cs" />
+    <Compile Include="Widoki\dodajBilet1y.xaml.cs">
+      <DependentUpon>dodajBilet1y.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\dodajBilet.xaml.cs">
       <DependentUpon>dodajBilet.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Widoki\dodajBilet1y.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Widoki\dodajBilet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

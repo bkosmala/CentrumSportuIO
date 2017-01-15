@@ -135,7 +135,7 @@ namespace CentrumSportu_WPF.Widoki
                 {
                     this.nazwaL.Content = zz.Nazwa;
                     this.opisL.Content = zz.Opis;
-                    //this.DyscyplinaL.Content = zz.Dyscyplina.Nazwa;
+                    this.DyscyplinaL.Content = zz.Dyscyplina.Nazwa;
                     this.dlugoscL.Content = bilet.Zajecia.DlugoscZajec + " min";
                 }
             }

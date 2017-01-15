@@ -1031,6 +1031,27 @@ namespace CentrumSportu_WPF.Baza_danych
                 return zz;
             }
         }
-         
+
+
+        public static void dodajdoGrypy(Grupa g, UczestnikZajec s)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (UczestnikZajec ss in data.UczestnicyZajec)
+                    if (ss.Id == s.Id)
+                        foreach (Grupa gg in data.Grupy)
+                            if (gg.Id == g.Id)
+                            {
+                                
+                                gg.Uczestincy.Add(ss);
+                            }
+
+
+                data.SaveChanges();
+            }
+        }
+
+
+
     }
 }

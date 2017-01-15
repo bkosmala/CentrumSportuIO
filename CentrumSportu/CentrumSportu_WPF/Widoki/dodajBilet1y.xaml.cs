@@ -20,13 +20,13 @@ namespace CentrumSportu_WPF.Widoki
     /// <summary>
     /// Interaction logic for dodajBilet.xaml
     /// </summary>
-    public partial class dodajBilet : Window
+    public partial class dodajBilet1 : Window
     {
-        private okno_student okno;
+        private okno_uczestnika okno;
         private UczestnikZajec uczestnik;
         private List<WpisZajecia> bilety;
 
-        public dodajBilet(okno_student o, UczestnikZajec u)
+        public dodajBilet1(okno_uczestnika o, UczestnikZajec u)
         {
             this.okno = o;
             this.uczestnik = u;
