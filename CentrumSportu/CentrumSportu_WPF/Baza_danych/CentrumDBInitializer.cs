@@ -118,7 +118,7 @@ namespace CentrumSportu_WPF.Baza_danych
             //Rezerwacje - moduł oferta
 
             Rezerwacja rezerwacja1 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(24), DoDaty = DateTime.Now.AddHours(25), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
-            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(1), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
+            Rezerwacja rezerwacja2 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddMinutes(5), DoDaty = DateTime.Now.AddHours(2), Status = Rezerwacja.StatusRezerwacji.OCZEKUJACA };
             Rezerwacja rezerwacja3 = new Rezerwacja() { Klient = student1, OdDaty = DateTime.Now.AddHours(39), DoDaty = DateTime.Now.AddHours(45), Status = Rezerwacja.StatusRezerwacji.REALIZOWANA };
 
 
