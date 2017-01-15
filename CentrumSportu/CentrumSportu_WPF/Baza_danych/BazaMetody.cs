@@ -88,7 +88,7 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 data.Rezerwacje.AddOrUpdate(zaktualizowanaRezerwacja);
                 var rezerwacjaPrzed = data.Rezerwacje.Include(p => p.Wypozyczenie).Where(p => p.Id == zaktualizowanaRezerwacja.Id).FirstOrDefault();
-                rezerwacjaPrzed = zaktualizowanaRezerwacja;
+                rezerwacjaPrzed.Wypozyczenie = zaktualizowanaRezerwacja.Wypozyczenie;
                 data.SaveChanges();
             }
         }

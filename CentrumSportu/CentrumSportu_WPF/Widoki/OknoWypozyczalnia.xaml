@@ -33,8 +33,10 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="wypozyczButton" Content="Wypożycz" HorizontalAlignment="Left" Margin="537,300,0,0" VerticalAlignment="Top" Width="105" Height="35" Click="wypozyczButton_Click"/>
-                    <Button x:Name="noweWypozyczenieButton" Content="Wypożycz bez rezerwacji" Margin="347,300,276,0" VerticalAlignment="Top" Width="145" Height="35" Click="noweWypozyczenieButton_Click"/>
+                    <Label x:Name="label6" Content="Przedmioty:" HorizontalAlignment="Left" Margin="10,296,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="przedmiotyLabel1" Content="" Margin="93,296,18,52" FontSize="14" FontWeight="Bold"/>
+                    <Button x:Name="wypozyczButton" Content="Wypożycz" HorizontalAlignment="Left" Margin="522,337,0,0" VerticalAlignment="Top" Width="105" Height="35" Click="wypozyczButton_Click"/>
+                    <Button x:Name="noweWypozyczenieButton" Content="Wypożycz bez rezerwacji" Margin="352,337,271,0" VerticalAlignment="Top" Width="145" Height="35" Click="noweWypozyczenieButton_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Przyjmuj zwroty" Margin="1,0,-5,-2">
@@ -43,7 +45,7 @@
                         <ColumnDefinition Width="137*"/>
                         <ColumnDefinition Width="631*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="realizowaneRezerwacjeListView" HorizontalAlignment="Left" Height="310" Margin="10,10,0,0" VerticalAlignment="Top" Width="748" Grid.ColumnSpan="2">
+                    <ListView x:Name="realizowaneRezerwacjeListView" HorizontalAlignment="Left" Height="230" Margin="10,10,0,0" VerticalAlignment="Top" Width="748" Grid.ColumnSpan="2" SelectionChanged="realizowaneRezerwacjeListView_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
@@ -57,6 +59,10 @@
                         </ListView.View>
                     </ListView>
                     <Button x:Name="przyjmijZwrotButton" Content="Przyjmij zwrot sprzętu" HorizontalAlignment="Left" Margin="360,337,0,0" VerticalAlignment="Top" Width="170" Height="35" Grid.Column="1" Click="przyjmijZwrotButton_Click" />
+                    <Label x:Name="label4" Content="Przedmioty:" HorizontalAlignment="Left" Margin="10,296,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="label5" Content="Przedmiot\y zostały wydane przez:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2" Width="228"/>
+                    <Label x:Name="przedmiotyLabel2" Content="" Margin="93,296,351,57" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                    <Label x:Name="wydawcaSprzetuLabel2" Content="" HorizontalAlignment="Left" Margin="106,262,0,0" VerticalAlignment="Top" Width="321" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Historia Rezerwacji" Margin="5,0,-9,-2">
@@ -87,6 +93,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+
         <Button x:Name="refreshButton" Content="Odśwież" HorizontalAlignment="Left" Margin="385,500,0,0" VerticalAlignment="Top" Width="150" Height="45" Click="refreshButton_Click"/>
 
     </Grid>
