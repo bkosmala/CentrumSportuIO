@@ -138,7 +138,7 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data = new CentrumContext())
             {
-                foreach (var item in data.Studenci)
+                foreach (var item in data.Studenci.Include("Grupa"))
                 {
                     if (item.KontoUzytkownika.Login == konto.Login)
                         return item;
@@ -333,8 +333,6 @@ namespace CentrumSportu_WPF.Baza_danych
 
             using (CentrumContext data = new CentrumContext())
             {
-
-
                 try
                 {
                     var entry = data.Entry(K);
@@ -357,16 +355,29 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 try
                 {
-                    var entry = data.Entry(K);
-                    if (entry.State == EntityState.Detached)
-                        data.Studenci.Attach(K);
-                    data.Studenci.Remove(K);
+
+                    foreach (Student s in data.Studenci)
+                        if (s.Id == K.Id)
+                        {
+                            foreach (Bilet b in data.Bilety)
+                            {
+                                if (b.Uczestnik.Id == s.Id)
+                                {
+                                    data.Bilety.Remove(b);
+                                }
+                            }
+
+                            data.Studenci.Remove(s);
+
+
+                        }
                     data.SaveChanges();
                 }
-                catch
+                catch(Exception e)
                 {
                     return false;
                 }
+
             }
             return true;
         }
@@ -398,12 +409,20 @@ namespace CentrumSportu_WPF.Baza_danych
             {
                 try
                 {
-                    var entry = data.Entry(K);
-                    if (entry.State == EntityState.Detached)
-                        data.Instruktorzy.Attach(K);
-                    data.Instruktorzy.Remove(K);
-                    data.SaveChanges();
-
+                  foreach(Instruktor i in data.Instruktorzy)
+                        if(i.Id == K.Id)
+                        {
+                            i.Dyscypliny.Clear();
+                            foreach(Grupa g in data.Grupy)                            
+                                if(g.Instruktor.Id==i.Id)
+                                {
+                                    g.Uczestincy.Clear();
+                                    g.Wpisy.Clear();
+                                    data.Grupy.Remove(g);
+                                }
+                            data.Instruktorzy.Remove(i);
+                            
+                        }
                 }
                 catch
                 {
@@ -748,6 +767,133 @@ namespace CentrumSportu_WPF.Baza_danych
             }
             return true;
         }
-    }
 
+
+        public static List<Grupa> ZwrocWszystkieGrupy()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                List<Grupa> lista = new List<Grupa>();
+
+                foreach(Grupa g in data.Grupy.Include("Uczestincy"))
+                {
+                    int licznik=0;
+                    foreach(WpisZajecia wz in data.WpisyZajecia)
+                    {
+                        if (wz.Grupa.Id == g.Id)
+                            licznik++;
+                    }
+
+                    if (licznik > 1 && g.MaxLiczebnosc > g.Uczestincy.Count + 1)
+                        lista.Add(g);
+                }
+
+                return lista;
+            }
+
+        }
+
+
+        public static List<WpisZajecia> ZwrocWszystkieGrupBiletowy()
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                List<WpisZajecia> lista = new List<WpisZajecia>();
+
+                foreach (Grupa g in data.Grupy)
+                {
+                    int licznik = 0;
+                    foreach (WpisZajecia wz in data.WpisyZajecia)
+                    {
+                        if (wz.Grupa.Id == g.Id)
+                            licznik++;
+                    }
+
+                    if (licznik == 1 && g.MaxLiczebnosc > g.Uczestincy.Count + 1)
+                        foreach (WpisZajecia wz in data.WpisyZajecia.Include("Grupa").Include("Grupa.Dyscyplina"))
+                        {
+                            if (wz.Grupa.Id == g.Id)
+                                lista.Add(wz);
+                        }
+
+
+                }
+
+                return lista;
+            }
+
+        }
+
+        public static void ZmienGrupe(Grupa g, Student s)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Student ss in data.Studenci)
+                    if (ss.Id == s.Id)
+                        foreach (Grupa gg in data.Grupy)
+                            if (gg.Id == g.Id)
+                            {
+                                ss.Grupa = gg;
+                                gg.Uczestincy.Add(ss);
+                            }
+                                
+
+                data.SaveChanges();
+            }
+        }
+
+        public static void OdejdzZGrupu(Student s, int g)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (Student ss in data.Studenci)
+                    if (ss.Id == s.Id)
+                    {
+                        ss.Grupa = null;
+                        foreach (Grupa gg in data.Grupy)
+                            if (gg.Id == g)
+                                gg.Uczestincy.Remove(ss);
+                    }
+
+
+                data.SaveChanges();
+            }
+        }
+
+
+        public static void dodajBilet(UczestnikZajec u, int g)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach(Grupa gg in data.Grupy)
+                {
+                    if (gg.Id == g)
+                        gg.Uczestincy.Add(u);
+                    foreach (WpisZajecia wz in data.WpisyZajecia)
+                        if (wz.Grupa.Id == gg.Id)
+                        {
+                            Bilet b = new Bilet(wz, u);
+                            data.Bilety.Add(b);
+                        }                           
+                }
+                data.SaveChanges();
+            }
+            
+                  
+        }
+
+        public static UczestnikZajec ZwrocUczestnika(KontoUzytkownika konto)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                foreach (var item in data.UczestnicyZajec)
+                {
+                    if (item.KontoUzytkownika.Login == konto.Login)
+                        return item;
+                }
+            }
+            return null;
+        }
+
+    }
 }

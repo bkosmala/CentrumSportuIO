@@ -21,7 +21,17 @@
                     <Label x:Name="telefonStudentLabel" Content="value" HorizontalAlignment="Left" Margin="183,103,0,0" VerticalAlignment="Top"/>
                     <Label Content="Ocena:" HorizontalAlignment="Left" Margin="115,134,0,0" VerticalAlignment="Top" Width="51"/>
                     <Label x:Name="ocenaLabel" Content="value" HorizontalAlignment="Left" Margin="183,134,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="WylogujStudentButton" Content="Wyloguj" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="75" Click="WylogujStudentButton_Click"/>
+                    <Label Content="Ocena:" HorizontalAlignment="Left" Margin="115,134,0,0" VerticalAlignment="Top" Width="51"/>
+                    <Label Content="Grupa" HorizontalAlignment="Left" Margin="115,164,0,0" VerticalAlignment="Top" Width="51"/>
+                    <Label Name="grupaL"  Content="value" HorizontalAlignment="Left" Margin="183,164,0,0" VerticalAlignment="Top" Width="347"/>
+                    <Button Name="odejdzzGrupy" Content="Odejdz z grupy" Width="100"  HorizontalAlignment="Left" Margin="239,204,0,0" VerticalAlignment="Top" Click="odejdzzGrupy_Click"  />
+                    <Button Name="znajdzGrupe" Content="Znajdź Grupe" Width="100"  HorizontalAlignment="Left" Margin="239,127,0,0" VerticalAlignment="Top" Click="znajdzGrupe_Click"  />
+
+
+
+
+
+                    <Button x:Name="WylogujStudentButton" Content="Wyloguj" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" Width="75" Click="WylogujStudentButton_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Bilety">

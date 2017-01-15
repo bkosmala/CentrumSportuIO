@@ -61,6 +61,9 @@ namespace CentrumSportu_WPF.Baza_danych
             dyscypliny[1].ObiektySportowe.Add(obiekt2);
             dyscypliny[0].ObiektySportowe.Add(obiekt2);
 
+            KontoUzytkownika k1 = new KontoUzytkownika("l", "l", KontoUzytkownika.RodzajKonta.NieStudent);
+
+            
 
             //UczestnicyZajec
             UczestnikZajec uczestnik1 = new UczestnikZajec("Jan", "Kowalski", "jan.kowalski@gmail.com", "608924351");
@@ -70,6 +73,7 @@ namespace CentrumSportu_WPF.Baza_danych
             uczestnik2.Zdjecie = path + "../../Images/profilPhoto.jpg";
             uczestnik3.Zdjecie = path + "../../Images/profilPhoto.jpg";
 
+            uczestnik1.KontoUzytkownika = k1;
             //Grupy
             Grupa grupa1 = new Grupa(dyscypliny[0], 5, 30,"Piłka nożna - grupa męska");
             Grupa grupa2 = new Grupa(dyscypliny[0], 5, 30, "Piłka nożna - grupa żeńska");

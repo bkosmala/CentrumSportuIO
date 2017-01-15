@@ -36,6 +36,17 @@ namespace CentrumSportu_WPF
             string login = LoginTextBox.Text;
             string haslo = PasswordBox.Password;
             var Konto= BazaMetody.SprawdzLoginiHaslo(login, haslo);
+            if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.NieStudent)
+            {
+                UczestnikZajec uczestnik = BazaMetody.ZwrocUczestnika(Konto);
+                if (uczestnik != null)
+                {
+                    okno_uczestnika okno = new okno_uczestnika(uczestnik);
+                    okno.Show();
+                    this.Close();
+                }
+            }
+
             if (Konto.TypKonta == KontoUzytkownika.RodzajKonta.Instruktor)
             {
                 Instruktor instruktor = BazaMetody.ZwrocInstruktora(Konto);

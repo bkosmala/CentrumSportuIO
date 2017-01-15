@@ -98,6 +98,9 @@
     <Compile Include="Modul_instruktorow\Zdarzenie.cs" />
     <Compile Include="Pracownik.cs" />
     <Compile Include="Switcher.cs" />
+    <Compile Include="Widoki\dodajBilet.xaml.cs">
+      <DependentUpon>dodajBilet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\DodawanieNowegoSprzetuWindow.xaml.cs">
       <DependentUpon>DodawanieNowegoSprzetuWindow.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,9 @@
     <Compile Include="Widoki\RezerwacjaSprzetuStudent.xaml.cs">
       <DependentUpon>RezerwacjaSprzetuStudent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widoki\wybranieGrupy.xaml.cs">
+      <DependentUpon>wybranieGrupy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widoki\WysylanieWiadomosciDoUzytkownika.xaml.cs">
       <DependentUpon>WysylanieWiadomosciDoUzytkownika.xaml</DependentUpon>
     </Compile>
@@ -164,6 +170,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Widoki\dodajBilet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Widoki\DodawanieNowegoSprzetuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widoki\RezerwacjaSprzetuStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\wybranieGrupy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

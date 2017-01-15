@@ -17,6 +17,7 @@ using CentrumSportu_WPF.Baza_danych;
 using CentrumSportu_WPF.Modul_oferty;
 using System.ComponentModel;
 
+
 namespace CentrumSportu_WPF.Widoki
 {
     /// <summary>
@@ -46,6 +47,18 @@ namespace CentrumSportu_WPF.Widoki
 
             bilety = new ObservableCollection<Bilet>(BazaMetody.ZwrocBiletyUzytkownika(student));
             this.BiletyListView.ItemsSource = bilety;
+
+            if (student.Grupa != null)
+            {
+                this.grupaL.Content = student.Grupa.Nazwa;
+                this.znajdzGrupe.Visibility = Visibility.Hidden;
+                
+            }
+            else
+            {
+                this.grupaL.Content = "brak grupy";
+                this.odejdzzGrupy.Visibility = Visibility.Hidden;
+            }
             
 
 
@@ -144,18 +157,46 @@ namespace CentrumSportu_WPF.Widoki
 
             else
                 MessageBox.Show("Wystapil blad");
-
-
-
-
-
         }
 
         private void nowyBilet_Click(object sender, RoutedEventArgs e)
         {
-            OfertaWidok widok = new OfertaWidok();
-            //widok.fromWhere = 1;
-            Switcher.Switch(widok);
+            dodajBilet okno = new dodajBilet(this, student);
+            okno.Show();
+        }
+
+        public void odsiwez()
+        {
+            bilety = new ObservableCollection<Bilet>(BazaMetody.ZwrocBiletyUzytkownika(student));
+            this.BiletyListView.ItemsSource = bilety;
+        }
+
+        private void znajdzGrupe_Click(object sender, RoutedEventArgs e)
+        {
+            wybranieGrupy okno = new wybranieGrupy(student, this);
+            okno.Show();
+            
+
+        }
+
+        public void zmienG()
+        {
+            this.grupaL.Content = student.Grupa.Nazwa;
+            this.odejdzzGrupy.Visibility = Visibility.Visible;
+            this.znajdzGrupe.Visibility = Visibility.Hidden;
+            
+        }
+
+
+        private void odejdzzGrupy_Click(object sender, RoutedEventArgs e)
+        {
+            BazaMetody.OdejdzZGrupu(student, student.Grupa.Id);
+            student.odejdzZGrupy();
+            this.grupaL.Content = student.Grupa;
+            this.odejdzzGrupy.Visibility = Visibility.Hidden;
+            this.znajdzGrupe.Visibility = Visibility.Visible;
+            
+
         }
     }
 }

@@ -39,30 +39,21 @@ namespace CentrumSportu_WPF.Modul_biletow
 
         public void odejdzZGrupy()
         {
+            
             Grupa = null;
-            Grupa.UsunUczestnika(this.Id);
+           
           
         }
 
 
         public void dojdzDoGrupy(Grupa g)
         {
-            if (g.Uczestincy.Count < g.MaxLiczebnosc)
-            {
-                g.DodajUczestnika(this);
+
                 Grupa = g;
-            }
+            
         }
 
-        public void zmienGrupe(Grupa g)
-        {
-            if (g.Uczestincy.Count < g.MaxLiczebnosc)
-            {
-                odejdzZGrupy();
-                g.DodajUczestnika(this);
-                
-            }
-        }
+
 
 
     }
