@@ -43,17 +43,17 @@ namespace CentrumSportu_WPF.Baza_danych
         {
             using (CentrumContext data = new CentrumContext())
             {
-                return data.Rezerwacje.Include(x => x.Klient).Include(x => x.Przedmioty).Include(x => x.Wypozyczenie).Where(x => x.Status == status).ToList();
+                return data.Rezerwacje.Include(x => x.Klient).Include(x => x.Przedmioty).Include(x => x.Wypozyczenie).Include(x => x.Wypozyczenie.WydawcaSprzetu).Where(x => x.Status == status).ToList();
             }
         }
 
-        //takie, ktore juz moga zostac wypozyczone - zrealizowane
+        //takie, ktore juz moga zostac wypozyczone - REALIZOWANE
         internal static List<Rezerwacja> ZwrocRezerwacjeAktywne()
         {
             int maksRoznicaRozpoczeciaWypozyczenia = 10;
             using (CentrumContext data = new CentrumContext())
             {
-                return data.Rezerwacje.Include("Przedmioty").Include(t => t.Klient)
+                return data.Rezerwacje.Include("Przedmioty").Include(p => p.Wypozyczenie).Include(t => t.Klient)
                     .Where(x => Math.Abs(DbFunctions.DiffMinutes(x.OdDaty, DateTime.Now) ?? maksRoznicaRozpoczeciaWypozyczenia + 1) < maksRoznicaRozpoczeciaWypozyczenia
                             && x.Status == Rezerwacja.StatusRezerwacji.OCZEKUJACA).ToList();
             }
@@ -76,6 +76,18 @@ namespace CentrumSportu_WPF.Baza_danych
                 }
                 data.SaveChanges();
                 return temp;
+            }
+        }
+
+
+        internal static void AktualizujRezerwacje(Rezerwacja zaktualizowanaRezerwacja)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                data.Rezerwacje.AddOrUpdate(zaktualizowanaRezerwacja);
+                var rezerwacjaPrzed = data.Rezerwacje.Include(p => p.Wypozyczenie).Where(p => p.Id == zaktualizowanaRezerwacja.Id).FirstOrDefault();
+                rezerwacjaPrzed = zaktualizowanaRezerwacja;
+                data.SaveChanges();
             }
         }
 

@@ -17,6 +17,13 @@ namespace CentrumSportu_WPF.Modul_oferty
         public DateTime DataRozpoczecia { get; set; }
         public DateTime DataZwrotu { get; private set; }
         public Pracownik WydawcaSprzetu { get; set; }
+
+        public Wypozyczenie() { }
+        public Wypozyczenie(DateTime od, Pracownik pracownik)
+        {
+            DataRozpoczecia = od;
+            WydawcaSprzetu = pracownik;
+        }
         
     }
 }
