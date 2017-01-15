@@ -87,6 +87,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="refreshButton" Content="Odśwież" HorizontalAlignment="Left" Margin="385,500,0,0" VerticalAlignment="Top" Width="150" Height="45" Click="refreshButton_Click"/>
 
     </Grid>
 </Window>

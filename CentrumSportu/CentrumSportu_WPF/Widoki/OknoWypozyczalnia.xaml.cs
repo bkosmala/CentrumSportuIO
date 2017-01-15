@@ -136,8 +136,13 @@ namespace CentrumSportu_WPF.Widoki
 
         private void noweWypozyczenieButton_Click(object sender, RoutedEventArgs e)
         {
-            WyszukiwanieKlientaOkno okno = new WyszukiwanieKlientaOkno();
+            WyszukiwanieKlientaOkno okno = new WyszukiwanieKlientaOkno(pracownikWypozyczalni);
             okno.ShowDialog();
+        }
+
+        private void refreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshData();
         }
     }
 }

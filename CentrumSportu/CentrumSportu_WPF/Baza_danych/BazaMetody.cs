@@ -803,5 +803,14 @@ namespace CentrumSportu_WPF.Baza_danych
                 return data.Uzytkownicy.Where(p => p.Id == id).FirstOrDefault();
             }
         }
+
+        public static void DodajWypozyczenie(Wypozyczenie noweWypozyczenie)
+        {
+            using (CentrumContext data = new CentrumContext())
+            {
+                data.Wypozyczenia.Add(noweWypozyczenie);
+                data.SaveChanges();
+            }
+        } 
     }
 }

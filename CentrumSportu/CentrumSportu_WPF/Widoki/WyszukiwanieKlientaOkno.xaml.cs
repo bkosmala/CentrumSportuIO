@@ -20,8 +20,11 @@ namespace CentrumSportu_WPF.Widoki
     /// </summary>
     public partial class WyszukiwanieKlientaOkno : Window
     {
-        public WyszukiwanieKlientaOkno()
+        private Pracownik pracownik;
+
+        public WyszukiwanieKlientaOkno(Pracownik pracownik)
         {
+            this.pracownik = pracownik;
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
@@ -35,7 +38,7 @@ namespace CentrumSportu_WPF.Widoki
                 MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show(osobaTozsamosc + "?", "Tozsamosc klienta", System.Windows.MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    NoweWypozyczenieOkno okno = new NoweWypozyczenieOkno(osoba);
+                    NoweWypozyczenieOkno okno = new NoweWypozyczenieOkno(osoba, pracownik);
                     this.Close();
                     okno.ShowDialog();
                 }

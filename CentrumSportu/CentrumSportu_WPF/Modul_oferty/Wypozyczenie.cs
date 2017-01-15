@@ -12,10 +12,11 @@ namespace CentrumSportu_WPF.Modul_oferty
     [Table("Wypozyczenie")]
     public class Wypozyczenie
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdWypozyczenia { get; set; }
         public DateTime DataRozpoczecia { get; set; }
-        public DateTime DataZwrotu { get; private set; }
+        public DateTime? DataZwrotu { get; set; }
+        public int? WydawcaSprzetuId { get; set; }
         public Pracownik WydawcaSprzetu { get; set; }
 
         public Wypozyczenie() { }
