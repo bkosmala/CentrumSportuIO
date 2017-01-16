@@ -19,6 +19,7 @@ namespace CentrumSportu_WPF.Widoki
         private ObservableCollection<Rezerwacja> rezerwacjeAktywne;
         private ObservableCollection<Rezerwacja> zakonczoneRezerwacje;
         private ObservableCollection<Rezerwacja> realizowaneRezerwacje;
+        private ObservableCollection<Rezerwacja> oczekujaceRezerwacje;
 
         public OknoWypozyczalnia(Pracownik pracownikWypozyczalni)
         {
@@ -26,6 +27,7 @@ namespace CentrumSportu_WPF.Widoki
             rezerwacjeAktywne = new ObservableCollection<Rezerwacja>();
             zakonczoneRezerwacje = new ObservableCollection<Rezerwacja>();
             realizowaneRezerwacje = new ObservableCollection<Rezerwacja>();
+            oczekujaceRezerwacje = new ObservableCollection<Rezerwacja>();
 
             RefreshData();
 
@@ -40,6 +42,7 @@ namespace CentrumSportu_WPF.Widoki
             rezerwacjeAktywneListView.ItemsSource = rezerwacjeAktywne;
             historiaRezerwacjiListView.ItemsSource = zakonczoneRezerwacje;
             realizowaneRezerwacjeListView.ItemsSource = realizowaneRezerwacje;
+            oczekujaceRezerwacjeListView.ItemsSource = oczekujaceRezerwacje;
         }
 
         private void wylogujButton_Click(object sender, RoutedEventArgs e)
@@ -84,6 +87,7 @@ namespace CentrumSportu_WPF.Widoki
             rezerwacjeAktywne.Clear();
             zakonczoneRezerwacje.Clear();
             realizowaneRezerwacje.Clear();
+            oczekujaceRezerwacje.Clear();
             var rezerwacjeAktywneTmp = BazaMetody.ZwrocRezerwacjeAktywne();
             foreach (var item in rezerwacjeAktywneTmp)
             {
@@ -104,17 +108,22 @@ namespace CentrumSportu_WPF.Widoki
             {
                 realizowaneRezerwacje.Add(item);
             }
+            var oczekujaceRez = BazaMetody.ZwrocRezerwacjeWedlugStatusu(Rezerwacja.StatusRezerwacji.OCZEKUJACA);
+            foreach (var item in oczekujaceRez)
+            {
+                oczekujaceRezerwacje.Add(item);
+            }
         }
 
         private void historiaRezerwacjiListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            wydawcaSprzetuLabel.Content = "BRAK";
             var zaznaczonaRezerwacja = historiaRezerwacjiListView.SelectedItem as Rezerwacja;
             if (zaznaczonaRezerwacja != null)
             {
                 przedmiotyLabel.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
                 if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.ZAKONCZONA)
                 {
-                    //TODO -- NullReference
                     wydawcaSprzetuLabel.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
                 }
             }
@@ -162,8 +171,20 @@ namespace CentrumSportu_WPF.Widoki
             if (zaznaczonaRezerwacja != null)
             {
                 przedmiotyLabel2.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
+                if (zaznaczonaRezerwacja.Status == Rezerwacja.StatusRezerwacji.REALIZOWANA)
+                {
+                    wydawcaSprzetuLabel2.Content = zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Imie + " " + zaznaczonaRezerwacja.Wypozyczenie.WydawcaSprzetu.Nazwisko;
+                }
             }
         }
-        
+
+        private void oczekujaceRezerwacjeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var zaznaczonaRezerwacja = oczekujaceRezerwacjeListView.SelectedItem as Rezerwacja;
+            if (zaznaczonaRezerwacja != null)
+            {
+                przedmiotyLabel4.Content = String.Join(", ", zaznaczonaRezerwacja.Przedmioty.Select(p => p.Nazwa));
+            }
+        }
     }
 }
