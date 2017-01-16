@@ -92,6 +92,31 @@
 
                 </Grid>
             </TabItem>
+            <TabItem Header="Wszystkie oczekujące rezerwacje" Margin="5,0,-9,-2">
+                <Grid>
+                    <ListView x:Name="oczekujaceRezerwacjeListView" Margin="-2,18,-5,49" RenderTransformOrigin="0.5,0.5" SelectionChanged="oczekujaceRezerwacjeListView_SelectionChanged">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Od" Width="150" DisplayMemberBinding="{Binding OdDaty}"/>
+                                <GridViewColumn Header="Do" Width="150" DisplayMemberBinding="{Binding DoDaty}"/>
+                                <GridViewColumn Header="Id Klienta" Width="60" DisplayMemberBinding="{Binding KlientId}"/>
+                                <GridViewColumn Header="Imie klienta" Width="100" DisplayMemberBinding="{Binding Klient.Imie}"/>
+                                <GridViewColumn Header="Nazwisko klienta" Width="140" DisplayMemberBinding="{Binding Klient.Nazwisko}"/>
+                                <GridViewColumn Header="Status Rezerwacji" Width="130" DisplayMemberBinding="{Binding Status}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Label x:Name="label7" Content="Przedmioty:" HorizontalAlignment="Left" Margin="7,338,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label x:Name="przedmiotyLabel4" Content="" Margin="90,338,21,10" FontSize="14" FontWeight="Bold"/>
+
+                </Grid>
+            </TabItem>
         </TabControl>
 
         <Button x:Name="refreshButton" Content="Odśwież" HorizontalAlignment="Left" Margin="385,500,0,0" VerticalAlignment="Top" Width="150" Height="45" Click="refreshButton_Click"/>
