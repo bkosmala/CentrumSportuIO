@@ -124,6 +124,7 @@ namespace CentrumSportu_WPF.Widoki
             if (test.Count > 0)
             {
                 WprowadzRezerwacje();
+                MessageBox.Show("Pomyślnie utworzono nową rezerwację.");
                 this.Close();                
             }
             else
