@@ -28,6 +28,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public dodajBilet(okno_student o, UczestnikZajec u)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.okno = o;
             this.uczestnik = u;
             InitializeComponent();

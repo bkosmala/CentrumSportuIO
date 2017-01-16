@@ -20,18 +20,25 @@ namespace CentrumSportu_WPF.Widoki
 
         private void dalejButton_Click(object sender, RoutedEventArgs e)
         {
-            var osoba = BazaMetody.ZwrocOsobe(idKlientaControl.Value ?? -1);
-            String osobaTozsamosc = osoba.Id + ", " + osoba.Imie + " " + osoba.Nazwisko; 
-            if (osoba != null)
+            try
             {
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show(osobaTozsamosc + "?", "Tozsamosc klienta", System.Windows.MessageBoxButton.YesNo);
-                if (messageBoxResult == MessageBoxResult.Yes)
+                var osoba = BazaMetody.ZwrocOsobe(idKlientaControl.Value ?? -1);
+                String osobaTozsamosc = osoba.Id + ", " + osoba.Imie + " " + osoba.Nazwisko;
+                if (osoba != null)
                 {
-                    NoweWypozyczenieOkno okno = new NoweWypozyczenieOkno(osoba, pracownik);
-                    this.Close();
-                    okno.ShowDialog();
+                    MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show(osobaTozsamosc + "?", "Tozsamosc klienta", System.Windows.MessageBoxButton.YesNo);
+                    if (messageBoxResult == MessageBoxResult.Yes)
+                    {
+                        NoweWypozyczenieOkno okno = new NoweWypozyczenieOkno(osoba, pracownik);
+                        this.Close();
+                        okno.ShowDialog();
+                    }
                 }
-            }   
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
     }
 }

@@ -31,6 +31,7 @@ namespace CentrumSportu_WPF.Widoki
         {
 
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             typKontaCB.Items.Add("student");
             okno = o;
             typKontaCB.Items.Add("administrator");

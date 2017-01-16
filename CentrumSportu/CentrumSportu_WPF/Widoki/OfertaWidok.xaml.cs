@@ -37,6 +37,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public OfertaWidok()
         {
+
             InitializeComponent();
             fromWhere = 0;
             listZajecia = new ObservableCollection<Zajecia>(BazaMetody.ZwrocWszystkieZajeciaOferta());

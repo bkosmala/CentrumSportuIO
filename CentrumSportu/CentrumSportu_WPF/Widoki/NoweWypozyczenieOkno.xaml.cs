@@ -18,6 +18,7 @@ namespace CentrumSportu_WPF.Widoki
 
         public NoweWypozyczenieOkno(Osoba osoba, Pracownik pracownik)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.osoba = osoba;
             this.pracownik = pracownik;
             dostepnePrzedmioty = new ObservableCollection<Przedmiot>();

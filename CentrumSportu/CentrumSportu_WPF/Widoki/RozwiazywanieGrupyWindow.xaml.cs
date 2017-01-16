@@ -60,14 +60,22 @@ namespace CentrumSportu_WPF.Widoki
 
         private void PotwrdzUsuniecieButton_Click(object sender, RoutedEventArgs e)
         {
-            int ile = instruktor.Grupy.Count;
-            MessageBoxResult result = MessageBox.Show("Czy chcesz usunąć " + grupa.Nazwa + "?", "Usuwanie", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            try
             {
-                Grupy = new ObservableCollection<Grupa>(BazaMetody.Usungrupe(instruktor.Id, grupa.Id));
-                Zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
-                this.Close();
+                int ile = instruktor.Grupy.Count;
+                MessageBoxResult result = MessageBox.Show("Czy chcesz usunąć " + grupa.Nazwa + "?", "Usuwanie", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    Grupy = new ObservableCollection<Grupa>(BazaMetody.Usungrupe(instruktor.Id, grupa.Id));
+                    Zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                    this.Close();
+                }
             }
+            catch(Exception)
+            {
+                return;
+            }
+            
         }
 
         private void send_button_Click(object sender, RoutedEventArgs e)

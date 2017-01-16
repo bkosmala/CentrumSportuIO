@@ -50,7 +50,7 @@ namespace CentrumSportu_WPF.Widoki
 
         private void WyslijWiadomoscButton_Click(object sender, RoutedEventArgs e)
         {
-            WyslijWiadomosc("instruktortest@gmail.com", "rafallebioda@gmail.com");
+            WyslijWiadomosc("instruktortest@gmail.com", "instruktortest@gmail.com");
             this.Close();
         }
 

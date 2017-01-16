@@ -22,7 +22,7 @@
                     <Label x:Name="ocenaLabel" Content="value" HorizontalAlignment="Left" Margin="512,180,0,0" VerticalAlignment="Top"/>
                     <Label Content="Ocena:" HorizontalAlignment="Left" Margin="444,180,0,0" VerticalAlignment="Top" Width="51"/>
                     <Label Content="Grupa" HorizontalAlignment="Left" Margin="444,210,0,0" VerticalAlignment="Top" Width="51"/>
-                    <Label Name="grupaL"  Content="value" HorizontalAlignment="Left" Margin="512,210,0,0" VerticalAlignment="Top" Width="38"/>
+                    <Label Name="grupaL"  Content="value" HorizontalAlignment="Left" Margin="512,210,0,0" VerticalAlignment="Top" Width="205"/>
                     
                     <Button Name="znajdzGrupe" Content="Znajdź Grupe" Width="128"  HorizontalAlignment="Left" Margin="444,309,0,0" VerticalAlignment="Top" Click="znajdzGrupe_Click" Height="41"  />
                     <Button x:Name="WylogujStudentButton" Content="Wyloguj" HorizontalAlignment="Left" Margin="444,404,0,0" VerticalAlignment="Top" Width="128" Click="WylogujStudentButton_Click" Height="41"/>

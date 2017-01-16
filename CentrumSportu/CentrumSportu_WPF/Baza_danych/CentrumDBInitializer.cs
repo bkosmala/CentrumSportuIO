@@ -45,7 +45,7 @@ namespace CentrumSportu_WPF.Baza_danych
 
 
             //Studenci
-            Student student1 = new Student("Rafał", "Lebioda", kontoStudent, "rafal.lebioda@gmail.com", "666666666");
+            Student student1 = new Student("Maciej", "Olejniczak", kontoStudent, "maciej.olejniczak@gmail.com", "666666666");
             student1.Zdjecie = path + "../../Images/student.jpg";
 
 
@@ -59,14 +59,15 @@ namespace CentrumSportu_WPF.Baza_danych
             ObiektSportowy obiekt1 = new ObiektSportowy("Główna hala sportowa", dyscypliny, 40, 500);
             ObiektSportowy obiekt2 = new ObiektSportowy("Basen", null, 30, 100);
             ObiektSportowy obiekt3 = new ObiektSportowy("Siłownia", null, 20, 0);
+            ObiektSportowy obiekt4 = new ObiektSportowy("Sala głowna 2", null, 20, 0);
             obiekt1.Zdjecie = path + "../../Images/hala.jpg";
             obiekt2.Zdjecie = path + "../../Images/basen.jpg";
             obiekt3.Zdjecie = path + "../../Images/gym.jpg";
             obiekt1.Opis = "- usytuowana w centrum miasta,\n- przystosowana do osób niepełnosprawnych,\n-płyta główna o powierzchni 2349 metrów kwadratowych";
             obiekt2.Opis = "- długość basenu 25 m,\n- głębokość jest stopniowana od 1,2 – 1,8 m.";
             obiekt3.Opis = "- trzy wydzielone strefy, w zależności od planu treningowego";
-            dyscypliny[1].ObiektySportowe.Add(obiekt2);
-            dyscypliny[0].ObiektySportowe.Add(obiekt2);
+            //dyscypliny[1].ObiektySportowe.Add(obiekt2);
+            //dyscypliny[0].ObiektySportowe.Add(obiekt2);
 
             KontoUzytkownika k1 = new KontoUzytkownika("l", "l", KontoUzytkownika.RodzajKonta.NieStudent);
 

@@ -600,11 +600,20 @@ namespace CentrumSportu_WPF.Baza_danych
 
         public static void UsunTerminZajec(int wpisId)
         {
-            using (CentrumContext data = new CentrumContext())
+            try
             {
-                var result = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpisId);
-                data.WpisyZajecia.Remove(result);
-                data.SaveChanges();
+
+
+                using (CentrumContext data = new CentrumContext())
+                {
+                    var result = data.WpisyZajecia.FirstOrDefault(x => x.Id == wpisId);
+                    data.WpisyZajecia.Remove(result);
+                    data.SaveChanges();
+                }
+            }
+            catch(Exception)
+            {
+
             }
         }
 

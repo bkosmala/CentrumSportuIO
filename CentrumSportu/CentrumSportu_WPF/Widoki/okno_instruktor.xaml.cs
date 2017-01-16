@@ -204,27 +204,44 @@ namespace CentrumSportu_WPF.Widoki
 
         private void RozwiazGrupeButton_Click(object sender, RoutedEventArgs e)
         {
-            RozwiazywanieGrupyWindow okno = new RozwiazywanieGrupyWindow(BazaMetody.ZwrocGrupeDlaWybranegoInstruktora(instruktor.Id, InformacjeOGrupachComboBox.SelectedItem.ToString()), instruktor);
-            okno.Show();
-            okno.Closed += RozwiazywanieGrupyOkno_Closed;
+            try
+            {
+                RozwiazywanieGrupyWindow okno = new RozwiazywanieGrupyWindow(BazaMetody.ZwrocGrupeDlaWybranegoInstruktora(instruktor.Id, InformacjeOGrupachComboBox.SelectedItem.ToString()), instruktor);
+                okno.Show();
+                okno.Closed += RozwiazywanieGrupyOkno_Closed;
+            }
+            catch(Exception)
+            {
+
+            }
+            
         }
 
         private void RozwiazywanieGrupyOkno_Closed(object sender, EventArgs e)
         {
-            RozwiazywanieGrupyWindow child = (RozwiazywanieGrupyWindow)sender;
-            foreach (var item in grupy)
+            try
             {
-                GrupyComboBox.Items.Remove(item.Nazwa);
-                InformacjeOGrupachComboBox.Items.Remove(item.Nazwa);
+
+
+                RozwiazywanieGrupyWindow child = (RozwiazywanieGrupyWindow)sender;
+                foreach (var item in grupy)
+                {
+                    GrupyComboBox.Items.Remove(item.Nazwa);
+                    InformacjeOGrupachComboBox.Items.Remove(item.Nazwa);
+                }
+                foreach (var item in child.Grupy)
+                {
+                    GrupyComboBox.Items.Add(item.Nazwa);
+                    InformacjeOGrupachComboBox.Items.Add(item.Nazwa);
+                }
+                HarmonogramListView.ItemsSource = child.Zajecia;
+                GrupyComboBox.SelectedIndex = 0;
+                InformacjeOGrupachComboBox.SelectedIndex = 0;
             }
-            foreach (var item in child.Grupy)
+            catch(Exception)
             {
-                GrupyComboBox.Items.Add(item.Nazwa);
-                InformacjeOGrupachComboBox.Items.Add(item.Nazwa);
+
             }
-            HarmonogramListView.ItemsSource = child.Zajecia;
-            GrupyComboBox.SelectedIndex = 0;
-            InformacjeOGrupachComboBox.SelectedIndex = 0;
         }
 
         private void UsunMenuItem_Click(object sender, RoutedEventArgs e)
@@ -313,45 +330,54 @@ namespace CentrumSportu_WPF.Widoki
 
         private void WywolajZdarzenia()
         {
-            if (instruktor.Zdarzenia.Count != 0)
+            try
             {
-                var temp = instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Zastepstwo).ToList();
-                foreach (var item in temp)
+
+
+                if (instruktor.Zdarzenia.Count != 0)
                 {
-                    var okno=Xceed.Wpf.Toolkit.MessageBox.Show("Prośba o zastępstwo :"+ Environment.NewLine+item.Message, "Zastepstwo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (okno == MessageBoxResult.Yes)
+                    var temp = instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Zastepstwo).ToList();
+                    foreach (var item in temp)
                     {
-                        Zdarzenie zdarzenie = new Zdarzenie()
+                        var okno = Xceed.Wpf.Toolkit.MessageBox.Show("Prośba o zastępstwo :" + Environment.NewLine + item.Message, "Zastepstwo", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                        if (okno == MessageBoxResult.Yes)
                         {
-                            TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
-                            Message = "Zastępstow zostało zaakaceptowane : ",
-                            Instruktor = item.WpisZajecia.Instruktor,
-                            WpisZajecia = item.WpisZajecia
-                        };
-                        BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
-                        item.WpisZajecia.Instruktor = instruktor;
-                        BazaMetody.AktualizujInstruktoraWpisuZajec(item.WpisZajecia);
-                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
-                        HarmonogramListView.ItemsSource = zajecia;                  
+                            Zdarzenie zdarzenie = new Zdarzenie()
+                            {
+                                TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
+                                Message = "Zastępstow zostało zaakaceptowane : ",
+                                Instruktor = item.WpisZajecia.Instruktor,
+                                WpisZajecia = item.WpisZajecia
+                            };
+                            BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
+                            item.WpisZajecia.Instruktor = instruktor;
+                            BazaMetody.AktualizujInstruktoraWpisuZajec(item.WpisZajecia);
+                            zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
+                            HarmonogramListView.ItemsSource = zajecia;
+                        }
+                        else
+                        {
+                            Zdarzenie zdarzenie = new Zdarzenie()
+                            {
+                                TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
+                                Message = "Zastępstow nie zostało zaakaceptowane : ",
+                                Instruktor = item.WpisZajecia.Instruktor,
+                                WpisZajecia = item.WpisZajecia
+                            };
+                            BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
+                        }
                     }
-                    else
+                    temp = instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Komunikat).ToList();
+                    foreach (var item in temp)
                     {
-                        Zdarzenie zdarzenie = new Zdarzenie()
-                        {
-                            TypZdarzenia = Zdarzenie.RodzajZdarzenia.Komunikat,
-                            Message = "Zastępstow nie zostało zaakaceptowane : ",
-                            Instruktor = item.WpisZajecia.Instruktor,
-                            WpisZajecia = item.WpisZajecia
-                        };
-                        BazaMetody.DodajZdarzenieDoInstruktora(zdarzenie);
+                        Xceed.Wpf.Toolkit.MessageBox.Show("Komunikat :" + Environment.NewLine + item.Message, "Komunikat", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
+                    BazaMetody.UsunZdarzeniaDlaInstruktora(instruktor);
                 }
-                temp= instruktor.Zdarzenia.Where(x => x.TypZdarzenia == Zdarzenie.RodzajZdarzenia.Komunikat).ToList();
-                foreach (var item in temp)
-                {
-                    Xceed.Wpf.Toolkit.MessageBox.Show("Komunikat :" + Environment.NewLine + item.Message, "Komunikat", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                BazaMetody.UsunZdarzeniaDlaInstruktora(instruktor);
+            }
+            catch(Exception)
+            {
+                return;
             }
         }
 
@@ -362,28 +388,35 @@ namespace CentrumSportu_WPF.Widoki
 
         private void DodajTerminButton_Click(object sender, RoutedEventArgs e)
         {
-            var okno =new Okno_Dodaj_Termin(instruktor,
-                BazaMetody.ZwrocGrupeDlaWybranegoInstruktora(instruktor.Id,
-                    InformacjeOGrupachComboBox.SelectedItem.ToString()));
-            okno.ShowDialog();
-            if (okno.czyDodano == true)
+            try
             {
-                if (GrupyComboBox.SelectedIndex == 0)
+                var okno = new Okno_Dodaj_Termin(instruktor,
+                    BazaMetody.ZwrocGrupeDlaWybranegoInstruktora(instruktor.Id,
+                        InformacjeOGrupachComboBox.SelectedItem.ToString()));
+                okno.ShowDialog();
+                if (okno.czyDodano == true)
                 {
-                    zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
-                }
-                else
-                {
-                    string groupName = (string)GrupyComboBox.SelectedItem;
-                    int groupId = 0;
-                    foreach (var item in grupy)
+                    if (GrupyComboBox.SelectedIndex == 0)
                     {
-                        if (item.Nazwa == groupName)
-                            groupId = item.Id;
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktora(instruktor));
                     }
-                    zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
+                    else
+                    {
+                        string groupName = (string)GrupyComboBox.SelectedItem;
+                        int groupId = 0;
+                        foreach (var item in grupy)
+                        {
+                            if (item.Nazwa == groupName)
+                                groupId = item.Id;
+                        }
+                        zajecia = new ObservableCollection<WpisZajecia>(BazaMetody.ZwrocWszystkieZajeciaDlaInstruktoraiDanejGrupy(instruktor, groupId));
+                    }
+                    HarmonogramListView.ItemsSource = zajecia;
                 }
-                HarmonogramListView.ItemsSource = zajecia;
+            }
+            catch(Exception)
+            {
+                return;
             }
         }
     }
